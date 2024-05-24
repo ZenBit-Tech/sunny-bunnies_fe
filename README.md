@@ -8,7 +8,7 @@
 
 #### 1.2 Folder Structure
 
-1. assets - static assets (images, global styles)
+1. assets - static assets (images, svg ...)
 2. libs - shared libraries and utilities
 
    2.1 components - plain react components
@@ -19,11 +19,9 @@
 
    2.4 hooks
 
-   2.5 modules - separate features or functionalities
+   2.5 types
 
-   2.6 types
-
-3. modules - separate app features or functionalities
+3. redux - actions, reducers, selectors, store, thunks
 4. pages - app pages
 
 ## 2. How to Run
