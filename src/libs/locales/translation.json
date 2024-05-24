@@ -1,0 +1,8 @@
+{
+	"ExampleComponent": {
+		"firstName": "First name",
+		"lastName":"Last name",
+		"submit": "Submit",
+		"thisFieldRequired": "This field is required"
+	}
+}

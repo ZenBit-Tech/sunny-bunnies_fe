@@ -1,0 +1,27 @@
+### **General**
+- [ ] Assigned myself to the PR
+- [ ] Assigned the appropriate labels to the PR
+- [ ] Assigned the appropriate reviewers to the PR
+- [ ] Updated the documentation
+- [ ] Performed a self-review of my code
+- [ ] Types for input and output parameters
+- [ ] Don't have "any" on my code
+- [ ] Used the try/catch pattern for error handling
+- [ ] Don't have magic numbers
+- [ ] Compare only with constants not with strings
+- [ ] No ternary operator inside the ternary operator
+- [ ] Don't have commented code
+- [ ] no links in the code, env links should be in env file
+- [ ] Used camelCase for variables and functions
+- [ ] Date and time formats are on the constants
+- [ ] Functions are public only if it's used outside the class
+- [ ] No hardcoded values
+- [ ] covered by tests
+- [ ] Check your commit messages meet
+### Frontend
+- [ ] Components and business logic are separated
+- [ ] Colors, Font Size, and Font Name is on the theme or in the
+- [ ] No text in the components, use i18n approach
+- [ ] No inline styles
+- [ ] Imports are absolute
+- [ ] Attach a screenshot if PR has visual changes.
