@@ -44,33 +44,33 @@ const SignUpForm: React.FC = () => {
 					<CustomFormGroup
 						control={control}
 						error={errors.name}
-						label="Name*"
+						label={t("SignUpComponent.name")}
 						name="name"
-						placeholder="Enter your name"
+						placeholder={t("SignUpComponent.enterYourName")}
 						type="text"
 					/>
 					<CustomFormGroup
 						control={control}
 						error={errors.email}
-						label="Email"
+						label={t("SignUpComponent.email")}
 						name="email"
-						placeholder="your_email@gmail.com"
+						placeholder={t("SignUpComponent.emailExample")}
 						type="email"
 					/>
 					<CustomFormGroup
 						control={control}
 						error={errors.password}
-						label="Password*"
+						label={t("SignUpComponent.password")}
 						name="password"
-						placeholder="Min. 8 characters"
+						placeholder={t("SignUpComponent.passwordPlaceholder")}
 						type="password"
 					/>
 					<CustomFormGroup
 						control={control}
 						error={errors.repeatPassword}
-						label="Repeat Password*"
+						label={t("SignUpComponent.repeatPassword")}
 						name="repeatPassword"
-						placeholder="Min. 8 characters"
+						placeholder={t("SignUpComponent.passwordPlaceholder")}
 						type="password"
 					/>
 					{serverError && (
