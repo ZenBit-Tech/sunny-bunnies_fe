@@ -4,5 +4,15 @@
 		"lastName":"Last name",
 		"submit": "Submit",
 		"thisFieldRequired": "This field is required"
+	},
+	"SignUpComponent": {
+		"createYourAccount": "Create Your Account",
+		"signUpWithGoogle": "Sign Up with Google",
+		"or": "or",
+		"signUp": "Sign Up",
+		"doYouHaveAnAccount": "Do you have an account?",
+		"signIn": "Sign In",
+		"privacyPolicy": "Privacy Policy",
+		"termsOfUse": "Terms Of Use"
 	}
 }
