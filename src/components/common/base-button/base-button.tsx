@@ -3,14 +3,14 @@ import { Theme } from "@mui/material/styles";
 import { Interpolation, SxProps } from "@mui/system";
 import React, { cloneElement } from "react";
 
-interface BaseButtonProperties extends ButtonProps {
-	children?: React.ReactNode | undefined;
-	iconColor?: string | undefined;
+type BaseButtonProperties = {
+	children?: React.ReactNode;
+	iconColor?: string;
 	isLoading?: boolean;
-	onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
-	startIcon?: React.ReactNode | undefined;
-	sx?: SxProps<Theme> | undefined;
-}
+	onClick?: React.MouseEventHandler<HTMLButtonElement>;
+	startIcon?: React.ReactNode;
+	sx?: SxProps<Theme>;
+} & ButtonProps;
 
 const BaseButton: React.FC<BaseButtonProperties> = ({
 	children,
@@ -38,7 +38,7 @@ const BaseButton: React.FC<BaseButtonProperties> = ({
 			sx={sx}
 			{...props}
 		>
-			{ isLoading ? <CircularProgress color="inherit" size={24}/> : children }
+			{isLoading ? <CircularProgress color="inherit" size={24} /> : children}
 		</Button>
 	);
 };
