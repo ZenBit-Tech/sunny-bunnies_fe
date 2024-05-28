@@ -3,6 +3,7 @@ const colors = {
 	disabledButtonBg: "#777777",
 	gray: "#6D6B6B",
 	hoverBlack: "black",
+	lightGray: "#EDEAE9",
 	white: "#ffffff",
 };
 

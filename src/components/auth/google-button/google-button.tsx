@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 
 import GoogleIcon from "~/assets/images/auth/Google.png";
+import { colors } from "~/libs/constants/index.ts";
 
 import styles from "./styles.module.css";
 
@@ -10,8 +11,8 @@ const GoogleButton: React.FC = () => {
 		<Button
 			fullWidth
 			sx={{
-				"&:hover": { backgroundColor: "#EDEAE9" },
-				backgroundColor: "#EDEAE9",
+				"&:hover": { backgroundColor: colors.lightGray },
+				backgroundColor: colors.lightGray,
 				mb: 2,
 				mt: 3,
 				padding: "12px 24px",
