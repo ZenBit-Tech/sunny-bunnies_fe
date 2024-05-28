@@ -10,7 +10,7 @@ export const authApi = api.injectEndpoints({
 			query: (body) => ({
 				body,
 				method: "POST",
-				url: "/auth/register",
+				url: "/auth/sign-up",
 			}),
 		}),
 	}),
