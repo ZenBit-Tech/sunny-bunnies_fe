@@ -1,11 +1,10 @@
 import React from "react";
-
-import { Auth } from "~/pages/auth/index.tsx";
+import { Outlet } from "react-router-dom";
 
 const App: React.FC = () => {
 	return (
 		<>
-			<Auth />
+			<Outlet />
 		</>
 	);
 };
