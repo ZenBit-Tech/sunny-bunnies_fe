@@ -7,17 +7,18 @@ import {
 } from "@reduxjs/toolkit/query/react";
 
 import { httpStatusCode } from "~/libs/enum/http-status-code.ts";
-import { storage, storageKey } from "~/libs/helpers/storage.ts";
 
 import { logout, setUser } from "../auth/auth-slice.ts";
+import { RootState } from "../store.ts";
 import { type AuthTokenResponse } from "../user/types/index.ts";
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: `${import.meta.env.VITE_APP_PROXY_SERVER_URL}`,
 	credentials: "include",
 	mode: "cors",
-	prepareHeaders: (headers) => {
-		const token = storage.get(storageKey.ACCESS_TOKEN);
+	prepareHeaders: (headers, { getState }) => {
+		const state = getState() as RootState;
+		const token = state.auth.accessToken;
 
 		if (token) headers.set("authorization", `Bearer ${token}`);
 
@@ -30,7 +31,8 @@ const baseQueryWithReauth: BaseQueryFn<
 	unknown,
 	FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-	const refreshToken = storage.get(storageKey.REFRESH_TOKEN);
+	const state = api.getState() as RootState;
+	const { refreshToken } = state.auth;
 
 	try {
 		let result = await baseQuery(args, api, extraOptions);
@@ -42,7 +44,7 @@ const baseQueryWithReauth: BaseQueryFn<
 		) {
 			const refreshResult = await baseQuery(
 				{
-					body: { refreshToken: refreshToken },
+					body: { refreshToken },
 					method: "POST",
 					url: "auth/refresh-token",
 				},
