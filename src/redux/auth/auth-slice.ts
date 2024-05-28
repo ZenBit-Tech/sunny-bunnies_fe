@@ -1,29 +1,28 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+import { storage, storageKey } from "~/libs/helpers/storage.ts";
+
 import { type User, type UserSignInResponseDto } from "../user/types/index.ts";
 
 type AuthState = {
-	token: null | string;
 	user: User | null;
 };
 
 const authSlice = createSlice({
 	initialState: {
-		token: localStorage.getItem("token") || null,
 		user: null,
 	} as AuthState,
 	name: "auth",
 	reducers: {
 		logout: (state) => {
-			localStorage.clear();
+			storage.drop(storageKey.ACCESS_TOKEN);
+			storage.drop(storageKey.REFRESH_TOKEN);
 			state.user = null;
-			state.token = null;
 		},
 		setUser: (state, action: PayloadAction<UserSignInResponseDto>) => {
-			localStorage.setItem("token", action.payload.accessToken);
-			localStorage.setItem("refreshToken", action.payload.refreshToken);
+			storage.set(storageKey.ACCESS_TOKEN, action.payload.accessToken);
+			storage.set(storageKey.REFRESH_TOKEN, action.payload.refreshToken);
 			state.user = action.payload.user;
-			state.token = action.payload.accessToken;
 		},
 	},
 });
