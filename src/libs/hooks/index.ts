@@ -1,2 +1,2 @@
-export { useSignUpForm } from "./useSignUpForm.ts";
-export { useToggle } from "./useToggle.ts";
+export { useSignUpForm } from "./use-sign-up-form.ts";
+export { useToggle } from "./use-toggle.ts";
