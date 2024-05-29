@@ -10,6 +10,7 @@ import {
 	StoreProvider,
 } from "./components/common/index.ts";
 import { AppRoute } from "./libs/enum/index.ts";
+import "./libs/locales/i18n.ts";
 import { Auth, Home } from "./pages/index.ts";
 import { persistor, store } from "./redux/store.ts";
 import "./styles.css";
