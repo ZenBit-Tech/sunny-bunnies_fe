@@ -1,4 +1,5 @@
 import { Box, Grid, Paper } from "@mui/material";
+import { t } from "i18next";
 import React from "react";
 import { useLocation } from "react-router-dom";
 
@@ -60,7 +61,11 @@ const Auth: React.FC = () => {
 						top: 42,
 					}}
 				>
-					<img alt="Logo" className={styles["auth__logo"]} src={Logo} />
+					<img
+						alt={t("AuthPage.logo")}
+						className={styles["auth__logo"]}
+						src={Logo}
+					/>
 				</Box>
 			</Grid>
 			<Grid
@@ -71,7 +76,10 @@ const Auth: React.FC = () => {
 				sm={12}
 				square
 				sx={{
-					justifyContent: "space-between",
+					alignItems: "center",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
 					padding: 7,
 				}}
 				xl={5}

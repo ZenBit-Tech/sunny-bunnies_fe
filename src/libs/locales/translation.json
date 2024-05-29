@@ -28,6 +28,9 @@
 		"donNotHaveAnAccountYet": "Don't have an account yet?",
 		"forgotPassword": "Forgot Password?"
 	},
+	"AuthPage": {
+		"logo": "Logo"
+	},
 	"HomePage": {
 		"HomePage": "HomePage"
 	}
