@@ -53,4 +53,36 @@ const SignInLink: React.FC = () => {
 	);
 };
 
-export { AuthLinks, SignInLink };
+const SignUpLink: React.FC = () => {
+	const { t } = useTranslation();
+
+	return (
+		<Link to={AppRoute.SIGN_UP}>
+			<Typography color="secondary.main" component="span" variant="dmSansBold">
+				{t("SignInComponent.donNotHaveAnAccountYet")}
+			</Typography>
+			<Typography
+				color="primary.main"
+				component="span"
+				ml="10px"
+				variant="playfairDisplay"
+			>
+				{t("SignUpComponent.signUp")}
+			</Typography>
+		</Link>
+	);
+};
+
+const ForgotPasswordLink: React.FC = () => {
+	const { t } = useTranslation();
+
+	return (
+		<Link to={AppRoute.FORGOT_PASSWORD}>
+			<Typography color="primary.main" variant="playfairDisplay">
+				{t("SignInComponent.forgotPassword")}
+			</Typography>
+		</Link>
+	);
+};
+
+export { AuthLinks, ForgotPasswordLink, SignInLink, SignUpLink };
