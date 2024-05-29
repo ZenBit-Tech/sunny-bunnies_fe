@@ -2,6 +2,7 @@ const AppRoute = {
 	ANY: "*",
 	FORGOT_PASSWORD: "/forgot-password",
 	HOME: "/home",
+	ONBOARDING: "/onboarding",
 	PRIVACY_POLICY: "/privacy-policy",
 	ROOT: "/",
 	SIGN_IN: "/sign-in",

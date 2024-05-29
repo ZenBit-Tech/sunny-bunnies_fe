@@ -41,6 +41,7 @@ const SignInForm: React.FC = () => {
 					mb={2}
 					mt={1}
 					onSubmit={handleFormSubmit}
+					width="100%"
 				>
 					<CustomFormGroup
 						control={control}
@@ -67,7 +68,7 @@ const SignInForm: React.FC = () => {
 					<BaseButton
 						fullWidth
 						isLoading={isLoading}
-						sx={{ mt: 3 }}
+						sx={{ mt: 5 }}
 						type="submit"
 						variant="primary_black_bold"
 					>

@@ -81,7 +81,7 @@ const SignUpForm: React.FC = () => {
 					<BaseButton
 						fullWidth
 						isLoading={isLoading}
-						sx={{ mt: 3 }}
+						sx={{ mt: 5 }}
 						type="submit"
 						variant="primary_black_bold"
 					>
