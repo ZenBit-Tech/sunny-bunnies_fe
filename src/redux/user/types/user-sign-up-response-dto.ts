@@ -1,5 +1,9 @@
+import { type User } from "./user.ts";
+
 type UserSignUpResponseDto = {
-	message: string;
+	accessToken: string;
+	refreshToken: string;
+	user: User;
 };
 
 export { type UserSignUpResponseDto };
