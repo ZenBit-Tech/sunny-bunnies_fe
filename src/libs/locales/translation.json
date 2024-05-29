@@ -24,5 +24,8 @@
 	},
 	"SignInComponent": {
 		"signIn": "Sign In"
+	},
+	"HomePage": {
+		"HomePage": "HomePage"
 	}
 }
