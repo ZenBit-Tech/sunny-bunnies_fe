@@ -27,5 +27,8 @@
 		"signInWithGoogle": "Sign In with Google",
 		"donNotHaveAnAccountYet": "Don't have an account yet?",
 		"forgotPassword": "Forgot Password?"
+	},
+	"HomePage": {
+		"HomePage": "HomePage"
 	}
 }

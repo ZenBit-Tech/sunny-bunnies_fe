@@ -3,11 +3,15 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
 
-import { App } from "./app/app.tsx";
-import { RouterProvider, StoreProvider } from "./components/common/index.ts";
+import {
+	PrivateRoute,
+	PublicRoute,
+	RouterProvider,
+	StoreProvider,
+} from "./components/common/index.ts";
 import { AppRoute } from "./libs/enum/index.ts";
 import "./libs/locales/i18n.ts";
-import { Auth } from "./pages/auth/index.tsx";
+import { Auth, Home } from "./pages/index.ts";
 import { persistor, store } from "./redux/store.ts";
 import "./styles.css";
 import theme from "./theme.ts";
@@ -24,20 +28,36 @@ createRoot(document.getElementById("root")!).render(
 									{
 										children: [
 											{
-												element: <Auth />,
-												path: AppRoute.SIGN_UP,
-											},
-											{
-												element: <Auth />,
-												path: AppRoute.SIGN_IN,
+												children: [
+													{
+														element: <Auth />,
+														path: AppRoute.ROOT,
+													},
+													{
+														element: <Auth />,
+														path: AppRoute.SIGN_UP,
+													},
+													{
+														element: <Auth />,
+														path: AppRoute.SIGN_IN,
+													},
+												],
+												element: <PublicRoute />,
+												path: AppRoute.ROOT,
 											},
 										],
-										element: <Auth />,
+									},
+									{
+										children: [
+											{
+												element: <Home />,
+												path: AppRoute.HOME,
+											},
+										],
+										element: <PrivateRoute />,
 										path: AppRoute.ROOT,
 									},
 								],
-								element: <App />,
-								path: AppRoute.ROOT,
 							},
 						]}
 					/>

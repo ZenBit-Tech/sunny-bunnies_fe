@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import { AppRoute } from "~/libs/enum/index.ts";
 import { useRegisterMutation } from "~/redux/auth/auth-api.ts";
+import { setUser } from "~/redux/auth/auth-slice.ts";
+import { useAppDispatch } from "~/redux/hooks/index.ts";
 import { UserSignUpFormData } from "~/redux/user/types/index.ts";
 import { userSignUpValidation } from "~/redux/user/validation/sign-up-schema.ts";
 
@@ -26,7 +28,8 @@ const useSignUpForm = (): SignUpFormResult => {
 	const navigate = useNavigate();
 
 	const [serverError, setServerError] = useState("");
-	const [register, { error, isLoading, isSuccess }] = useRegisterMutation();
+	const [register, { data, error, isLoading, isSuccess }] =
+		useRegisterMutation();
 
 	const {
 		control,
@@ -42,7 +45,7 @@ const useSignUpForm = (): SignUpFormResult => {
 		},
 		resolver: yupResolver(userSignUpValidation),
 	});
-
+	const dispatch = useAppDispatch();
 	const onSubmit = (
 		formData: Omit<UserSignUpFormData, "repeatPassword">,
 	): void => {
@@ -56,6 +59,10 @@ const useSignUpForm = (): SignUpFormResult => {
 			onSubmit(formData);
 		})();
 	};
+
+	useEffect(() => {
+		if (data) dispatch(setUser(data));
+	}, [data, dispatch]);
 
 	useEffect(() => {
 		if (isSuccess) {
