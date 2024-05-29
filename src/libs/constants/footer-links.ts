@@ -1,81 +1,73 @@
-import { useTranslation } from "react-i18next";
+export const footerColumnsLogIn = [
+	{
+		links: [
+			{ href: "#", label: "footer.footerColumnsLogIn.Login" },
+			{ href: "#", label: "footer.footerColumnsLogIn.Wishlist" },
+			{ href: "#", label: "footer.footerColumnsLogIn.Cart" },
+		],
+		title: "footer.footerColumnsLogIn.Shop",
+	},
+	{
+		links: [
+			{ href: "#", label: "footer.footerColumnsLogIn.AboutUs" },
+			{
+				href: "#",
+				label: "footer.footerColumnsLogIn.TermsAndConditions",
+			},
+			{
+				href: "#",
+				label: "footer.footerColumnsLogIn.PrivacyPolicy",
+			},
+			{ href: "#", label: "footer.footerColumnsLogIn.ContactUs" },
+		],
+		title: "footer.footerColumnsLogIn.Company",
+	},
+	{
+		links: [
+			{ href: "#", label: "footer.footerColumnsLogIn.FAQs" },
+			{
+				href: "#",
+				label: "footer.footerColumnsLogIn.ShippingAndDelivery",
+			},
+			{ href: "#", label: "footer.footerColumnsLogIn.RentYourCloset" },
+			{ href: "#", label: "footer.footerColumnsLogIn.ResellYourCloset" },
+		],
+		title: "footer.footerColumnsLogIn.Help",
+	},
+];
 
-export const useFooterColumns = () => {
-	const { t } = useTranslation();
-
-	const footerColumnsLogIn = [
-		{
-			links: [
-				{ href: "#", label: t("footer.footerColumnsLogIn.Login") },
-				{ href: "#", label: t("footer.footerColumnsLogIn.Wishlist") },
-				{ href: "#", label: t("footer.footerColumnsLogIn.Cart") },
-			],
-			title: t("footer.footerColumnsLogIn.Shop"),
-		},
-		{
-			links: [
-				{ href: "#", label: t("footer.footerColumnsLogIn.AboutUs") },
-				{
-					href: "#",
-					label: t("footer.footerColumnsLogIn.TermsAndConditions"),
-				},
-				{
-					href: "#",
-					label: t("footer.footerColumnsLogIn.PrivacyPolicy"),
-				},
-				{ href: "#", label: t("footer.footerColumnsLogIn.ContactUs") },
-			],
-			title: t("footer.footerColumnsLogIn.Company"),
-		},
-		{
-			links: [
-				{ href: "#", label: t("footer.footerColumnsLogIn.FAQs") },
-				{
-					href: "#",
-					label: t("footer.footerColumnsLogIn.ShippingAndDelivery"),
-				},
-				{ href: "#", label: t("footer.footerColumnsLogIn.RentYourCloset") },
-				{ href: "#", label: t("footer.footerColumnsLogIn.ResellYourCloset") },
-			],
-			title: t("footer.footerColumnsLogIn.Help"),
-		},
-	];
-
-	const footerColumnsLogOut = [
-		{
-			links: [
-				{ href: "#", label: t("footer.footerColumnsLogOut.MyAccount") },
-				{ href: "#", label: t("footer.footerColumnsLogOut.Login") },
-				{ href: "#", label: t("footer.footerColumnsLogOut.Wishlist") },
-				{ href: "#", label: t("footer.footerColumnsLogOut.Cart") },
-			],
-			title: t("footer.footerColumnsLogOut.Shop"),
-		},
-		{
-			links: [
-				{ href: "#", label: t("footer.footerColumnsLogOut.ShippingPolicy") },
-				{ href: "#", label: t("footer.footerColumnsLogOut.ReturnsAndRefunds") },
-				{ href: "#", label: t("footer.footerColumnsLogOut.CookiesPolicy") },
-				{ href: "#", label: t("footer.footerColumnsLogOut.FrequentlyAsked") },
-			],
-			title: t("footer.footerColumnsLogOut.Information"),
-		},
-		{
-			links: [
-				{ href: "#", label: t("footer.footerColumnsLogOut.AboutUs") },
-				{
-					href: "#",
-					label: t("footer.footerColumnsLogOut.TermsAndConditions"),
-				},
-				{
-					href: "#",
-					label: t("footer.footerColumnsLogOut.PrivacyPolicy"),
-				},
-				{ href: "#", label: t("footer.footerColumnsLogOut.ContactUs") },
-			],
-			title: t("footer.footerColumnsLogOut.Company"),
-		},
-	];
-
-	return { footerColumnsLogIn, footerColumnsLogOut };
-};
+export const footerColumnsLogOut = [
+	{
+		links: [
+			{ href: "#", label: "footer.footerColumnsLogOut.MyAccount" },
+			{ href: "#", label: "footer.footerColumnsLogOut.Login" },
+			{ href: "#", label: "footer.footerColumnsLogOut.Wishlist" },
+			{ href: "#", label: "footer.footerColumnsLogOut.Cart" },
+		],
+		title: "footer.footerColumnsLogOut.Shop",
+	},
+	{
+		links: [
+			{ href: "#", label: "footer.footerColumnsLogOut.ShippingPolicy" },
+			{ href: "#", label: "footer.footerColumnsLogOut.ReturnsAndRefunds" },
+			{ href: "#", label: "footer.footerColumnsLogOut.CookiesPolicy" },
+			{ href: "#", label: "footer.footerColumnsLogOut.FrequentlyAsked" },
+		],
+		title: "footer.footerColumnsLogOut.Information",
+	},
+	{
+		links: [
+			{ href: "#", label: "footer.footerColumnsLogOut.AboutUs" },
+			{
+				href: "#",
+				label: "footer.footerColumnsLogOut.TermsAndConditions",
+			},
+			{
+				href: "#",
+				label: "footer.footerColumnsLogOut.PrivacyPolicy",
+			},
+			{ href: "#", label: "footer.footerColumnsLogOut.ContactUs" },
+		],
+		title: "footer.footerColumnsLogOut.Company",
+	},
+];

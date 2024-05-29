@@ -72,3 +72,7 @@ export const StyledButtonLogIn = styled(Button)`
 		color: ${colors.BLACK};
 	}
 `;
+export const HeaderLogOutNav = styled(Box)`
+	padding-left: 68px;
+	display: flex;
+`;

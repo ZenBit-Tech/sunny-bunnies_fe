@@ -1,15 +1,15 @@
 import { SvgIconProps } from "@mui/material";
 import React from "react";
 
-import { CircularElement } from "~/components/Footer/Circular.tsx";
-import { Link } from "~/components/Header/Link.tsx";
+import { CircularElement } from "~/components/footer/circular.tsx";
+import { Link } from "~/components/header/link.tsx";
 
-interface SocialIconProps {
+type SocialIconProps = {
 	IconComponent: React.ComponentType<SvgIconProps>;
 	backgroundColor: string;
 	href: string;
 	iconColor: string;
-}
+};
 
 export const SocialIcon: React.FC<SocialIconProps> = ({
 	IconComponent,

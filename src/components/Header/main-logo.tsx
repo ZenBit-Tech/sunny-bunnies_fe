@@ -1,12 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { CircularElement } from "~/components/Footer/Circular.tsx";
-import { LogoContainer, StyledTypography } from "~/components/Footer/styles.ts";
-import { Link } from "~/components/Header/Link.tsx";
+import { CircularElement } from "~/components/footer/circular.tsx";
+import { LogoContainer, StyledTypography } from "~/components/footer/styles.ts";
+import { Link } from "~/components/header/link.tsx";
 import { colors } from "~/libs/constants/color.ts";
 
-export const MainLogo = () => {
+export const MainLogo: React.FC = () => {
 	const { t } = useTranslation();
 	return (
 		<Link sx={{ color: colors.BLACK, textDecoration: "none" }} to="#">

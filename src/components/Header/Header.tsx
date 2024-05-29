@@ -5,22 +5,25 @@ import { useTranslation } from "react-i18next";
 import { NotificationIcon } from "~/assets/icons/notification-icon.tsx";
 import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";
 import { UserIcon } from "~/assets/icons/user-icon.tsx";
-import { MainLogo } from "~/components/Header/MainLogo.tsx";
-import { NavHeader } from "~/components/Header/NavHeader.tsx";
+import { MainLogo } from "~/components/header/main-logo.tsx";
+import { NavHeader } from "~/components/header/nav-header.tsx";
 import {
 	ButtonsContainer,
 	HeaderContainer,
+	HeaderLogOutNav,
 	IconsSection,
 	StyledButtonLogIn,
 	StyledButtonSignUp,
 	StyledContainer,
-} from "~/components/Header/styles.ts";
-import { useHeaderLinks } from "~/libs/constants/header-links.ts";
+} from "~/components/header/styles.ts";
+import {
+	headerLogOutLinks,
+	headerLoginLinks,
+} from "~/libs/constants/header-links.ts";
 
-export const Header = () => {
-	const { headerLogOutLinks, headerLoginLinks } = useHeaderLinks();
+export const Header: React.FC = () => {
 	const { t } = useTranslation();
-	const isLoggedIn = false;
+	const isLoggedIn = true;
 	return (
 		<HeaderContainer>
 			<StyledContainer>
@@ -30,7 +33,9 @@ export const Header = () => {
 				{isLoggedIn ? (
 					<NavHeader links={headerLoginLinks} />
 				) : (
-					<NavHeader links={headerLogOutLinks} />
+					<HeaderLogOutNav>
+						<NavHeader links={headerLogOutLinks} />
+					</HeaderLogOutNav>
 				)}
 				<Box>
 					<IconsSection>

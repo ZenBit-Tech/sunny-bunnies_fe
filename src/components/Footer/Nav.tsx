@@ -1,15 +1,16 @@
 import { Box, BoxProps } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
-import { NavBox, NavTitle } from "~/components/Footer/styles.ts";
-import { Link } from "~/components/Header/Link.tsx";
+import { NavBox, NavTitle } from "~/components/footer/styles.ts";
+import { Link } from "~/components/header/link.tsx";
 import { colors } from "~/libs/constants/color.ts";
 import { fontFamily, fontSizes, fontWeights } from "~/libs/constants/font.ts";
 
-interface FooterNavColumn {
+type FooterNavColumn = {
 	links: { href: string; label: string }[];
 	title: string;
-}
+};
 
 interface FooterNavProps extends BoxProps {
 	columns: FooterNavColumn[];
@@ -19,6 +20,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({
 	columns,
 	...props
 }: FooterNavProps) => {
+	const { t } = useTranslation();
 	return (
 		<Box
 			component="nav"
@@ -31,7 +33,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({
 		>
 			{columns.map((column, index) => (
 				<Box key={index}>
-					<NavTitle>{column.title}</NavTitle>
+					<NavTitle>{t(column.title)}</NavTitle>
 					<NavBox>
 						{column.links.map((link, linkIndex) => (
 							<Link
@@ -49,7 +51,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({
 								}}
 								to={link.href}
 							>
-								{link.label}
+								{t(link.label)}
 							</Link>
 						))}
 					</NavBox>

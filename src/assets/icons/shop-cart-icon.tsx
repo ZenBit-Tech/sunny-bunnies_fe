@@ -1,9 +1,9 @@
 import { SvgIconProps } from "@mui/material";
 import React from "react";
 
-import { StyledSvgIcon } from "~/components/Header/styles.ts";
+import { StyledSvgIcon } from "~/components/header/styles.ts";
 
-export const ShopIcon = ({ ...props }: SvgIconProps) => {
+export const ShopIcon: React.FC = ({ ...props }: SvgIconProps) => {
 	return (
 		<StyledSvgIcon
 			fill="none"

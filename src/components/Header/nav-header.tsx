@@ -1,7 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
-import { Link } from "~/components/Header/Link.tsx";
-import { NavHeaderBox } from "~/components/Header/styles.ts";
+import { Link } from "~/components/header/link.tsx";
+import { NavHeaderBox } from "~/components/header/styles.ts";
 import { colors } from "~/libs/constants/color.ts";
 import { fontFamily, fontSizes, fontWeights } from "~/libs/constants/font.ts";
 
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export const NavHeader: React.FC<Props> = ({ links }: Props) => {
+	const { t } = useTranslation();
 	return (
 		<NavHeaderBox>
 			{links.map((link, index) => (
@@ -30,7 +32,7 @@ export const NavHeader: React.FC<Props> = ({ links }: Props) => {
 					}}
 					to={link.href}
 				>
-					{link.label}
+					{t(link.label)}
 				</Link>
 			))}
 		</NavHeaderBox>
