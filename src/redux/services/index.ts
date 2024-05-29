@@ -16,7 +16,6 @@ import { type AuthTokenResponse } from "../user/types/index.ts";
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: `${import.meta.env.VITE_APP_PROXY_SERVER_URL}`,
-	credentials: "include",
 	mode: "cors",
 	prepareHeaders: (headers, { getState }) => {
 		const state = getState() as RootState;
