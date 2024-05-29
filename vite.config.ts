@@ -4,7 +4,6 @@ import { ConfigEnv, defineConfig, loadEnv } from "vite";
 
 const config = ({ mode }: ConfigEnv): ReturnType<typeof defineConfig> => {
 	const { VITE_APP_DEVELOPMENT_PORT } = loadEnv(mode, process.cwd());
-
 	return defineConfig({
 		build: {
 			outDir: "build",

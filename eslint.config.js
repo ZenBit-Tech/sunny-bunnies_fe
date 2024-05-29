@@ -84,6 +84,7 @@ export default tseslint.config(
           ts: "always"
         },
       ],
+      "import/namespace": ["warn", { allowComputed: true }],
       "import/newline-after-import": ["error"],
       "import/no-duplicates": ["error"],
       "max-params": ["error", 3],
@@ -92,7 +93,6 @@ export default tseslint.config(
       'prettier/prettier': 'warn',
       'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
       'react/self-closing-comp': ['error', { component: true, html: true }],
-      'max-lines': ['warn', { max: 124 }],
       "no-console": "error",
       "no-unused-vars": "warn",
       "@typescript-eslint/no-magic-numbers": [

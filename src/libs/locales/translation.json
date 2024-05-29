@@ -4,5 +4,28 @@
 		"lastName":"Last name",
 		"submit": "Submit",
 		"thisFieldRequired": "This field is required"
+	},
+	"SignUpComponent": {
+		"createYourAccount": "Create Your Account",
+		"signUpWithGoogle": "Sign Up with Google",
+		"or": "or",
+		"signUp": "Sign Up",
+		"doYouHaveAnAccount": "Do you have an account?",
+		"signIn": "Sign In",
+		"privacyPolicy": "Privacy Policy",
+		"termsOfUse": "Terms Of Use",
+		"password": "Password*",
+		"repeatPassword": "Repeat Password*",
+		"name": "Name*",
+		"email": "Email*",
+		"enterYourName": "Enter your name",
+		"emailExample": "your_email@gmail.com",
+		"passwordPlaceholder": "Min. 8 characters"
+	},
+	"SignInComponent": {
+		"signIn": "Sign In"
+	},
+	"HomePage": {
+		"HomePage": "HomePage"
 	}
 }
