@@ -12,6 +12,7 @@ type Props = {
 
 export const NavHeader: React.FC<Props> = ({ links }: Props) => {
 	const { t } = useTranslation();
+
 	return (
 		<NavHeaderBox>
 			{links.map((link, index) => (

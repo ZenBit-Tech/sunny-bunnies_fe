@@ -21,6 +21,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({
 	...props
 }: FooterNavProps) => {
 	const { t } = useTranslation();
+
 	return (
 		<Box
 			component="nav"

@@ -28,6 +28,7 @@ export const Header: React.FC = () => {
 	const isLoggedIn = Boolean(
 		useAppSelector((state: RootState) => state.auth.accessToken),
 	);
+
 	return (
 		<HeaderContainer>
 			<StyledContainer>
