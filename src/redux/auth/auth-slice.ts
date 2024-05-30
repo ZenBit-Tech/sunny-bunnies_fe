@@ -1,10 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import {
-	type AuthTokenResponse,
-	type User,
-	type UserSignInResponseDto,
-} from "../user/types/index.ts";
+import { type AuthTokenResponse, type User } from "../user/types/index.ts";
 
 type AuthState = {
 	accessToken: null | string;
@@ -31,8 +27,8 @@ const authSlice = createSlice({
 			state.accessToken = action.payload.accessToken;
 			state.refreshToken = action.payload.refreshToken;
 		},
-		setUser: (state, action: PayloadAction<UserSignInResponseDto>) => {
-			state.user = action.payload.user;
+		setUser: (state, action: PayloadAction<User>) => {
+			state.user = action.payload;
 		},
 	},
 });

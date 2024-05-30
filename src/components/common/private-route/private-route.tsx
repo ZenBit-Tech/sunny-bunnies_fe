@@ -1,13 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
+import { useAppSelector } from "~/redux/hooks/index.ts";
 import { RootState } from "~/redux/store.ts";
 
 const PrivateRoute: React.FC = () => {
-	const token = useSelector((state: RootState) => state.auth.accessToken);
+	const user = useAppSelector((state: RootState) => state.auth.user);
 
-	return token ? <Outlet /> : <Navigate to="/" />;
+	return user ? <Outlet /> : <Navigate to="/" />;
 };
 
 export { PrivateRoute };

@@ -56,7 +56,7 @@ const useSignInForm = (): SignInFormResult => {
 
 	useEffect(() => {
 		if (data) {
-			dispatch(setUser(data));
+			dispatch(setUser(data.user));
 			dispatch(setTokens(data));
 		}
 	}, [data, dispatch]);

@@ -62,7 +62,7 @@ const useSignUpForm = (): SignUpFormResult => {
 
 	useEffect(() => {
 		if (data) {
-			dispatch(setUser(data));
+			dispatch(setUser(data.user));
 			dispatch(setTokens(data));
 		}
 	}, [data, dispatch]);

@@ -3,6 +3,8 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
 
+import { App } from "~/app/app.tsx";
+
 import {
 	PrivateRoute,
 	PublicRoute,
@@ -58,6 +60,7 @@ createRoot(document.getElementById("root")!).render(
 										path: AppRoute.ROOT,
 									},
 								],
+								element: <App />,
 							},
 						]}
 					/>
