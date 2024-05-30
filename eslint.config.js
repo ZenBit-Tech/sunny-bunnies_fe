@@ -143,7 +143,7 @@ export default tseslint.config(
         "warn",
         {
           "args": "none",
-          "ignoreRestSiblings":true,
+          "ignoreRestSiblings":true
         }
       ],
       "react/jsx-no-duplicate-props": [

@@ -7,9 +7,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import Logo from "~/assets/images/Logo/Big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
+import { useSignUpForm } from "~/components/auth/sign-up-form/libs/hooks/use-sign-up-form.ts";
 import { SignInForm, SignUpForm } from "~/components/common/index.ts";
 import { AppRoute } from "~/libs/enum/index.ts";
-import { useSignUpForm } from "~/libs/hooks/index.ts";
 import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks/index.ts";

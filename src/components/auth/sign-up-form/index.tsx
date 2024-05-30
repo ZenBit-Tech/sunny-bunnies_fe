@@ -4,10 +4,10 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { BaseButton, CustomFormGroup } from "~/components/common/index.ts";
-import { useSignUpForm } from "~/libs/hooks/index.ts";
 import theme from "~/theme.ts";
 
 import { AuthLinks, SignInLink, StyledFormContainer } from "../index.ts";
+import { useSignUpForm } from "./libs/hooks/index.ts";
 
 type Properties = {
 	onClick: (credentialResponse: CredentialResponse) => void;
