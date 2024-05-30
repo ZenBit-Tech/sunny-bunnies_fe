@@ -18,7 +18,6 @@ type SocialIconsProps = {
 export const SocialIcons: React.FC<SocialIconsProps> = ({
 	socialMediaData,
 }: SocialIconsProps) => {
-	
 	return (
 		<SocialIconsBox>
 			{socialMediaData.map((socialMedia, index) => (
