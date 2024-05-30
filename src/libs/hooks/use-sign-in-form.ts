@@ -64,7 +64,7 @@ const useSignInForm = (): SignInFormResult => {
 	useEffect(() => {
 		if (isSuccess) {
 			reset();
-			navigate(AppRoute.ONBOARDING);
+			navigate(AppRoute.HOME);
 		} else if (error) {
 			const err = (error as FetchBaseQueryError).data as Error;
 
