@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 
 import {
+	emailRegex,
 	userValidationMessage,
 	userValidationRules,
 } from "./constants/index.ts";
@@ -8,6 +9,7 @@ import {
 const userSignInValidation = Yup.object().shape({
 	email: Yup.string()
 		.email(userValidationMessage.EMAIL_INVALID)
+		.matches(emailRegex, userValidationMessage.EMAIL_INVALID)
 		.required(userValidationMessage.EMAIL_REQUIRED),
 	password: Yup.string()
 		.min(
