@@ -2,8 +2,8 @@ import { Box, BoxProps } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { NavBox, NavTitle } from "~/components/footer/styles.ts";
-import { Link } from "~/components/header/link.tsx";
+import { NavBox, NavTitle } from "~/components/Footer/styles.ts";
+import { Link } from "~/components/Header/Link.tsx";
 import { colors } from "~/libs/constants/color.ts";
 import { fontFamily, fontSizes, fontWeights } from "~/libs/constants/font.ts";
 

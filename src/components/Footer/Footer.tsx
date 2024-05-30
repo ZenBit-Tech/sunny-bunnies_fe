@@ -2,8 +2,8 @@ import { Box, Container } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { FooterNav } from "~/components/footer/nav.tsx";
-import { SocialIcons } from "~/components/footer/social-icons.tsx";
+import { FooterNav } from "~/components/Footer/Nav.tsx";
+import { SocialIcons } from "~/components/Footer/social-icons.tsx";
 import {
 	FooterBottomContainer,
 	FooterContainer,
@@ -12,8 +12,8 @@ import {
 	StyledFooterCopyrightText,
 	StyledFooterText,
 	StyledFooterTextContainer,
-} from "~/components/footer/styles.ts";
-import { MainLogo } from "~/components/header/main-logo.tsx";
+} from "~/components/Footer/styles.ts";
+import { MainLogo } from "~/components/Header/main-logo.tsx";
 import { colors } from "~/libs/constants/color.ts";
 import { footerColumnsLogIn } from "~/libs/constants/footer-links.ts";
 import {

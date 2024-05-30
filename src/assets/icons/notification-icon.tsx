@@ -1,7 +1,7 @@
 import { SvgIconProps } from "@mui/material";
 import React from "react";
 
-import { StyledSvgIcon } from "~/components/header/styles.ts";
+import { StyledSvgIcon } from "~/components/Header/styles.ts";
 
 export const NotificationIcon: React.FC = ({ ...props }: SvgIconProps) => {
 	return (

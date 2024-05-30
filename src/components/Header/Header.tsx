@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { NotificationIcon } from "~/assets/icons/notification-icon.tsx";
 import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";
 import { UserIcon } from "~/assets/icons/user-icon.tsx";
-import { MainLogo } from "~/components/header/main-logo.tsx";
-import { NavHeader } from "~/components/header/nav-header.tsx";
+import { MainLogo } from "~/components/Header/main-logo.tsx";
+import { NavHeader } from "~/components/Header/nav-header.tsx";
 import {
 	ButtonsContainer,
 	HeaderContainer,
@@ -15,7 +15,7 @@ import {
 	StyledButtonLogIn,
 	StyledButtonSignUp,
 	StyledContainer,
-} from "~/components/header/styles.ts";
+} from "~/components/Header/styles.ts";
 import {
 	headerLogOutLinks,
 	headerLoginLinks,

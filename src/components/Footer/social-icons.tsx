@@ -1,8 +1,8 @@
 import { SvgIconProps } from "@mui/material";
 import React from "react";
 
-import { SocialIcon } from "~/components/footer/social-icon.tsx";
-import { SocialIconsBox } from "~/components/footer/styles.ts";
+import { SocialIcon } from "~/components/Footer/social-icon.tsx";
+import { SocialIconsBox } from "~/components/Footer/styles.ts";
 
 type SocialMediaData = {
 	IconComponent: React.ComponentType<SvgIconProps>;
