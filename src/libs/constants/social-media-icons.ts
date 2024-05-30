@@ -25,6 +25,7 @@ const socialMediaDataLogIn = [
 		iconColor: colors.WHITE,
 	},
 ];
+
 const socialMediaDataLogOut = [
 	{
 		IconComponent: InstagramIcon,

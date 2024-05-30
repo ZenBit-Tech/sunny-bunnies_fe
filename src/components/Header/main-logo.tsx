@@ -8,6 +8,7 @@ import { colors } from "~/libs/constants/color.ts";
 
 export const MainLogo: React.FC = () => {
 	const { t } = useTranslation();
+
 	return (
 		<Link sx={{ color: colors.BLACK, textDecoration: "none" }} to="#">
 			<LogoContainer>

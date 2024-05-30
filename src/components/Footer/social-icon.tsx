@@ -17,6 +17,7 @@ export const SocialIcon: React.FC<SocialIconProps> = ({
 	href,
 	iconColor,
 }: SocialIconProps) => {
+	
 	return (
 		<Link to={href}>
 			<CircularElement
