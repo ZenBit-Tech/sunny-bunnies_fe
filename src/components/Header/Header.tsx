@@ -20,10 +20,14 @@ import {
 	headerLogOutLinks,
 	headerLoginLinks,
 } from "~/libs/constants/header-links.ts";
+import { useAppSelector } from "~/redux/hooks/use-app-selector.ts";
+import { RootState } from "~/redux/store.ts";
 
 export const Header: React.FC = () => {
 	const { t } = useTranslation();
-	const isLoggedIn = true;
+	const isLoggedIn = Boolean(
+		useAppSelector((state: RootState) => state.auth.accessToken),
+	);
 	return (
 		<HeaderContainer>
 			<StyledContainer>

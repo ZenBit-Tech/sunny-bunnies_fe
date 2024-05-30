@@ -5,7 +5,6 @@
 		"submit": "Submit",
 		"thisFieldRequired": "This field is required"
 	},
-<<<<<<< HEAD
 	"footer": {
 		"footerColumnsLogIn": {
 			"Shop": "Shop",
@@ -66,8 +65,8 @@
 		}
 	},
 	"mainLogo": {
-		"title": "Black circle"},
-=======
+		"title": "Black circle"
+	},
 	"SignUpComponent": {
 		"createYourAccount": "Create Your Account",
 		"signUpWithGoogle": "Sign Up with Google",
@@ -90,6 +89,5 @@
 	},
 	"HomePage": {
 		"HomePage": "HomePage"
->>>>>>> develop
 	}
 }
