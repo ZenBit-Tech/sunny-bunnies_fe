@@ -9,7 +9,7 @@ import {
 import { httpMethods } from "~/libs/enum/http-methods.ts";
 import { httpStatusCode } from "~/libs/enum/http-status-code.ts";
 
-import { logout, setUser } from "../auth/auth-slice.ts";
+import { logout, setTokens } from "../auth/auth-slice.ts";
 import { authApiPath } from "../auth/constants/auth-api-path.ts";
 import { RootState } from "../store.ts";
 import { type AuthTokenResponse } from "../user/types/index.ts";
@@ -47,7 +47,7 @@ const baseQueryWithReauth: BaseQueryFn<
 				{
 					body: { refreshToken },
 					method: httpMethods.POST,
-					url: authApiPath.REFRESH_TOKEN,
+					url: authApiPath.GENERATE_ACCESS,
 				},
 				api,
 				extraOptions,
@@ -55,7 +55,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
 			if (refreshResult.data) {
 				const data = refreshResult.data as AuthTokenResponse;
-				api.dispatch(setUser(data));
+				api.dispatch(setTokens(data));
 				result = await baseQuery(args, api, extraOptions);
 			} else {
 				api.dispatch(logout());
