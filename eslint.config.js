@@ -122,6 +122,10 @@ export default tseslint.config(
       "typesafe/promise-catch": "error",
       "@typescript-eslint/return-await": ["error", "always"],
       "import/default": "off",
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: '*', next: 'return' },
+      ],
       "prefer-destructuring": [
         "warn",
         {
