@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AppRoute, exceptionMessage } from "~/libs/enum/index.ts";
 import { useLoginMutation } from "~/redux/auth/auth-api.ts";
-import { setUser } from "~/redux/auth/auth-slice.ts";
+import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks/index.ts";
 import { type UserSignInRequestDto } from "~/redux/user/types/index.ts";
 import { userSignInValidation } from "~/redux/user/validation/index.ts";
@@ -34,6 +34,7 @@ const useSignInForm = (): SignInFormResult => {
 		formState: { errors },
 		handleSubmit,
 		reset,
+		watch,
 	} = useForm<UserSignInRequestDto>({
 		defaultValues: {
 			email: "",
@@ -54,7 +55,10 @@ const useSignInForm = (): SignInFormResult => {
 	};
 
 	useEffect(() => {
-		if (data) dispatch(setUser(data));
+		if (data) {
+			dispatch(setUser(data));
+			dispatch(setTokens(data));
+		}
 	}, [data, dispatch]);
 
 	useEffect(() => {
@@ -71,6 +75,15 @@ const useSignInForm = (): SignInFormResult => {
 			}
 		}
 	}, [isSuccess, navigate, error, reset]);
+
+	useEffect(() => {
+		const subscription = watch((_, { name }) => {
+			if ((name === "password" || name === "email") && serverError) {
+				setServerError("");
+			}
+		});
+		return (): void => subscription.unsubscribe();
+	}, [watch, serverError]);
 
 	return { control, errors, handleFormSubmit, isLoading, serverError };
 };

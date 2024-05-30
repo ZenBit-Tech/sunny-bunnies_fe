@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AppRoute } from "~/libs/enum/index.ts";
 import { useRegisterMutation } from "~/redux/auth/auth-api.ts";
-import { setUser } from "~/redux/auth/auth-slice.ts";
+import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks/index.ts";
 import { UserSignUpFormData } from "~/redux/user/types/index.ts";
 import { userSignUpValidation } from "~/redux/user/validation/sign-up-schema.ts";
@@ -61,7 +61,10 @@ const useSignUpForm = (): SignUpFormResult => {
 	};
 
 	useEffect(() => {
-		if (data) dispatch(setUser(data));
+		if (data) {
+			dispatch(setUser(data));
+			dispatch(setTokens(data));
+		}
 	}, [data, dispatch]);
 
 	useEffect(() => {
