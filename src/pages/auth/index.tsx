@@ -1,4 +1,4 @@
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { t } from "i18next";
 import React from "react";
 import { useLocation } from "react-router-dom";
@@ -39,7 +39,7 @@ const Auth: React.FC = () => {
 	};
 
 	return (
-		<Grid component="main" container sx={{ height: "100vh" }}>
+		<Grid component="main" container sx={{ minHeight: "100vh" }}>
 			<Grid
 				item
 				md={5}
@@ -69,18 +69,14 @@ const Auth: React.FC = () => {
 				</Box>
 			</Grid>
 			<Grid
-				component={Paper}
-				elevation={6}
 				item
 				md={7}
 				sm={12}
-				square
 				sx={{
 					alignItems: "center",
 					display: "flex",
 					flexDirection: "column",
 					justifyContent: "center",
-					padding: 7,
 				}}
 				xl={5}
 				xs={12}

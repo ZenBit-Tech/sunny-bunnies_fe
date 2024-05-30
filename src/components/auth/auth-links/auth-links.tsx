@@ -15,7 +15,6 @@ const AuthLinks: React.FC = () => {
 				gap: "10px",
 				justifyContent: "space-between",
 				marginX: "auto",
-				my: 8,
 				width: "80%",
 			}}
 		>

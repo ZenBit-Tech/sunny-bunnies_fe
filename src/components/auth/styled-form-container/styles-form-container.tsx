@@ -3,10 +3,12 @@ import { Box } from "@mui/material";
 
 const StyledFormContainer = styled(Box)`
 	align-items: flex-start;
+	justify-content: center;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	margin: 64px auto;
+	margin-bottom: 20px;
+	padding: 15px 0;
 	width: 80%;
 `;
 

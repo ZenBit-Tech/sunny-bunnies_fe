@@ -22,7 +22,7 @@ const SignUpForm: React.FC = () => {
 	return (
 		<>
 			<StyledFormContainer>
-				<Typography variant="playfairDisplayTitle">
+				<Typography pt="20px" variant="playfairDisplayTitle">
 					{t("SignUpComponent.createYourAccount")}
 				</Typography>
 				<Typography color={theme.palette.secondary.main} variant="dmSans">
@@ -37,7 +37,7 @@ const SignUpForm: React.FC = () => {
 				<Box
 					autoComplete="off"
 					component="form"
-					mb={2}
+					mb={1}
 					mt={1}
 					onSubmit={handleFormSubmit}
 				>
@@ -81,7 +81,7 @@ const SignUpForm: React.FC = () => {
 					<BaseButton
 						fullWidth
 						isLoading={isLoading}
-						sx={{ mt: 5 }}
+						sx={{ mt: 2 }}
 						type="submit"
 						variant="primary_black_bold"
 					>
