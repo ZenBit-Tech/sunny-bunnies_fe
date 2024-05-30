@@ -1,5 +1,5 @@
 export { SignInForm } from "../auth/sign-in-form/sign-in-form.tsx";
-export { SignUpForm } from "../auth/sign-up-form/sign-up-form.tsx";
+export { SignUpForm } from "../auth/sign-up-form/index.tsx";
 export { ExampleForm } from "../example-form/example-form.tsx";
 export { BaseButton } from "./base-button/index.tsx";
 export { CustomFormGroup } from "./custom-form-group/custom-form-group.tsx";

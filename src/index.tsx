@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@mui/material";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
@@ -18,51 +19,53 @@ import theme from "./theme.ts";
 
 createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<StoreProvider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<ThemeProvider theme={theme}>
-					<RouterProvider
-						routes={[
-							{
-								children: [
-									{
-										children: [
-											{
-												children: [
-													{
-														element: <Auth />,
-														path: AppRoute.ROOT,
-													},
-													{
-														element: <Auth />,
-														path: AppRoute.SIGN_UP,
-													},
-													{
-														element: <Auth />,
-														path: AppRoute.SIGN_IN,
-													},
-												],
-												element: <PublicRoute />,
-												path: AppRoute.ROOT,
-											},
-										],
-									},
-									{
-										children: [
-											{
-												element: <Home />,
-												path: AppRoute.HOME,
-											},
-										],
-										element: <PrivateRoute />,
-										path: AppRoute.ROOT,
-									},
-								],
-							},
-						]}
-					/>
-				</ThemeProvider>
-			</PersistGate>
-		</StoreProvider>
+		<GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
+			<StoreProvider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					<ThemeProvider theme={theme}>
+						<RouterProvider
+							routes={[
+								{
+									children: [
+										{
+											children: [
+												{
+													children: [
+														{
+															element: <Auth />,
+															path: AppRoute.ROOT,
+														},
+														{
+															element: <Auth />,
+															path: AppRoute.SIGN_UP,
+														},
+														{
+															element: <Auth />,
+															path: AppRoute.SIGN_IN,
+														},
+													],
+													element: <PublicRoute />,
+													path: AppRoute.ROOT,
+												},
+											],
+										},
+										{
+											children: [
+												{
+													element: <Home />,
+													path: AppRoute.HOME,
+												},
+											],
+											element: <PrivateRoute />,
+											path: AppRoute.ROOT,
+										},
+									],
+								},
+							]}
+						/>
+					</ThemeProvider>
+				</PersistGate>
+			</StoreProvider>
+		</GoogleOAuthProvider>
 	</React.StrictMode>,
 );

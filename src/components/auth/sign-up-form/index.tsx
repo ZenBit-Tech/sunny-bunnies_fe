@@ -1,21 +1,20 @@
 import { Box, Divider, Typography } from "@mui/material";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { BaseButton, CustomFormGroup } from "~/components/common/index.ts";
-import { useSignUpForm } from "~/libs/hooks/index.ts";
 import theme from "~/theme.ts";
 
-import {
-	AuthLinks,
-	GoogleButton,
-	SignInLink,
-	StyledFormContainer,
-} from "../index.ts";
+import { AuthLinks, SignInLink, StyledFormContainer } from "../index.ts";
+import { useSignUpForm } from "./libs/hooks/index.ts";
 
-const SignUpForm: React.FC = () => {
+type Properties = {
+	onClick: (credentialResponse: CredentialResponse) => void;
+};
+
+const SignUpForm: React.FC<Properties> = ({ onClick }: Properties) => {
 	const { t } = useTranslation();
-
 	const { control, errors, handleFormSubmit, isLoading, serverError } =
 		useSignUpForm();
 
@@ -28,7 +27,7 @@ const SignUpForm: React.FC = () => {
 				<Typography color={theme.palette.secondary.main} variant="dmSans">
 					{t("SignUpComponent.signUpWithGoogle")}
 				</Typography>
-				<GoogleButton />
+				<GoogleLogin logo_alignment="center" onSuccess={onClick} type="icon" />
 				<Divider sx={{ width: "100%" }}>
 					<Typography color="primary" variant="body1">
 						{t("SignUpComponent.or")}
