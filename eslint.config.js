@@ -94,7 +94,7 @@ export default tseslint.config(
       'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
       'react/self-closing-comp': ['error', { component: true, html: true }],
       "no-console": "error",
-      "no-unused-vars": "warn",
+      "no-unused-vars": "off",
       "@typescript-eslint/no-magic-numbers": [
         "error",
         {
@@ -142,7 +142,8 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
-          "args": "none"
+          "args": "none",
+          "ignoreRestSiblings":true,
         }
       ],
       "react/jsx-no-duplicate-props": [
