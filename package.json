@@ -70,17 +70,16 @@
 	},
 	"lint-staged": {
 		"*.js": [
-			"npm run lint:fix --no-warn-ignored",
-			"prettier --write",
-			"git add"
+			"npm run lint:fix",
+			"git add ."
 		],
 		"*.ts": [
-			"npm run lint:fix --no-warn-ignored",
+			"eslint --fix",
 			"prettier --write",
 			"git add"
 		],
 		"*.tsx": [
-			"npm run lint:fix --no-warn-ignored",
+			"eslint --fix",
 			"prettier --write",
 			"git add"
 		]
