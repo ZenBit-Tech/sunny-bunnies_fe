@@ -10,6 +10,8 @@ import {
 	RouterProvider,
 	StoreProvider,
 } from "./components/common/index.ts";
+import { FooterWrapper } from "./components/common/wrappers/footer-wrapper.tsx";
+import { HeaderWrapper } from "./components/common/wrappers/header-wrapper.tsx";
 import { AppRoute } from "./libs/enum/index.ts";
 import "./libs/locales/i18n.ts";
 import { Auth, Home } from "./pages/index.ts";
@@ -34,42 +36,48 @@ createRoot(document.getElementById("root")!).render(
 												{
 													children: [
 														{
-															element: <Auth />,
+															children: [
+																{
+																	element: <Auth />,
+																	path: AppRoute.ROOT,
+																},
+																{
+																	element: <Auth />,
+																	path: AppRoute.SIGN_UP,
+																},
+																{
+																	element: <Auth />,
+																	path: AppRoute.SIGN_IN,
+																},
+																{
+																	element: <PrivacyPolicy />,
+																	path: AppRoute.PRIVACY_POLICY,
+																},
+																{
+																	element: <TermsConditions />,
+																	path: AppRoute.TERMS_OF_USE,
+																},
+															],
+															element: <PublicRoute />,
 															path: AppRoute.ROOT,
 														},
+													],
+												},
+												{
+													children: [
 														{
-															element: <Auth />,
-															path: AppRoute.SIGN_UP,
-														},
-														{
-															element: <Auth />,
-															path: AppRoute.SIGN_IN,
-														},
-														{
-															element: <PrivacyPolicy />,
-															path: AppRoute.PRIVACY_POLICY,
-														},
-														{
-															element: <TermsConditions />,
-															path: AppRoute.TERMS_OF_USE,
+															element: <Home />,
+															path: AppRoute.HOME,
 														},
 													],
-													element: <PublicRoute />,
+													element: <PrivateRoute />,
 													path: AppRoute.ROOT,
 												},
 											],
-										},
-										{
-											children: [
-												{
-													element: <Home />,
-													path: AppRoute.HOME,
-												},
-											],
-											element: <PrivateRoute />,
-											path: AppRoute.ROOT,
+											element: <FooterWrapper />,
 										},
 									],
+									element: <HeaderWrapper />,
 								},
 							]}
 						/>
