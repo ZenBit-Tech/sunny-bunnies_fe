@@ -50,17 +50,15 @@ createRoot(document.getElementById("root")!).render(
 										],
 									},
 									{
-										children: [
-											{
-												element: <Home />,
-												path: AppRoute.HOME,
-											},
-										],
 										element: <PrivateRoute />,
 										path: AppRoute.ROOT,
 									},
 								],
 								element: <App />,
+							},
+							{
+								element: <Home />,
+								path: AppRoute.HOME,
 							},
 						]}
 					/>
