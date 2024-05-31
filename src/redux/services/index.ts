@@ -6,13 +6,13 @@ import {
 	fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 
-import { httpMethods } from "~/libs/enum/http-methods.ts";
-import { httpStatusCode } from "~/libs/enum/http-status-code.ts";
+import { httpMethods } from "~/libs/constants/http-methods.ts";
+import { httpStatusCode } from "~/libs/constants/http-status-code.ts";
+import { type AuthTokenResponse } from "~/libs/types/auth/index.ts";
 
 import { logout, setTokens } from "../auth/auth-slice.ts";
 import { authApiPath } from "../auth/constants/auth-api-path.ts";
 import { RootState } from "../store.ts";
-import { type AuthTokenResponse } from "../user/types/index.ts";
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: `${import.meta.env.VITE_BASE_URL}`,

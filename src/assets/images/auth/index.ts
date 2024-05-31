@@ -1,4 +1,4 @@
-import GoogleIcon from "./Google.png";
+import GoogleIcon from "./google.png";
 import SignUpImage from "./image-sign-up.png";
 import SignInImage from "./sign-in-image.png";
 

@@ -3,11 +3,11 @@ import { t } from "i18next";
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import Logo from "~/assets/images/Logo/Big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
-import { SignInForm, SignUpForm } from "~/components/common/index.ts";
-import { AppRoute } from "~/libs/enum/index.ts";
+import Logo from "~/assets/images/logo/big.png";
+import { AppRoute } from "~/libs/constants/index.ts";
 
+import { SignInForm, SignUpForm } from "./libs/components/index.ts";
 import styles from "./styles.module.css";
 
 const Auth: React.FC = () => {
@@ -22,7 +22,7 @@ const Auth: React.FC = () => {
 				return <SignUpForm />;
 			}
 			default: {
-				return <SignUpForm />;
+				return <SignInForm />;
 			}
 		}
 	};
@@ -34,7 +34,7 @@ const Auth: React.FC = () => {
 			case AppRoute.SIGN_UP:
 				return authImages.SignUpImage;
 			default:
-				return authImages.SignUpImage;
+				return authImages.SignInImage;
 		}
 	};
 

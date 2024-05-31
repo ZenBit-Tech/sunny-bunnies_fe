@@ -4,14 +4,14 @@ import { createRoot } from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { App } from "~/app/app.tsx";
+import { AppRoute } from "~/libs/constants/index.ts";
 
 import {
 	PrivateRoute,
 	PublicRoute,
 	RouterProvider,
 	StoreProvider,
-} from "./components/common/index.ts";
-import { AppRoute } from "./libs/enum/index.ts";
+} from "./components/index.ts";
 import "./libs/locales/i18n.ts";
 import { Auth, Home } from "./pages/index.ts";
 import { persistor, store } from "./redux/store.ts";

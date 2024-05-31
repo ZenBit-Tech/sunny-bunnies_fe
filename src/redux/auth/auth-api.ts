@@ -1,13 +1,13 @@
-import { httpMethods } from "~/libs/enum/http-methods.ts";
-
-import { api } from "../services/index.ts";
+import { httpMethods } from "~/libs/constants/http-methods.ts";
 import {
 	type User,
 	type UserSignInRequestDto,
 	type UserSignInResponseDto,
 	type UserSignUpRequestDto,
 	type UserSignUpResponseDto,
-} from "../user/types/index.ts";
+} from "~/libs/types/user/index.ts";
+
+import { api } from "../services/index.ts";
 import { authApiPath } from "./constants/auth-api-path.ts";
 
 export const authApi = api.injectEndpoints({
