@@ -1,3 +1,5 @@
+import { CredentialResponse } from "@react-oauth/google";
+
 import { httpMethods } from "~/libs/constants/http-methods.ts";
 import {
 	type User,
@@ -12,6 +14,13 @@ import { authApiPath } from "./constants/auth-api-path.ts";
 
 export const authApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		addUserGoogle: build.mutation<UserSignUpResponseDto, CredentialResponse>({
+			query: (post) => ({
+				body: post,
+				method: httpMethods.POST,
+				url: authApiPath.GOOGLE,
+			}),
+		}),
 		getUser: build.query<User, undefined>({
 			query: () => ({
 				method: httpMethods.GET,
@@ -35,5 +44,9 @@ export const authApi = api.injectEndpoints({
 	}),
 });
 
-export const { useGetUserQuery, useLoginMutation, useRegisterMutation } =
-	authApi;
+export const {
+	useAddUserGoogleMutation,
+	useGetUserQuery,
+	useLoginMutation,
+	useRegisterMutation,
+} = authApi;

@@ -84,6 +84,7 @@ const useSignInForm = (): SignInFormResult => {
 				setServerError("");
 			}
 		});
+
 		return (): void => subscription.unsubscribe();
 	}, [watch, serverError]);
 

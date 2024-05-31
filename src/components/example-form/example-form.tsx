@@ -8,7 +8,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { useAppDispatch, useAppSelector } from "~/redux/example-hooks.ts";
+import { useAppDispatch } from "~/redux/example-hooks.ts";
 import { addUser } from "~/redux/example-slice.ts";
 
 import styles from "./styles.module.css";
@@ -21,7 +21,6 @@ type FormData = {
 const ExampleForm: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { t } = useTranslation();
-	const userList = useAppSelector((state) => state.user.list);
 
 	const {
 		formState: { errors, isValid },
@@ -82,11 +81,6 @@ const ExampleForm: React.FC = () => {
 					{t("ExampleComponent.submit")}
 				</Button>
 			</Box>
-			{userList.map((user) => (
-				<Typography
-					key={user.firstName}
-				>{`${user.firstName} ${user.lastName}`}</Typography>
-			))}
 		</Container>
 	);
 };

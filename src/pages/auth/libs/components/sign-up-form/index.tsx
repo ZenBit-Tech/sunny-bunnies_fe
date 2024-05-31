@@ -1,4 +1,5 @@
 import { Box, Divider, Typography } from "@mui/material";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -6,29 +7,27 @@ import { BaseButton, CustomFormGroup } from "~/components/index.ts";
 import theme from "~/theme.ts";
 
 import { useSignUpForm } from "../../hooks/index.ts";
-import {
-	AuthLinks,
-	GoogleButton,
-	SignInLink,
-	StyledFormContainer,
-} from "../index.ts";
+import { AuthLinks, SignInLink, StyledFormContainer } from "../index.ts";
 
-const SignUpForm: React.FC = () => {
+type Properties = {
+	onClick: (credentialResponse: CredentialResponse) => void;
+};
+
+const SignUpForm: React.FC<Properties> = ({ onClick }: Properties) => {
 	const { t } = useTranslation();
-
 	const { control, errors, handleFormSubmit, isLoading, serverError } =
 		useSignUpForm();
 
 	return (
 		<>
 			<StyledFormContainer>
-				<Typography pt="20px" variant="playfairDisplayTitle">
+				<Typography variant="playfairDisplayTitle">
 					{t("SignUpComponent.createYourAccount")}
 				</Typography>
 				<Typography color={theme.palette.secondary.main} variant="dmSans">
 					{t("SignUpComponent.signUpWithGoogle")}
 				</Typography>
-				<GoogleButton />
+				<GoogleLogin logo_alignment="center" onSuccess={onClick} type="icon" />
 				<Divider sx={{ width: "100%" }}>
 					<Typography color="primary" variant="body1">
 						{t("SignUpComponent.or")}
@@ -37,7 +36,7 @@ const SignUpForm: React.FC = () => {
 				<Box
 					autoComplete="off"
 					component="form"
-					mb={1}
+					mb={2}
 					mt={1}
 					onSubmit={handleFormSubmit}
 				>
@@ -81,7 +80,7 @@ const SignUpForm: React.FC = () => {
 					<BaseButton
 						fullWidth
 						isLoading={isLoading}
-						sx={{ mt: 2 }}
+						sx={{ mt: 3 }}
 						type="submit"
 						variant="primary_black_bold"
 					>
