@@ -10,8 +10,6 @@ import {
 	RouterProvider,
 	StoreProvider,
 } from "./components/common/index.ts";
-import { FooterWrapper } from "./components/common/wrappers/footer-wrapper.tsx";
-import { HeaderWrapper } from "./components/common/wrappers/header-wrapper.tsx";
 import { AppRoute } from "./libs/enum/index.ts";
 import "./libs/locales/i18n.ts";
 import { Auth, Home } from "./pages/index.ts";
@@ -20,6 +18,8 @@ import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.t
 import { persistor, store } from "./redux/store.ts";
 import "./styles.css";
 import theme from "./theme.ts";
+import { HeaderWrapper } from "./components/common/wrappers/header-wrapper.tsx";
+import { FooterWrapper } from "./components/common/wrappers/footer-wrapper.tsx";
 
 createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -30,8 +30,10 @@ createRoot(document.getElementById("root")!).render(
 						<RouterProvider
 							routes={[
 								{
+									element: <HeaderWrapper />,
 									children: [
 										{
+											element: <FooterWrapper />,
 											children: [
 												{
 													children: [
@@ -74,10 +76,8 @@ createRoot(document.getElementById("root")!).render(
 													path: AppRoute.ROOT,
 												},
 											],
-											element: <FooterWrapper />,
 										},
 									],
-									element: <HeaderWrapper />,
 								},
 							]}
 						/>
