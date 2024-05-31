@@ -89,5 +89,8 @@
 	},
 	"HomePage": {
 		"HomePage": "HomePage"
+	},
+	"Error":{
+		"unknowError":"Unknown error"
 	}
 }

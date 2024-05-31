@@ -22,6 +22,7 @@ interface SignUpFormResult {
 	handleFormSubmit: (event: React.FormEvent) => void;
 	isLoading: boolean;
 	serverError: string;
+	setServerError: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const useSignUpForm = (): SignUpFormResult => {
@@ -74,7 +75,14 @@ const useSignUpForm = (): SignUpFormResult => {
 		}
 	}, [isSuccess, navigate, error, reset]);
 
-	return { control, errors, handleFormSubmit, isLoading, serverError };
+	return {
+		control,
+		errors,
+		handleFormSubmit,
+		isLoading,
+		serverError,
+		setServerError,
+	};
 };
 
 export { useSignUpForm };
