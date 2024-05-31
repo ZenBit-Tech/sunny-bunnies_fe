@@ -1,9 +1,71 @@
 {
 	"ExampleComponent": {
 		"firstName": "First name",
-		"lastName":"Last name",
+		"lastName": "Last name",
 		"submit": "Submit",
 		"thisFieldRequired": "This field is required"
+	},
+	"footer": {
+		"footerColumnsLogIn": {
+			"Shop": "Shop",
+			"Company": "Company",
+			"Help": "Help",
+			"Login": "Login",
+			"Wishlist": "Wishlist",
+			"Cart": "Cart",
+			"AboutUs": "About Us",
+			"TermsAndConditions": "Terms and Conditions",
+			"PrivacyPolicy": "Privacy Policy",
+			"ContactUs": "Contact Us",
+			"FAQs": "FAQs",
+			"ShippingAndDelivery": "Shipping and Delivery",
+			"RentYourCloset": "Rent Your Closet",
+			"ResellYourCloset": "Resell Your Closet"
+		},
+		"footerColumnsLogOut": {
+			"Shop": "Shop",
+			"MyAccount": "My Account",
+			"Login": "Login",
+			"Wishlist": "Wishlist",
+			"Cart": "Cart",
+			"Information": "Information",
+			"ShippingPolicy": "Shipping Policy",
+			"ReturnsAndRefunds": "Returns & Refunds",
+			"CookiesPolicy": "Cookies Policy",
+			"FrequentlyAsked": "Frequently Asked",
+			"Company": "Company",
+			"AboutUs": "About Us",
+			"TermsAndConditions": "Terms and Conditions",
+			"PrivacyPolicy": "Privacy Policy",
+			"ContactUs": "Contact Us"
+		},
+		"copyrightText": "© 2023 Black Cycle",
+		"textLogIn": {
+			"row1": "Some text will be here",
+			"row2": "two - three lines"
+		},
+		"textLogOut": {
+			"row1": "Phosf luorescently engage worldwide",
+			"row2": "method process shopping."
+		}
+	},
+	"header": {
+		"headerLoginLinks": {
+			"Shop": "Shop",
+			"Vendors": "Vendors",
+			"Messages": "Messages"
+		},
+		"headerLogOutLinks": {
+			"Shop": "Shop",
+			"ProductFeed": "Product Feed"
+		},
+		"buttons": {
+			"SignUp": "Sign Up",
+			"LogIn": "Log in"
+		}
+	},
+	"mainLogo": {
+		"title": "Black circle"
 	},
 	"SignUpComponent": {
 		"createYourAccount": "Create Your Account",
