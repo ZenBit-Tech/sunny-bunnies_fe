@@ -13,6 +13,8 @@ import {
 import { AppRoute } from "./libs/enum/index.ts";
 import "./libs/locales/i18n.ts";
 import { Auth, Home } from "./pages/index.ts";
+import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
+import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
 import { persistor, store } from "./redux/store.ts";
 import "./styles.css";
 import theme from "./theme.ts";
@@ -42,6 +44,14 @@ createRoot(document.getElementById("root")!).render(
 														{
 															element: <Auth />,
 															path: AppRoute.SIGN_IN,
+														},
+														{
+															element: <PrivacyPolicy />,
+															path: AppRoute.PRIVACY_POLICY,
+														},
+														{
+															element: <TermsConditions />,
+															path: AppRoute.TERMS_OF_USE,
 														},
 													],
 													element: <PublicRoute />,
