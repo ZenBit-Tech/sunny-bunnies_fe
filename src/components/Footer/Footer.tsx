@@ -28,6 +28,7 @@ export const Footer: React.FC = () => {
 	const isLoggIned = Boolean(
 		useAppSelector((state: RootState) => state.auth.accessToken),
 	);
+
 	const footerBgColor = isLoggIned ? colors.GREYRISH_RED : colors.CREME;
 	const socialMediaIcons = isLoggIned
 		? socialMediaDataLogIn
