@@ -1,3 +1,5 @@
+import { AppRoute } from "./app-route.ts";
+
 export const footerColumnsLogIn = [
 	{
 		links: [
@@ -11,11 +13,11 @@ export const footerColumnsLogIn = [
 		links: [
 			{ href: "#", label: "footer.footerColumnsLogIn.AboutUs" },
 			{
-				href: "#",
+				href: AppRoute.TERMS_OF_USE,
 				label: "footer.footerColumnsLogIn.TermsAndConditions",
 			},
 			{
-				href: "#",
+				href: AppRoute.PRIVACY_POLICY,
 				label: "footer.footerColumnsLogIn.PrivacyPolicy",
 			},
 			{ href: "#", label: "footer.footerColumnsLogIn.ContactUs" },
@@ -59,11 +61,11 @@ export const footerColumnsLogOut = [
 		links: [
 			{ href: "#", label: "footer.footerColumnsLogOut.AboutUs" },
 			{
-				href: "#",
+				href: AppRoute.TERMS_OF_USE,
 				label: "footer.footerColumnsLogOut.TermsAndConditions",
 			},
 			{
-				href: "#",
+				href: AppRoute.PRIVACY_POLICY,
 				label: "footer.footerColumnsLogOut.PrivacyPolicy",
 			},
 			{ href: "#", label: "footer.footerColumnsLogOut.ContactUs" },
