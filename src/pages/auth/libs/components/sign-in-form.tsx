@@ -5,14 +5,9 @@ import { useTranslation } from "react-i18next";
 import { BaseButton, CustomFormGroup } from "~/components/index.ts";
 import theme from "~/theme.ts";
 
-import { useSignInForm } from "../../hooks/index.ts";
-import {
-	AuthLinks,
-	ForgotPasswordLink,
-	GoogleButton,
-	SignUpLink,
-	StyledFormContainer,
-} from "../index.ts";
+import { useSignInForm } from "../hooks/index.ts";
+import { AuthLinks, ForgotPasswordLink, SignUpLink } from "./index.ts";
+import { StyledFormContainer } from "./styles.ts";
 
 const SignInForm: React.FC = () => {
 	const { t } = useTranslation();
@@ -29,7 +24,6 @@ const SignInForm: React.FC = () => {
 				<Typography color={theme.palette.secondary.main} variant="dmSans">
 					{t("SignInComponent.signInWithGoogle")}
 				</Typography>
-				<GoogleButton />
 				<Divider sx={{ width: "100%" }}>
 					<Typography color="primary" variant="body1">
 						{t("SignUpComponent.or")}
