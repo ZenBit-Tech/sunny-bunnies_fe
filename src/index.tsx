@@ -13,9 +13,13 @@ import {
 import { AppRoute } from "./libs/enum/index.ts";
 import "./libs/locales/i18n.ts";
 import { Auth, Home } from "./pages/index.ts";
+import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
+import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
 import { persistor, store } from "./redux/store.ts";
 import "./styles.css";
 import theme from "./theme.ts";
+import { HeaderWrapper } from "./components/common/wrappers/header-wrapper.tsx";
+import { FooterWrapper } from "./components/common/wrappers/footer-wrapper.tsx";
 
 createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -26,38 +30,52 @@ createRoot(document.getElementById("root")!).render(
 						<RouterProvider
 							routes={[
 								{
+									element: <HeaderWrapper />,
 									children: [
 										{
+											element: <FooterWrapper />,
 											children: [
 												{
 													children: [
 														{
-															element: <Auth />,
+															children: [
+																{
+																	element: <Auth />,
+																	path: AppRoute.ROOT,
+																},
+																{
+																	element: <Auth />,
+																	path: AppRoute.SIGN_UP,
+																},
+																{
+																	element: <Auth />,
+																	path: AppRoute.SIGN_IN,
+																},
+																{
+																	element: <PrivacyPolicy />,
+																	path: AppRoute.PRIVACY_POLICY,
+																},
+																{
+																	element: <TermsConditions />,
+																	path: AppRoute.TERMS_OF_USE,
+																},
+															],
+															element: <PublicRoute />,
 															path: AppRoute.ROOT,
 														},
+													],
+												},
+												{
+													children: [
 														{
-															element: <Auth />,
-															path: AppRoute.SIGN_UP,
-														},
-														{
-															element: <Auth />,
-															path: AppRoute.SIGN_IN,
+															element: <Home />,
+															path: AppRoute.HOME,
 														},
 													],
-													element: <PublicRoute />,
+													element: <PrivateRoute />,
 													path: AppRoute.ROOT,
 												},
 											],
-										},
-										{
-											children: [
-												{
-													element: <Home />,
-													path: AppRoute.HOME,
-												},
-											],
-											element: <PrivateRoute />,
-											path: AppRoute.ROOT,
 										},
 									],
 								},
