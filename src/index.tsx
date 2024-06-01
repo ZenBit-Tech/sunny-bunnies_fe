@@ -4,17 +4,16 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
 
-import { App } from "~/app/app.tsx";
-import { AppRoute } from "~/libs/constants/index.ts";
-
-import { FooterWrapper } from "./components/common/wrappers/footer-wrapper.tsx";
-import { HeaderWrapper } from "./components/common/wrappers/header-wrapper.tsx";
+import { App } from "./app/app.tsx";
 import {
+	FooterWrapper,
+	HeaderWrapper,
 	PrivateRoute,
 	PublicRoute,
 	RouterProvider,
 	StoreProvider,
 } from "./components/index.ts";
+import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
 import { Auth, Home } from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
@@ -51,39 +50,38 @@ createRoot(document.getElementById("root")!).render(
 																	element: <Auth />,
 																	path: AppRoute.SIGN_IN,
 																},
-																{
-																	element: <PrivacyPolicy />,
-																	path: AppRoute.PRIVACY_POLICY,
-																},
-																{
-																	element: <TermsConditions />,
-																	path: AppRoute.TERMS_OF_USE,
-																},
 															],
 															element: <PublicRoute />,
 															path: AppRoute.ROOT,
 														},
-													],
-												},
-												{
-													children: [
+														{
+															children: [],
+															element: <PrivateRoute />,
+															path: AppRoute.ROOT,
+														},
 														{
 															element: <Home />,
 															path: AppRoute.HOME,
 														},
+														{
+															element: <PrivacyPolicy />,
+															path: AppRoute.PRIVACY_POLICY,
+														},
+														{
+															element: <TermsConditions />,
+															path: AppRoute.TERMS_OF_USE,
+														},
 													],
-													element: <PrivateRoute />,
+													element: <FooterWrapper />,
 													path: AppRoute.ROOT,
 												},
 											],
-											element: <FooterWrapper />,
+											element: <HeaderWrapper />,
+											path: AppRoute.ROOT,
 										},
 									],
-									element: <HeaderWrapper />,
-								},
-								{
 									element: <App />,
-									path: AppRoute.HOME,
+									path: AppRoute.ROOT,
 								},
 							]}
 						/>
