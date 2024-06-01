@@ -8,11 +8,11 @@ import {
 
 import { httpMethods } from "~/libs/constants/http-methods.ts";
 import { httpStatusCode } from "~/libs/constants/http-status-code.ts";
-import { type AuthTokenResponse } from "~/libs/types/auth/index.ts";
+import { type AuthTokenResponse } from "~/libs/types/auth.ts";
 
-import { logout, setTokens } from "../auth/auth-slice.ts";
-import { authApiPath } from "../auth/constants/auth-api-path.ts";
-import { RootState } from "../store.ts";
+import { logout, setTokens } from "./auth/auth-slice.ts";
+import { authApiPath } from "./auth/constants.ts";
+import { RootState } from "./store.ts";
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: `${import.meta.env.VITE_BASE_URL}`,

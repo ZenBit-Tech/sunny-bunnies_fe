@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { type AuthTokenResponse } from "~/libs/types/auth/index.ts";
-import { type User } from "~/libs/types/user/index.ts";
+import { type AuthTokenResponse } from "~/libs/types/auth.ts";
+import { type User } from "~/libs/types/user.ts";
 
 type AuthState = {
 	accessToken: null | string;

@@ -6,7 +6,7 @@ import storage from "redux-persist/lib/storage";
 
 import { authApi } from "./auth/auth-api.ts";
 import { authReducer } from "./auth/auth-slice.ts";
-import { api } from "./services/index.ts";
+import { api } from "./services.ts";
 
 const rootReducer = combineReducers({
 	auth: authReducer,

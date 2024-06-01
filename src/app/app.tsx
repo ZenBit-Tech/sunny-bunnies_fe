@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
-import { useGetUser } from "~/libs/hooks/index.ts";
-import { useAppSelector } from "~/redux/hooks/index.ts";
+import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
+
+import { useGetUser } from "./hooks.ts";
 
 const App: React.FC = () => {
 	const { refetch } = useGetUser();

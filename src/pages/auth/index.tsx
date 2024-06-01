@@ -10,10 +10,10 @@ import Logo from "~/assets/images/logo/big.png";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks/index.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 
-import { SignInForm, SignUpForm } from "./libs/components/index.ts";
-import { useSignUpForm } from "./libs/hooks/index.ts";
+import { SignInForm, SignUpForm } from "./components/index.ts";
+import { useSignUpForm } from "./hooks/index.ts";
 import styles from "./styles.module.css";
 
 const Auth: React.FC = () => {

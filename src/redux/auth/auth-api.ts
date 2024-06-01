@@ -7,10 +7,10 @@ import {
 	type UserSignInResponseDto,
 	type UserSignUpRequestDto,
 	type UserSignUpResponseDto,
-} from "~/libs/types/user/index.ts";
+} from "~/libs/types/user.ts";
 
-import { api } from "../services/index.ts";
-import { authApiPath } from "./constants/auth-api-path.ts";
+import { api } from "../services.ts";
+import { authApiPath } from "./constants.ts";
 
 export const authApi = api.injectEndpoints({
 	endpoints: (build) => ({

@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/index.ts";
-import { useAppSelector } from "~/redux/hooks/index.ts";
+import { useAppSelector } from "~/redux/hooks.ts";
 import { RootState } from "~/redux/store.ts";
 
 const PublicRoute: React.FC = () => {
