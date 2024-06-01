@@ -4,6 +4,7 @@ const colors = {
 	gray: "#6D6B6B",
 	hoverBlack: "black",
 	lightGray: "#EDEAE9",
+	textBlack: "#121212",
 	white: "#ffffff",
 };
 

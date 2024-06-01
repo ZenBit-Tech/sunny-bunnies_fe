@@ -77,6 +77,7 @@ const theme = createTheme({
 	},
 	palette: {
 		primary: {
+			dark: colors.hoverBlack,
 			main: colors.black,
 		},
 		secondary: {
