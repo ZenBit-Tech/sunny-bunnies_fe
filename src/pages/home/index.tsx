@@ -1,10 +1,22 @@
+import { Box } from "@mui/material";
 import React from "react";
-import { useTranslation } from "react-i18next";
+
+import { CategoryCarousel, TopInfoSection } from "./libs/components/index.ts";
 
 const Home: React.FC = () => {
-	const { t } = useTranslation();
-
-	return <div>{t("homePage.home")}</div>;
+	return (
+		<Box
+			sx={{
+				display: "flex",
+				flex: 1,
+				flexDirection: "column",
+				padding: "15px 0",
+			}}
+		>
+			<TopInfoSection />
+			<CategoryCarousel />
+		</Box>
+	);
 };
 
 export { Home };

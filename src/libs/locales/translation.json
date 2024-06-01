@@ -94,7 +94,12 @@
 		"logo": "Logo"
 	},
 	"HomePage": {
-		"HomePage": "HomePage"
+		"homePage": "HomePage",
+		"freeShopping": "Free shopping on all orders today",
+		"forOrder": "For orders start from $200",
+		"joinOurNewsletter": "Join Our Newsletter",
+		"bigDiscountAndRight": "Big discounts and right to your inbox.",
+		"categories": "Categories"
 	},
 	"Error":{
 		"unknowError":"Unknown error"
