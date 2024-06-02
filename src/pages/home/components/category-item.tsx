@@ -3,7 +3,7 @@ import React from "react";
 
 import { colors, fontSizes } from "~/libs/constants/index.ts";
 
-import { type Category } from "../types/category.ts";
+import { type Category } from "../types/index.ts";
 import {
 	RoundImage,
 	StyledCategoryContainer,

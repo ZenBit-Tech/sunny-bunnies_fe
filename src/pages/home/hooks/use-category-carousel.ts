@@ -10,6 +10,10 @@ const breakpoints = [
 	{ itemsPerPage: 5, width: Infinity },
 ];
 
+const initialItemPerPage = 5;
+const initialStartIndex = 0;
+const defaultStep = 1;
+
 type CategoryCarouselState = {
 	handleNext: () => void;
 	handlePrev: () => void;
@@ -18,10 +22,6 @@ type CategoryCarouselState = {
 	showPrevButton: boolean;
 	startIndex: number;
 };
-
-const initialItemPerPage = 5;
-const initialStartIndex = 0;
-const defaultStep = 1;
 
 const useCategoryCarousel = (categories: Category[]): CategoryCarouselState => {
 	const [itemsPerPage, setItemsPerPage] = useState(initialItemPerPage);

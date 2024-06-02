@@ -1,7 +1,12 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-import { CategoryCarousel, TopInfoSection } from "./libs/components/index.ts";
+import {
+	CategoryCarousel,
+	Newsletter,
+	Products,
+	TopInfoSection,
+} from "./components/index.ts";
 
 const Home: React.FC = () => {
 	return (
@@ -15,6 +20,8 @@ const Home: React.FC = () => {
 		>
 			<TopInfoSection />
 			<CategoryCarousel />
+			<Products />
+			<Newsletter />
 		</Box>
 	);
 };
