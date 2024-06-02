@@ -57,6 +57,10 @@ createRoot(document.getElementById("root")!).render(
 																	element: <TermsConditions />,
 																	path: AppRoute.TERMS_OF_USE,
 																},
+																{
+																	element: <Home />,
+																	path: AppRoute.HOME,
+																},
 															],
 															element: <PublicRoute />,
 															path: AppRoute.ROOT,
@@ -64,12 +68,7 @@ createRoot(document.getElementById("root")!).render(
 													],
 												},
 												{
-													children: [
-														{
-															element: <Home />,
-															path: AppRoute.HOME,
-														},
-													],
+													children: [],
 													element: <PrivateRoute />,
 													path: AppRoute.ROOT,
 												},
