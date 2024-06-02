@@ -99,7 +99,12 @@
 		"forOrder": "For orders start from $200",
 		"joinOurNewsletter": "Join Our Newsletter",
 		"bigDiscountAndRight": "Big discounts and right to your inbox.",
-		"categories": "Categories"
+		"categories": "Categories",
+		"emailAddress": "Email address",
+		"signUp": "Signup",
+		"recommended": "Recommended",
+		"justIn": "Just In",
+		"yourSize": "Your Size"
 	},
 	"Error": {
 		"unknowError": "Unknown error"
