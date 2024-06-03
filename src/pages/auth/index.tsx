@@ -9,7 +9,7 @@ import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
-import { setUser } from "~/redux/auth/auth-slice.ts";
+import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
@@ -28,6 +28,7 @@ const Auth: React.FC = () => {
 	useEffect(() => {
 		if (isSuccess) {
 			dispatch(setUser(data.user));
+			dispatch(setTokens(data));
 			navigate(AppRoute.VERIFY_EMAIL);
 		}
 		if (isError) {
