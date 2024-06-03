@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { Outlet, matchPath, useLocation } from "react-router-dom";
 
 import { Footer } from "~/components/Footer/Footer.tsx";
-import { AppRoute } from "~/libs/enum/index.ts";
+import { AppRoute } from "~/libs/constants/index.ts";
 
 const NoFootersRoutes = [AppRoute.ROOT, AppRoute.SIGN_UP, AppRoute.SIGN_IN];
 const GetStartedFooterRoutes = [

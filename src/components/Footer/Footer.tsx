@@ -20,7 +20,7 @@ import {
 	socialMediaDataLogIn,
 	socialMediaDataLogOut,
 } from "~/libs/constants/social-media-icons.ts";
-import { useAppSelector } from "~/redux/hooks/use-app-selector.ts";
+import { useAppSelector } from "~/redux/hooks.ts";
 import { RootState } from "~/redux/store.ts";
 
 export const Footer: React.FC = () => {

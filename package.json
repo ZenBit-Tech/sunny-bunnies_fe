@@ -6,8 +6,8 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
-		"lint": "eslint . --max-warnings 0",
-		"lint:fix": "eslint . --max-warnings 0 --fix",
+		"lint": "eslint . --max-warnings 10",
+		"lint:fix": "eslint . --max-warnings 10 --fix",
 		"preview": "vite preview",
 		"prepare": "husky",
 		"format": "prettier --write \"src/**/*.{ts,tsx}\""

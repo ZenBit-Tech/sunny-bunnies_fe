@@ -1,19 +1,19 @@
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { CredentialResponse } from "@react-oauth/google";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Logo from "~/assets/images/Logo/Big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
-import { useSignUpForm } from "~/components/auth/sign-up-form/libs/hooks/use-sign-up-form.ts";
-import { SignInForm, SignUpForm } from "~/components/common/index.ts";
-import { AppRoute } from "~/libs/enum/index.ts";
+import Logo from "~/assets/images/logo/big.png";
+import { AppRoute } from "~/libs/constants/index.ts";
 import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks/index.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 
+import { SignInForm, SignUpForm } from "./components/index.ts";
+import { useSignUpForm } from "./hooks/index.ts";
 import styles from "./styles.module.css";
 
 const Auth: React.FC = () => {
@@ -27,7 +27,7 @@ const Auth: React.FC = () => {
 
 	useEffect(() => {
 		if (isSuccess) {
-			dispatch(setUser(data));
+			dispatch(setUser(data.user));
 			navigate(AppRoute.VERIFY_EMAIL);
 		}
 		if (isError) {
@@ -78,7 +78,7 @@ const Auth: React.FC = () => {
 	};
 
 	return (
-		<Grid component="main" container sx={{ height: "100vh" }}>
+		<Grid component="main" container sx={{ minHeight: "100vh" }}>
 			<Grid
 				item
 				md={5}
@@ -100,19 +100,22 @@ const Auth: React.FC = () => {
 						top: 42,
 					}}
 				>
-					<img alt="Logo" className={styles["auth__logo"]} src={Logo} />
+					<img
+						alt={t("AuthPage.logo")}
+						className={styles["auth__logo"]}
+						src={Logo}
+					/>
 				</Box>
 			</Grid>
 			<Grid
-				component={Paper}
-				elevation={6}
 				item
 				md={7}
 				sm={12}
-				square
 				sx={{
-					justifyContent: "space-between",
-					padding: 7,
+					alignItems: "center",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
 				}}
 				xl={5}
 				xs={12}

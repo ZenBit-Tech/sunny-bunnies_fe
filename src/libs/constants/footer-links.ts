@@ -1,4 +1,4 @@
-import { AppRoute } from "../enum/app-route.enum.ts";
+import { AppRoute } from "./app-route.ts";
 
 export const footerColumnsLogIn = [
 	{

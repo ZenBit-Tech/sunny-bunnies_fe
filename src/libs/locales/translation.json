@@ -85,7 +85,13 @@
 		"passwordPlaceholder": "Min. 8 characters"
 	},
 	"SignInComponent": {
-		"signIn": "Sign In"
+		"signIn": "Sign In",
+		"signInWithGoogle": "Sign In with Google",
+		"donNotHaveAnAccountYet": "Don't have an account yet?",
+		"forgotPassword": "Forgot Password?"
+	},
+	"AuthPage": {
+		"logo": "Logo"
 	},
 	"HomePage": {
 		"HomePage": "HomePage"
