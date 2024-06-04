@@ -1,13 +1,4 @@
-const productStatus = {
-	BOTH: "both",
-	FOR_RENT: "forRent",
-	FOR_SALE: "forSale",
-} as const;
-
-const gender = {
-	FEMALE: "female",
-	MALE: "male",
-};
+import { gender, productStatus } from "../constants/index.ts";
 
 type Product = {
 	brand: string;
@@ -28,4 +19,4 @@ type Product = {
 	updatedAt: Date;
 };
 
-export { type Product, gender, productStatus };
+export { type Product };
