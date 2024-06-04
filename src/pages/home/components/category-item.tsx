@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { useCallback } from "react";
 
 import { colors, fontSizes } from "~/libs/constants/index.ts";
 
@@ -12,17 +12,31 @@ import {
 
 type CategoryProperties = {
 	category: Category;
+	onChooseCategory: (category: string) => void;
 };
 
-const CategoryItem: React.FC<CategoryProperties> = ({ category }) => {
+const CategoryItem: React.FC<CategoryProperties> = ({
+	category,
+	onChooseCategory,
+}) => {
+	const handleChooseCategory = useCallback(() => {
+		onChooseCategory(category.name);
+	}, [category, onChooseCategory]);
+
 	return (
 		<StyledCategoryContainer>
 			<StyledCategoryImage>
-				<RoundImage alt={category.name} as="img" src={category.image} />
+				<RoundImage
+					alt={category.name}
+					as="img"
+					onClick={handleChooseCategory}
+					src={category.image}
+				/>
 			</StyledCategoryImage>
 			<Typography
 				color={colors.textBlack}
 				fontSize={fontSizes.mediumLarge}
+				textAlign="center"
 				variant="playfairDisplay"
 			>
 				{category.name}

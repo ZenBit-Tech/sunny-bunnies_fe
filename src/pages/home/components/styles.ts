@@ -28,9 +28,8 @@ const StyledCategoryCarouselContainer = styled(Box)`
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
-	height: 414px;
 	justify-content: flex-start;
-	padding: 15px 25px;
+	padding: 15px 52px;
 	width: 100%;
 `;
 
@@ -94,6 +93,22 @@ const StyledFilterButton = styled(Button)<FilterButtonProps>(
 	}),
 );
 
+const StyledProductsContainer = styled(Box)`
+	align-item: flex-start;
+	display: flex;
+	justify-content: space-evenly;
+	gap: 30px;
+	flex-wrap: wrap;
+	padding: 25px 0px;
+`;
+
+const StyledProductCardContent = styled(Box)`
+	align-item: flex-start;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+`;
+
 // newsletter
 
 const StyledNewsletterContainer = styled(Box)({
@@ -107,11 +122,12 @@ const StyledNewsletterContainer = styled(Box)({
 });
 
 const StyledNewsletterContentContainer = styled(Box)({
+	alignItems: "center",
 	display: "flex",
 	flexDirection: "column",
 	height: "166px",
 	justifyContent: "space-between",
-	width: "540px",
+	width: "55%",
 });
 
 const StyledNewsletterHeader = styled(Box)({
@@ -128,7 +144,7 @@ const StyledNewsletterForm = styled(Box)({
 	display: "flex",
 	height: "52px",
 	justifyContent: "center",
-	width: "100%",
+	width: "75%",
 });
 
 const StyledEmailTextField = styled(TextField)(({ theme }) => ({
@@ -186,6 +202,8 @@ export {
 	StyledNewsletterContentContainer,
 	StyledNewsletterForm,
 	StyledNewsletterHeader,
+	StyledProductCardContent,
+	StyledProductsContainer,
 	StyledSignUpButton,
 	StyledTopInfoContainer,
 	StyledTopInfoTextBlock,

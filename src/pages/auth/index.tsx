@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
+import { Link } from "~/components/Header/Link.tsx";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
@@ -100,11 +101,13 @@ const Auth: React.FC = () => {
 						top: 42,
 					}}
 				>
-					<img
-						alt={t("AuthPage.logo")}
-						className={styles["auth__logo"]}
-						src={Logo}
-					/>
+					<Link to={AppRoute.HOME}>
+						<img
+							alt={t("AuthPage.logo")}
+							className={styles["auth__logo"]}
+							src={Logo}
+						/>
+					</Link>
 				</Box>
 			</Grid>
 			<Grid

@@ -104,7 +104,8 @@
 		"signUp": "Signup",
 		"recommended": "Recommended",
 		"justIn": "Just In",
-		"yourSize": "Your Size"
+		"yourSize": "Your Size",
+		"productsWereNotFound": "Products from this category were not found"
 	},
 	"Error": {
 		"unknowError": "Unknown error"

@@ -1,7 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
+import { fontSizes } from "~/libs/constants/font.ts";
 import { type Product } from "~/libs/types/products.ts";
+
+import { StyledProductCardContent } from "./styles.ts";
 
 type ProductCardProperties = {
 	product: Product;
@@ -14,19 +17,34 @@ const ProductCard: React.FC<ProductCardProperties> = ({ product }) => {
 				display: "flex",
 				flexDirection: "column",
 				gap: "12px",
-				height: "388px",
+				maxWidth: "300px",
 			}}
 		>
-			<img alt={product.name} height="322px" src={product.image} width="100%" />
-			<Box>
+			<img
+				alt={product.name}
+				height="322px"
+				src={product.imageUrl}
+				width="100%"
+			/>
+			<StyledProductCardContent>
 				<Typography color="primary" variant="playfairDisplayBold">
 					{product.name}
 				</Typography>
-				<Typography color="primary" component="span" variant="dmSansBold">
-					{product.price}
-				</Typography>
-				<Typography component="span">{product.price}</Typography>
-			</Box>
+				<Box sx={{ alignItem: "center", display: "flex", gap: "5px" }}>
+					<Typography color="primary" component="span" variant="dmSansBold">
+						{product.priceTo}
+					</Typography>
+					<Typography
+						color="secondary"
+						component="span"
+						fontSize={fontSizes.small}
+						sx={{ textDecoration: "line-through" }}
+						variant="dmSansBold"
+					>
+						{product.priceTo}
+					</Typography>
+				</Box>
+			</StyledProductCardContent>
 		</Box>
 	);
 };

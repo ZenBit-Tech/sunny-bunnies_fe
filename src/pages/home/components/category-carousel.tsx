@@ -3,9 +3,9 @@ import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { homePageImages } from "~/assets/images/home-page/index.ts";
 import { fontSizes } from "~/libs/constants/index.ts";
 
+import { categories } from "../constants/index.ts";
 import { useCategoryCarousel } from "../hooks/index.ts";
 import { CategoryItem } from "./index.ts";
 import {
@@ -14,30 +14,13 @@ import {
 	StyledCategoryCarouselContainer,
 } from "./styles.ts";
 
-const categories = [
-	{
-		image: homePageImages.accessories,
-		name: "Accessories",
-	},
-	{
-		image: homePageImages.redBag,
-		name: "Bags",
-	},
-	{
-		image: homePageImages.goldDress,
-		name: "Clothing",
-	},
-	{
-		image: homePageImages.shoes,
-		name: "Shoes",
-	},
-	{
-		image: homePageImages.design,
-		name: "Designers",
-	},
-];
+type CategoryCarouselProperties = {
+	onChooseCategory: (category: string) => void;
+};
 
-const CategoryCarousel: React.FC = () => {
+const CategoryCarousel: React.FC<CategoryCarouselProperties> = ({
+	onChooseCategory,
+}) => {
 	const { t } = useTranslation();
 
 	const {
@@ -63,11 +46,16 @@ const CategoryCarousel: React.FC = () => {
 					</IconButton>
 				)}
 				<StyledCategoriesItems>
-					{categories
-						.slice(startIndex, startIndex + itemsPerPage)
-						.map((category, index) => (
-							<CategoryItem category={category} key={index} />
-						))}
+					{categories &&
+						categories
+							.slice(startIndex, startIndex + itemsPerPage)
+							.map((category, index) => (
+								<CategoryItem
+									category={category}
+									key={index}
+									onChooseCategory={onChooseCategory}
+								/>
+							))}
 				</StyledCategoriesItems>
 				{showNextButton && (
 					<IconButton onClick={handleNext}>

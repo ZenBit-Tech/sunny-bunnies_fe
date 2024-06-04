@@ -5,15 +5,15 @@ import { api } from "../services/index.ts";
 import { productsApiPath } from "./constants.ts";
 
 type GetProductsRequestQuery = {
-	filter?: string;
+	category?: string;
 };
 
 export const productsApi = api.injectEndpoints({
 	endpoints: (build) => ({
 		getProducts: build.query<Product[], GetProductsRequestQuery>({
-			query: ({ filter }) => ({
+			query: (filters) => ({
 				method: httpMethods.GET,
-				params: { filter },
+				params: { ...filters },
 				url: productsApiPath.ROOT,
 			}),
 		}),

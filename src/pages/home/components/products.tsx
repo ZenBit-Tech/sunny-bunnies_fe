@@ -1,13 +1,23 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import { Product } from "~/libs/types/products.ts";
 
 import { FilterButton } from "./filter-button.tsx";
+import { ProductCard } from "./product-card.tsx";
+import { StyledProductsContainer } from "./styles.ts";
 
 const filters = ["Recommended", "Just In", "Your Size"];
+const minNumberOfProducts = 1;
 
-const Products: React.FC = () => {
+type ProductsProperties = {
+	products: Product[] | undefined;
+};
+
+const Products: React.FC<ProductsProperties> = ({ products }) => {
 	const [selectedFilter, setSelectedFilter] = useState("Recommended");
-
+	const { t } = useTranslation();
 	const handleFilterClick = useCallback((filter: string): void => {
 		setSelectedFilter(filter);
 	}, []);
@@ -24,6 +34,16 @@ const Products: React.FC = () => {
 					/>
 				))}
 			</Box>
+			<StyledProductsContainer>
+				{products?.map((product) => (
+					<ProductCard key={product.id} product={product} />
+				))}
+				{(!products || products.length < minNumberOfProducts) && (
+					<Typography textAlign="center" variant="playfairDisplay" width="100%">
+						{t("HomePage.productsWereNotFound")}
+					</Typography>
+				)}
+			</StyledProductsContainer>
 		</Box>
 	);
 };
