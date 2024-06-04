@@ -1,3 +1,5 @@
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 const userValidationMessage = {
 	EMAIL_INCORRECT: "Email format is incorrect",
 	EMAIL_INVALID: "Email should be in format example@gmail.com",
@@ -11,4 +13,9 @@ const userValidationMessage = {
 	REPEAT_PASSWORD_REQUIRED: "Repeat password is required",
 } as const;
 
-export { userValidationMessage };
+const userValidationRules = {
+	NAME_MIN_LENGTH: 2,
+	PASSWORD_MIN_LENGTH: 8,
+};
+
+export { emailRegex, userValidationMessage, userValidationRules };

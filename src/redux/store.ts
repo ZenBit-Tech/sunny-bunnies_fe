@@ -8,7 +8,7 @@ import { authApi } from "./auth/auth-api.ts";
 import { authReducer } from "./auth/auth-slice.ts";
 import { productsApi } from "./products/products-api.ts";
 import { productsReducer } from "./products/products-slice.ts";
-import { api } from "./services/index.ts";
+import { api } from "./services.ts";
 
 const rootReducer = combineReducers({
 	auth: authReducer,

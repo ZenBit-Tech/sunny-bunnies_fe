@@ -6,8 +6,9 @@ import { useTranslation } from "react-i18next";
 import { BaseButton, CustomFormGroup } from "~/components/index.ts";
 import theme from "~/theme.ts";
 
-import { useSignUpForm } from "../../hooks/index.ts";
-import { AuthLinks, SignInLink, StyledFormContainer } from "../index.ts";
+import { useSignUpForm } from "../hooks/index.ts";
+import { AuthLinks, SignInLink } from "./index.ts";
+import { StyledFormContainer } from "./styles.ts";
 
 type Properties = {
 	onClick: (credentialResponse: CredentialResponse) => void;

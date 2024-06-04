@@ -5,10 +5,10 @@ import { Control, FieldError, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/index.ts";
-import { type UserSignUpFormData } from "~/libs/types/user/index.ts";
+import { type UserSignUpFormData } from "~/libs/types/user.ts";
 import { useRegisterMutation } from "~/redux/auth/auth-api.ts";
 import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks/index.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 
 import { userSignUpValidation } from "../validation/sign-up-schema.ts";
 

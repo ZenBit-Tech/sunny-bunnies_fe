@@ -20,8 +20,8 @@ import {
 	headerLogOutLinks,
 	headerLoginLinks,
 } from "~/libs/constants/header-links.ts";
-import { useAppSelector } from "~/redux/hooks/use-app-selector.ts";
-import { RootState } from "~/redux/store.ts";
+import { useAppSelector } from "~/redux/hooks.ts";
+import { type RootState } from "~/redux/store.ts";
 
 export const Header: React.FC = () => {
 	const { t } = useTranslation();

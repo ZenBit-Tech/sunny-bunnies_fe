@@ -10,11 +10,11 @@ import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/Header/Link.tsx";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
-import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks/index.ts";
+import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 
-import { SignInForm, SignUpForm } from "./libs/components/index.ts";
-import { useSignUpForm } from "./libs/hooks/index.ts";
+import { SignInForm, SignUpForm } from "./components/index.ts";
+import { useSignUpForm } from "./hooks/index.ts";
 import styles from "./styles.module.css";
 
 const Auth: React.FC = () => {
@@ -29,6 +29,7 @@ const Auth: React.FC = () => {
 	useEffect(() => {
 		if (isSuccess) {
 			dispatch(setUser(data.user));
+			dispatch(setTokens(data));
 			navigate(AppRoute.VERIFY_EMAIL);
 		}
 		if (isError) {

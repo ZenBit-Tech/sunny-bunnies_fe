@@ -5,12 +5,12 @@ import { Control, FieldError, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/index.ts";
-import { type UserSignInRequestDto } from "~/libs/types/user/index.ts";
+import { type UserSignInRequestDto } from "~/libs/types/user.ts";
 import { useLoginMutation } from "~/redux/auth/auth-api.ts";
 import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks/index.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 
-import { exceptionMessage } from "../constants/index.ts";
+import { exceptionMessage } from "../constants.ts";
 import { userSignInValidation } from "../validation/index.ts";
 
 type SignInFormResult = {

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useGetUserQuery } from "~/redux/auth/auth-api.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks/index.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 
 type UseGetUserResult = {
 	isError: boolean;
