@@ -1,57 +1,18 @@
 import { Box, Grid } from "@mui/material";
-import { CredentialResponse } from "@react-oauth/google";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
 import { AppRoute } from "~/libs/constants/index.ts";
-import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
-import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks.ts";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
-import { useSignUpForm } from "./hooks/index.ts";
 import styles from "./styles.module.css";
 
 const Auth: React.FC = () => {
 	const { pathname } = useLocation();
 	const { t } = useTranslation();
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
-	const [addUser, { data, error, isError, isSuccess }] =
-		useAddUserGoogleMutation();
-	const { setServerError } = useSignUpForm();
-
-	useEffect(() => {
-		if (isSuccess) {
-			dispatch(setUser(data.user));
-			dispatch(setTokens(data));
-			navigate(AppRoute.VERIFY_EMAIL);
-		}
-		if (isError) {
-			const loadError = (error as FetchBaseQueryError).data
-				? ((error as FetchBaseQueryError).data as Error)
-				: { message: t("Error.unknowError") };
-			setServerError(loadError.message);
-		}
-	}, [data, dispatch, error, isError, isSuccess, navigate, setServerError, t]);
-
-	const onSuccess = useCallback(
-		async (credentialResponse: CredentialResponse) => {
-			try {
-				await addUser(credentialResponse);
-			} catch (error) {
-				const loadError = (error as FetchBaseQueryError).data
-					? ((error as FetchBaseQueryError).data as Error)
-					: { message: t("Error.unknowError") };
-				setServerError(loadError.message);
-			}
-		},
-		[addUser, setServerError, t],
-	);
 
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
@@ -59,10 +20,10 @@ const Auth: React.FC = () => {
 				return <SignInForm />;
 			}
 			case AppRoute.SIGN_UP: {
-				return <SignUpForm onClick={onSuccess} />;
+				return <SignUpForm />;
 			}
 			default: {
-				return <SignUpForm onClick={onSuccess} />;
+				return <SignUpForm />;
 			}
 		}
 	};

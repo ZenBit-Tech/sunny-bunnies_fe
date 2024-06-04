@@ -132,6 +132,7 @@ export default tseslint.config(
 			"typesafe/promise-catch": "error",
 			"@typescript-eslint/return-await": ["error", "always"],
 			"import/default": "off",
+			"sonarjs/no-duplicate-string": "warn",
 			"padding-line-between-statements": [
 				"error",
 				{ blankLine: "always", prev: "*", next: "return" },

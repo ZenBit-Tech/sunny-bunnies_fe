@@ -1,23 +1,74 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
-import React from "react";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import React, { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import { BaseButton, CustomFormGroup } from "~/components/index.ts";
+import { AppRoute } from "~/libs/constants/app-route.ts";
+import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
+import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
 
 import { useSignUpForm } from "../hooks/index.ts";
 import { AuthLinks, SignInLink } from "./index.ts";
 import { StyledFormContainer } from "./styles.ts";
 
-type Properties = {
-	onClick: (credentialResponse: CredentialResponse) => void;
-};
-
-const SignUpForm: React.FC<Properties> = ({ onClick }: Properties) => {
+const SignUpForm: React.FC = () => {
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const { control, errors, handleFormSubmit, isLoading, serverError } =
 		useSignUpForm();
+	const [
+		addUser,
+		{
+			data: signUpData,
+			error: signUpError,
+			isError: isSignUpError,
+			isSuccess: isSignUpSuccess,
+		},
+	] = useAddUserGoogleMutation();
+	const { setServerError } = useSignUpForm();
+
+	useEffect(() => {
+		if (isSignUpSuccess) {
+			dispatch(setUser(signUpData.user));
+			dispatch(setTokens(signUpData));
+			navigate(AppRoute.VERIFY_EMAIL);
+		}
+		if (isSignUpError) {
+			const loadError = (signUpError as FetchBaseQueryError).data
+				? ((signUpError as FetchBaseQueryError).data as Error)
+				: { message: t("Error.unknowError") };
+			setServerError(loadError.message);
+		}
+	}, [
+		signUpData,
+		signUpError,
+		isSignUpError,
+		isSignUpSuccess,
+		dispatch,
+		navigate,
+		setServerError,
+		t,
+	]);
+
+	const onSuccess = useCallback(
+		async (credentialResponse: CredentialResponse) => {
+			try {
+				await addUser(credentialResponse);
+			} catch (error) {
+				const loadError = (error as FetchBaseQueryError).data
+					? ((error as FetchBaseQueryError).data as Error)
+					: { message: t("Error.unknowError") };
+				setServerError(loadError.message);
+			}
+		},
+		[addUser, setServerError, t],
+	);
 
 	return (
 		<>
@@ -28,7 +79,11 @@ const SignUpForm: React.FC<Properties> = ({ onClick }: Properties) => {
 				<Typography color={theme.palette.secondary.main} variant="dmSans">
 					{t("SignUpComponent.signUpWithGoogle")}
 				</Typography>
-				<GoogleLogin logo_alignment="center" onSuccess={onClick} type="icon" />
+				<GoogleLogin
+					logo_alignment="center"
+					onSuccess={onSuccess}
+					type="icon"
+				/>
 				<Divider sx={{ width: "100%" }}>
 					<Typography color="primary" variant="body1">
 						{t("SignUpComponent.or")}

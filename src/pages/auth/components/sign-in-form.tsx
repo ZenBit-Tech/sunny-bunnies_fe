@@ -1,8 +1,15 @@
 import { Box, Divider, Typography } from "@mui/material";
-import React from "react";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import React, { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import { BaseButton, CustomFormGroup } from "~/components/index.ts";
+import { AppRoute } from "~/libs/constants/app-route.ts";
+import { useLoginByGoogleMutation } from "~/redux/auth/auth-api.ts";
+import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
 
 import { useSignInForm } from "../hooks/index.ts";
@@ -10,10 +17,64 @@ import { AuthLinks, ForgotPasswordLink, SignUpLink } from "./index.ts";
 import { StyledFormContainer } from "./styles.ts";
 
 const SignInForm: React.FC = () => {
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const { t } = useTranslation();
+	const {
+		control,
+		errors,
+		handleFormSubmit,
+		isLoading,
+		serverError,
+		setServerError,
+	} = useSignInForm();
+	const [
+		loginUser,
+		{
+			data: loginData,
+			error: loginError,
+			isError: isLoginError,
+			isSuccess: isLoginSuccess,
+		},
+	] = useLoginByGoogleMutation();
 
-	const { control, errors, handleFormSubmit, isLoading, serverError } =
-		useSignInForm();
+	useEffect(() => {
+		if (isLoginSuccess) {
+			dispatch(setUser(loginData.user));
+			dispatch(setTokens(loginData));
+			navigate(AppRoute.HOME);
+		}
+		if (isLoginError) {
+			const loadError = (loginError as FetchBaseQueryError).data
+				? ((loginError as FetchBaseQueryError).data as Error)
+				: { message: t("Error.unknowError") };
+			setServerError(loadError.message);
+		}
+	}, [
+		loginData,
+		loginError,
+		isLoginError,
+		isLoginSuccess,
+		dispatch,
+		navigate,
+		setServerError,
+		t,
+		serverError,
+	]);
+
+	const onSuccess = useCallback(
+		async (credentialResponse: CredentialResponse) => {
+			try {
+				await loginUser(credentialResponse);
+			} catch (error) {
+				const loadError = (error as FetchBaseQueryError).data
+					? ((error as FetchBaseQueryError).data as Error)
+					: { message: t("Error.unknowError") };
+				setServerError(loadError.message);
+			}
+		},
+		[loginUser, setServerError, t],
+	);
 
 	return (
 		<>
@@ -24,6 +85,11 @@ const SignInForm: React.FC = () => {
 				<Typography color={theme.palette.secondary.main} variant="dmSans">
 					{t("SignInComponent.signInWithGoogle")}
 				</Typography>
+				<GoogleLogin
+					logo_alignment="center"
+					onSuccess={onSuccess}
+					type="icon"
+				/>
 				<Divider sx={{ width: "100%" }}>
 					<Typography color="primary" variant="body1">
 						{t("SignUpComponent.or")}
