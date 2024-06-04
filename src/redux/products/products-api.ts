@@ -1,7 +1,7 @@
 import { httpMethods } from "~/libs/constants/http-methods.ts";
 import { type Product } from "~/libs/types/products.ts";
 
-import { api } from "../services/index.ts";
+import { api } from "../services.ts";
 import { productsApiPath } from "./constants.ts";
 
 type GetProductsRequestQuery = {
