@@ -5,6 +5,7 @@ export { FooterWrapper } from "./common/wrappers/footer-wrapper.tsx";
 export { HeaderWrapper } from "./common/wrappers/header-wrapper.tsx";
 export { CustomFormGroup } from "./custom-form-group/index.tsx";
 export { FilterButton } from "./filter-button/index.tsx";
+export { Loader } from "./loader/index.tsx";
 export { Newsletter } from "./newsletter/index.tsx";
 export { PrivateRoute } from "./private-route/index.tsx";
 export { PublicRoute } from "./public-route/index.tsx";
