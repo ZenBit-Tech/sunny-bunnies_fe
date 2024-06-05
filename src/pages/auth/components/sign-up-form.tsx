@@ -22,6 +22,8 @@ const SignUpForm: React.FC = () => {
 	const { t } = useTranslation();
 	const { control, errors, handleFormSubmit, isLoading, serverError } =
 		useSignUpForm();
+	const { setServerError } = useSignUpForm();
+
 	const [
 		addUser,
 		{
@@ -31,7 +33,6 @@ const SignUpForm: React.FC = () => {
 			isSuccess: isSignUpSuccess,
 		},
 	] = useAddUserGoogleMutation();
-	const { setServerError } = useSignUpForm();
 
 	useEffect(() => {
 		if (isSignUpSuccess) {
