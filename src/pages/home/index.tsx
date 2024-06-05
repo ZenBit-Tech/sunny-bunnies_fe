@@ -1,14 +1,10 @@
 import { Box } from "@mui/material";
 import React, { useCallback, useState } from "react";
 
+import { Newsletter, TopInfoSection } from "~/components/index.ts";
 import { useGetProductsQuery } from "~/redux/products/products-api.ts";
 
-import {
-	CategoryCarousel,
-	Newsletter,
-	Products,
-	TopInfoSection,
-} from "./components/index.ts";
+import { CategoryCarousel, Products } from "./components/index.ts";
 
 const allCategories = "All";
 

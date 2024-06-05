@@ -2,13 +2,12 @@ import { Box, Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { FilterButton } from "~/components/index.ts";
 import { Product } from "~/libs/types/products.ts";
 
-import { FilterButton } from "./filter-button.tsx";
-import { ProductCard } from "./product-card.tsx";
+import { ProductCard } from "../index.ts";
 import { StyledProductsContainer } from "./styles.ts";
 
-const filters = ["Recommended", "Just In", "Your Size"];
 const minNumberOfProducts = 1;
 
 type ProductsProperties = {
@@ -16,8 +15,14 @@ type ProductsProperties = {
 };
 
 const Products: React.FC<ProductsProperties> = ({ products }) => {
-	const [selectedFilter, setSelectedFilter] = useState("Recommended");
 	const { t } = useTranslation();
+	const filters = [
+		`${t("HomePage.recommended")}`,
+		`${t("HomePage.justIn")}`,
+		`${t("HomePage.yourSize")}`,
+	];
+	const [selectedFilter, setSelectedFilter] = useState("Recommended");
+
 	const handleFilterClick = useCallback((filter: string): void => {
 		setSelectedFilter(filter);
 	}, []);

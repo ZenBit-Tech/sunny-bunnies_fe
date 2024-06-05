@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 
 import { fontSizes } from "~/libs/constants/index.ts";
 
-import { categories } from "../constants/index.ts";
-import { useCategoryCarousel } from "../hooks/index.ts";
-import { CategoryItem } from "./index.ts";
+import { categories } from "../../constants/index.ts";
+import { useCategoryCarousel } from "../../hooks/index.ts";
+import { CategoryItem } from "../index.ts";
 import {
 	StyledCategoriesContainer,
 	StyledCategoriesItems,
