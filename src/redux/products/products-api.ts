@@ -15,8 +15,14 @@ type GetProductsRequestQuery = {
 };
 
 export const productsApi = api.injectEndpoints({
-	endpoints: (build) => ({
-		getProducts: build.query<Product[], GetProductsRequestQuery>({
+	endpoints: (builder) => ({
+		getProducts: builder.query<Product[], GetProductsRequestQuery>({
+			forceRefetch({ currentArg, previousArg }) {
+				return currentArg !== previousArg;
+			},
+			merge: (currentCache, newItems) => {
+				return [...currentCache, ...newItems];
+			},
 			query: (filters = {}) => {
 				const defaultFilters = {
 					limit: productsLoadLimit,
@@ -29,6 +35,9 @@ export const productsApi = api.injectEndpoints({
 					params: finalFilters,
 					url: productsApiPath.ROOT,
 				};
+			},
+			serializeQueryArgs: ({ endpointName }) => {
+				return endpointName;
 			},
 		}),
 	}),

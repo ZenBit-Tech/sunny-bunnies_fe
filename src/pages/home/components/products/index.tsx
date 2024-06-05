@@ -21,7 +21,9 @@ const Products: React.FC<ProductsProperties> = ({ products }) => {
 		`${t("HomePage.justIn")}`,
 		`${t("HomePage.yourSize")}`,
 	];
-	const [selectedFilter, setSelectedFilter] = useState("Recommended");
+	const [selectedFilter, setSelectedFilter] = useState(
+		`${t("HomePage.recommended")}`,
+	);
 
 	const handleFilterClick = useCallback((filter: string): void => {
 		setSelectedFilter(filter);

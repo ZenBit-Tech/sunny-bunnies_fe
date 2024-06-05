@@ -1,29 +1,48 @@
 import { Box } from "@mui/material";
 import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-import { Newsletter, TopInfoSection } from "~/components/index.ts";
+import { Loader, Newsletter, TopInfoSection } from "~/components/index.ts";
+import {
+	productsLoadLimit,
+	productsLoadOffset,
+} from "~/redux/products/constants.ts";
 import { useGetProductsQuery } from "~/redux/products/products-api.ts";
 
 import { CategoryCarousel, Products } from "./components/index.ts";
 
 const allCategories = "All";
+const minDataLength = 0;
 
 const Home: React.FC = () => {
+	const { t } = useTranslation();
 	const [filterCategory, setFilterCategory] = useState<string | undefined>(
 		undefined,
 	);
-	const { data, isLoading } = useGetProductsQuery({ category: filterCategory });
+	const [offset, setOffset] = useState(productsLoadOffset);
+	const { data, isError, isFetching, isLoading } = useGetProductsQuery({
+		category: filterCategory,
+		limit: productsLoadLimit,
+		offset,
+	});
 
-	const handleChooseCategory = useCallback(
-		(category: string) => {
-			if (category === allCategories) {
-				setFilterCategory(undefined);
-			} else {
-				setFilterCategory(category);
-			}
-		},
-		[setFilterCategory],
-	);
+	const handleChooseCategory = useCallback((category: string) => {
+		setFilterCategory(category === allCategories ? undefined : category);
+		setOffset(productsLoadOffset);
+	}, []);
+
+	const handleLoadMore = useCallback(() => {
+		if (!isFetching) {
+			setOffset((prevOffset) => prevOffset + productsLoadLimit);
+		}
+	}, [isFetching]);
+
+	if (isError) {
+		return <Box>{t("HomePage.errorLoadingProducts")}</Box>;
+	}
+
+	const hasMore = !isLoading && data?.length === productsLoadLimit;
 
 	return (
 		<Box
@@ -36,7 +55,20 @@ const Home: React.FC = () => {
 		>
 			<TopInfoSection />
 			<CategoryCarousel onChooseCategory={handleChooseCategory} />
-			{isLoading ? <div>Loading...</div> : <Products products={data} />}
+			<InfiniteScroll
+				dataLength={data?.length || minDataLength}
+				hasMore={hasMore}
+				loader={<Loader />}
+				next={handleLoadMore}
+				style={{
+					display: "flex",
+					flexWrap: "wrap",
+					gap: "15px",
+					overflow: "inherit",
+				}}
+			>
+				{data && <Products products={data} />}
+			</InfiniteScroll>
 			<Newsletter />
 		</Box>
 	);

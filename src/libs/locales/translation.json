@@ -105,7 +105,8 @@
 		"recommended": "Recommended",
 		"justIn": "Just In",
 		"yourSize": "Your Size",
-		"productsWereNotFound": "Products from this category were not found"
+		"productsWereNotFound": "Products from this category were not found",
+		"errorLoadingProducts": "Error loading products..."
 	},
 	"Error": {
 		"unknowError": "Unknown error"
