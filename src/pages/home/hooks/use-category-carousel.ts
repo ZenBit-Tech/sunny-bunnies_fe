@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { type Category } from "../types/index.ts";
+import { type Category } from "~/pages/home/types/index.ts";
 
 const breakpoints = [
 	{ itemsPerPage: 1, width: 682 },

@@ -2,8 +2,8 @@ import { Typography } from "@mui/material";
 import React, { useCallback } from "react";
 
 import { colors, fontSizes } from "~/libs/constants/index.ts";
+import { type Category } from "~/pages/home/types/index.ts";
 
-import { type Category } from "../../types/index.ts";
 import {
 	RoundImage,
 	StyledCategoryContainer,

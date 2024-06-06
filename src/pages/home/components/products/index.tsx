@@ -11,7 +11,7 @@ import { StyledProductsContainer } from "./styles.ts";
 const minNumberOfProducts = 1;
 
 type ProductsProperties = {
-	products: Product[] | undefined;
+	products?: Product[];
 };
 
 const Products: React.FC<ProductsProperties> = ({ products }) => {
