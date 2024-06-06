@@ -22,6 +22,7 @@ type SignInFormResult = {
 	handleFormSubmit: (event: React.FormEvent) => void;
 	isLoading: boolean;
 	serverError: string;
+	setServerError: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const useSignInForm = (): SignInFormResult => {
@@ -88,7 +89,14 @@ const useSignInForm = (): SignInFormResult => {
 		return (): void => subscription.unsubscribe();
 	}, [watch, serverError]);
 
-	return { control, errors, handleFormSubmit, isLoading, serverError };
+	return {
+		control,
+		errors,
+		handleFormSubmit,
+		isLoading,
+		serverError,
+		setServerError,
+	};
 };
 
 export { useSignInForm };

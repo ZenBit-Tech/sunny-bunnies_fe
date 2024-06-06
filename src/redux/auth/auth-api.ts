@@ -10,7 +10,7 @@ import {
 } from "~/libs/types/user.ts";
 
 import { api } from "../services.ts";
-import { authApiPath } from "./constants.ts";
+import { authApiPath, userApiPath } from "./constants.ts";
 
 export const authApi = api.injectEndpoints({
 	endpoints: (build) => ({
@@ -24,7 +24,7 @@ export const authApi = api.injectEndpoints({
 		getUser: build.query<User, undefined>({
 			query: () => ({
 				method: httpMethods.GET,
-				url: authApiPath.USER,
+				url: userApiPath.USER,
 			}),
 		}),
 		login: build.mutation<UserSignInResponseDto, UserSignInRequestDto>({
@@ -32,6 +32,13 @@ export const authApi = api.injectEndpoints({
 				body,
 				method: httpMethods.POST,
 				url: authApiPath.SIGN_IN,
+			}),
+		}),
+		loginByGoogle: build.mutation<UserSignInResponseDto, CredentialResponse>({
+			query: (post) => ({
+				body: post,
+				method: httpMethods.POST,
+				url: authApiPath.GOOGLE_LOGIN,
 			}),
 		}),
 		register: build.mutation<UserSignUpResponseDto, UserSignUpRequestDto>({
@@ -47,6 +54,7 @@ export const authApi = api.injectEndpoints({
 export const {
 	useAddUserGoogleMutation,
 	useGetUserQuery,
+	useLoginByGoogleMutation,
 	useLoginMutation,
 	useRegisterMutation,
 } = authApi;
