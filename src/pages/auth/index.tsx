@@ -5,9 +5,9 @@ import React, { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import Logo from "~/assets/images/Logo/Big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
-import Logo from "~/assets/images/logo/big.png";
-import { Link } from "~/components/header/link.tsx";
+import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
 import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
