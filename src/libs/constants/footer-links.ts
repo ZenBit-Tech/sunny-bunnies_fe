@@ -1,4 +1,4 @@
-import { AppRoute } from "../constants/app-route.ts";
+import { AppRoute } from "./index.ts";
 
 export const footerColumnsLogIn = [
 	{

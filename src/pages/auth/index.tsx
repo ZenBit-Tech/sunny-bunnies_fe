@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
-import { Link } from "~/components/Header/Link.tsx";
+import { Link } from "~/components/header/link.tsx";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
 import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
