@@ -20,17 +20,31 @@ const Home: React.FC = () => {
 	const [filterCategory, setFilterCategory] = useState<string | undefined>(
 		undefined,
 	);
+	const [additionalFilters, setAdditionalFilters] = useState<
+		Record<string, number | undefined>
+	>({});
 	const [offset, setOffset] = useState(productsLoadOffset);
+
 	const { data, isError, isFetching, isLoading } = useGetProductsQuery({
 		category: filterCategory,
 		limit: productsLoadLimit,
 		offset,
+		...additionalFilters,
 	});
 
 	const handleChooseCategory = useCallback((category: string) => {
 		setFilterCategory(category === allCategories ? undefined : category);
 		setOffset(productsLoadOffset);
+		setAdditionalFilters({});
 	}, []);
+
+	const handleFilterChange = useCallback(
+		(newFilters: Record<string, number | undefined>) => {
+			setOffset(productsLoadOffset);
+			setAdditionalFilters(newFilters);
+		},
+		[],
+	);
 
 	const handleLoadMore = useCallback(() => {
 		if (!isFetching) {
@@ -67,7 +81,9 @@ const Home: React.FC = () => {
 					overflow: "inherit",
 				}}
 			>
-				{data && <Products products={data} />}
+				{data && (
+					<Products handleFilterChange={handleFilterChange} products={data} />
+				)}
 			</InfiniteScroll>
 			<Newsletter />
 		</Box>

@@ -10,6 +10,7 @@ import {
 
 type GetProductsRequestQuery = {
 	category?: string;
+	dateRange?: number;
 	limit?: number;
 	offset?: number;
 };
@@ -18,9 +19,18 @@ export const productsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getProducts: builder.query<Product[], GetProductsRequestQuery>({
 			forceRefetch({ currentArg, previousArg }) {
-				return currentArg !== previousArg;
+				return (
+					currentArg?.category !== previousArg?.category ||
+					currentArg?.limit !== previousArg?.limit ||
+					currentArg?.offset !== previousArg?.offset ||
+					currentArg?.dateRange !== previousArg?.dateRange
+				);
 			},
-			merge: (currentCache, newItems) => {
+			merge: (currentCache, newItems, { arg }) => {
+				if (arg.category || arg.offset === productsLoadOffset) {
+					return newItems;
+				}
+
 				return [...currentCache, ...newItems];
 			},
 			query: (filters = {}) => {
