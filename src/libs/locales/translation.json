@@ -152,5 +152,17 @@
 			"title": "Some Title",
 			"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a viverra nisi. Curabitur at consectetur lectus, et dictum mauris. Donec molestie ultricies justo, ac euismod tortor consequat suscipit. Pellentesque fermentum massa eget nisi tempus ornare. Aliquam porttitor viverra ante, ut venenatis erat vehicula id. Duis ultrices mauris euismod dictum luctus. Fusce vitae luctus ipsum. Cras condimentum, arcu quis molestie consectetur, sem mi rhoncus libero, ut mollis libero nulla eu ipsum. Phasellus vel finibus ligula. Donec id porttitor ligula, sed finibus enim. Fusce felis neque, egestas vel purus et, tempus lacinia est. Cras aliquet consectetur ligula at vulputate. Aenean nec lacus et sem mollis pulvinar.Donec ac ligula lacinia, molestie nisi et, auctor sem. Sed vel suscipit risus. Duis ipsum mauris, tristique eu congue ut, dictum sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut dapibus, odio nec feugiat elementum, metus nisl mattis elit, vitae egestas lectus elit vitae erat. Mauris ultricies ut mauris vel venenatis. Ut efficitur mauris rutrum, commodo nunc tempus, fringilla orci. Ut iaculis ullamcorper lacus, vel elementum libero euismod eget. Pellentesque faucibus pellentesque dolor. Duis id egestas mi."
 		}
+	},
+	"NotFoundPage": {
+		"pageNotFound": "Page Not Found",
+		"weAreSorry": " We're sorry, but the page you are looking for could not be found. It seems that the link you followed may be outdated or the page may have been moved or deleted.",
+		"hereAreFewOptions": "Here are a few options to help you get back on track:",
+		"doubleCheckTheUrl": "1. Double-check the URL: Please make sure that the URL you entered is spelled correctly and matches the intended page.",
+		"goBackToThePreviousPage": "2. Go back to the previous page: Use your browser's back button to return to the previous page and try navigating from there.",
+		"ifYouBelieve": "If you believe you've reached this page in error or if you have any questions or concerns, please don't hesitate to contact our support team at ",
+		"emailLinkExample": "support@example.com",
+		"emailLink": "mailto:support@example.com",
+		"weWillHelpYou": " We're here to help!",
+		"goToHome": "Go to Home"
 	}
 }
