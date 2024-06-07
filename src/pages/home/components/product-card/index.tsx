@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { fontSizes } from "~/libs/constants/font.ts";
+import { fontSizes, fontWeights } from "~/libs/constants/font.ts";
 import { type Product } from "~/libs/types/products.ts";
 
 import { StyledProductCardContent } from "./styles.ts";
@@ -40,16 +40,17 @@ const ProductCard: React.FC<ProductCardProperties> = ({ product }) => {
 				</Typography>
 				<Box sx={{ alignItem: "center", display: "flex", gap: "5px" }}>
 					<Typography color="primary" component="span" variant="dmSansBold">
-						{product.priceTo}
+						{product.minPrice}
 					</Typography>
 					<Typography
 						color="secondary"
 						component="span"
 						fontSize={fontSizes.small}
+						fontWeight={fontWeights.regular}
 						sx={{ textDecoration: "line-through" }}
 						variant="dmSansBold"
 					>
-						{product.priceTo}
+						{product.maxPrice}
 					</Typography>
 				</Box>
 			</StyledProductCardContent>

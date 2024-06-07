@@ -9,9 +9,9 @@ type Product = {
 	id: string;
 	imageUrl: string;
 	material: string;
+	maxPrice: number;
+	minPrice: number;
 	name: string;
-	priceFrom: number;
-	priceTo: number;
 	quantity: number;
 	size: string;
 	status: typeof productStatus;
