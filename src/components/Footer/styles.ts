@@ -47,7 +47,7 @@ export const SocialIconsBox = styled(Box)`
 
 export const NavTitle = styled(Typography)`
 	margin-bottom: 16px;
-	font-family: ${fontFamily.PlAYFAIR_DISPLAY};
+	font-family: ${fontFamily.DM_SANS};
 	font-size: ${fontSizes.small};
 	font-weight: ${fontWeights.bold};
 	line-height: 24px;
