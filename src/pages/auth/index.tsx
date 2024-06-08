@@ -3,8 +3,9 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
+import Logo from "~/assets/images/Logo/Big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
-import Logo from "~/assets/images/logo/big.png";
+import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
@@ -43,7 +44,7 @@ const Auth: React.FC = () => {
 		<Grid component="main" container sx={{ minHeight: "100vh" }}>
 			<Grid
 				item
-				md={5}
+				md={6}
 				sm={4}
 				sx={{
 					backgroundImage: `url(${getBackgroundImage(pathname)})`,
@@ -62,16 +63,18 @@ const Auth: React.FC = () => {
 						top: 42,
 					}}
 				>
-					<img
-						alt={t("AuthPage.logo")}
-						className={styles["auth__logo"]}
-						src={Logo}
-					/>
+					<Link to={AppRoute.HOME}>
+						<img
+							alt={t("AuthPage.logo")}
+							className={styles["auth__logo"]}
+							src={Logo}
+						/>
+					</Link>
 				</Box>
 			</Grid>
 			<Grid
 				item
-				md={7}
+				md={6}
 				sm={12}
 				sx={{
 					alignItems: "center",
