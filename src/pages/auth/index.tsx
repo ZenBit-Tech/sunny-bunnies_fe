@@ -44,7 +44,7 @@ const Auth: React.FC = () => {
 		<Grid component="main" container sx={{ minHeight: "100vh" }}>
 			<Grid
 				item
-				md={5}
+				md={6}
 				sm={4}
 				sx={{
 					backgroundImage: `url(${getBackgroundImage(pathname)})`,
@@ -74,7 +74,7 @@ const Auth: React.FC = () => {
 			</Grid>
 			<Grid
 				item
-				md={7}
+				md={6}
 				sm={12}
 				sx={{
 					alignItems: "center",

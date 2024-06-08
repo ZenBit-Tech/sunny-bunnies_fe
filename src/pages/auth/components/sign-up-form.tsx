@@ -93,8 +93,7 @@ const SignUpForm: React.FC = () => {
 				<Box
 					autoComplete="off"
 					component="form"
-					mb={2}
-					mt={1}
+					mb={1}
 					onSubmit={handleFormSubmit}
 				>
 					<CustomFormGroup
@@ -137,7 +136,7 @@ const SignUpForm: React.FC = () => {
 					<BaseButton
 						fullWidth
 						isLoading={isLoading}
-						sx={{ mt: 3 }}
+						sx={{ mt: 2 }}
 						type="submit"
 						variant="primary_black_bold"
 					>
