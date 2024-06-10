@@ -7,6 +7,7 @@ import {
 	fontSizes,
 	fontWeight,
 	shoeSizes,
+	trouserSizes,
 } from "~/libs/constants/index.ts";
 
 import { TableWithTitle } from "./components/index.ts";
@@ -28,12 +29,17 @@ const SizeGuide: React.FC = () => {
 				</Typography>
 			</StyledSizeGuideHeader>
 			<TableWithTitle
+				addOneSizeRow
 				items={clothesSizes}
 				title={t("SizesGuidePage.clothesSizeTable")}
 			/>
 			<TableWithTitle
 				items={shoeSizes}
 				title={t("SizesGuidePage.shoeSizeTable")}
+			/>
+			<TableWithTitle
+				items={trouserSizes}
+				title={t("SizesGuidePage.trouserSizeTable")}
 			/>
 		</Box>
 	);

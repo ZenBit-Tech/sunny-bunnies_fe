@@ -113,4 +113,14 @@ const shoeSizes = [
 	{ EU: "43", UK: "9.5", US: "11.5", KR: "285", IT: "41.5" },
 ];
 
-export { clothesSizes, shoeSizes };
+const trouserSizes = [
+	{ International: "XS", "UK-US": "28", IT: "44", KR: "XS", FR: "36" },
+	{ International: "S", "UK-US": "30", IT: "46", KR: "S", FR: "38" },
+	{ International: "M", "UK-US": "32", IT: "48", KR: "M", FR: "40" },
+	{ International: "L", "UK-US": "34", IT: "50", KR: "L", FR: "42" },
+	{ International: "XL", "UK-US": "36", IT: "52", KR: "XL", FR: "44" },
+	{ International: "XXL", "UK-US": "38", IT: "54", KR: "XXL", FR: "46" },
+	{ International: "XXXL", "UK-US": "40", IT: "56", KR: "XXXL", FR: "48" },
+];
+
+export { clothesSizes, shoeSizes, trouserSizes };

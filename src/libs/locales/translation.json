@@ -156,6 +156,8 @@
 	"SizesGuidePage": {
 		"sizesGuide": "Sizes Guide",
 		"clothesSizeTable": "Clothes Size Table",
-		"shoeSizeTable": "Shoe Size Table"
+		"shoeSizeTable": "Shoe Size Table",
+		"trouserSizeTable": "Trouser Size Table",
+		"oneSize": "One Size"
 	}
 }
