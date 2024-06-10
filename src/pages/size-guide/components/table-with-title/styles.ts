@@ -19,8 +19,9 @@ const StyledTableWithTitleContainer = styled(Box)({
 	justifyContent: "center",
 	margin: "0 auto",
 	marginTop: "16px",
+	maxWidth: "850px",
 	padding: "35px",
-	width: "55%",
+	width: "70%",
 });
 
 const StyledTableRow = styled(TableRow)`
