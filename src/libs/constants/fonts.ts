@@ -2,10 +2,12 @@ const fontSizes = {
 	large: "20px",
 	lg: "24px",
 	medium: "16px",
+	mediumLarge: "18px",
 	small: "14px",
 	title: "40px",
 	xl: "28px",
 	xs: "12px",
+	xxl: "34px",
 };
 
 const fontWeight = {

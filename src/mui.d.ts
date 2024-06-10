@@ -14,6 +14,7 @@ declare module "@mui/material/styles" {
 		dmSans: React.CSSProperties;
 		dmSansBold: React.CSSProperties;
 		playfairDisplay: React.CSSProperties;
+		playfairDisplayBold: React.CSSProperties;
 		playfairDisplayTitle: React.CSSProperties;
 	}
 
@@ -21,6 +22,7 @@ declare module "@mui/material/styles" {
 		dmSans?: React.CSSProperties;
 		dmSansBold?: React.CSSProperties;
 		playfairDisplay?: React.CSSProperties;
+		playfairDisplayBold?: React.CSSProperties;
 		playfairDisplayTitle?: React.CSSProperties;
 	}
 }
@@ -30,6 +32,7 @@ declare module "@mui/material/Typography" {
 		dmSans: true;
 		dmSansBold: true;
 		playfairDisplay: true;
+		playfairDisplayBold: true;
 		playfairDisplayTitle: true;
 	}
 }

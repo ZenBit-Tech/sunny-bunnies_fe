@@ -94,7 +94,19 @@
 		"logo": "Logo"
 	},
 	"HomePage": {
-		"HomePage": "HomePage"
+		"homePage": "HomePage",
+		"freeShopping": "Free shopping on all orders today",
+		"forOrder": "For orders start from $200",
+		"joinOurNewsletter": "Join Our Newsletter",
+		"bigDiscountAndRight": "Big discounts and right to your inbox.",
+		"categories": "Categories",
+		"emailAddress": "Email address",
+		"signUp": "Signup",
+		"recommended": "Recommended",
+		"justIn": "Just In",
+		"yourSize": "Your Size",
+		"productsWereNotFound": "Products from this category were not found",
+		"errorLoadingProducts": "Error loading products..."
 	},
 	"Error": {
 		"unknowError": "Unknown error"
@@ -159,5 +171,17 @@
 		"shoeSizeTable": "Shoe Size Table",
 		"trouserSizeTable": "Trouser Size Table",
 		"oneSize": "One Size"
+	},
+	"NotFoundPage": {
+		"pageNotFound": "Page Not Found",
+		"weAreSorry": " We're sorry, but the page you are looking for could not be found. It seems that the link you followed may be outdated or the page may have been moved or deleted.",
+		"hereAreFewOptions": "Here are a few options to help you get back on track:",
+		"doubleCheckTheUrl": "1. Double-check the URL: Please make sure that the URL you entered is spelled correctly and matches the intended page.",
+		"goBackToThePreviousPage": "2. Go back to the previous page: Use your browser's back button to return to the previous page and try navigating from there.",
+		"ifYouBelieve": "If you believe you've reached this page in error or if you have any questions or concerns, please don't hesitate to contact our support team at ",
+		"emailLinkExample": "support.black.circle@gmail.com.",
+		"emailLink": "mailto:support.black.circle@gmail.com",
+		"weWillHelpYou": " We're here to help!",
+		"goToHome": "Go to Home"
 	}
 }

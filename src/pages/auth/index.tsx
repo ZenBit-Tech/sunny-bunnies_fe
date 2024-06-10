@@ -3,8 +3,9 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
+import Logo from "~/assets/images/Logo/Big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
-import Logo from "~/assets/images/logo/big.png";
+import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
@@ -62,11 +63,13 @@ const Auth: React.FC = () => {
 						top: 42,
 					}}
 				>
-					<img
-						alt={t("AuthPage.logo")}
-						className={styles["auth__logo"]}
-						src={Logo}
-					/>
+					<Link to={AppRoute.HOME}>
+						<img
+							alt={t("AuthPage.logo")}
+							className={styles["auth__logo"]}
+							src={Logo}
+						/>
+					</Link>
 				</Box>
 			</Grid>
 			<Grid
