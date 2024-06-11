@@ -11,19 +11,19 @@ const config = ({ mode }: ConfigEnv): ReturnType<typeof defineConfig> => {
 	return defineConfig({
 		build: {
 			outDir: "dist",
-			// rollupOptions: {
-			// 	output: {
-			// 		manualChunks(id) {
-			// 			if (id.includes("node_modules")) {
-			// 				return id
-			// 					.toString()
-			// 					.split("node_modules/")
-			// 					[indexOne].split("/")
-			// 					[indexZero].toString();
-			// 			}
-			// 		},
-			// 	},
-			// },
+			rollupOptions: {
+				output: {
+					manualChunks(id) {
+						if (id.includes("node_modules")) {
+							return id
+								.toString()
+								.split("node_modules/")
+								[indexOne].split("/")
+								[indexZero].toString();
+						}
+					},
+				},
+			},
 		},
 		plugins: [react()],
 		resolve: {
