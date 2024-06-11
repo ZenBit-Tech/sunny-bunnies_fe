@@ -10,6 +10,7 @@ const config = ({ mode }: ConfigEnv): ReturnType<typeof defineConfig> => {
 
 	return defineConfig({
 		build: {
+			outDir: "dist",
 			rollupOptions: {
 				output: {
 					manualChunks(id) {
