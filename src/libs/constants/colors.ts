@@ -6,6 +6,7 @@ const colors = {
 	hoverBlack: "black",
 	lightGray: "#EDEAE9",
 	pastelGreen: "#E3EEE2",
+	tableCellColor: "#000000",
 	textBlack: "#121212",
 	white: "#ffffff",
 };

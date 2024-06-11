@@ -6,3 +6,4 @@ export { headerLogOutLinks, headerLoginLinks } from "./header-links.ts";
 export { httpMethods } from "./http-methods.ts";
 export { httpStatusCode } from "./http-status-code.ts";
 export { productStatus } from "./product-status.ts";
+export { clothesSizes, shoeSizes, trouserSizes } from "./sizes.ts";
