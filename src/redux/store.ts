@@ -9,12 +9,16 @@ import { authReducer } from "./auth/auth-slice.ts";
 import { productsApi } from "./products/products-api.ts";
 import { productsReducer } from "./products/products-slice.ts";
 import { api } from "./services.ts";
+import { filtersReducer } from "./filters/filters.slice.ts";
+import { filtersApi } from "./filters/filters-api.ts";
 
 const rootReducer = combineReducers({
 	auth: authReducer,
 	[authApi.reducerPath]: authApi.reducer,
 	products: productsReducer,
 	productsApiSlice: productsApi.reducer,
+	filters: filtersReducer,
+	filtersApiSlice: filtersApi.reducer,
 });
 
 const persistConfig = {

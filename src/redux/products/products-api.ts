@@ -13,6 +13,15 @@ type GetProductsRequestQuery = {
 	dateRange?: number;
 	limit?: number;
 	offset?: number;
+	name?: string;
+	gender?: string;
+	minPrice?: number;
+	maxPrice?: number;
+	size?: string;
+	color?: string;
+	style?: string;
+	brand?: string;
+	material?: string;
 };
 
 export const productsApi = api.injectEndpoints({
@@ -23,7 +32,16 @@ export const productsApi = api.injectEndpoints({
 					currentArg?.category !== previousArg?.category ||
 					currentArg?.limit !== previousArg?.limit ||
 					currentArg?.offset !== previousArg?.offset ||
-					currentArg?.dateRange !== previousArg?.dateRange
+					currentArg?.dateRange !== previousArg?.dateRange ||
+					currentArg?.name !== previousArg?.name ||
+					currentArg?.gender !== previousArg?.gender ||
+					currentArg?.minPrice !== previousArg?.minPrice ||
+					currentArg?.maxPrice !== previousArg?.maxPrice ||
+					currentArg?.size !== previousArg?.size ||
+					currentArg?.color !== previousArg?.color ||
+					currentArg?.style !== previousArg?.style ||
+					currentArg?.brand !== previousArg?.brand ||
+					currentArg?.material !== previousArg?.material
 				);
 			},
 			merge: (currentCache, newItems, { arg }) => {

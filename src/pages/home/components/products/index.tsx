@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button, TextField } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -61,15 +61,30 @@ const Products: React.FC<ProductsProperties> = ({
 
 	return (
 		<Box sx={{ padding: "52px", width: "100%" }}>
-			<Box sx={{ display: "flex", gap: "15px", height: "40px" }}>
-				{filtersToShow.map((filter) => (
-					<FilterButton
-						filter={filter.value}
-						key={filter.value}
-						onClick={handleFilterClick}
-						selected={selectedFilter === filter.value}
-					/>
-				))}
+			<Box
+				sx={{
+					display: "flex",
+					alignItems: "center",
+					gap: "15px",
+					height: "40px",
+				}}
+			>
+				<Box sx={{ display: "flex", gap: "15px" }}>
+					{filtersToShow.map((filter) => (
+						<FilterButton
+							filter={filter.value}
+							key={filter.value}
+							onClick={handleFilterClick}
+							selected={selectedFilter === filter.value}
+						/>
+					))}
+				</Box>
+				<TextField
+					variant="outlined"
+					placeholder={t("Search products...")}
+					sx={{ flexGrow: 1, margin: "0 15px" }}
+				/>
+				<Button variant="contained">{t("Filters")}</Button>
 			</Box>
 			<StyledProductsContainer>
 				{products?.map((product, index) => (
