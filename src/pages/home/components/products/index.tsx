@@ -7,7 +7,7 @@ import { Product } from "~/libs/types/products.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
-import { ProductCard } from "../index.ts";
+import { ProductCard, ProductFilters } from "../index.ts";
 import { StyledProductsContainer } from "./styles.ts";
 
 const minNumberOfProducts = 1;
@@ -42,6 +42,7 @@ const Products: React.FC<ProductsProperties> = ({
 	const [selectedFilter, setSelectedFilter] = useState(
 		allFilters[defaultFilter].value,
 	);
+	const [showFilters, setShowFilters] = useState(false);
 
 	const handleFilterClick = useCallback(
 		(filter: string): void => {
@@ -58,6 +59,10 @@ const Products: React.FC<ProductsProperties> = ({
 		},
 		[handleFilterChange, t],
 	);
+
+	const toggleFilters = () => {
+		setShowFilters(!showFilters);
+	};
 
 	return (
 		<Box sx={{ padding: "52px", width: "100%" }}>
@@ -84,8 +89,11 @@ const Products: React.FC<ProductsProperties> = ({
 					placeholder={t("Search products...")}
 					sx={{ flexGrow: 1, margin: "0 15px" }}
 				/>
-				<Button variant="contained">{t("Filters")}</Button>
+				<Button variant="contained" onClick={toggleFilters}>
+					{t("ProductFilters.filters")}
+				</Button>
 			</Box>
+			{showFilters && <ProductFilters />}
 			<StyledProductsContainer>
 				{products?.map((product, index) => (
 					<ProductCard key={index} product={product} />
