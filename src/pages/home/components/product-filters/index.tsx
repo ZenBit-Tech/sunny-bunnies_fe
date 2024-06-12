@@ -5,9 +5,7 @@ import { useGetFiltersQuery } from "~/redux/filters/filters-api";
 import { setFilters } from "~/redux/filters/filters.slice";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks";
 
-type ProductFiltersProperties = {};
-
-const ProductFilters: React.FC<ProductFiltersProperties> = ({}) => {
+const ProductFilters: React.FC = ({}) => {
 	const dispatch = useAppDispatch();
 	const { t } = useTranslation();
 	const filterValues = useAppSelector((state) => state.filters);
