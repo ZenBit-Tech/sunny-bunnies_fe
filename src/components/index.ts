@@ -2,8 +2,6 @@ export { Footer } from "./Footer/Footer.tsx";
 export { Header } from "./Header/Header.tsx";
 export { Link } from "./Header/Link.tsx";
 export { BaseButton } from "./base-button/index.tsx";
-export { FooterWrapper } from "./common/wrappers/footer-wrapper.tsx";
-export { HeaderWrapper } from "./common/wrappers/header-wrapper.tsx";
 export { CustomFormGroup } from "./custom-form-group/index.tsx";
 export { FilterButton } from "./filter-button/index.tsx";
 export { Loader } from "./loader/index.tsx";

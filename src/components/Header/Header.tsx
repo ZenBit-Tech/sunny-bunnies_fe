@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 import { NotificationIcon } from "~/assets/icons/notification-icon.tsx";
 import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";
@@ -20,17 +21,25 @@ import {
 	headerLogOutLinks,
 	headerLoginLinks,
 } from "~/libs/constants/header-links.ts";
+import { AppRoute } from "~/libs/constants/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
 export const Header: React.FC = () => {
 	const { t } = useTranslation();
+	const location = useLocation();
 	const isLoggedIn = Boolean(
 		useAppSelector((state: RootState) => state.auth.accessToken),
 	);
+	const NoHeaderRoutes = [
+		AppRoute.ROOT,
+		AppRoute.SIGN_UP,
+		AppRoute.SIGN_IN,
+	] as string[];
+	const isDisplayHeader = !NoHeaderRoutes.includes(location.pathname);
 
 	return (
-		<HeaderContainer>
+		<HeaderContainer style={{ display: isDisplayHeader ? "block" : "none" }}>
 			<StyledContainer>
 				<Box>
 					<MainLogo />

@@ -1,12 +1,13 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
-import Logo from "~/assets/images/Logo/Big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
+import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
+import { useAppSelector } from "~/redux/hooks.ts";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
 import styles from "./styles.module.css";
@@ -14,6 +15,12 @@ import styles from "./styles.module.css";
 const Auth: React.FC = () => {
 	const { pathname } = useLocation();
 	const { t } = useTranslation();
+	const { user } = useAppSelector((state) => state.auth);
+	const hasUser = user !== null;
+
+	if (hasUser) {
+		return <Navigate replace to={AppRoute.HOME} />;
+	}
 
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {

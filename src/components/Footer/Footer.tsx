@@ -16,6 +16,7 @@ import {
 import { MainLogo } from "~/components/Header/main-logo.tsx";
 import { colors } from "~/libs/constants/color.ts";
 import { footerColumnsLogIn } from "~/libs/constants/footer-links.ts";
+import { AppRoute } from "~/libs/constants/index.ts";
 import {
 	socialMediaDataLogIn,
 	socialMediaDataLogOut,
@@ -34,8 +35,19 @@ export const Footer: React.FC = () => {
 		? socialMediaDataLogIn
 		: socialMediaDataLogOut;
 
+	const NoHeaderRoutes = [
+		AppRoute.ROOT,
+		AppRoute.SIGN_UP,
+		AppRoute.SIGN_IN,
+	] as string[];
+	const isDisplayFooter = !NoHeaderRoutes.includes(location.pathname);
+
 	return (
-		<Box height={381} sx={{ bgcolor: footerBgColor }}>
+		<Box
+			height={381}
+			style={{ display: isDisplayFooter ? "block" : "none" }}
+			sx={{ bgcolor: footerBgColor }}
+		>
 			<FooterContainer>
 				<Container>
 					<MainLogo />

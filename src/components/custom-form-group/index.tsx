@@ -6,9 +6,10 @@ import {
 	FormLabel,
 	IconButton,
 	InputAdornment,
+	SxProps,
 	TextField,
 } from "@mui/material";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useCallback } from "react";
 import {
 	Control,
 	Controller,
@@ -25,10 +26,12 @@ type CustomFormGroupProps<T extends FieldValues> = {
 	children?: ReactNode;
 	control: Control<T>;
 	error?: FieldError;
+	handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	label: string;
 	name: Path<T>;
 	placeholder?: string;
 	rules?: object;
+	sx?: SxProps;
 	type: "date" | "email" | "number" | "password" | "text";
 };
 
@@ -36,59 +39,67 @@ const CustomFormGroup = <T extends FieldValues>({
 	children,
 	control,
 	error,
+	handleChange,
 	label,
 	name,
 	placeholder,
 	rules = {},
+	sx,
 	type,
 }: CustomFormGroupProps<T>): React.ReactNode => {
 	const [showPassword, setShowPassword] = useToggle();
 
-	const renderTextField = ({
-		field,
-	}: {
-		field: ControllerRenderProps<T, Path<T>>;
-	}): ReactElement => (
-		<TextField
-			{...field}
-			InputProps={{
-				endAdornment: type === "password" && (
-					<InputAdornment position="end">
-						<IconButton
-							edge="end"
-							onClick={setShowPassword}
-							sx={{
-								"&:hover": {
-									backgroundColor: "transparent",
-								},
-							}}
-						>
-							{showPassword ? <VisibilityOff /> : <Visibility />}
-						</IconButton>
-					</InputAdornment>
-				),
-			}}
-			error={!!error}
-			fullWidth
-			placeholder={placeholder}
-			sx={{
-				"& input::placeholder": {
-					color: "secondary.main",
-					...theme.typography.playfairDisplay,
-				},
-				".MuiInputBase-root": {
-					borderRadius: "6px",
-					marginTop: "5px",
-					paddingRight: "20px",
-				},
-			}}
-			type={type === "password" && !showPassword ? "password" : "text"}
-			variant="outlined"
-		/>
+	const renderTextField = useCallback(
+		({ field }: { field: ControllerRenderProps<T, Path<T>> }): ReactElement => (
+			<TextField
+				{...field}
+				InputProps={{
+					endAdornment: type === "password" && (
+						<InputAdornment position="end">
+							<IconButton
+								edge="end"
+								onClick={setShowPassword}
+								sx={{
+									"&:hover": {
+										backgroundColor: "transparent",
+									},
+								}}
+							>
+								{showPassword ? <VisibilityOff /> : <Visibility />}
+							</IconButton>
+						</InputAdornment>
+					),
+				}}
+				error={!!error}
+				fullWidth
+				onChange={handleChange ? handleChange : field.onChange}
+				placeholder={placeholder}
+				sx={{
+					"& input::placeholder": {
+						color: "secondary.main",
+						...theme.typography.playfairDisplay,
+					},
+					".MuiInputBase-root": {
+						borderRadius: "6px",
+						marginTop: "5px",
+						paddingRight: "20px",
+					},
+				}}
+				type={type === "password" && !showPassword ? "password" : "text"}
+				variant="outlined"
+			/>
+		),
+		[handleChange, error, placeholder, setShowPassword, showPassword, type],
 	);
 
 	return (
-		<FormControl component="fieldset" error={!!error} fullWidth margin="dense">
+		<FormControl
+			component="fieldset"
+			error={!!error}
+			fullWidth
+			margin="dense"
+			sx={sx}
+		>
 			<FormLabel
 				component="legend"
 				sx={{
@@ -99,7 +110,6 @@ const CustomFormGroup = <T extends FieldValues>({
 				{label}
 			</FormLabel>
 			<FormGroup>
-				{/* eslint-disable react/jsx-no-bind */}
 				<Controller
 					control={control}
 					name={name}

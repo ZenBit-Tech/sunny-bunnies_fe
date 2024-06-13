@@ -38,7 +38,7 @@ const SignUpForm: React.FC = () => {
 		if (isSignUpSuccess) {
 			dispatch(setUser(signUpData.user));
 			dispatch(setTokens(signUpData));
-			navigate(AppRoute.VERIFY_EMAIL);
+			navigate(AppRoute.ROLE);
 		}
 		if (isSignUpError) {
 			const loadError = (signUpError as FetchBaseQueryError).data
