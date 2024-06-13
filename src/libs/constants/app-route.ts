@@ -11,6 +11,7 @@ const AppRoute = {
 	SIGN_IN: "/sign-in",
 	SIGN_UP: "/sign-up",
 	SIZE: "/size",
+	SIZE_GUIDE: "/size-guide",
 	TERMS_OF_USE: "/terms-of-use",
 	VERIFY_EMAIL: "/verify-email",
 } as const;

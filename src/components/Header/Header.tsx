@@ -18,10 +18,10 @@ import {
 	StyledContainer,
 } from "~/components/Header/styles.ts";
 import {
+	AppRoute,
 	headerLogOutLinks,
 	headerLoginLinks,
-} from "~/libs/constants/header-links.ts";
-import { AppRoute } from "~/libs/constants/index.ts";
+} from "~/libs/constants/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
@@ -56,11 +56,11 @@ export const Header: React.FC = () => {
 						{!isLoggedIn ? (
 							<>
 								<ButtonsContainer>
-									<StyledButtonLogIn href="#">
+									<StyledButtonLogIn href={AppRoute.SIGN_IN}>
 										{t("header.buttons.LogIn")}
 									</StyledButtonLogIn>
 
-									<StyledButtonSignUp href="#">
+									<StyledButtonSignUp href={AppRoute.SIGN_UP}>
 										{t("header.buttons.SignUp")}
 									</StyledButtonSignUp>
 								</ButtonsContainer>
