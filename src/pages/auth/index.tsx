@@ -64,23 +64,23 @@ const Auth: React.FC = () => {
 				xl={7}
 				xs={false}
 			>
-        {!NoLogoRoutes.some((route) => matchPath(pathname, route)) ? (
-          <Box
-            sx={{
-              left: 63,
-              position: "absolute",
-              top: 42,
-            }}
-          >
-            <Link to={AppRoute.HOME}>
-              <img
-                alt={t("AuthPage.logo")}
-                className={styles["auth__logo"]}
-                src={Logo}
-              />
-            </Link>
-          </Box>
-        ) : null}
+				{!NoLogoRoutes.some((route) => matchPath(pathname, route)) ? (
+					<Box
+						sx={{
+							left: 63,
+							position: "absolute",
+							top: 42,
+						}}
+					>
+						<Link to={AppRoute.HOME}>
+							<img
+								alt={t("AuthPage.logo")}
+								className={styles["auth__logo"]}
+								src={Logo}
+							/>
+						</Link>
+					</Box>
+				) : null}
 			</Grid>
 			<Grid
 				item
