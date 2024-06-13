@@ -190,6 +190,9 @@
 		"brand": "brand",
 		"material": "material",
 		"size": "size",
-		"style": "style"
+		"style": "style",
+		"price": "price",
+		"applyFilters": "Apply filters",
+		"clearFilters": "Clear filters"
 	}
 }

@@ -1,4 +1,4 @@
-import { Box, Typography, Button, TextField } from "@mui/material";
+import { Box, Typography, Button, TextField, Drawer } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -25,6 +25,12 @@ const allFilters = [
 	{ value: "Your Size" },
 ];
 
+type Filters = {
+	minPrice?: number;
+	maxPrice?: number;
+	[key: string]: string | number | undefined;
+};
+
 type ProductsProperties = {
 	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
 	products?: Product[];
@@ -42,7 +48,7 @@ const Products: React.FC<ProductsProperties> = ({
 	const [selectedFilter, setSelectedFilter] = useState(
 		allFilters[defaultFilter].value,
 	);
-	const [showFilters, setShowFilters] = useState(false);
+	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	const handleFilterClick = useCallback(
 		(filter: string): void => {
@@ -60,8 +66,22 @@ const Products: React.FC<ProductsProperties> = ({
 		[handleFilterChange, t],
 	);
 
-	const toggleFilters = () => {
-		setShowFilters(!showFilters);
+	const handleApplyFilters = useCallback(
+		(filters: Filters): void => {
+			const { minPrice, maxPrice, ...otherFilters } = filters;
+
+			handleFilterChange({
+				...otherFilters,
+				minPrice: minPrice ? +minPrice : undefined,
+				maxPrice: maxPrice ? +maxPrice : undefined,
+			});
+			setDrawerOpen(false);
+		},
+		[handleFilterChange],
+	);
+
+	const toggleDrawer = (): void => {
+		setDrawerOpen(!drawerOpen);
 	};
 
 	return (
@@ -72,6 +92,7 @@ const Products: React.FC<ProductsProperties> = ({
 					alignItems: "center",
 					gap: "15px",
 					height: "40px",
+					flexWrap: "wrap",
 				}}
 			>
 				<Box sx={{ display: "flex", gap: "15px" }}>
@@ -89,11 +110,18 @@ const Products: React.FC<ProductsProperties> = ({
 					placeholder={t("Search products...")}
 					sx={{ flexGrow: 1, margin: "0 15px" }}
 				/>
-				<Button variant="contained" onClick={toggleFilters}>
+				<Button variant="contained" onClick={toggleDrawer}>
 					{t("ProductFilters.filters")}
 				</Button>
 			</Box>
-			{showFilters && <ProductFilters />}
+			<Drawer
+				anchor="right"
+				open={drawerOpen}
+				onClose={toggleDrawer}
+				sx={{ "& .MuiDrawer-paper": { width: "400px" } }}
+			>
+				<ProductFilters onApply={handleApplyFilters} />
+			</Drawer>
 			<StyledProductsContainer>
 				{products?.map((product, index) => (
 					<ProductCard key={index} product={product} />
