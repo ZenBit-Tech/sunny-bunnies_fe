@@ -76,7 +76,7 @@ createRoot(document.getElementById("root")!).render(
 											path: AppRoute.TERMS_OF_USE,
 										},
 										{
-											element:  <PublicRoute component={<SizeGuide />} />,
+											element: <PublicRoute component={<SizeGuide />} />,
 											path: AppRoute.SIZE_GUIDE,
 										},
 									],
