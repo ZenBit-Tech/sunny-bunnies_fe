@@ -5,6 +5,7 @@ import { matchPath, useLocation } from "react-router-dom";
 
 import Logo from "~/assets/images/Logo/Big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
+import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { VerifyEmailForm } from "~/pages/auth/components/verify-email-form.tsx";
 
@@ -51,7 +52,7 @@ const Auth: React.FC = () => {
 		<Grid component="main" container sx={{ minHeight: "100vh" }}>
 			<Grid
 				item
-				md={5}
+				md={6}
 				sm={4}
 				sx={{
 					backgroundImage: `url(${getBackgroundImage(pathname)})`,
@@ -63,25 +64,27 @@ const Auth: React.FC = () => {
 				xl={7}
 				xs={false}
 			>
-				{!NoLogoRoutes.some((route) => matchPath(pathname, route)) ? (
-					<Box
-						sx={{
-							left: 63,
-							position: "absolute",
-							top: 42,
-						}}
-					>
-						<img
-							alt={t("AuthPage.logo")}
-							className={styles["auth__logo"]}
-							src={Logo}
-						/>
-					</Box>
-				) : null}
+        {!NoLogoRoutes.some((route) => matchPath(pathname, route)) ? (
+          <Box
+            sx={{
+              left: 63,
+              position: "absolute",
+              top: 42,
+            }}
+          >
+            <Link to={AppRoute.HOME}>
+              <img
+                alt={t("AuthPage.logo")}
+                className={styles["auth__logo"]}
+                src={Logo}
+              />
+            </Link>
+          </Box>
+        ) : null}
 			</Grid>
 			<Grid
 				item
-				md={7}
+				md={6}
 				sm={12}
 				sx={{
 					alignItems: "center",

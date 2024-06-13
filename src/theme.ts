@@ -77,6 +77,7 @@ const theme = createTheme({
 	},
 	palette: {
 		primary: {
+			dark: colors.hoverBlack,
 			main: colors.black,
 		},
 		secondary: {
@@ -109,6 +110,13 @@ const theme = createTheme({
 			fontWeight: fontWeight.semiBold,
 			letterSpacing: "-1.5%",
 			lineHeight: "20px",
+		},
+		playfairDisplayBold: {
+			fontFamily: fontFamily.piayfairDisplay,
+			fontSize: fontSizes.medium,
+			fontWeight: fontWeight.bold,
+			letterSpacing: "-0.4%",
+			lineHeight: "28px",
 		},
 		playfairDisplayTitle: {
 			fontFamily: fontFamily.piayfairDisplay,

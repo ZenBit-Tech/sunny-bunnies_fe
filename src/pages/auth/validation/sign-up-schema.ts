@@ -8,8 +8,8 @@ import {
 
 const userSignUpValidation = Yup.object().shape({
 	email: Yup.string()
-		.email(userValidationMessage.EMAIL_INVALID)
-		.matches(emailRegex, userValidationMessage.EMAIL_INVALID)
+		.email(userValidationMessage.EMAIL_INCORRECT)
+		.matches(emailRegex, userValidationMessage.EMAIL_INCORRECT)
 		.required(userValidationMessage.EMAIL_REQUIRED),
 	name: Yup.string()
 		.min(

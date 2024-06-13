@@ -16,7 +16,7 @@ import {
 } from "./components/index.ts";
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
-import { Auth, Home } from "./pages/index.ts";
+import { Auth, Home, NotFound, SizeGuide } from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
 import { persistor, store } from "./redux/store.ts";
@@ -81,6 +81,10 @@ createRoot(document.getElementById("root")!).render(
 															element: <TermsConditions />,
 															path: AppRoute.TERMS_OF_USE,
 														},
+														{
+															element: <SizeGuide />,
+															path: AppRoute.SIZE_GUIDE,
+														},
 													],
 													element: <FooterWrapper />,
 													path: AppRoute.ROOT,
@@ -92,6 +96,10 @@ createRoot(document.getElementById("root")!).render(
 									],
 									element: <App />,
 									path: AppRoute.ROOT,
+								},
+								{
+									element: <NotFound />,
+									path: AppRoute.ANY,
 								},
 							]}
 						/>

@@ -2,7 +2,6 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const userValidationMessage = {
 	EMAIL_INCORRECT: "Email format is incorrect",
-	EMAIL_INVALID: "Email should be in format example@gmail.com",
 	EMAIL_REQUIRED: "Email is required",
 	NAME_MIN_LENGTH: "Name should have at least 2 characters",
 	NAME_REQUIRED: "Name is required",

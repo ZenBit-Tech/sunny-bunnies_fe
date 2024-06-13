@@ -54,7 +54,15 @@ const CustomFormGroup = <T extends FieldValues>({
 			InputProps={{
 				endAdornment: type === "password" && (
 					<InputAdornment position="end">
-						<IconButton edge="end" onClick={setShowPassword}>
+						<IconButton
+							edge="end"
+							onClick={setShowPassword}
+							sx={{
+								"&:hover": {
+									backgroundColor: "transparent",
+								},
+							}}
+						>
 							{showPassword ? <VisibilityOff /> : <Visibility />}
 						</IconButton>
 					</InputAdornment>
@@ -70,7 +78,7 @@ const CustomFormGroup = <T extends FieldValues>({
 				},
 				".MuiInputBase-root": {
 					borderRadius: "6px",
-					marginTop: "10px",
+					marginTop: "5px",
 					paddingRight: "20px",
 				},
 			}}
@@ -80,7 +88,7 @@ const CustomFormGroup = <T extends FieldValues>({
 	);
 
 	return (
-		<FormControl component="fieldset" error={!!error} fullWidth margin="normal">
+		<FormControl component="fieldset" error={!!error} fullWidth margin="dense">
 			<FormLabel
 				component="legend"
 				sx={{
@@ -100,7 +108,9 @@ const CustomFormGroup = <T extends FieldValues>({
 				/>
 				{children}
 			</FormGroup>
-			{error && <FormHelperText>{error.message}</FormHelperText>}
+			{error && (
+				<FormHelperText sx={{ marginLeft: 0 }}>{error.message}</FormHelperText>
+			)}
 		</FormControl>
 	);
 };
