@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@mui/material";
+import "@preact/signals-react/auto";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -55,7 +56,16 @@ createRoot(document.getElementById("root")!).render(
 															path: AppRoute.ROOT,
 														},
 														{
-															children: [],
+															children: [
+																{
+																	element: <Auth />,
+																	path: AppRoute.VERIFY_EMAIL,
+																},
+																{
+																	element: <>private</>,
+																	path: "/private",
+																},
+															],
 															element: <PrivateRoute />,
 															path: AppRoute.ROOT,
 														},

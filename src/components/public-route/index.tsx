@@ -8,7 +8,11 @@ import { RootState } from "~/redux/store.ts";
 const PublicRoute: React.FC = () => {
 	const user = useAppSelector((state: RootState) => state.auth.user);
 
-	return user ? <Navigate to={AppRoute.HOME} /> : <Outlet />;
+	if (!user) return <Outlet />;
+
+	if (!user.isVerified) return <Navigate to={AppRoute.VERIFY_EMAIL} />;
+
+	return <Navigate to={AppRoute.HOME} />;
 };
 
 export { PublicRoute };
