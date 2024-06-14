@@ -61,10 +61,6 @@ createRoot(document.getElementById("root")!).render(
 																	element: <Auth />,
 																	path: AppRoute.VERIFY_EMAIL,
 																},
-																{
-																	element: <>private</>,
-																	path: "/private",
-																},
 															],
 															element: <PrivateRoute />,
 															path: AppRoute.ROOT,
