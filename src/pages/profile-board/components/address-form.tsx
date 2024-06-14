@@ -277,7 +277,10 @@ const AddressForm: React.FC = () => {
 					justifyContent="flex-end"
 					marginTop="10%"
 				>
-					<FormButtons isStart={false} redirectTo={AppRoute.ROLE} />
+					<FormButtons
+						isStart={false}
+						redirectTo={AppRoute.GENERAL_INFORMATION}
+					/>
 				</Box>
 			</Box>
 		</StyledFormContainer>

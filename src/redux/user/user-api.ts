@@ -3,6 +3,7 @@ import { User } from "~/libs/types/user.ts";
 import {
 	Address,
 	CreditCard,
+	GeneralInformation,
 	Role,
 	Size,
 } from "~/libs/types/user-profile.type.ts";
@@ -12,7 +13,10 @@ import { userApiPath } from "./constants.ts";
 
 export const userApi = api.injectEndpoints({
 	endpoints: (build) => ({
-		update: build.mutation<User, Address | CreditCard | Role | Size>({
+		update: build.mutation<
+			User,
+			Address | CreditCard | GeneralInformation | Role | Size
+		>({
 			query: (body) => ({
 				body,
 				method: httpMethods.PATCH,

@@ -1,12 +1,6 @@
 type Role = {
 	role: string;
 };
-
-type GeneralInformation = {
-	phoneNumber: string;
-	profilePhoto: string;
-};
-
 type Address = {
 	addressLineOne: string;
 	addressLineTwo: string;
@@ -26,6 +20,11 @@ type Size = {
 	isRegistrationCompleted: boolean;
 	jeansSize: string;
 	shoeSize: string;
+};
+
+type GeneralInformation = {
+	phoneNumber: string;
+	profilePhoto: File | null;
 };
 
 type Profile = Address & CreditCard & GeneralInformation & Role & Size;

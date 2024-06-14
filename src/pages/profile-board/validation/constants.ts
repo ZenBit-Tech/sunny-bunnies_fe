@@ -14,6 +14,12 @@ const addressValidationMessages = {
 	STATE_REQUIRED: "State is required",
 };
 
+const generalInformationValidationMessage = {
+	PHONE_NUMBER_INVALID: "Invalid phone number",
+	PHONE_NUMBER_REQUIRED: "Phone number is required",
+	PROFILE_IMAGE_REQUIRED: "Profile image is required",
+};
+
 const addressValidationRules = {
 	ADDRESS_LINE_MAX_LENGTH: 74,
 };
@@ -43,6 +49,7 @@ export {
 	addressValidationRules,
 	creditCardErrorMessages,
 	creditCardValidationRules,
+	generalInformationValidationMessage,
 	roleValidationMessage,
 	roleValidationRules,
 	sizeValidationMessages,

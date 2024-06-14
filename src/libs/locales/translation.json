@@ -41,7 +41,12 @@
 		"sizeText":"Choice your size",
 		"selectSize":"Select size",
 		"jeansTitle":"Jeans Size",
-		"shoesTitle":"Shoes Size"
+		"shoesTitle":"Shoes Size",
+		"profilePhotoTitle":"Profile Photo",
+		"profilePhotoText":"Choose photo for your profile",
+		"phoneNumberTitle": "Phone Number",
+		"phoneNumberText": "Please enter your phone number",
+		"uploadButtonText":"Upload Photo"
 	},
 	"footer": {
 		"footerColumnsLogIn": {

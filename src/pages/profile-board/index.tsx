@@ -8,6 +8,7 @@ import theme from "~/theme.ts";
 import {
 	AddressForm,
 	CreditCardForm,
+	GeneralInformationForm,
 	RoleForm,
 	SizeForm,
 	TabsBoard,
@@ -23,7 +24,7 @@ const ProfileBoard: React.FC = () => {
 			case AppRoute.ROLE:
 				return <RoleForm />;
 			case AppRoute.GENERAL_INFORMATION:
-				return <RoleForm />; //GeneralInformationForm
+				return <GeneralInformationForm />;
 			case AppRoute.ADDRESS:
 				return <AddressForm />;
 			case AppRoute.CREDIT_CARD:
@@ -61,7 +62,7 @@ const ProfileBoard: React.FC = () => {
 				>
 					{tabRoutes.map((tab) => (
 						<Tab
-							// disabled
+							disabled
 							key={tab.route}
 							label={
 								<TabsBoard
