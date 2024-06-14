@@ -20,6 +20,7 @@ const Home: React.FC = () => {
 		handleLoadMore,
 		additionalFilters,
 		hasMore,
+		hasAdditionalFilters,
 		isError,
 	} = useProductFilters();
 
@@ -54,6 +55,7 @@ const Home: React.FC = () => {
 					<Products
 						handleFilterChange={handleFilterChange}
 						additionalFilters={additionalFilters}
+						hasAdditionalFilters={hasAdditionalFilters}
 						products={data}
 					/>
 				)}

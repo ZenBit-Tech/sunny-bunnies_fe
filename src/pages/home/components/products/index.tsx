@@ -8,7 +8,7 @@ import { Filters } from "~/libs/types/filters.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
-import { ProductCard, ProductFilters } from "../index.ts";
+import { ProductCard, ProductFilters, FilterTags } from "../index.ts";
 import { StyledProductsContainer } from "./styles.ts";
 
 const minNumberOfProducts = 1;
@@ -30,12 +30,14 @@ type ProductsProperties = {
 	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
 	products?: Product[];
 	additionalFilters: Record<string, number | undefined>;
+	hasAdditionalFilters: boolean;
 };
 
 const Products: React.FC<ProductsProperties> = ({
 	handleFilterChange,
 	products,
 	additionalFilters,
+	hasAdditionalFilters,
 }) => {
 	const user = useAppSelector((state: RootState) => state.auth.user);
 	const { t } = useTranslation();
@@ -84,6 +86,15 @@ const Products: React.FC<ProductsProperties> = ({
 		handleFilterChange(clearedFilters);
 	}, [handleFilterChange]);
 
+	const handleClearFilter = useCallback(
+		(filterKey: string) => {
+			const updatedFilters = { ...additionalFilters };
+			delete updatedFilters[filterKey];
+			handleFilterChange(updatedFilters);
+		},
+		[additionalFilters, handleFilterChange],
+	);
+
 	const toggleDrawer = (): void => {
 		setDrawerOpen(!drawerOpen);
 	};
@@ -130,6 +141,13 @@ const Products: React.FC<ProductsProperties> = ({
 					onClear={handleClearFilters}
 				/>
 			</Drawer>
+			{hasAdditionalFilters && (
+				<FilterTags
+					filters={additionalFilters}
+					onClearAll={handleClearFilters}
+					onClearFilter={handleClearFilter}
+				/>
+			)}
 			<StyledProductsContainer>
 				{products?.map((product, index) => (
 					<ProductCard key={index} product={product} />

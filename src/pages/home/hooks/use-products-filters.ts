@@ -21,6 +21,7 @@ type UseProductFiltersResult = {
 	isFetching: boolean;
 	isLoading: boolean;
 	offset: number;
+	hasAdditionalFilters: boolean;
 };
 
 const useProductFilters = (): UseProductFiltersResult => {
@@ -61,7 +62,12 @@ const useProductFilters = (): UseProductFiltersResult => {
 
 	const hasMore = !isLoading && data?.length === productsLoadLimit;
 
+	const hasAdditionalFilters = Object.keys(additionalFilters).some(
+		(key) => additionalFilters[key] !== undefined,
+	);
+
 	return {
+		hasAdditionalFilters,
 		additionalFilters,
 		data,
 		filterCategory,
