@@ -5,4 +5,5 @@ export { ProductDescription } from "./product-description/index.tsx";
 export { ProductHeader } from "./product-header/index.tsx";
 export { ProductStatusRadio } from "./product-status-radio/index.tsx";
 export { RadioLabel } from "./radio-label/index.tsx";
+export { RecommendedProducts } from "./recommended-products/index.tsx";
 export { SizesDropdown } from "./sizes-dropdown/index.tsx";

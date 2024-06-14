@@ -5,7 +5,7 @@ const StyledProductPageContainer = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	gap: 30px;
+	gap: 52px;
 	padding: 0 52px;
 `;
 

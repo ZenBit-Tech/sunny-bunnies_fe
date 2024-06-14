@@ -30,6 +30,9 @@ const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
 		width: "100%",
 	},
 	"& .MuiRadio-colorPrimary.Mui-checked": {
+		"&:hover": {
+			backgroundColor: colors.pastelGreen,
+		},
 		background: colors.pastelGreen,
 		borderRadius: "12px 0 0 12px",
 	},

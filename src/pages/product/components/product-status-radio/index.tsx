@@ -15,6 +15,7 @@ type ProductStatusRadioProperties = {
 	defaultSelectedStatus: string;
 	image: string;
 	name: string;
+	onSelectStatus: (status: string) => void;
 	price: number;
 	status: string;
 };
@@ -23,18 +24,21 @@ const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 	defaultSelectedStatus,
 	image,
 	name,
+	onSelectStatus,
 	price,
 	status,
 }) => {
 	const { t } = useTranslation();
 
-	const [selectedValue, setSelectedValue] = useState(defaultSelectedStatus);
+	const [selectedStatus, setSelectedStatus] = useState(defaultSelectedStatus);
 
 	const handleProductChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
-			setSelectedValue((event.target as HTMLInputElement).value);
+			const status = (event.target as HTMLInputElement).value;
+			setSelectedStatus(status);
+			onSelectStatus(status);
 		},
-		[],
+		[onSelectStatus],
 	);
 
 	return (
@@ -43,7 +47,7 @@ const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 				aria-label={t("ProductPage.productStatus")}
 				name={t("ProductPage.productStatus")}
 				onChange={handleProductChange}
-				value={selectedValue}
+				value={selectedStatus}
 			>
 				{status === productStatus.BOTH ? (
 					<Box
@@ -55,7 +59,7 @@ const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 						}}
 					>
 						<StyledFormControlLabel
-							checked={selectedValue === productStatus.FOR_RENT}
+							checked={selectedStatus === productStatus.FOR_RENT}
 							control={<Radio />}
 							label={
 								<RadioLabel
@@ -68,7 +72,7 @@ const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 							value={productStatus.FOR_RENT}
 						/>
 						<StyledFormControlLabel
-							checked={selectedValue === productStatus.FOR_SALE}
+							checked={selectedStatus === productStatus.FOR_SALE}
 							control={<Radio />}
 							label={
 								<RadioLabel

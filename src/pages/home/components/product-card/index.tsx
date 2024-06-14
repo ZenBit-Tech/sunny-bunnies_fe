@@ -29,6 +29,7 @@ const ProductCard: React.FC<ProductCardProperties> = ({ product }) => {
 				gap: "12px",
 				height: "360px",
 				maxWidth: "300px",
+				width: "300px",
 			}}
 		>
 			<img

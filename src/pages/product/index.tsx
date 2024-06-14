@@ -15,6 +15,7 @@ import {
 	ProductDescription,
 	ProductHeader,
 	ProductStatusRadio,
+	RecommendedProducts,
 	SizesDropdown,
 } from "./components/index.ts";
 import {
@@ -31,15 +32,21 @@ const ProductPage: React.FC = () => {
 
 	const { data: product, isError, isLoading } = useGetProductByIdQuery(id);
 
-	const [isClicked, setIsClicked] = useState(false);
+	const [isLikeClicked, setIsLikeClicked] = useState(false);
+	const [selectedSizeId, setSelectedSizeId] = useState<null | number>(null);
+	const [selectedStatus, setSelectedStatus] = useState<null | string>(null);
 
-	const handleButtonClick = useCallback((): void => {
-		setIsClicked(!isClicked);
-	}, [isClicked]);
+	const handleLikeButtonClick = useCallback((): void => {
+		setIsLikeClicked(!isLikeClicked);
+	}, [isLikeClicked]);
 
-	if (isLoading) {
-		return <CircularProgress />;
-	}
+	const handleSelectSize = useCallback((sizeId: number): void => {
+		setSelectedSizeId(sizeId);
+	}, []);
+
+	const handleSelectStatus = useCallback((status: string): void => {
+		setSelectedStatus(status);
+	}, []);
 
 	if (isError || !product) {
 		return (
@@ -47,17 +54,20 @@ const ProductPage: React.FC = () => {
 		);
 	}
 
-	const {
-		colors,
-		description,
-		images,
-		maxPrice,
-		minPrice,
-		name,
-		sizes,
-		status,
-		variants,
-	} = product;
+	if (isLoading) {
+		return <CircularProgress />;
+	}
+
+	const { description, images, maxPrice, minPrice, name, status, variants } =
+		product;
+
+	const defaultStatus =
+		product.status === productStatus.BOTH
+			? productStatus.FOR_RENT
+			: product.status;
+
+	const colors = [...new Set(variants.map((variant) => variant.color.name))];
+	const sizes = [...new Set(variants.map((variant) => variant.size.name))];
 
 	return (
 		<StyledProductPageContainer>
@@ -76,15 +86,15 @@ const ProductPage: React.FC = () => {
 					</Typography>
 					{variants && (
 						<>
-							<SizesDropdown variants={variants} />
+							<SizesDropdown
+								onSelectSize={handleSelectSize}
+								variants={variants}
+							/>
 							<ProductStatusRadio
-								defaultSelectedStatus={
-									status === productStatus.BOTH
-										? productStatus.FOR_RENT
-										: status
-								}
+								defaultSelectedStatus={defaultStatus}
 								image={images[defaultProductDataIndex].url}
 								name={name}
+								onSelectStatus={handleSelectStatus}
 								price={minPrice}
 								status={status}
 							/>
@@ -102,9 +112,9 @@ const ProductPage: React.FC = () => {
 						</BaseButton>
 						<Box display="flex" gap="32px">
 							<BaseButton
-								onClick={handleButtonClick}
+								onClick={handleLikeButtonClick}
 								startIcon={
-									isClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />
+									isLikeClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />
 								}
 								sx={{ fill: "black", textTransform: "none" }}
 								variant="text"
@@ -127,6 +137,7 @@ const ProductPage: React.FC = () => {
 				description={description}
 				sizes={sizes}
 			/>
+			<RecommendedProducts />
 		</StyledProductPageContainer>
 	);
 };
