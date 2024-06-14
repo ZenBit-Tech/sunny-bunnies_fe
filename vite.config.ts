@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { fileURLToPath } from "node:url";
 import { ConfigEnv, defineConfig, loadEnv } from "vite";
+import svgr from "vite-plugin-svgr";
 
 const config = ({ mode }: ConfigEnv): ReturnType<typeof defineConfig> => {
 	const { VITE_APP_DEVELOPMENT_PORT } = loadEnv(mode, process.cwd());
@@ -9,7 +10,7 @@ const config = ({ mode }: ConfigEnv): ReturnType<typeof defineConfig> => {
 		build: {
 			outDir: "build",
 		},
-		plugins: [react()],
+		plugins: [react(), svgr()],
 		resolve: {
 			alias: [
 				{
