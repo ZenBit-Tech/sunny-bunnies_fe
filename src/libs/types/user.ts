@@ -1,6 +1,9 @@
+import { type Profile } from "./user-profile.type.ts";
+
 type User = {
 	email: string;
 	name: string;
+	profile: Profile;
 };
 
 type UserSignUpResponseDto = {
