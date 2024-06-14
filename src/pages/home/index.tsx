@@ -18,6 +18,7 @@ const Home: React.FC = () => {
 		handleChooseCategory,
 		handleFilterChange,
 		handleLoadMore,
+		additionalFilters,
 		hasMore,
 		isError,
 	} = useProductFilters();
@@ -50,7 +51,11 @@ const Home: React.FC = () => {
 				}}
 			>
 				{data && (
-					<Products handleFilterChange={handleFilterChange} products={data} />
+					<Products
+						handleFilterChange={handleFilterChange}
+						additionalFilters={additionalFilters}
+						products={data}
+					/>
 				)}
 			</InfiniteScroll>
 			<Newsletter />

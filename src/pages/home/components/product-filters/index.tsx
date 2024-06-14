@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useGetFiltersQuery } from "~/redux/filters/filters-api";
 import { setFilters } from "~/redux/filters/filters.slice";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { Filters } from "~/libs/types/filters.ts";
 import { ColorPicker } from "../index";
 import { type SelectChangeEvent } from "@mui/material";
 import {
@@ -15,9 +16,19 @@ import {
 import { StyledFiltersContainer } from "./styles";
 import { colors as fontColors, fontSizes } from "~/libs/constants/index.ts";
 
-const ProductFilters: React.FC<{
-	onApply: (filters: any) => void;
-}> = ({ onApply }) => {
+const maxProductPrice = 10000;
+
+type ProductFiltersProps = {
+	onApply: (filters: Filters) => void;
+	onClear: () => void;
+	initialFilters: Filters;
+};
+
+const ProductFilters: React.FC<ProductFiltersProps> = ({
+	onApply,
+	onClear,
+	initialFilters,
+}) => {
 	const dispatch = useAppDispatch();
 	const filterValues = useAppSelector((state) => state.filters);
 
@@ -26,14 +37,30 @@ const ProductFilters: React.FC<{
 	const { brands, colors, sizes, materials, styles } = filterValues;
 	const { data, error, isLoading } = useGetFiltersQuery({});
 
-	const [minPrice, setMinPrice] = useState<number>(0);
-	const [maxPrice, setMaxPrice] = useState<number>(10000);
-	const [selectedBrand, setSelectedBrand] = useState<string>("");
-	const [selectedColor, setSelectedColor] = useState<string>("");
-	const [selectedSize, setSelectedSize] = useState<string>("");
-	const [selectedMaterial, setSelectedMaterial] = useState<string>("");
-	const [selectedStyle, setSelectedStyle] = useState<string>("");
-	const [selectedGender, setSelectedGender] = useState<string>("");
+	const [minPrice, setMinPrice] = useState<number>(
+		initialFilters.minPrice || 0,
+	);
+	const [maxPrice, setMaxPrice] = useState<number>(
+		initialFilters.maxPrice || 10000,
+	);
+	const [selectedBrand, setSelectedBrand] = useState<string>(
+		initialFilters.brand ? String(initialFilters.brand) : "",
+	);
+	const [selectedColor, setSelectedColor] = useState<string>(
+		initialFilters.color ? String(initialFilters.color) : "",
+	);
+	const [selectedSize, setSelectedSize] = useState<string>(
+		initialFilters.size ? String(initialFilters.size) : "",
+	);
+	const [selectedMaterial, setSelectedMaterial] = useState<string>(
+		initialFilters.material ? String(initialFilters.material) : "",
+	);
+	const [selectedStyle, setSelectedStyle] = useState<string>(
+		initialFilters.style ? String(initialFilters.style) : "",
+	);
+	const [selectedGender, setSelectedGender] = useState<string>(
+		initialFilters.gender ? String(initialFilters.gender) : "",
+	);
 
 	useEffect(() => {
 		if (data) {
@@ -64,7 +91,7 @@ const ProductFilters: React.FC<{
 		const filters: Record<string, string | number> = {};
 
 		if (minPrice !== undefined) filters.minPrice = minPrice;
-		if (maxPrice !== undefined) filters.maxPrice = maxPrice;
+		if (maxPrice !== maxProductPrice) filters.maxPrice = maxPrice;
 		if (selectedBrand) filters.brand = selectedBrand;
 		if (selectedColor) filters.color = selectedColor;
 		if (selectedSize) filters.size = selectedSize;
@@ -73,6 +100,18 @@ const ProductFilters: React.FC<{
 		if (selectedGender) filters.gender = selectedGender;
 
 		onApply(filters);
+	};
+
+	const handleClear = (): void => {
+		setMinPrice(0);
+		setMaxPrice(10000);
+		setSelectedBrand("");
+		setSelectedColor("");
+		setSelectedSize("");
+		setSelectedMaterial("");
+		setSelectedStyle("");
+		setSelectedGender("");
+		onClear();
 	};
 
 	if (isLoading) return <Box>Loading filters...</Box>;
@@ -165,7 +204,9 @@ const ProductFilters: React.FC<{
 				<Button variant="contained" onClick={handleApply}>
 					{t("ProductFilters.applyFilters")}
 				</Button>
-				<Button variant="outlined">{t("ProductFilters.clearFilters")}</Button>
+				<Button variant="outlined" onClick={handleClear}>
+					{t("ProductFilters.clearFilters")}
+				</Button>
 			</Box>
 		</StyledFiltersContainer>
 	);

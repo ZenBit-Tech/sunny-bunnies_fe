@@ -3,4 +3,10 @@ type FilterItem = {
 	name: string;
 };
 
-export type { FilterItem };
+type Filters = {
+	minPrice?: number;
+	maxPrice?: number;
+	[key: string]: string | number | undefined;
+};
+
+export type { FilterItem, Filters };

@@ -1,9 +1,10 @@
-import { Box, Typography, Button, TextField, Drawer } from "@mui/material";
+import { Box, Typography, TextField, Drawer } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { FilterButton } from "~/components/index.ts";
+import { FilterButton, BaseButton } from "~/components/index.ts";
 import { Product } from "~/libs/types/products.ts";
+import { Filters } from "~/libs/types/filters.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
@@ -25,20 +26,16 @@ const allFilters = [
 	{ value: "Your Size" },
 ];
 
-type Filters = {
-	minPrice?: number;
-	maxPrice?: number;
-	[key: string]: string | number | undefined;
-};
-
 type ProductsProperties = {
 	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
 	products?: Product[];
+	additionalFilters: Record<string, number | undefined>;
 };
 
 const Products: React.FC<ProductsProperties> = ({
 	handleFilterChange,
 	products,
+	additionalFilters,
 }) => {
 	const user = useAppSelector((state: RootState) => state.auth.user);
 	const { t } = useTranslation();
@@ -70,15 +67,22 @@ const Products: React.FC<ProductsProperties> = ({
 		(filters: Filters): void => {
 			const { minPrice, maxPrice, ...otherFilters } = filters;
 
-			handleFilterChange({
+			const updatedFilters = {
 				...otherFilters,
 				minPrice: minPrice ? +minPrice : undefined,
 				maxPrice: maxPrice ? +maxPrice : undefined,
-			});
+			};
+
+			handleFilterChange(updatedFilters);
 			setDrawerOpen(false);
 		},
 		[handleFilterChange],
 	);
+
+	const handleClearFilters = useCallback(() => {
+		const clearedFilters = {};
+		handleFilterChange(clearedFilters);
+	}, [handleFilterChange]);
 
 	const toggleDrawer = (): void => {
 		setDrawerOpen(!drawerOpen);
@@ -110,9 +114,9 @@ const Products: React.FC<ProductsProperties> = ({
 					placeholder={t("Search products...")}
 					sx={{ flexGrow: 1, margin: "0 15px" }}
 				/>
-				<Button variant="contained" onClick={toggleDrawer}>
+				<BaseButton variant="contained" onClick={toggleDrawer}>
 					{t("ProductFilters.filters")}
-				</Button>
+				</BaseButton>
 			</Box>
 			<Drawer
 				anchor="right"
@@ -120,7 +124,11 @@ const Products: React.FC<ProductsProperties> = ({
 				onClose={toggleDrawer}
 				sx={{ "& .MuiDrawer-paper": { width: "400px" } }}
 			>
-				<ProductFilters onApply={handleApplyFilters} />
+				<ProductFilters
+					onApply={handleApplyFilters}
+					initialFilters={additionalFilters}
+					onClear={handleClearFilters}
+				/>
 			</Drawer>
 			<StyledProductsContainer>
 				{products?.map((product, index) => (
