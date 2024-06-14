@@ -202,6 +202,8 @@
 		"sizes": "SIZES",
 		"colors": "COLORS",
 		"height": "HEIGHT",
-		"errorMessage": "Error fetching product details"
+		"errorMessage": "Error fetching product details",
+		"errorMessageRecommended": "Error loading recommended products",
+		"youMightAlsoLike": "You Might Also Like"
 	}
 }

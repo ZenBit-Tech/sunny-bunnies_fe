@@ -92,6 +92,24 @@ const theme = createTheme({
 						textTransform: "none",
 					},
 				},
+				{
+					props: { variant: "small_icon" },
+					style: {
+						"& .MuiButton-icon": {
+							margin: 0,
+						},
+						"& .MuiButton-startIcon": {
+							margin: 0,
+						},
+						backgroundColor: colors.lightGreen,
+						borderRadius: "100px",
+						height: "44px",
+						margin: 0,
+						minWidth: "44px",
+						padding: "10px",
+						width: "44px",
+					},
+				},
 			],
 		},
 	},
