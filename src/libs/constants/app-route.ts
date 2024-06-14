@@ -3,6 +3,7 @@ const AppRoute = {
 	FORGOT_PASSWORD: "/forgot-password",
 	HOME: "/home",
 	PRIVACY_POLICY: "/privacy-policy",
+	PRODUCT: "/product/:id",
 	ROOT: "/",
 	SIGN_IN: "/sign-in",
 	SIGN_UP: "/sign-up",

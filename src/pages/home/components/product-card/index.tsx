@@ -7,6 +7,8 @@ import { type Product } from "~/libs/types/products.ts";
 
 import { StyledProductCardContent } from "./styles.ts";
 
+const defaultImageIndex = 0;
+
 type ProductCardProperties = {
 	product: Product;
 };
@@ -31,7 +33,7 @@ const ProductCard: React.FC<ProductCardProperties> = ({ product }) => {
 		>
 			<img
 				alt={product.name}
-				src={product.imageUrl}
+				src={product.images[defaultImageIndex]?.url}
 				style={{ height: "80%", width: "100%" }}
 			/>
 			<StyledProductCardContent>
