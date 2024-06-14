@@ -6,7 +6,12 @@ import { setFilters } from "~/redux/filters/filters.slice";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks";
 import { ColorPicker } from "../index";
 import { type SelectChangeEvent } from "@mui/material";
-import { CustomSelect, CustomSlider } from "~/components";
+import {
+	CustomSelect,
+	CustomSlider,
+	CustomRadioButtons,
+	CustomRadioButtonGroup,
+} from "~/components";
 import { StyledFiltersContainer } from "./styles";
 import { colors as fontColors, fontSizes } from "~/libs/constants/index.ts";
 
@@ -14,16 +19,21 @@ const ProductFilters: React.FC<{
 	onApply: (filters: any) => void;
 }> = ({ onApply }) => {
 	const dispatch = useAppDispatch();
-	const { t } = useTranslation();
 	const filterValues = useAppSelector((state) => state.filters);
-	const { brands, colors, sizes } = filterValues;
 
+	const { t } = useTranslation();
+
+	const { brands, colors, sizes, materials, styles } = filterValues;
 	const { data, error, isLoading } = useGetFiltersQuery({});
+
 	const [minPrice, setMinPrice] = useState<number>(0);
 	const [maxPrice, setMaxPrice] = useState<number>(10000);
 	const [selectedBrand, setSelectedBrand] = useState<string>("");
 	const [selectedColor, setSelectedColor] = useState<string>("");
 	const [selectedSize, setSelectedSize] = useState<string>("");
+	const [selectedMaterial, setSelectedMaterial] = useState<string>("");
+	const [selectedStyle, setSelectedStyle] = useState<string>("");
+	const [selectedGender, setSelectedGender] = useState<string>("");
 
 	useEffect(() => {
 		if (data) {
@@ -58,6 +68,9 @@ const ProductFilters: React.FC<{
 		if (selectedBrand) filters.brand = selectedBrand;
 		if (selectedColor) filters.color = selectedColor;
 		if (selectedSize) filters.size = selectedSize;
+		if (selectedMaterial) filters.material = selectedMaterial;
+		if (selectedStyle) filters.style = selectedStyle;
+		if (selectedGender) filters.gender = selectedGender;
 
 		onApply(filters);
 	};
@@ -75,6 +88,17 @@ const ProductFilters: React.FC<{
 			>
 				{t("ProductFilters.filters")}
 			</Typography>
+
+			<CustomRadioButtons
+				label={t("ProductFilters.gender")}
+				options={[
+					{ value: "male", label: t("ProductFilters.male") },
+					{ value: "female", label: t("ProductFilters.female") },
+				]}
+				value={selectedGender}
+				onChange={(e) => setSelectedGender(e.target.value)}
+			/>
+
 			<CustomSelect
 				label={t("ProductFilters.brand")}
 				value={selectedBrand}
@@ -91,13 +115,34 @@ const ProductFilters: React.FC<{
 				title={t("ProductFilters.color")}
 			/>
 
-			<CustomSelect
+			<CustomRadioButtonGroup
 				label={t("ProductFilters.size")}
-				value={selectedSize}
-				onChange={(e: SelectChangeEvent<string>) =>
-					setSelectedSize(e.target.value)
+				options={
+					sizes?.map((size) => ({
+						value: size.name,
+						label: size.name,
+					})) || []
 				}
-				items={sizes}
+				value={selectedSize}
+				onChange={(e) => setSelectedSize(e.target.value)}
+			/>
+
+			<CustomSelect
+				label={t("ProductFilters.style")}
+				value={selectedStyle}
+				onChange={(e: SelectChangeEvent<string>) =>
+					setSelectedStyle(e.target.value)
+				}
+				items={styles}
+			/>
+
+			<CustomSelect
+				label={t("ProductFilters.material")}
+				value={selectedMaterial}
+				onChange={(e: SelectChangeEvent<string>) =>
+					setSelectedMaterial(e.target.value)
+				}
+				items={materials}
 			/>
 
 			<CustomSlider

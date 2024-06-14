@@ -27,7 +27,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
 	return (
 		<Box>
 			{label && (
-				<Typography variant="subtitle1" sx={{ marginBottom: 1 }}>
+				<Typography variant="dmSans" sx={{ textTransform: "capitalize" }}>
 					{label}
 				</Typography>
 			)}

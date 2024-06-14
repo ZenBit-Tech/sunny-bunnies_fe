@@ -9,6 +9,8 @@ export { FilterButton } from "./filter-button/index.tsx";
 export { Loader } from "./loader/index.tsx";
 export { CustomSelect } from "./custom-select/index.tsx";
 export { CustomSlider } from "./custom-slider/index.tsx";
+export { CustomRadioButtons } from "./custom-radio-buttons/index.tsx";
+export { CustomRadioButtonGroup } from "./custom-radio-button-group/index.tsx";
 export { Newsletter } from "./newsletter/index.tsx";
 export { PrivateRoute } from "./private-route/index.tsx";
 export { PublicRoute } from "./public-route/index.tsx";

@@ -1,7 +1,7 @@
 import { Radio, FormControlLabel, Box, Typography } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
 import React from "react";
 import { FilterItem } from "~/libs/types/filters";
+import { StyledColorBox, StyledCheckIcon } from "./styles";
 
 type ColorPickerProps = {
 	colors: FilterItem[] | null;
@@ -17,7 +17,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	title,
 }) => {
 	if (!colors) return null;
-
 	return (
 		<Box
 			sx={{
@@ -25,57 +24,44 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				flexDirection: "column",
 			}}
 		>
-			<Typography variant="dmSans">{title}</Typography>
-			<Box sx={{ display: "flex", flexWrap: "wrap", marginTop: 1 }}>
-				{colors.map((color) => (
-					<Box
-						key={color.id}
-						sx={{
-							position: "relative",
-							margin: "5px",
-							width: 30,
-							height: 30,
-							borderRadius: "50%",
-							backgroundColor: color.name,
-							display: "flex",
-							justifyContent: "center",
-							alignItems: "center",
-						}}
-					>
-						<FormControlLabel
-							control={
-								<Radio
-									checked={selectedColor === color.name}
-									onChange={() => onChange(color.name)}
-									value={color.name}
-									name="color-radio-button"
+			<Typography variant="dmSans" sx={{ textTransform: "capitalize" }}>
+				{title}
+			</Typography>
+			<Box
+				sx={{ display: "flex", flexWrap: "wrap", marginTop: 1, gap: "10px" }}
+			>
+				{colors.map(
+					(color) =>
+						color.name !== "Other" && (
+							<StyledColorBox key={color.id} bgcolor={color.name}>
+								<FormControlLabel
+									control={
+										<Radio
+											checked={selectedColor === color.name}
+											onChange={() => onChange(color.name)}
+											value={color.name}
+											sx={{
+												position: "absolute",
+												opacity: 0,
+												width: "100%",
+												height: "100%",
+											}}
+										/>
+									}
+									label=""
 									sx={{
-										position: "absolute",
-										opacity: 0,
+										margin: 0,
+										padding: 0,
 										width: "100%",
 										height: "100%",
 									}}
 								/>
-							}
-							label=""
-							sx={{
-								margin: 0,
-								padding: 0,
-								width: "100%",
-								height: "100%",
-							}}
-						/>
-						{selectedColor === color.name && (
-							<CheckIcon
-								sx={{
-									color: "#fff",
-									fontSize: 18,
-									fontWeight: "bold",
-								}}
-							/>
-						)}
-					</Box>
-				))}
+								{selectedColor === color.name && (
+									<StyledCheckIcon bgcolor={color.name} />
+								)}
+							</StyledColorBox>
+						),
+				)}
 			</Box>
 		</Box>
 	);

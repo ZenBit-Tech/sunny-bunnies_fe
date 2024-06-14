@@ -186,6 +186,9 @@
 	},
 	"ProductFilters": {
 		"filters": "Filters",
+		"gender": "gender",
+		"male": "male",
+		"female": "female",
 		"color": "color",
 		"brand": "brand",
 		"material": "material",

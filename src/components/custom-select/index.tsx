@@ -27,7 +27,11 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 			<InputLabel sx={{ textTransform: "capitalize" }}>{label}</InputLabel>
 			<Select value={value} onChange={onChange} label={label}>
 				{items?.map((item) => (
-					<MenuItem key={item.id} value={item.name}>
+					<MenuItem
+						key={item.id}
+						value={item.name}
+						sx={{ textTransform: "capitalize" }}
+					>
 						{item.name}
 					</MenuItem>
 				))}
