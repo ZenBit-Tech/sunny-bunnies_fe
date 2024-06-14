@@ -183,5 +183,9 @@
 		"emailLink": "mailto:support.black.circle@gmail.com",
 		"weWillHelpYou": " We're here to help!",
 		"goToHome": "Go to Home"
+	},
+	"VendorProfilePage": {
+		"home": "Home",
+		"vendors": "Vendors"
 	}
 }
