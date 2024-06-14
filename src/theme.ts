@@ -48,7 +48,7 @@ const theme = createTheme({
 					style: {
 						...commonPrimaryBlackButtonStyles,
 						fontFamily: fontFamily.piayfairDisplay,
-						fontSize: fontSizes.medium,
+						fontSize: fontSizes.large,
 						fontWeight: fontSizes.medium,
 						letterSpacing: "-0.5px",
 					},
@@ -67,9 +67,29 @@ const theme = createTheme({
 					style: {
 						border: "1px solid #333333",
 						borderRadius: "12px",
-						fontSize: fontSizes.small,
-						fontWeight: fontWeight.medium,
-						padding: "8px 24px",
+						fontFamily: fontFamily.piayfairDisplay,
+						fontSize: fontSizes.large,
+						fontWeight: fontWeight.regular,
+						padding: "16px 24px",
+						textTransform: "none",
+					},
+				},
+				{
+					props: { variant: "text" },
+					style: {
+						"&:active": {
+							background: "transparent",
+							backgroundColor: "transparent",
+						},
+						"&:hover, &:focus": {
+							background: "transparent",
+							backgroundColor: "transparent",
+							boxShadow: "none",
+						},
+						fontFamily: fontFamily.piayfairDisplay,
+						fontSize: fontSizes.medium,
+						fontWeight: fontWeight.bold,
+						textTransform: "none",
 					},
 				},
 			],

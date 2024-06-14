@@ -183,5 +183,25 @@
 		"emailLink": "mailto:support.black.circle@gmail.com",
 		"weWillHelpYou": " We're here to help!",
 		"goToHome": "Go to Home"
+	},
+	"ProductPage": {
+		"home": "Home",
+		"productCategory": "Product Category",
+		"productName": "Product Name",
+		"chooseSize": "Choose Size",
+		"productStatus": "productStatus",
+		"oneTimeRental": "One-Time Rental",
+		"buyNow": "Buy Now",
+		"reserveAnItem": "Reserve an item for 7 or 14 days",
+		"preLovedItem": "Pre-loved item in excellent condition",
+		"addToCart": "Add To Cart",
+		"makeAnOffer": "Make An Offer",
+		"wishlist": "Wishlist",
+		"messenger": "Messenger",
+		"description": "Description",
+		"sizes": "SIZES",
+		"colors": "COLORS",
+		"height": "HEIGHT",
+		"errorMessage": "Error fetching product details"
 	}
 }
