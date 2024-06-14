@@ -9,4 +9,14 @@ const StyledImagesSliderContainer = styled(Box)`
 	width: 570px;
 `;
 
-export { StyledImagesSliderContainer };
+const StyledMainImage = styled("img")({
+	height: "100%",
+	width: "100%",
+});
+
+const StyledSliderImage = styled("img")({
+	height: "102px",
+	width: "100%",
+});
+
+export { StyledImagesSliderContainer, StyledMainImage, StyledSliderImage };

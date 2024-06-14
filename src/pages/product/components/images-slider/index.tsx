@@ -4,7 +4,7 @@ import React, { useCallback, useState } from "react";
 import { type ProductImage } from "~/libs/types/products.ts";
 
 import { ImagesSliderElement } from "./images-slider-element.tsx";
-import { StyledImagesSliderContainer } from "./styles.ts";
+import { StyledImagesSliderContainer, StyledMainImage } from "./styles.ts";
 
 const defaultImageIndex = 0;
 
@@ -32,10 +32,9 @@ const ImagesSlider: React.FC<ImagesSliderProperties> = ({ images }) => {
 			</Box>
 			<Box>
 				<Paper sx={{ height: "630px" }}>
-					<img
+					<StyledMainImage
 						alt={selectedImage.description}
 						src={selectedImage.url}
-						style={{ height: "100%", maxWidth: "100%" }}
 					/>
 				</Paper>
 			</Box>

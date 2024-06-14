@@ -18,16 +18,14 @@ const HeaderLinksGroup: React.FC = () => {
 				color="secondary"
 				sx={{ fontSize: "12px", height: "100%" }}
 			/>
-			<StyledHeaderLink href="#">
+			<StyledHeaderLink href={AppRoute.HOME}>
 				{t("ProductPage.productCategory")}
 			</StyledHeaderLink>
 			<ArrowForwardIosIcon
 				color="secondary"
 				sx={{ fontSize: "12px", height: "100%" }}
 			/>
-			<StyledHeaderLink href="#">
-				{t("ProductPage.productName")}
-			</StyledHeaderLink>
+			<StyledHeaderLink>{t("ProductPage.productName")}</StyledHeaderLink>
 		</StyledHeaderLinksGroup>
 	);
 };

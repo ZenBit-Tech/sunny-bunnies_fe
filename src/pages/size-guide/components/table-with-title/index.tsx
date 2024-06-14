@@ -40,7 +40,11 @@ const TableWithTitle: React.FC<TableWithTitleProperties> = ({
 			</Typography>
 			<TableContainer
 				component={Paper}
-				sx={{ border: "1px solid #333333", boxShadow: "none", width: "100%" }}
+				sx={{
+					border: `1px solid ${colors.black}`,
+					boxShadow: "none",
+					width: "100%",
+				}}
 			>
 				<Table>
 					<TableHead
