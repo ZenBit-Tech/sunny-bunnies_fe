@@ -13,17 +13,21 @@ import { userApiPath } from "./constants.ts";
 
 export const userApi = api.injectEndpoints({
 	endpoints: (build) => ({
-		update: build.mutation<
-			User,
-			Address | CreditCard | GeneralInformation | Role | Size
-		>({
+		update: build.mutation<User, Address | GeneralInformation | Role | Size>({
 			query: (body) => ({
 				body,
 				method: httpMethods.PATCH,
 				url: userApiPath.USER_UPDATE,
 			}),
 		}),
+		updateCard: build.mutation<User, CreditCard>({
+			query: (body) => ({
+				body,
+				method: httpMethods.PATCH,
+				url: userApiPath.USER_UPDATE_CARD,
+			}),
+		}),
 	}),
 });
 
-export const { useUpdateMutation } = userApi;
+export const { useUpdateCardMutation, useUpdateMutation } = userApi;
