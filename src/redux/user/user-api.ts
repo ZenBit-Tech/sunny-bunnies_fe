@@ -13,6 +13,12 @@ import { userApiPath } from "./constants.ts";
 
 export const userApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		getById: build.query<User, string | undefined>({
+			query: (id: string) => ({
+				method: httpMethods.GET,
+				url: `${userApiPath.USERS}/${id}`,
+			}),
+		}),
 		update: build.mutation<
 			User,
 			Address | CreditCard | GeneralInformation | Role | Size
@@ -26,4 +32,4 @@ export const userApi = api.injectEndpoints({
 	}),
 });
 
-export const { useUpdateMutation } = userApi;
+export const { useGetByIdQuery, useUpdateMutation } = userApi;

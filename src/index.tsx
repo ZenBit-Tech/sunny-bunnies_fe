@@ -13,7 +13,13 @@ import {
 import { RegisterRoute } from "./components/register-route/register-route.tsx";
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
-import { Auth, Home, NotFound, SizeGuide } from "./pages/index.ts";
+import {
+	Auth,
+	Home,
+	NotFound,
+	SizeGuide,
+	VendorProfile,
+} from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";
 import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
@@ -78,6 +84,10 @@ createRoot(document.getElementById("root")!).render(
 										{
 											element: <PublicRoute component={<SizeGuide />} />,
 											path: AppRoute.SIZE_GUIDE,
+										},
+										{
+											element: <PublicRoute component={<VendorProfile />} />,
+											path: AppRoute.VENDOR_PROFILE,
 										},
 									],
 									element: <App />,
