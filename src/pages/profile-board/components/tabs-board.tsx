@@ -42,7 +42,7 @@ const TabsBoard: React.FC<TabLabelProps> = ({
 					isBeforeActive ? theme.palette.primary.dark : theme.palette.darkGrey
 				}`}
 				borderRadius="50%"
-				color="black"
+				color={theme.palette.primary.dark}
 				display="flex"
 				height="3em"
 				justifyContent="center"
