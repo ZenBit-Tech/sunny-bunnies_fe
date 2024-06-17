@@ -7,8 +7,8 @@ import {
 	type UserSignInResponseDto,
 	type UserSignUpRequestDto,
 	type UserSignUpResponseDto,
-	UserVerifyEmailRequestDto,
-	UserVerifyOtpReuestDto,
+	type UserVerifyEmailRequestDto,
+	type UserVerifyOtpReuestDto,
 } from "~/libs/types/user.ts";
 
 import { api } from "../services.ts";
