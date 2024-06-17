@@ -1,6 +1,7 @@
-import { Box, Paper } from "@mui/material";
-import React, { useCallback, useState } from "react";
+import { Box, Paper, Typography } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
 
+import { colors } from "~/libs/constants/colors.ts";
 import { type ProductImage } from "~/libs/types/products.ts";
 
 import { ImagesSliderElement } from "./images-slider-element.tsx";
@@ -10,14 +11,22 @@ const defaultImageIndex = 0;
 
 type ImagesSliderProperties = {
 	images: ProductImage[];
+	vendorName: string;
 };
 
-const ImagesSlider: React.FC<ImagesSliderProperties> = ({ images }) => {
+const ImagesSlider: React.FC<ImagesSliderProperties> = ({
+	images,
+	vendorName,
+}) => {
 	const [selectedImage, setSelectedImage] = useState(images[defaultImageIndex]);
 
 	const handleClickImage = useCallback((image: ProductImage): void => {
 		setSelectedImage(image);
 	}, []);
+
+	useEffect(() => {
+		setSelectedImage(images[defaultImageIndex]);
+	}, [images]);
 
 	return (
 		<StyledImagesSliderContainer>
@@ -37,6 +46,14 @@ const ImagesSlider: React.FC<ImagesSliderProperties> = ({ images }) => {
 						src={selectedImage.url}
 					/>
 				</Paper>
+				<Typography
+					color={colors.gray}
+					component="p"
+					marginTop="15px"
+					variant="dmSans"
+				>
+					{vendorName}
+				</Typography>
 			</Box>
 		</StyledImagesSliderContainer>
 	);

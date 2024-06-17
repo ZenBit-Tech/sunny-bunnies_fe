@@ -77,6 +77,9 @@ const theme = createTheme({
 				{
 					props: { variant: "text" },
 					style: {
+						"& .MuiTouchRipple-root": {
+							display: "none",
+						},
 						"&:active": {
 							background: "transparent",
 							backgroundColor: "transparent",
