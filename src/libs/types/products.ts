@@ -1,4 +1,5 @@
 import { gender } from "../constants/index.ts";
+import { type User } from "./user.ts";
 
 type ProductSize = {
 	id: number;
@@ -47,6 +48,7 @@ type Product = {
 	status: string;
 	style: string;
 	updatedAt: Date;
+	user: User;
 	variants: ProductVariant[];
 };
 
