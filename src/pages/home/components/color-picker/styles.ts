@@ -22,7 +22,7 @@ const StyledColorBox = styled(Box)<StyledColorProps>(({ bgcolor }) => ({
 }));
 
 const StyledCheckIcon = styled(CheckIcon)<StyledColorProps>(({ bgcolor }) => ({
-	color: isColorLight(bgcolor) ? "#000" : "#fff",
+	color: isColorLight(bgcolor) ? colors.black : colors.white,
 	fontSize: 18,
 	fontWeight: "bold",
 	marginRight: "5px",
