@@ -16,15 +16,19 @@ declare module "@mui/material/styles" {
 
 declare module "@mui/material/styles" {
 	interface Palette {
+		darkGrey: string;
 		fontGray: string;
 		gray: string;
 		lightGreen: string;
+		transparent: string;
 		white: string;
 	}
 	interface PaletteOptions {
+		darkGrey: string;
 		fontGray: string;
 		gray: string;
 		lightGreen: string;
+		transparent: string;
 		white: string;
 	}
 }
@@ -99,6 +103,7 @@ const theme = createTheme({
 		},
 	},
 	palette: {
+		darkGrey: colors.darkGrey,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
 		lightGreen: colors.lightGreen,
@@ -109,6 +114,7 @@ const theme = createTheme({
 		secondary: {
 			main: colors.gray,
 		},
+		transparent: colors.transparent,
 		white: colors.white,
 	},
 	typography: {

@@ -18,7 +18,7 @@ import {
 	State,
 } from "country-state-city";
 import { t } from "i18next";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CustomFormGroup } from "~/components/index.ts";
@@ -26,7 +26,7 @@ import { AppRoute } from "~/libs/constants/app-route.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { type Address } from "~/libs/types/user-profile.type.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks.ts";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import { useUpdateMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
@@ -36,17 +36,18 @@ import { StyledFormContainer } from "./styles.ts";
 
 const AddressForm: React.FC = () => {
 	const dispatch = useAppDispatch();
+	const user = useAppSelector((state) => state.auth.user);
 	const [selectedCountry, setSelectedCountry] = useState<ICountry | null>(null);
 	const [selectedState, setSelectedState] = useState<IState | null>(null);
 	const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
 	const [serverError, setServerError] = useState("");
 	const { control, errors, handleSubmit, setValue } = useAppForm<Address>({
 		defaultValues: {
-			addressLineOne: "",
-			addressLineTwo: "",
-			city: "",
-			country: "",
-			state: "",
+			addressLineOne: user?.profile.addressLineOne ?? "",
+			addressLineTwo: user?.profile.addressLineTwo ?? "",
+			city: user?.profile.city ?? "",
+			country: user?.profile.country ?? "",
+			state: user?.profile.state ?? "",
 		},
 		validationSchema: addressValidation,
 	});
@@ -54,8 +55,35 @@ const AddressForm: React.FC = () => {
 	const navigate = useNavigate();
 
 	const filteredCountries = Country.getAllCountries().filter((country) =>
-		["CA", "UA", "US"].includes(country.isoCode),
+		["CA"].includes(country.isoCode),
 	);
+
+	useEffect(() => {
+		if (user?.profile) {
+			const { city, country, state } = user.profile;
+
+			const initialCountry = filteredCountries.find((c) => c.name === country);
+			setSelectedCountry(initialCountry || null);
+			setValue("country", country);
+
+			if (initialCountry) {
+				const initialState = State.getStatesOfCountry(
+					initialCountry.isoCode,
+				).find((s) => s.name === state);
+				setSelectedState(initialState || null);
+				setValue("state", state);
+
+				if (initialState) {
+					const initialCity = City.getCitiesOfState(
+						initialState.countryCode,
+						initialState.isoCode,
+					).find((c) => c.name === city);
+					setSelectedCity(initialCity || null);
+					setValue("city", city);
+				}
+			}
+		}
+	}, [user, filteredCountries, setValue]);
 
 	const handleCountryChange = useCallback(
 		(event: SelectChangeEvent<string>) => {

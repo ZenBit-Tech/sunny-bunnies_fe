@@ -33,15 +33,20 @@ const shoeSizes: string[] = [
 ];
 
 const jeansSizes: string[] = [
-	"FR 34",
-	"FR 36",
-	"FR 38",
-	"FR 40",
-	"FR 42",
-	"FR 44",
-	"FR 46",
-	"FR 48",
-	"FR 50",
+	"00",
+	"0",
+	"2",
+	"4",
+	"6",
+	"8",
+	"10",
+	"12",
+	"14",
+	"16",
+	"18",
+	"20",
+	"22",
+	"24",
 ];
 
 export { clothingSizes, jeansSizes, shoeSizes };

@@ -31,12 +31,12 @@ export const Header: React.FC = () => {
 	const isLoggedIn = Boolean(
 		useAppSelector((state: RootState) => state.auth.accessToken),
 	);
-	const NoHeaderRoutes = [
+	const noHeaderRoutes = [
 		AppRoute.ROOT,
 		AppRoute.SIGN_UP,
 		AppRoute.SIGN_IN,
 	] as string[];
-	const isDisplayHeader = !NoHeaderRoutes.includes(location.pathname);
+	const isDisplayHeader = !noHeaderRoutes.includes(location.pathname);
 
 	return (
 		<HeaderContainer style={{ display: isDisplayHeader ? "block" : "none" }}>

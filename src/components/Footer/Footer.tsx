@@ -35,12 +35,12 @@ export const Footer: React.FC = () => {
 		? socialMediaDataLogIn
 		: socialMediaDataLogOut;
 
-	const NoHeaderRoutes = [
+	const noHeaderRoutes = [
 		AppRoute.ROOT,
 		AppRoute.SIGN_UP,
 		AppRoute.SIGN_IN,
 	] as string[];
-	const isDisplayFooter = !NoHeaderRoutes.includes(location.pathname);
+	const isDisplayFooter = !noHeaderRoutes.includes(location.pathname);
 
 	return (
 		<Box

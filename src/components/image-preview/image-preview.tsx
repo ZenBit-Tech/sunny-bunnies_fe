@@ -2,6 +2,9 @@ import { Box } from "@mui/material";
 import React from "react";
 
 import avatar from "~/assets/images/user/avatar.png";
+import theme from "~/theme.ts";
+
+import styles from "./styles.module.css";
 
 const ImagePreview: React.FC<{ file: File | null }> = ({ file }) => {
 	return (
@@ -11,7 +14,7 @@ const ImagePreview: React.FC<{ file: File | null }> = ({ file }) => {
 			flexDirection="column"
 			gap={1}
 			sx={{
-				border: "1px solid #E3EEE2",
+				border: `1px solid ${theme.palette.lightGreen}`,
 				borderRadius: "60px",
 				height: "120px",
 				overflow: "hidden",
@@ -21,15 +24,11 @@ const ImagePreview: React.FC<{ file: File | null }> = ({ file }) => {
 			{file ? (
 				<img
 					alt="Uploaded"
+					className={styles["image"]}
 					src={URL.createObjectURL(file)}
-					style={{ height: "100%", objectFit: "cover", width: "100%" }}
 				/>
 			) : (
-				<img
-					alt="Placeholder"
-					src={avatar}
-					style={{ height: "100%", objectFit: "cover", width: "100%" }}
-				/>
+				<img alt="Placeholder" className={styles["image"]} src={avatar} />
 			)}
 		</Box>
 	);
