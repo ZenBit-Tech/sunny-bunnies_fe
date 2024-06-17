@@ -3,8 +3,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { matchPath, useLocation } from "react-router-dom";
 
-import Logo from "~/assets/images/logo/big.png";
 import { authImages } from "~/assets/images/auth/index.ts";
+import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { VerifyEmailForm } from "~/pages/auth/components/verify-email-form.tsx";

@@ -18,7 +18,7 @@ import {
 	State,
 } from "country-state-city";
 import { t } from "i18next";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CustomFormGroup } from "~/components/index.ts";
@@ -57,33 +57,6 @@ const AddressForm: React.FC = () => {
 	const filteredCountries = Country.getAllCountries().filter((country) =>
 		["CA"].includes(country.isoCode),
 	);
-
-	useEffect(() => {
-		if (user?.profile) {
-			const { city, country, state } = user.profile;
-
-			const initialCountry = filteredCountries.find((c) => c.name === country);
-			setSelectedCountry(initialCountry || null);
-			setValue("country", country);
-
-			if (initialCountry) {
-				const initialState = State.getStatesOfCountry(
-					initialCountry.isoCode,
-				).find((s) => s.name === state);
-				setSelectedState(initialState || null);
-				setValue("state", state);
-
-				if (initialState) {
-					const initialCity = City.getCitiesOfState(
-						initialState.countryCode,
-						initialState.isoCode,
-					).find((c) => c.name === city);
-					setSelectedCity(initialCity || null);
-					setValue("city", city);
-				}
-			}
-		}
-	}, [user, filteredCountries, setValue]);
 
 	const handleCountryChange = useCallback(
 		(event: SelectChangeEvent<string>) => {
