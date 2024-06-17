@@ -1,5 +1,6 @@
 import { FormControlLabel, styled } from "@mui/material";
-import { colors } from "~/libs/constants";
+
+import { colors } from "~/libs/constants/index.ts";
 
 type StyledFormControlLabelProps = {
 	checked?: boolean;
@@ -8,14 +9,6 @@ type StyledFormControlLabelProps = {
 const StyledFormControlLabel = styled(
 	FormControlLabel,
 )<StyledFormControlLabelProps>(({ checked }) => ({
-	borderRadius: "4px",
-	border: `1px solid ${colors.lightGray}`,
-	padding: "10px 0",
-	backgroundColor: colors.white,
-	width: "55px",
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
 	"& .MuiRadio-root": {
 		display: "none",
 	},
@@ -25,6 +18,14 @@ const StyledFormControlLabel = styled(
 	"&:hover": {
 		borderColor: colors.gray,
 	},
+	alignItems: "center",
+	backgroundColor: colors.white,
+	border: `1px solid ${colors.lightGray}`,
+	borderRadius: "4px",
+	display: "flex",
+	justifyContent: "center",
+	padding: "10px 0",
+	width: "55px",
 	...(checked && {
 		borderColor: colors.black,
 	}),

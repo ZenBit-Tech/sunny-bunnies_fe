@@ -9,18 +9,18 @@ import {
 } from "./constants.ts";
 
 type GetProductsRequestQuery = {
-	category?: string;
-	dateRange?: number;
-	limit?: number;
-	offset?: number;
-	gender?: string;
-	minPrice?: number;
-	maxPrice?: number;
-	size?: string;
-	color?: string;
-	style?: string;
 	brand?: string;
+	category?: string;
+	color?: string;
+	dateRange?: number;
+	gender?: string;
+	limit?: number;
 	material?: string;
+	maxPrice?: number;
+	minPrice?: number;
+	offset?: number;
+	size?: string;
+	style?: string;
 };
 
 export const productsApi = api.injectEndpoints({
@@ -67,16 +67,16 @@ export const productsApi = api.injectEndpoints({
 			},
 		}),
 		getProductsByName: builder.query<Product[], { name: string }>({
+			forceRefetch({ currentArg, previousArg }) {
+				return currentArg?.name !== previousArg?.name;
+			},
 			query: ({ name }) => ({
 				method: httpMethods.GET,
 				params: { name },
 				url: productsApiPath.ROOT,
 			}),
-			forceRefetch({ currentArg, previousArg }) {
-				return currentArg?.name !== previousArg?.name;
-			},
 		}),
 	}),
 });
 
-export const { useGetProductsQuery, useGetProductsByNameQuery } = productsApi;
+export const { useGetProductsByNameQuery, useGetProductsQuery } = productsApi;

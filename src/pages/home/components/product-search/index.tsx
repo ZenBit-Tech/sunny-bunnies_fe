@@ -1,13 +1,55 @@
-import React from "react";
-import { Autocomplete, TextField, Box } from "@mui/material";
+import {
+	Autocomplete,
+	AutocompleteRenderInputParams,
+	Box,
+	TextField,
+} from "@mui/material";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+
 import { Product } from "~/libs/types/products.ts";
-import { useProductSearch } from "../../hooks";
+
+import { useProductSearch } from "../../hooks/index.ts";
 
 const ProductSearch: React.FC = () => {
 	const { t } = useTranslation();
-	const { options, handleInputChange, handleProductSelect } =
+	const { handleInputChange, handleProductSelect, options } =
 		useProductSearch("");
+
+	const getOptionLabel = useCallback(
+		(option: Product | string): string =>
+			typeof option === "string" ? option : option.name,
+		[],
+	);
+
+	const renderOption = useCallback(
+		(
+			props: React.HTMLAttributes<HTMLLIElement>,
+			option: Product | string,
+		): React.ReactNode => (
+			<li {...props} key={typeof option === "string" ? option : option.id}>
+				{typeof option === "string" ? option : option.name}
+			</li>
+		),
+		[],
+	);
+
+	const renderInput = useCallback(
+		(params: AutocompleteRenderInputParams): React.ReactNode => (
+			<TextField
+				{...params}
+				placeholder={`${t("HomePage.searchProducts")}...`}
+				sx={{ width: "400px" }}
+				variant="outlined"
+			/>
+		),
+		[t],
+	);
+
+	const filterOptions = useCallback(
+		(filteredOptions: (Product | string)[]) => filteredOptions,
+		[],
+	);
 
 	return (
 		<Box
@@ -18,28 +60,15 @@ const ProductSearch: React.FC = () => {
 			}}
 		>
 			<Autocomplete
+				filterOptions={filterOptions}
 				freeSolo
-				options={options}
-				getOptionLabel={(option: string | Product) =>
-					typeof option === "string" ? option : option.name
-				}
-				filterOptions={(filteredOptions) => filteredOptions}
-				onInputChange={handleInputChange}
-				onChange={handleProductSelect}
+				getOptionLabel={getOptionLabel}
 				noOptionsText={t("HomePage.noProducts")}
-				renderInput={(params) => (
-					<TextField
-						{...params}
-						variant="outlined"
-						placeholder={`${t("HomePage.searchProducts")}...`}
-						sx={{ width: "400px" }}
-					/>
-				)}
-				renderOption={(props, option) => (
-					<li {...props} key={typeof option === "string" ? option : option.id}>
-						{option.name}
-					</li>
-				)}
+				onChange={handleProductSelect}
+				onInputChange={handleInputChange}
+				options={options}
+				renderInput={renderInput}
+				renderOption={renderOption}
 			/>
 		</Box>
 	);

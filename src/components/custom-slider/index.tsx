@@ -2,68 +2,71 @@ import { Box, Slider, TextField, Typography } from "@mui/material";
 import React from "react";
 
 type CustomSliderProps = {
-	min: number;
+	inputStartAdornment?: string;
+	label?: string;
 	max: number;
+	min: number;
+	onChange: (_: Event, newValue: number | number[]) => void;
+	onMaxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onMinChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	step?: number;
 	value: [number, number];
-	onChange: (_: Event, newValue: number | number[]) => void;
-	onMinChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onMaxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	label?: string;
-	inputStartAdornment?: string;
 };
 
+const VALUE_INDEX_MIN = 0;
+const VALUE_INDEX_MAX = 1;
+
 const CustomSlider: React.FC<CustomSliderProps> = ({
-	min,
-	max,
-	step = 1,
-	value,
-	onChange,
-	onMinChange,
-	onMaxChange,
-	label,
 	inputStartAdornment,
+	label,
+	max,
+	min,
+	onChange,
+	onMaxChange,
+	onMinChange,
+	step = VALUE_INDEX_MAX,
+	value,
 }) => {
 	return (
 		<Box>
 			{label && (
-				<Typography variant="dmSans" sx={{ textTransform: "capitalize" }}>
+				<Typography sx={{ textTransform: "capitalize" }} variant="dmSans">
 					{label}
 				</Typography>
 			)}
 			<Slider
-				value={value}
-				onChange={onChange}
-				valueLabelDisplay="auto"
-				min={min}
 				max={max}
+				min={min}
+				onChange={onChange}
 				step={step}
+				value={value}
+				valueLabelDisplay="auto"
 			/>
 			<Box
 				sx={{
+					alignItems: "center",
 					display: "flex",
 					justifyContent: "space-between",
-					alignItems: "center",
 				}}
 			>
 				<TextField
-					value={value[0]}
-					onChange={onMinChange}
 					InputProps={{
 						startAdornment: inputStartAdornment && (
 							<Typography sx={{ mr: 1 }}>{inputStartAdornment}</Typography>
 						),
 					}}
+					onChange={onMinChange}
+					value={value[VALUE_INDEX_MIN]}
 				/>
 				<Typography sx={{ marginX: 2 }}>-</Typography>
 				<TextField
-					value={value[1]}
-					onChange={onMaxChange}
 					InputProps={{
 						startAdornment: inputStartAdornment && (
 							<Typography sx={{ mr: 1 }}>{inputStartAdornment}</Typography>
 						),
 					}}
+					onChange={onMaxChange}
+					value={value[VALUE_INDEX_MAX]}
 				/>
 			</Box>
 		</Box>

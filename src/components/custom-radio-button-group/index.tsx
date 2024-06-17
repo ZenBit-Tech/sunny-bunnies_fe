@@ -1,24 +1,25 @@
-import React from "react";
 import {
 	FormControl,
-	Typography,
-	RadioGroup,
-	useRadioGroup,
-	Radio,
 	FormControlLabelProps,
+	Radio,
+	RadioGroup,
+	Typography,
+	useRadioGroup,
 } from "@mui/material";
-import { StyledFormControlLabel } from "./styles";
+import React from "react";
+
+import { StyledFormControlLabel } from "./styles.ts";
 
 type RadioButtonOption = {
-	value: string;
 	label: string;
+	value: string;
 };
 
 type CustomRadioButtonGroupProps = {
 	label: string;
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	options: RadioButtonOption[];
 	value: string;
-	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 type FormControlRadioLabelProps = {
@@ -38,29 +39,29 @@ const FormControlRadioLabel: React.FC<FormControlRadioLabelProps> = (props) => {
 
 const CustomRadioButtonGroup: React.FC<CustomRadioButtonGroupProps> = ({
 	label,
+	onChange,
 	options,
 	value,
-	onChange,
 }) => {
 	return (
 		<FormControl component="fieldset">
-			<Typography variant="dmSans" sx={{ textTransform: "capitalize" }}>
+			<Typography sx={{ textTransform: "capitalize" }} variant="dmSans">
 				{label}
 			</Typography>
 			<RadioGroup
 				aria-label={label}
 				name={label}
-				value={value}
 				onChange={onChange}
 				row
 				sx={{ gap: "10px", marginLeft: "10px", paddingTop: "10px" }}
+				value={value}
 			>
 				{options.map((option) => (
 					<FormControlRadioLabel
-						key={option.value}
-						value={option.value}
 						control={<Radio />}
+						key={option.value}
 						label={option.label}
+						value={option.value}
 					/>
 				))}
 			</RadioGroup>

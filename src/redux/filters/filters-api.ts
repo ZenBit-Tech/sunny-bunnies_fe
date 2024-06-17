@@ -1,6 +1,7 @@
-import { httpMethods } from "~/libs/constants";
-import { api } from "../services";
-import { filtersApiPath } from "./constants";
+import { httpMethods } from "~/libs/constants/index.ts";
+
+import { api } from "../services.ts";
+import { filtersApiPath } from "./constants.ts";
 
 export const filtersApi = api.injectEndpoints({
 	endpoints: (builder) => ({

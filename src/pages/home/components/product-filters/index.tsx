@@ -1,47 +1,52 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useGetFiltersQuery } from "~/redux/filters/filters-api";
-import { setFilters } from "~/redux/filters/filters.slice";
-import { useAppDispatch, useAppSelector } from "~/redux/hooks";
-import { Filters } from "~/libs/types/filters.ts";
-import { ColorPicker } from "../index";
 import { type SelectChangeEvent } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import {
+	CustomRadioButtonGroup,
+	CustomRadioButtons,
 	CustomSelect,
 	CustomSlider,
-	CustomRadioButtons,
-	CustomRadioButtonGroup,
-} from "~/components";
-import { StyledFiltersContainer } from "./styles";
+} from "~/components/index.ts";
 import { colors as fontColors, fontSizes } from "~/libs/constants/index.ts";
+import { Filters } from "~/libs/types/filters.ts";
+import { setFilters } from "~/redux/filters/filters.slice.ts";
+import { useGetFiltersQuery } from "~/redux/filters/filters-api.ts";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 
-const maxProductPrice = 10000;
+import { ColorPicker } from "../index.ts";
+import { StyledFiltersContainer } from "./styles.ts";
+
+const MIN_PRODUCT_PRICE = 0;
+const MAX_PRODUCT_PRICE = 10000;
+const MIN_INPUT_VALUE = 0;
+const MAX_INPUT_VALUE = 1;
 
 type ProductFiltersProps = {
+	initialFilters: Filters;
 	onApply: (filters: Filters) => void;
 	onClear: () => void;
-	initialFilters: Filters;
 };
 
 const ProductFilters: React.FC<ProductFiltersProps> = ({
+	initialFilters,
 	onApply,
 	onClear,
-	initialFilters,
 }) => {
 	const dispatch = useAppDispatch();
 	const filterValues = useAppSelector((state) => state.filters);
 
 	const { t } = useTranslation();
 
-	const { brands, colors, sizes, materials, styles } = filterValues;
+	const { brands, colors, materials, sizes, styles } = filterValues;
 	const { data, error, isLoading } = useGetFiltersQuery({});
 
 	const [minPrice, setMinPrice] = useState<number>(
-		initialFilters.minPrice || 0,
+		initialFilters.minPrice || MIN_PRODUCT_PRICE,
 	);
 	const [maxPrice, setMaxPrice] = useState<number>(
-		initialFilters.maxPrice || 10000,
+		initialFilters.maxPrice || MAX_PRODUCT_PRICE,
 	);
 	const [selectedBrand, setSelectedBrand] = useState<string>(
 		initialFilters.brand ? String(initialFilters.brand) : "",
@@ -68,30 +73,74 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 		}
 	}, [data, dispatch]);
 
-	const handlePriceChange = (_: Event, newValue: number | number[]): void => {
-		if (Array.isArray(newValue)) {
-			setMinPrice(newValue[0]);
-			setMaxPrice(newValue[1]);
-		}
-	};
+	const handlePriceChange = useCallback(
+		(_: Event, newValue: number | number[]): void => {
+			if (Array.isArray(newValue)) {
+				setMinPrice(newValue[MIN_INPUT_VALUE]);
+				setMaxPrice(newValue[MAX_INPUT_VALUE]);
+			}
+		},
+		[],
+	);
 
-	const handleMinPriceChange = (
-		event: React.ChangeEvent<HTMLInputElement>,
-	): void => {
-		setMinPrice(+event.target.value);
-	};
+	const handleMinPriceChange = useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>): void => {
+			setMinPrice(+event.target.value);
+		},
+		[],
+	);
 
-	const handleMaxPriceChange = (
-		event: React.ChangeEvent<HTMLInputElement>,
-	): void => {
-		setMaxPrice(+event.target.value);
-	};
+	const handleMaxPriceChange = useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>): void => {
+			setMaxPrice(+event.target.value);
+		},
+		[],
+	);
 
-	const handleApply = (): void => {
-		const filters: Record<string, string | number> = {};
+	const handleGenderChange = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>): void => {
+			setSelectedGender(e.target.value);
+		},
+		[],
+	);
+
+	const handleBrandChange = useCallback(
+		(e: SelectChangeEvent<string>): void => {
+			setSelectedBrand(e.target.value);
+		},
+		[],
+	);
+
+	const handleColorChange = useCallback((color: string): void => {
+		setSelectedColor(color);
+	}, []);
+
+	const handleSizeChange = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>): void => {
+			setSelectedSize(e.target.value);
+		},
+		[],
+	);
+
+	const handleStyleChange = useCallback(
+		(e: SelectChangeEvent<string>): void => {
+			setSelectedStyle(e.target.value);
+		},
+		[],
+	);
+
+	const handleMaterialChange = useCallback(
+		(e: SelectChangeEvent<string>): void => {
+			setSelectedMaterial(e.target.value);
+		},
+		[],
+	);
+
+	const handleApply = useCallback((): void => {
+		const filters: Record<string, number | string> = {};
 
 		if (minPrice !== undefined) filters.minPrice = minPrice;
-		if (maxPrice !== maxProductPrice) filters.maxPrice = maxPrice;
+		if (maxPrice !== MAX_PRODUCT_PRICE) filters.maxPrice = maxPrice;
 		if (selectedBrand) filters.brand = selectedBrand;
 		if (selectedColor) filters.color = selectedColor;
 		if (selectedSize) filters.size = selectedSize;
@@ -100,11 +149,21 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 		if (selectedGender) filters.gender = selectedGender;
 
 		onApply(filters);
-	};
+	}, [
+		minPrice,
+		maxPrice,
+		selectedBrand,
+		selectedColor,
+		selectedSize,
+		selectedMaterial,
+		selectedStyle,
+		selectedGender,
+		onApply,
+	]);
 
-	const handleClear = (): void => {
-		setMinPrice(0);
-		setMaxPrice(10000);
+	const handleClear = useCallback((): void => {
+		setMinPrice(MIN_PRODUCT_PRICE);
+		setMaxPrice(MAX_PRODUCT_PRICE);
 		setSelectedBrand("");
 		setSelectedColor("");
 		setSelectedSize("");
@@ -112,7 +171,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 		setSelectedStyle("");
 		setSelectedGender("");
 		onClear();
-	};
+	}, [onClear]);
 
 	if (isLoading) return <Box>Loading filters...</Box>;
 	if (error) return <Box>Error loading filters</Box>;
@@ -130,69 +189,63 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 
 			<CustomRadioButtons
 				label={t("ProductFilters.gender")}
+				onChange={handleGenderChange}
 				options={[
-					{ value: "male", label: t("ProductFilters.male") },
-					{ value: "female", label: t("ProductFilters.female") },
+					{ label: t("ProductFilters.male"), value: "male" },
+					{ label: t("ProductFilters.female"), value: "female" },
 				]}
 				value={selectedGender}
-				onChange={(e) => setSelectedGender(e.target.value)}
 			/>
 
 			<CustomSelect
-				label={t("ProductFilters.brand")}
-				value={selectedBrand}
-				onChange={(e: SelectChangeEvent<string>) =>
-					setSelectedBrand(e.target.value)
-				}
 				items={brands}
+				label={t("ProductFilters.brand")}
+				onChange={handleBrandChange}
+				value={selectedBrand}
 			/>
 
 			<ColorPicker
 				colors={colors}
+				onChange={handleColorChange}
 				selectedColor={selectedColor}
-				onChange={setSelectedColor}
 				title={t("ProductFilters.color")}
 			/>
 
 			<CustomRadioButtonGroup
 				label={t("ProductFilters.size")}
+				onChange={handleSizeChange}
 				options={
 					sizes?.map((size) => ({
-						value: size.name,
 						label: size.name,
+						value: size.name,
 					})) || []
 				}
 				value={selectedSize}
-				onChange={(e) => setSelectedSize(e.target.value)}
 			/>
 
 			<CustomSelect
-				label={t("ProductFilters.style")}
-				value={selectedStyle}
-				onChange={(e: SelectChangeEvent<string>) =>
-					setSelectedStyle(e.target.value)
-				}
 				items={styles}
+				label={t("ProductFilters.style")}
+				onChange={handleStyleChange}
+				value={selectedStyle}
 			/>
 
 			<CustomSelect
-				label={t("ProductFilters.material")}
-				value={selectedMaterial}
-				onChange={(e: SelectChangeEvent<string>) =>
-					setSelectedMaterial(e.target.value)
-				}
 				items={materials}
+				label={t("ProductFilters.material")}
+				onChange={handleMaterialChange}
+				value={selectedMaterial}
 			/>
 
 			<CustomSlider
-				min={0}
-				max={10000}
-				value={[minPrice, maxPrice]}
-				onChange={handlePriceChange}
-				onMinChange={handleMinPriceChange}
-				onMaxChange={handleMaxPriceChange}
-				label={t("ProductFilters.price")}
 				inputStartAdornment="$"
+				label={t("ProductFilters.price")}
+				max={MAX_PRODUCT_PRICE}
+				min={MIN_PRODUCT_PRICE}
+				onChange={handlePriceChange}
+				onMaxChange={handleMaxPriceChange}
+				onMinChange={handleMinPriceChange}
+				value={[minPrice, maxPrice]}
 			/>
 			<Box
 				sx={{
@@ -201,10 +254,10 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 					marginTop: "20px",
 				}}
 			>
-				<Button variant="contained" onClick={handleApply}>
+				<Button onClick={handleApply} variant="contained">
 					{t("ProductFilters.applyFilters")}
 				</Button>
-				<Button variant="outlined" onClick={handleClear}>
+				<Button onClick={handleClear} variant="outlined">
 					{t("ProductFilters.clearFilters")}
 				</Button>
 			</Box>

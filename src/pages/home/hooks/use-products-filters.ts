@@ -16,12 +16,12 @@ type UseProductFiltersResult = {
 	handleChooseCategory: (category: string) => void;
 	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
 	handleLoadMore: () => void;
+	hasAdditionalFilters: boolean;
 	hasMore: boolean;
 	isError: boolean;
 	isFetching: boolean;
 	isLoading: boolean;
 	offset: number;
-	hasAdditionalFilters: boolean;
 };
 
 const useProductFilters = (): UseProductFiltersResult => {
@@ -67,13 +67,13 @@ const useProductFilters = (): UseProductFiltersResult => {
 	);
 
 	return {
-		hasAdditionalFilters,
 		additionalFilters,
 		data,
 		filterCategory,
 		handleChooseCategory,
 		handleFilterChange,
 		handleLoadMore,
+		hasAdditionalFilters,
 		hasMore,
 		isError,
 		isFetching,

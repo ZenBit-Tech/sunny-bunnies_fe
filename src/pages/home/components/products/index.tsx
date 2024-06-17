@@ -1,17 +1,17 @@
-import { Box, Typography, Drawer } from "@mui/material";
+import { Box, Drawer, Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { FilterButton, BaseButton } from "~/components/index.ts";
-import { Product } from "~/libs/types/products.ts";
+import { BaseButton, FilterButton } from "~/components/index.ts";
 import { Filters } from "~/libs/types/filters.ts";
+import { Product } from "~/libs/types/products.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
 import {
+	FilterTags,
 	ProductCard,
 	ProductFilters,
-	FilterTags,
 	ProductSearch,
 } from "../index.ts";
 import { StyledProductsContainer } from "./styles.ts";
@@ -32,17 +32,17 @@ const allFilters = [
 ];
 
 type ProductsProperties = {
-	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
-	products?: Product[];
 	additionalFilters: Record<string, number | undefined>;
+	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
 	hasAdditionalFilters: boolean;
+	products?: Product[];
 };
 
 const Products: React.FC<ProductsProperties> = ({
-	handleFilterChange,
-	products,
 	additionalFilters,
+	handleFilterChange,
 	hasAdditionalFilters,
+	products,
 }) => {
 	const user = useAppSelector((state: RootState) => state.auth.user);
 	const { t } = useTranslation();
@@ -72,12 +72,12 @@ const Products: React.FC<ProductsProperties> = ({
 
 	const handleApplyFilters = useCallback(
 		(filters: Filters): void => {
-			const { minPrice, maxPrice, ...otherFilters } = filters;
+			const { maxPrice, minPrice, ...otherFilters } = filters;
 
 			const updatedFilters = {
 				...otherFilters,
-				minPrice: minPrice ? +minPrice : undefined,
 				maxPrice: maxPrice ? +maxPrice : undefined,
+				minPrice: minPrice ? +minPrice : undefined,
 			};
 
 			handleFilterChange(updatedFilters);
@@ -100,18 +100,18 @@ const Products: React.FC<ProductsProperties> = ({
 		[additionalFilters, handleFilterChange],
 	);
 
-	const toggleDrawer = (): void => {
-		setDrawerOpen(!drawerOpen);
-	};
+	const toggleDrawer = useCallback((): void => {
+		setDrawerOpen((prev) => !prev);
+	}, []);
 
 	return (
 		<Box sx={{ padding: "52px", width: "100%" }}>
 			<Box
 				sx={{
-					display: "flex",
 					alignItems: "center",
-					gap: "15px",
+					display: "flex",
 					flexWrap: "wrap",
+					gap: "15px",
 				}}
 			>
 				<Box sx={{ display: "flex", gap: "15px" }}>
@@ -126,19 +126,19 @@ const Products: React.FC<ProductsProperties> = ({
 				</Box>
 
 				<ProductSearch />
-				<BaseButton variant="contained" onClick={toggleDrawer}>
+				<BaseButton onClick={toggleDrawer} variant="contained">
 					{t("ProductFilters.filters")}
 				</BaseButton>
 			</Box>
 			<Drawer
 				anchor="right"
-				open={drawerOpen}
 				onClose={toggleDrawer}
+				open={drawerOpen}
 				sx={{ "& .MuiDrawer-paper": { width: "400px" } }}
 			>
 				<ProductFilters
-					onApply={handleApplyFilters}
 					initialFilters={additionalFilters}
+					onApply={handleApplyFilters}
 					onClear={handleClearFilters}
 				/>
 			</Drawer>

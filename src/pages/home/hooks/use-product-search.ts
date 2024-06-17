@@ -1,11 +1,27 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { Product } from "~/libs/types/products.ts";
 import { useGetProductsByNameQuery } from "~/redux/products/products-api.ts";
 
+type UseProductSearchReturn = {
+	handleInputChange: (
+		event: React.SyntheticEvent<Element, Event>,
+		value: string,
+	) => void;
+	handleProductSelect: (
+		event: React.SyntheticEvent<Element, Event>,
+		newValue: Product | null | string,
+	) => void;
+	options: Product[];
+	searchTerm: string;
+};
+
 const MIN_SEARCH_LENGTH = 2;
 
-const useProductSearch = (initialSearchTerm: string) => {
+const useProductSearch = (
+	initialSearchTerm: string,
+): UseProductSearchReturn => {
 	const navigate = useNavigate();
 	const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
 	const [options, setOptions] = useState<Product[]>([]);
@@ -29,7 +45,7 @@ const useProductSearch = (initialSearchTerm: string) => {
 	const handleInputChange = (
 		_: React.SyntheticEvent<Element, Event>,
 		value: string,
-	) => {
+	): void => {
 		setSearchTerm(value);
 		if (value === "") {
 			setOptions([]);
@@ -38,19 +54,18 @@ const useProductSearch = (initialSearchTerm: string) => {
 
 	const handleProductSelect = (
 		_: React.SyntheticEvent<Element, Event>,
-		newValue: Product | string | null,
+		newValue: Product | null | string,
 	): void => {
 		if (newValue && typeof newValue !== "string") {
-			console.log(newValue.id);
 			navigate(`/product/${newValue.id}`);
 		}
 	};
 
 	return {
-		searchTerm,
-		options,
 		handleInputChange,
 		handleProductSelect,
+		options,
+		searchTerm,
 	};
 };
 

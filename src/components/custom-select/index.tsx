@@ -1,36 +1,36 @@
 import {
-	Select,
-	MenuItem,
 	FormControl,
 	InputLabel,
+	MenuItem,
+	Select,
 	SelectChangeEvent,
 } from "@mui/material";
 import React from "react";
-import { FilterItem } from "~/libs/types/filters";
+
+import { FilterItem } from "~/libs/types/filters.ts";
 
 type CustomSelectProps = {
-	label: string;
-	value: string;
-	onChange: (event: SelectChangeEvent<string>) => void;
 	items: FilterItem[] | null;
+	label: string;
+	onChange: (event: SelectChangeEvent<string>) => void;
+	value: string;
 };
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
-	label,
-	value,
-	onChange,
 	items,
+	label,
+	onChange,
+	value,
 }) => {
-	if (null) return null;
 	return (
-		<FormControl fullWidth variant="outlined" sx={{ marginBottom: 2 }}>
+		<FormControl fullWidth sx={{ marginBottom: 2 }} variant="outlined">
 			<InputLabel sx={{ textTransform: "capitalize" }}>{label}</InputLabel>
-			<Select value={value} onChange={onChange} label={label}>
+			<Select label={label} onChange={onChange} value={value}>
 				{items?.map((item) => (
 					<MenuItem
 						key={item.id}
-						value={item.name}
 						sx={{ textTransform: "capitalize" }}
+						value={item.name}
 					>
 						{item.name}
 					</MenuItem>

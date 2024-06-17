@@ -1,1 +1,1 @@
-export { isColorLight } from "./is-color-light";
+export { isColorLight } from "./is-color-light.ts";

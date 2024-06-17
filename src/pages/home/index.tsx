@@ -14,13 +14,13 @@ const Home: React.FC = () => {
 	const { t } = useTranslation();
 
 	const {
+		additionalFilters,
 		data,
 		handleChooseCategory,
 		handleFilterChange,
 		handleLoadMore,
-		additionalFilters,
-		hasMore,
 		hasAdditionalFilters,
+		hasMore,
 		isError,
 	} = useProductFilters();
 
@@ -53,8 +53,8 @@ const Home: React.FC = () => {
 			>
 				{data && (
 					<Products
-						handleFilterChange={handleFilterChange}
 						additionalFilters={additionalFilters}
+						handleFilterChange={handleFilterChange}
 						hasAdditionalFilters={hasAdditionalFilters}
 						products={data}
 					/>

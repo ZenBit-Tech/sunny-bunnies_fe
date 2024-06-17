@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { type FilterItem } from "~/libs/types/filters";
+
+import { type FilterItem } from "~/libs/types/filters.ts";
 
 type FiltersState = {
 	brands: FilterItem[] | null;

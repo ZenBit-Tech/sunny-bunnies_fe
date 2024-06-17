@@ -1,23 +1,24 @@
-import { Box, styled } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import { colors } from "~/libs/constants";
-import { isColorLight } from "~/helpers";
+import { Box, styled } from "@mui/material";
+
+import { isColorLight } from "~/helpers/index.ts";
+import { colors } from "~/libs/constants/index.ts";
 
 type StyledColorProps = {
 	bgcolor: string;
 };
 
 const StyledColorBox = styled(Box)<StyledColorProps>(({ bgcolor }) => ({
+	alignItems: "center",
+	backgroundColor: bgcolor,
+	border: `1px solid ${colors.disabledButtonBg}`,
+	borderRadius: "50%",
+	display: "flex",
+	gap: "5px",
+	height: 30,
+	justifyContent: "center",
 	position: "relative",
 	width: 30,
-	height: 30,
-	borderRadius: "50%",
-	border: `1px solid ${colors.disabledButtonBg}`,
-	backgroundColor: bgcolor,
-	display: "flex",
-	justifyContent: "center",
-	alignItems: "center",
-	gap: "5px",
 }));
 
 const StyledCheckIcon = styled(CheckIcon)<StyledColorProps>(({ bgcolor }) => ({
@@ -27,4 +28,4 @@ const StyledCheckIcon = styled(CheckIcon)<StyledColorProps>(({ bgcolor }) => ({
 	marginRight: "5px",
 }));
 
-export { StyledColorBox, StyledCheckIcon };
+export { StyledCheckIcon, StyledColorBox };

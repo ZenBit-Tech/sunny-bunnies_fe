@@ -1,53 +1,53 @@
-import React from "react";
 import {
 	FormControl,
-	Typography,
-	RadioGroup,
 	FormControlLabel,
 	Radio,
+	RadioGroup,
+	Typography,
 } from "@mui/material";
+import React from "react";
 
 type RadioButtonOption = {
-	value: string;
 	label: string;
+	value: string;
 };
 
 type CustomRadioButtonsProps = {
 	label: string;
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	options: RadioButtonOption[];
 	value: string;
-	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const CustomRadioButtons: React.FC<CustomRadioButtonsProps> = ({
 	label,
+	onChange,
 	options,
 	value,
-	onChange,
 }) => {
 	return (
 		<FormControl component="fieldset">
-			<Typography variant="dmSans" sx={{ textTransform: "capitalize" }}>
+			<Typography sx={{ textTransform: "capitalize" }} variant="dmSans">
 				{label}
 			</Typography>
 			<RadioGroup
 				aria-label={label}
 				name={label}
-				value={value}
 				onChange={onChange}
 				row
+				value={value}
 			>
 				{options.map((option) => (
 					<FormControlLabel
-						key={option.value}
-						value={option.value}
 						control={<Radio />}
+						key={option.value}
 						label={option.label}
 						sx={{
-							textTransform: "capitalize",
 							alignItems: "center",
 							marginRight: 3,
+							textTransform: "capitalize",
 						}}
+						value={option.value}
 					/>
 				))}
 			</RadioGroup>

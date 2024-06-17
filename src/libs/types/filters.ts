@@ -4,9 +4,9 @@ type FilterItem = {
 };
 
 type Filters = {
-	minPrice?: number;
+	[key: string]: number | string | undefined;
 	maxPrice?: number;
-	[key: string]: string | number | undefined;
+	minPrice?: number;
 };
 
 export type { FilterItem, Filters };
