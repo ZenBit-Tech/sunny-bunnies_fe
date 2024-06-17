@@ -205,6 +205,9 @@
 		"errorMessage": "Error fetching product details",
 		"errorMessageRecommended": "Error loading recommended products",
 		"youMightAlsoLike": "You Might Also Like",
-		"toProductList": "To Product List"
+		"toProductList": "To Product List",
+		"payAttention": "Pay Attention",
+		"vendorMessage": "You are in preview mode. On this page you can see how the buyer sees your product page",
+		"ok": "OK"
 	}
 }

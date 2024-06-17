@@ -9,3 +9,4 @@ export { RadioLabel } from "./radio-label/index.tsx";
 export { RecommendedProducts } from "./recommended-products/index.tsx";
 export { SizesDropdown } from "./sizes-dropdown/index.tsx";
 export { VendorPreviewHeader } from "./vendor-preview-header/index.tsx";
+export { VendorPreviewModeModal } from "./vendor-preview-mode-modal/index.tsx";

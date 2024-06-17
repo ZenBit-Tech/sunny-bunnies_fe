@@ -18,6 +18,7 @@ import {
 	RecommendedProducts,
 	SizesDropdown,
 	VendorPreviewHeader,
+	VendorPreviewModeModal,
 } from "./components/index.ts";
 import {
 	StyledProductDetailsContainer,
@@ -35,6 +36,8 @@ const ProductPage: React.FC = () => {
 	const user = useAppSelector((state: RootState) => state.auth.user);
 
 	const [isPreviewMode, setIsPreviewMode] = useState(true);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
 	const [selectedSizeId, setSelectedSizeId] = useState<null | number>(null);
 	const [selectedStatus, setSelectedStatus] = useState<null | string>(null);
 
@@ -47,6 +50,16 @@ const ProductPage: React.FC = () => {
 	const handleSelectSize = useCallback((sizeId: number): void => {
 		setSelectedSizeId(sizeId);
 	}, []);
+
+	const handleVendorClick = useCallback((): void => {
+		if (isPreviewMode) {
+			setIsModalOpen(true);
+		}
+	}, [isPreviewMode]);
+
+	const handleModalClose = useCallback((): void => {
+		setIsModalOpen(false);
+	}, [setIsModalOpen]);
 
 	const handleSelectStatus = useCallback((status: string): void => {
 		setSelectedStatus(status);
@@ -62,7 +75,11 @@ const ProductPage: React.FC = () => {
 
 	if (isError || !product) {
 		return (
-			<Typography variant="body1">{t("ProductPage.errorMessage")}</Typography>
+			<Box display="flex" justifyContent="center">
+				<Typography variant="dmSansBold">
+					{t("ProductPage.errorMessage")}
+				</Typography>
+			</Box>
 		);
 	}
 
@@ -78,49 +95,62 @@ const ProductPage: React.FC = () => {
 	const sizes = [...new Set(variants.map((variant) => variant.size.name))];
 
 	return (
-		<Box display="flex" flexDirection="column" max-width="1298px">
-			{isPreviewMode && <VendorPreviewHeader />}
-			<StyledProductPageContainer>
-				<StyledProductDetailsContainer>
-					<ImagesSlider images={images} vendorName={product.user.name} />
-					<StyledProductDetailsContent>
-						<ProductHeader
-							description={description}
-							maxPrice={maxPrice}
-							minPrice={minPrice}
-							name={name}
-						/>
-						<Divider />
-						<Typography color="primary" variant="playfairDisplay">
-							{t("ProductPage.chooseSize")}
-						</Typography>
-						{variants && (
-							<>
-								<SizesDropdown
-									onSelectSize={handleSelectSize}
-									variants={variants}
-								/>
-								<ProductStatusRadio
-									defaultSelectedStatus={defaultStatus}
-									image={images[defaultProductDataIndex].url}
-									name={name}
-									onSelectStatus={handleSelectStatus}
-									price={minPrice}
-									status={status}
-								/>
-							</>
-						)}
-						<ProductButtonsGroup isPreviewMode={isPreviewMode} />
-					</StyledProductDetailsContent>
-				</StyledProductDetailsContainer>
-				<ProductDescription
-					colors={colors}
-					description={description}
-					sizes={sizes}
+		<>
+			{isModalOpen && (
+				<VendorPreviewModeModal
+					isModalOpen={isModalOpen}
+					onClose={handleModalClose}
 				/>
-				{!isPreviewMode && <RecommendedProducts />}
-			</StyledProductPageContainer>
-		</Box>
+			)}
+			<Box
+				display="flex"
+				flexDirection="column"
+				max-width="1298px"
+				onClick={handleVendorClick}
+			>
+				{isPreviewMode && <VendorPreviewHeader />}
+				<StyledProductPageContainer>
+					<StyledProductDetailsContainer>
+						<ImagesSlider images={images} vendorName={product.user.name} />
+						<StyledProductDetailsContent>
+							<ProductHeader
+								description={description}
+								maxPrice={maxPrice}
+								minPrice={minPrice}
+								name={name}
+							/>
+							<Divider />
+							<Typography color="primary" variant="playfairDisplay">
+								{t("ProductPage.chooseSize")}
+							</Typography>
+							{variants && (
+								<>
+									<SizesDropdown
+										onSelectSize={handleSelectSize}
+										variants={variants}
+									/>
+									<ProductStatusRadio
+										defaultSelectedStatus={defaultStatus}
+										image={images[defaultProductDataIndex].url}
+										name={name}
+										onSelectStatus={handleSelectStatus}
+										price={minPrice}
+										status={status}
+									/>
+								</>
+							)}
+							<ProductButtonsGroup isPreviewMode={isPreviewMode} />
+						</StyledProductDetailsContent>
+					</StyledProductDetailsContainer>
+					<ProductDescription
+						colors={colors}
+						description={description}
+						sizes={sizes}
+					/>
+					{!isPreviewMode && <RecommendedProducts />}
+				</StyledProductPageContainer>
+			</Box>
+		</>
 	);
 };
 

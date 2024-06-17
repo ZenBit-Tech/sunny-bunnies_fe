@@ -21,8 +21,10 @@ const ProductButtonsGroup: React.FC<ProductButtonsGroupProperties> = ({
 	const [isLikeClicked, setIsLikeClicked] = useState(false);
 
 	const handleLikeButtonClick = useCallback((): void => {
-		setIsLikeClicked(!isLikeClicked);
-	}, [isLikeClicked]);
+		if (!isPreviewMode) {
+			setIsLikeClicked(!isLikeClicked);
+		}
+	}, [isLikeClicked, isPreviewMode]);
 
 	return (
 		<StyledButtonsContainer>
