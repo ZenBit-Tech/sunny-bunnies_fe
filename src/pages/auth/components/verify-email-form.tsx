@@ -1,8 +1,8 @@
 import { Box, Icon, Stack, Typography } from "@mui/material";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import React, { useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import { ArrowLeftIcon } from "~/assets/icons/arrow-left-icon.tsx";
 import { BaseButton } from "~/components/index.ts";
@@ -66,7 +66,7 @@ const VerifyEmailForm: React.FC = () => {
 	}, [isVerifyEmailRequestSuccess, startTimer]);
 
 	return (
-		<StyledFormContainer>
+		<StyledFormContainer width="60%">
 			<Stack alignItems="center" direction="row" gap={1}>
 				<Icon onClick={handleArrowBackClick}>
 					<ArrowLeftIcon />
