@@ -7,6 +7,8 @@ import {
 	type UserSignInResponseDto,
 	type UserSignUpRequestDto,
 	type UserSignUpResponseDto,
+	type UserVerifyEmailRequestDto,
+	type UserVerifyOtpReuestDto,
 } from "~/libs/types/user.ts";
 
 import { api } from "../services.ts";
@@ -48,6 +50,20 @@ export const authApi = api.injectEndpoints({
 				url: authApiPath.SIGN_UP,
 			}),
 		}),
+		verifyEmail: build.mutation<void, UserVerifyEmailRequestDto>({
+			query: (body) => ({
+				body,
+				method: httpMethods.POST,
+				url: authApiPath.VERIFY_EMAIL,
+			}),
+		}),
+		verifyOtp: build.mutation<void, UserVerifyOtpReuestDto>({
+			query: (body) => ({
+				body,
+				method: httpMethods.POST,
+				url: authApiPath.VERIFY_OTP,
+			}),
+		}),
 	}),
 });
 
@@ -57,4 +73,6 @@ export const {
 	useLoginByGoogleMutation,
 	useLoginMutation,
 	useRegisterMutation,
+	useVerifyEmailMutation,
+	useVerifyOtpMutation,
 } = authApi;
