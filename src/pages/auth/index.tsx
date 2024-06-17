@@ -1,15 +1,18 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { matchPath, useLocation } from "react-router-dom";
 
 import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
+import { VerifyEmailForm } from "~/pages/auth/components/verify-email-form.tsx";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
 import styles from "./styles.module.css";
+
+const NoLogoRoutes = [AppRoute.VERIFY_EMAIL];
 
 const Auth: React.FC = () => {
 	const { pathname } = useLocation();
@@ -23,6 +26,9 @@ const Auth: React.FC = () => {
 			case AppRoute.SIGN_UP: {
 				return <SignUpForm />;
 			}
+			case AppRoute.VERIFY_EMAIL: {
+				return <VerifyEmailForm />;
+			}
 			default: {
 				return <SignUpForm />;
 			}
@@ -35,6 +41,8 @@ const Auth: React.FC = () => {
 				return authImages.SignInImage;
 			case AppRoute.SIGN_UP:
 				return authImages.SignUpImage;
+			case AppRoute.VERIFY_EMAIL:
+				return authImages.VerifyEmailImage;
 			default:
 				return authImages.SignUpImage;
 		}
@@ -56,21 +64,23 @@ const Auth: React.FC = () => {
 				xl={7}
 				xs={false}
 			>
-				<Box
-					sx={{
-						left: 63,
-						position: "absolute",
-						top: 42,
-					}}
-				>
-					<Link to={AppRoute.HOME}>
-						<img
-							alt={t("AuthPage.logo")}
-							className={styles["auth__logo"]}
-							src={Logo}
-						/>
-					</Link>
-				</Box>
+				{!NoLogoRoutes.some((route) => matchPath(pathname, route)) ? (
+					<Box
+						sx={{
+							left: 63,
+							position: "absolute",
+							top: 42,
+						}}
+					>
+						<Link to={AppRoute.HOME}>
+							<img
+								alt={t("AuthPage.logo")}
+								className={styles["auth__logo"]}
+								src={Logo}
+							/>
+						</Link>
+					</Box>
+				) : null}
 			</Grid>
 			<Grid
 				item
