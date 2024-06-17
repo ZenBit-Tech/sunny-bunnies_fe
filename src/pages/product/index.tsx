@@ -34,7 +34,7 @@ const ProductPage: React.FC = () => {
 	const { data: product, isError, isLoading } = useGetProductByIdQuery(id);
 	const user = useAppSelector((state: RootState) => state.auth.user);
 
-	const [isPreviewMode, setIsPreviewMode] = useState(false);
+	const [isPreviewMode, setIsPreviewMode] = useState(true);
 	const [selectedSizeId, setSelectedSizeId] = useState<null | number>(null);
 	const [selectedStatus, setSelectedStatus] = useState<null | string>(null);
 
