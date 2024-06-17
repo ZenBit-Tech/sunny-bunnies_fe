@@ -33,7 +33,6 @@ type ProductVariant = {
 type Product = {
 	brand: string;
 	category: string;
-	colors: string[];
 	createdAt: Date;
 	description: string;
 	gender: typeof gender;
@@ -44,7 +43,6 @@ type Product = {
 	minPrice: number;
 	name: string;
 	quantity: number;
-	sizes: string[];
 	status: string;
 	style: string;
 	updatedAt: Date;
