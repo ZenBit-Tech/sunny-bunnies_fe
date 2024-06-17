@@ -1,5 +1,7 @@
 import { Box, styled } from "@mui/material";
 
+import { colors } from "~/libs/constants/index.ts";
+
 const StyledRadioLabelContainer = styled(Box)({
 	alignItems: "center",
 	borderRadius: "4px",
@@ -17,7 +19,7 @@ const StyledRadioLabelContent = styled(Box)`
 `;
 
 const StyledRadioLabelImage = styled(Box)({
-	border: "1px solid #EDEAE9",
+	border: `1px solid ${colors.lightGray}`,
 	borderRadius: "8px",
 	height: "72px",
 	minWidth: "68px",

@@ -50,8 +50,8 @@ const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
 		},
 		backgroundColor: "transparent",
 	},
-	background: "white",
-	border: "1px solid #EDEAE9",
+	background: colors.white,
+	border: `1px solid ${colors.lightGray}`,
 	borderRadius: "12px",
 	margin: 0,
 }));
