@@ -18,6 +18,7 @@ import {
 const indexOne = 1;
 const minProductIndex = 0;
 const productPerPage = 4;
+const recommendedProductLimit = 10;
 
 const RecommendedProducts: React.FC = () => {
 	const { t } = useTranslation();
@@ -28,7 +29,7 @@ const RecommendedProducts: React.FC = () => {
 		data: products,
 		isError,
 		isLoading,
-	} = useGetProductsQuery({ limit: 10 });
+	} = useGetProductsQuery({ limit: recommendedProductLimit });
 
 	const handleNext = useCallback(() => {
 		if (products && currentIndex < products.length - productsPerPage) {
