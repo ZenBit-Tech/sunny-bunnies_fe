@@ -13,7 +13,6 @@ type GetProductsRequestQuery = {
 	dateRange?: number;
 	limit?: number;
 	offset?: number;
-	name?: string;
 	gender?: string;
 	minPrice?: number;
 	maxPrice?: number;
@@ -33,7 +32,6 @@ export const productsApi = api.injectEndpoints({
 					currentArg?.limit !== previousArg?.limit ||
 					currentArg?.offset !== previousArg?.offset ||
 					currentArg?.dateRange !== previousArg?.dateRange ||
-					currentArg?.name !== previousArg?.name ||
 					currentArg?.gender !== previousArg?.gender ||
 					currentArg?.minPrice !== previousArg?.minPrice ||
 					currentArg?.maxPrice !== previousArg?.maxPrice ||
@@ -68,7 +66,17 @@ export const productsApi = api.injectEndpoints({
 				return endpointName;
 			},
 		}),
+		getProductsByName: builder.query<Product[], { name: string }>({
+			query: ({ name }) => ({
+				method: httpMethods.GET,
+				params: { name },
+				url: productsApiPath.ROOT,
+			}),
+			forceRefetch({ currentArg, previousArg }) {
+				return currentArg?.name !== previousArg?.name;
+			},
+		}),
 	}),
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useGetProductsByNameQuery } = productsApi;

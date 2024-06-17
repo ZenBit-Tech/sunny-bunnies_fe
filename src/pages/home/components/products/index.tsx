@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Drawer } from "@mui/material";
+import { Box, Typography, Drawer } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -8,7 +8,12 @@ import { Filters } from "~/libs/types/filters.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
-import { ProductCard, ProductFilters, FilterTags } from "../index.ts";
+import {
+	ProductCard,
+	ProductFilters,
+	FilterTags,
+	ProductSearch,
+} from "../index.ts";
 import { StyledProductsContainer } from "./styles.ts";
 
 const minNumberOfProducts = 1;
@@ -106,7 +111,6 @@ const Products: React.FC<ProductsProperties> = ({
 					display: "flex",
 					alignItems: "center",
 					gap: "15px",
-					height: "40px",
 					flexWrap: "wrap",
 				}}
 			>
@@ -120,11 +124,8 @@ const Products: React.FC<ProductsProperties> = ({
 						/>
 					))}
 				</Box>
-				<TextField
-					variant="outlined"
-					placeholder={t("Search products...")}
-					sx={{ flexGrow: 1, margin: "0 15px" }}
-				/>
+
+				<ProductSearch />
 				<BaseButton variant="contained" onClick={toggleDrawer}>
 					{t("ProductFilters.filters")}
 				</BaseButton>

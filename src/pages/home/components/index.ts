@@ -5,3 +5,4 @@ export { Products } from "./products/index.tsx";
 export { ProductFilters } from "./product-filters/index.tsx";
 export { ColorPicker } from "./color-picker/index.tsx";
 export { FilterTags } from "./filter-tags/index.tsx";
+export { ProductSearch } from "./product-search/index.tsx";
