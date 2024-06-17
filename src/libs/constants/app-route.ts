@@ -4,6 +4,7 @@ const AppRoute = {
 	HOME: "/home",
 	PRIVACY_POLICY: "/privacy-policy",
 	PRODUCT: "/product/:id",
+	PRODUCT_LIST: "/product-list",
 	ROOT: "/",
 	SIGN_IN: "/sign-in",
 	SIGN_UP: "/sign-up",

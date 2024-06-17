@@ -204,6 +204,7 @@
 		"height": "HEIGHT",
 		"errorMessage": "Error fetching product details",
 		"errorMessageRecommended": "Error loading recommended products",
-		"youMightAlsoLike": "You Might Also Like"
+		"youMightAlsoLike": "You Might Also Like",
+		"toProductList": "To Product List"
 	}
 }
