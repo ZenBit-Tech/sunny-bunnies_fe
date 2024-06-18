@@ -1,33 +1,18 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
-import { AppRoute } from "~/libs/constants/app-route.ts";
+import { AppRoute } from "~/libs/constants/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { RootState } from "~/redux/store.ts";
 
-import { PublicWrapper } from "../public-wrapper/public-wrapper.tsx";
-
-type Properties = {
-	component: React.ReactNode;
-};
-
-const PublicRoute: React.FC<Properties> = ({ component }: Properties) => {
-	const navigate = useNavigate();
+const PublicRoute: React.FC = () => {
 	const user = useAppSelector((state: RootState) => state.auth.user);
 
-	useEffect(() => {
-		if (user) {
-			if (!user.profile.role) {
-				return navigate(AppRoute.ROLE);
-			}
+	if (!user) return <Outlet />;
 
-			if (!user.profile.isRegistrationCompleted) {
-				return navigate(AppRoute.ADDRESS);
-			}
-		}
-	}, [user, navigate]);
+	if (!user.isVerified) return <Navigate to={AppRoute.VERIFY_EMAIL} />;
 
-	return <PublicWrapper>{component}</PublicWrapper>;
+	return <Navigate to={AppRoute.HOME} />;
 };
 
 export { PublicRoute };
