@@ -7,6 +7,7 @@ import {
 	Role,
 	Size,
 } from "~/libs/types/user-profile.type.ts";
+import { Vendor } from "~/libs/types/vendor.ts";
 
 import { api } from "../services.ts";
 import { userApiPath } from "./constants.ts";
@@ -17,6 +18,12 @@ export const userApi = api.injectEndpoints({
 			query: (id: string) => ({
 				method: httpMethods.GET,
 				url: `${userApiPath.USERS}/${id}`,
+			}),
+		}),
+		getVendorById: build.query<Vendor, string | undefined>({
+			query: (id: string) => ({
+				method: httpMethods.GET,
+				url: `${userApiPath.VENDOR}/${id}`,
 			}),
 		}),
 		update: build.mutation<
@@ -32,4 +39,5 @@ export const userApi = api.injectEndpoints({
 	}),
 });
 
-export const { useGetByIdQuery, useUpdateMutation } = userApi;
+export const { useGetByIdQuery, useGetVendorByIdQuery, useUpdateMutation } =
+	userApi;
