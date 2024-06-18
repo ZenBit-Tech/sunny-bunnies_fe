@@ -93,6 +93,7 @@ const theme = createTheme({
 						fontSize: fontSizes.small,
 						fontWeight: fontWeight.medium,
 						padding: "8px 24px",
+						textTransform: "none",
 					},
 				},
 			],

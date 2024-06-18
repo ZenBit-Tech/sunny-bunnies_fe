@@ -1,37 +1,38 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
-import { fontSizes } from "~/libs/constants/fonts.ts";
-import { useGetByIdQuery } from "~/redux/user/user-api.ts";
+import { useGetVendorByIdQuery } from "~/redux/user/user-api.ts";
 
-import { HeaderLinksGroup } from "./components/index.ts";
 import {
-	StyledVendorProfileContainer,
-	StyledVendorProfileData,
-} from "./styles.ts";
+	VendorAvatarSection,
+	VendorsProductsAndReviews,
+} from "./components/index.ts";
+import { StyledVendorProfileContainer } from "./styles.ts";
 
 const VendorProfile: React.FC = () => {
 	const { id } = useParams();
-	const { data: vendor } = useGetByIdQuery(id);
+	const { t } = useTranslation();
+
+	const { data: vendor, isError } = useGetVendorByIdQuery(id);
+
+	if (!vendor || isError) {
+		return (
+			<Typography variant="playfairDisplayBold">
+				{t("VendorProfilePage.vendorWasNotFound")}
+			</Typography>
+		);
+	}
 
 	return (
 		<StyledVendorProfileContainer>
-			<StyledVendorProfileData>
-				<HeaderLinksGroup vendorName="VendorName" />
-				<Box alignItems="center" display="flex" flexDirection="column" gap={2}>
-					<Avatar
-						alt={vendor?.name}
-						sx={{
-							height: 120,
-							width: 120,
-						}}
-					/>
-					<Typography fontSize={fontSizes.large} variant="playfairDisplayTitle">
-						{vendor?.name}
-					</Typography>
-				</Box>
-			</StyledVendorProfileData>
+			<VendorAvatarSection vendorName={vendor.name} />
+			<VendorsProductsAndReviews
+				products={vendor.products}
+				reviews={vendor.reviews}
+				vendorName={vendor.name}
+			/>
 		</StyledVendorProfileContainer>
 	);
 };

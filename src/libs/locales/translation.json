@@ -229,6 +229,12 @@
 	},
 	"VendorProfilePage": {
 		"home": "Home",
-		"vendors": "Vendors"
+		"vendors": "Vendors",
+		"vendorWasNotFound": "Vendor Was Not Found",
+		"products": "Products",
+		"reviews": "Reviews",
+		"vendorsCloset": "Vendor's Closet",
+		"follow": "Follow",
+		"unFollow": "UnFollow"
 	}
 }
