@@ -15,7 +15,7 @@ import { AppRoute } from "~/libs/constants/app-route.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { Role } from "~/libs/types/user-profile.type.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks.ts";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import { useUpdateMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
@@ -26,13 +26,14 @@ import { StyledFormContainer } from "./styles.ts";
 
 const RoleForm: React.FC = () => {
 	const [serverError, setServerError] = useState("");
+	const user = useAppSelector((state) => state.auth.user);
 	const [update] = useUpdateMutation();
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const { errors, handleSubmit, setValue, watch } = useAppForm<Role>({
 		defaultValues: {
-			role: "buyer",
+			role: user?.profile.role ?? "buyer",
 		},
 		validationSchema: roleValidation,
 	});

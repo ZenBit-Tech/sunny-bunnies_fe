@@ -26,7 +26,7 @@ import { AppRoute } from "~/libs/constants/app-route.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { type Address } from "~/libs/types/user-profile.type.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks.ts";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import { useUpdateMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
@@ -36,17 +36,18 @@ import { StyledFormContainer } from "./styles.ts";
 
 const AddressForm: React.FC = () => {
 	const dispatch = useAppDispatch();
+	const user = useAppSelector((state) => state.auth.user);
 	const [selectedCountry, setSelectedCountry] = useState<ICountry | null>(null);
 	const [selectedState, setSelectedState] = useState<IState | null>(null);
 	const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
 	const [serverError, setServerError] = useState("");
 	const { control, errors, handleSubmit, setValue } = useAppForm<Address>({
 		defaultValues: {
-			addressLineOne: "",
-			addressLineTwo: "",
-			city: "",
-			country: "",
-			state: "",
+			addressLineOne: user?.profile.addressLineOne ?? "",
+			addressLineTwo: user?.profile.addressLineTwo ?? "",
+			city: user?.profile.city ?? "",
+			country: user?.profile.country ?? "",
+			state: user?.profile.state ?? "",
 		},
 		validationSchema: addressValidation,
 	});
@@ -54,7 +55,7 @@ const AddressForm: React.FC = () => {
 	const navigate = useNavigate();
 
 	const filteredCountries = Country.getAllCountries().filter((country) =>
-		["CA", "UA", "US"].includes(country.isoCode),
+		["CA"].includes(country.isoCode),
 	);
 
 	const handleCountryChange = useCallback(

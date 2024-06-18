@@ -2,6 +2,7 @@ import { t } from "i18next";
 import React from "react";
 
 import { BaseButton } from "~/components/index.ts";
+import theme from "~/theme.ts";
 
 type FormButtonsProps = {
 	isStart: boolean;
@@ -30,7 +31,7 @@ const FormButtons: React.FC<FormButtonsProps> = ({ isStart, redirectTo }) => {
 			)}
 			<BaseButton
 				sx={{
-					border: "1px solid transperent",
+					border: `1px solid ${theme.palette.transparent}`,
 					borderRadius: "8px",
 					gap: "8px",
 					height: "34px",

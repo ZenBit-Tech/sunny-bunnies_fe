@@ -32,17 +32,17 @@ const TabsBoard: React.FC<TabLabelProps> = ({
 			bgcolor={isBeforeActive ? theme.palette.lightGreen : theme.palette.white}
 			display="flex"
 			height="100%"
-			padding="16px 24px "
+			padding="16px 24px"
 			width="100%"
 		>
 			<Box
 				alignItems="center"
 				bgcolor={isCompleted ? theme.palette.primary.dark : "transparent"}
 				border={`2px solid ${
-					isBeforeActive ? theme.palette.primary.dark : "rgba(0, 0, 0, 0.08)"
+					isBeforeActive ? theme.palette.primary.dark : theme.palette.darkGrey
 				}`}
 				borderRadius="50%"
-				color="black"
+				color={theme.palette.primary.dark}
 				display="flex"
 				height="3em"
 				justifyContent="center"

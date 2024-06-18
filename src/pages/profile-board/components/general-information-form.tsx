@@ -23,7 +23,7 @@ import { AppRoute } from "~/libs/constants/app-route.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { GeneralInformation } from "~/libs/types/user-profile.type.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks.ts";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import { useUpdateMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
@@ -32,9 +32,10 @@ import { FormButtons } from "./buttons.tsx";
 import { StyledFormContainer, VisuallyHiddenInput } from "./styles.ts";
 
 const GeneralInformationForm: React.FC = () => {
+	const user = useAppSelector((state) => state.auth.user);
 	const [serverError, setServerError] = useState("");
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
-	const [phone, setPhone] = useState("");
+	const [phone, setPhone] = useState(user?.profile.phoneNumber ?? "");
 	const [update] = useUpdateMutation();
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -49,7 +50,7 @@ const GeneralInformationForm: React.FC = () => {
 
 	const { errors, handleSubmit, setValue } = useAppForm<GeneralInformation>({
 		defaultValues: {
-			phoneNumber: "",
+			phoneNumber: user?.profile.phoneNumber ?? "",
 			profilePhoto: null,
 		},
 		validationSchema: generalInformationValidation,

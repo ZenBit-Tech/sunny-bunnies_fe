@@ -10,7 +10,7 @@ import { useAppForm } from "~/libs/hooks/index.ts";
 import { type CreditCard } from "~/libs/types/user-profile.type.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
-import { useUpdateMutation } from "~/redux/user/user-api.ts";
+import { useUpdateCardMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
 import { cardNumberChange, expireDateChange } from "../helpers/index.ts";
@@ -29,13 +29,13 @@ const CreditCardForm: React.FC = () => {
 		},
 		validationSchema: creditCardValidation,
 	});
-	const [update] = useUpdateMutation();
+	const [updateCard] = useUpdateCardMutation();
 	const navigate = useNavigate();
 
 	const handleInputChange = useCallback(
 		async (formData: CreditCard): Promise<void> => {
 			try {
-				const updatedUser = await update(formData).unwrap();
+				const updatedUser = await updateCard(formData).unwrap();
 				dispatch(setUser(updatedUser));
 				navigate(AppRoute.SIZE);
 			} catch (error) {
@@ -45,7 +45,7 @@ const CreditCardForm: React.FC = () => {
 				setServerError(loadError.message);
 			}
 		},
-		[dispatch, navigate, update],
+		[dispatch, navigate, updateCard],
 	);
 
 	const handleExpireDateChange = useCallback(

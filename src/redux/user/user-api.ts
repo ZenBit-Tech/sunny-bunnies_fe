@@ -14,30 +14,31 @@ import { userApiPath } from "./constants.ts";
 
 export const userApi = api.injectEndpoints({
 	endpoints: (build) => ({
-		getById: build.query<User, string | undefined>({
-			query: (id: string) => ({
-				method: httpMethods.GET,
-				url: `${userApiPath.USERS}/${id}`,
-			}),
-		}),
 		getVendorById: build.query<Vendor, string | undefined>({
 			query: (id: string) => ({
 				method: httpMethods.GET,
 				url: `${userApiPath.VENDOR}/${id}`,
 			}),
 		}),
-		update: build.mutation<
-			User,
-			Address | CreditCard | GeneralInformation | Role | Size
-		>({
+		update: build.mutation<User, Address | GeneralInformation | Role | Size>({
 			query: (body) => ({
 				body,
 				method: httpMethods.PATCH,
 				url: userApiPath.USER_UPDATE,
 			}),
 		}),
+		updateCard: build.mutation<User, CreditCard>({
+			query: (body) => ({
+				body,
+				method: httpMethods.PATCH,
+				url: userApiPath.USER_UPDATE_CARD,
+			}),
+		}),
 	}),
 });
 
-export const { useGetByIdQuery, useGetVendorByIdQuery, useUpdateMutation } =
-	userApi;
+export const {
+	useGetVendorByIdQuery,
+	useUpdateCardMutation,
+	useUpdateMutation,
+} = userApi;

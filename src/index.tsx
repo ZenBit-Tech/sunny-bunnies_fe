@@ -6,6 +6,7 @@ import { createRoot } from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { App } from "./app/app.tsx";
+import { AuthRoute } from "./components/auth-route/index.tsx";
 import {
 	FooterWrapper,
 	HeaderWrapper,
@@ -24,6 +25,7 @@ import {
 	VendorProfile,
 } from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
+import { ProfileBoard } from "./pages/profile-board/index.tsx";
 import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
 import { persistor, store } from "./redux/store.ts";
 import "./styles.css";
@@ -58,6 +60,28 @@ createRoot(document.getElementById("root")!).render(
 																	path: AppRoute.SIGN_IN,
 																},
 															],
+															element: <AuthRoute />,
+															path: AppRoute.ROOT,
+														},
+														{
+															children: [
+																{
+																	element: <Home />,
+																	path: AppRoute.HOME,
+																},
+																{
+																	element: <PrivacyPolicy />,
+																	path: AppRoute.PRIVACY_POLICY,
+																},
+																{
+																	element: <TermsConditions />,
+																	path: AppRoute.TERMS_OF_USE,
+																},
+																{
+																	element: <SizeGuide />,
+																	path: AppRoute.SIZE_GUIDE,
+																},
+															],
 															element: <PublicRoute />,
 															path: AppRoute.ROOT,
 														},
@@ -66,6 +90,26 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <Auth />,
 																	path: AppRoute.VERIFY_EMAIL,
+																},
+																{
+																	element: <ProfileBoard />,
+																	path: AppRoute.ROLE,
+																},
+																{
+																	element: <ProfileBoard />,
+																	path: AppRoute.GENERAL_INFORMATION,
+																},
+																{
+																	element: <ProfileBoard />,
+																	path: AppRoute.ADDRESS,
+																},
+																{
+																	element: <ProfileBoard />,
+																	path: AppRoute.CREDIT_CARD,
+																},
+																{
+																	element: <ProfileBoard />,
+																	path: AppRoute.SIZE,
 																},
 															],
 															element: <PrivateRoute />,
