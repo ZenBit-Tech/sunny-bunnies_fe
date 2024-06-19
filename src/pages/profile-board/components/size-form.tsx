@@ -115,7 +115,6 @@ const SizeForm: React.FC = () => {
 							color="primary"
 							marginBottom="8px"
 							sx={{ fontSize: theme.typography.playfairDisplayBold }}
-							variant="h6"
 						>
 							{t("Form.clothesTitle")}
 						</Typography>
@@ -166,7 +165,6 @@ const SizeForm: React.FC = () => {
 							color="primary"
 							marginBottom="8px"
 							sx={{ fontSize: theme.typography.playfairDisplayBold }}
-							variant="h6"
 						>
 							{t("Form.jeansTitle")}
 						</Typography>
@@ -217,7 +215,6 @@ const SizeForm: React.FC = () => {
 							color="primary"
 							marginBottom="8px"
 							sx={{ fontSize: theme.typography.playfairDisplayBold }}
-							variant="h6"
 						>
 							{t("Form.shoesTitle")}
 						</Typography>
