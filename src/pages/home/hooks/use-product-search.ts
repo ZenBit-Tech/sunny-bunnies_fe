@@ -43,17 +43,18 @@ const useProductSearch = (
 	}, [productSuggestions]);
 
 	const handleInputChange = (
-		_: React.SyntheticEvent<Element, Event>,
+		_event: React.SyntheticEvent<Element, Event>,
 		value: string,
 	): void => {
-		setSearchTerm(value);
-		if (value === "") {
+		const trimmedValue = value.replace(/^\s+|\s+(?=\s)/g, "");
+		setSearchTerm(trimmedValue);
+		if (trimmedValue === "") {
 			setOptions([]);
 		}
 	};
 
 	const handleProductSelect = (
-		_: React.SyntheticEvent<Element, Event>,
+		_event: React.SyntheticEvent<Element, Event>,
 		newValue: Product | null | string,
 	): void => {
 		if (newValue && typeof newValue !== "string") {

@@ -74,7 +74,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 	}, [data, dispatch]);
 
 	const handlePriceChange = useCallback(
-		(_: Event, newValue: number | number[]): void => {
+		(_event: Event, newValue: number | number[]): void => {
 			if (Array.isArray(newValue)) {
 				setMinPrice(newValue[MIN_INPUT_VALUE]);
 				setMaxPrice(newValue[MAX_INPUT_VALUE]);
@@ -84,15 +84,15 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 	);
 
 	const handleMinPriceChange = useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>): void => {
-			setMinPrice(+event.target.value);
+		(e: React.ChangeEvent<HTMLInputElement>): void => {
+			setMinPrice(+e.target.value);
 		},
 		[],
 	);
 
 	const handleMaxPriceChange = useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>): void => {
-			setMaxPrice(+event.target.value);
+		(e: React.ChangeEvent<HTMLInputElement>): void => {
+			setMaxPrice(+e.target.value);
 		},
 		[],
 	);
