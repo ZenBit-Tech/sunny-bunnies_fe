@@ -59,7 +59,7 @@ const VerifyEmailForm: React.FC = () => {
 		verifyEmail({
 			email: user.email,
 		});
-	}, []);
+	}, [user.email, verifyEmail]);
 
 	useEffect(() => {
 		if (isVerifyEmailRequestSuccess) void startTimer();

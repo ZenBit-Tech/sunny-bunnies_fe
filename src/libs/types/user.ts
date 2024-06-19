@@ -1,7 +1,10 @@
+import { type Profile } from "./user-profile.type.ts";
+
 type User = {
 	email: string;
 	isVerified: boolean;
 	name: string;
+	profile: Profile;
 };
 
 type UserSignUpResponseDto = {

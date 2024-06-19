@@ -11,11 +11,18 @@ const PrivateRoute: React.FC = () => {
 
 	if (!user) return <Navigate to={AppRoute.HOME} />;
 
-	if (!user.isVerified && !matchPath(pathname, AppRoute.VERIFY_EMAIL))
-		return <Navigate to={AppRoute.VERIFY_EMAIL} />;
+	if (user) {
+		if (!user.isVerified && !matchPath(pathname, AppRoute.VERIFY_EMAIL))
+			return <Navigate to={AppRoute.VERIFY_EMAIL} />;
 
-	if (user.isVerified && matchPath(pathname, AppRoute.VERIFY_EMAIL))
-		return <Navigate to={AppRoute.HOME} />;
+		if (user.isVerified && matchPath(pathname, AppRoute.VERIFY_EMAIL))
+			return <Navigate to={AppRoute.HOME} />;
+
+		if (!user.profile.role) return <Outlet />;
+
+		if (user.profile.isRegistrationCompleted)
+			return <Navigate to={AppRoute.HOME} />;
+	}
 
 	return <Outlet />;
 };

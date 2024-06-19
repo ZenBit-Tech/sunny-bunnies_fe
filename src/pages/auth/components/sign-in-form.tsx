@@ -44,7 +44,7 @@ const SignInForm: React.FC = () => {
 		if (isLoginSuccess) {
 			dispatch(setUser(loginData.user));
 			dispatch(setTokens(loginData));
-			navigate(AppRoute.HOME);
+			navigate(AppRoute.ROLE);
 		}
 		if (isLoginError) {
 			const loadError = (loginError as FetchBaseQueryError).data
