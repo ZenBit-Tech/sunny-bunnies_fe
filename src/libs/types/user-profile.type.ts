@@ -24,7 +24,7 @@ type Size = {
 
 type GeneralInformation = {
 	phoneNumber: string;
-	profilePhoto: File | null;
+	profilePhoto: File | null | string;
 };
 
 type Profile = Address & CreditCard & GeneralInformation & Role & Size;
