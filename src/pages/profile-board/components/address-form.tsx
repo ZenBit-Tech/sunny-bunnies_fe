@@ -149,7 +149,6 @@ const AddressForm: React.FC = () => {
 						color: theme.palette.fontGray,
 						fontSize: theme.typography.dmSans,
 					}}
-					variant="body1"
 				>
 					{t("Form.adressText")}
 				</Typography>
