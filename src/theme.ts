@@ -92,7 +92,8 @@ const theme = createTheme({
 				{
 					props: { variant: "secondary_black" },
 					style: {
-						border: "1px solid #333333",
+						backgroundColor: colors.lightGray,
+						border: "none",
 						borderRadius: "12px",
 						fontSize: fontSizes.small,
 						fontWeight: fontWeight.medium,

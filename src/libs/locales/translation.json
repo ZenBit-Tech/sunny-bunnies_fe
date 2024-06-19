@@ -236,6 +236,8 @@
 		"vendorsCloset": "Vendor's Closet",
 		"follow": "Follow",
 		"unFollow": "UnFollow",
-		"dontHaveAccess": "You don't have access to this page"
+		"dontHaveAccess": "You don't have access to this page",
+		"noRatingsYet": "No ratings yet",
+		"thisVendorDoesNotReceiveAnyReviewYet": "This vendor doesn't receive any review yet"
 	}
 }
