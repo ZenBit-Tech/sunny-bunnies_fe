@@ -8,8 +8,34 @@ import {
 	fontWeight,
 } from "./libs/constants/index.ts";
 
+declare module "@mui/material/styles" {
+	interface BreakpointOverrides {
+		tablet: true;
+	}
+}
+
+declare module "@mui/material/styles" {
+	interface Palette {
+		darkGrey: string;
+		fontGray: string;
+		gray: string;
+		lightGreen: string;
+		transparent: string;
+		white: string;
+	}
+	interface PaletteOptions {
+		darkGrey: string;
+		fontGray: string;
+		gray: string;
+		lightGreen: string;
+		transparent: string;
+		white: string;
+	}
+}
+
 const xl = 1920;
 const lg = 1280;
+const tablet = 1024;
 const md = 768;
 const sm = 480;
 const xs = 0;
@@ -36,6 +62,7 @@ const theme = createTheme({
 			lg,
 			md,
 			sm,
+			tablet,
 			xl,
 			xs,
 		},
@@ -117,6 +144,10 @@ const theme = createTheme({
 		},
 	},
 	palette: {
+		darkGrey: colors.darkGrey,
+		fontGray: colors.gray,
+		gray: colors.grayishRed,
+		lightGreen: colors.lightGreen,
 		primary: {
 			dark: colors.hoverBlack,
 			main: colors.black,
@@ -124,6 +155,8 @@ const theme = createTheme({
 		secondary: {
 			main: colors.gray,
 		},
+		transparent: colors.transparent,
+		white: colors.white,
 	},
 	typography: {
 		dmSans: {

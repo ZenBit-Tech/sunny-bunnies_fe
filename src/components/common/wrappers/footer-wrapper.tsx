@@ -4,7 +4,16 @@ import { Outlet, matchPath, useLocation } from "react-router-dom";
 import { Footer } from "~/components/Footer/Footer.tsx";
 import { AppRoute } from "~/libs/constants/index.ts";
 
-const NoFootersRoutes = [AppRoute.ROOT, AppRoute.SIGN_UP, AppRoute.SIGN_IN];
+const NoFootersRoutes = [
+	AppRoute.ROOT,
+	AppRoute.SIGN_UP,
+	AppRoute.SIGN_IN,
+	AppRoute.ROLE,
+	AppRoute.GENERAL_INFORMATION,
+	AppRoute.ADDRESS,
+	AppRoute.CREDIT_CARD,
+	AppRoute.SIZE,
+];
 const GetStartedFooterRoutes = [
 	AppRoute.TERMS_OF_USE,
 	AppRoute.HOME,
