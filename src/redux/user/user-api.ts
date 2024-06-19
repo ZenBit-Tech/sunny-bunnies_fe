@@ -14,10 +14,28 @@ import { userApiPath } from "./constants.ts";
 
 export const userApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		checkFollowStatus: build.query<boolean, { userId: string }>({
+			query: ({ userId }) => ({
+				method: httpMethods.GET,
+				url: `${userApiPath.CHECK_FOLLOW_STATUS}/${userId}`,
+			}),
+		}),
+		follow: build.mutation<User, { userId: string }>({
+			query: ({ userId }) => ({
+				method: httpMethods.POST,
+				url: `${userApiPath.USER_FOLLOW}/${userId}`,
+			}),
+		}),
 		getVendorById: build.query<Vendor, string | undefined>({
 			query: (id: string) => ({
 				method: httpMethods.GET,
 				url: `${userApiPath.VENDOR}/${id}`,
+			}),
+		}),
+		unFollow: build.mutation<User, { userId: string }>({
+			query: ({ userId }) => ({
+				method: httpMethods.DELETE,
+				url: `${userApiPath.USER_FOLLOW}/${userId}`,
 			}),
 		}),
 		update: build.mutation<User, Address | GeneralInformation | Role | Size>({
@@ -38,7 +56,10 @@ export const userApi = api.injectEndpoints({
 });
 
 export const {
+	useCheckFollowStatusQuery,
+	useFollowMutation,
 	useGetVendorByIdQuery,
+	useUnFollowMutation,
 	useUpdateCardMutation,
 	useUpdateMutation,
 } = userApi;
