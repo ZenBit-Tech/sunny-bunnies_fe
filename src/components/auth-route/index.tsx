@@ -12,11 +12,11 @@ const AuthRoute: React.FC = () => {
 		if (user.isVerified && user.profile.isRegistrationCompleted)
 			return <Navigate to={AppRoute.HOME} />;
 
-		if (!user?.isVerified) return <Navigate to={AppRoute.VERIFY_EMAIL} />;
+		if (!user.isVerified) return <Navigate to={AppRoute.VERIFY_EMAIL} />;
 
-		if (!user?.profile.role) return <Navigate to={AppRoute.ROLE} />;
+		if (!user.profile.role) return <Navigate to={AppRoute.ROLE} />;
 
-		if (!user?.profile.isRegistrationCompleted)
+		if (!user.profile.isRegistrationCompleted)
 			return <Navigate to={AppRoute.GENERAL_INFORMATION} />;
 	}
 
