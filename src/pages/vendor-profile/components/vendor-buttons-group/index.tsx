@@ -2,32 +2,38 @@ import { Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { colors } from "~/libs/constants/index.ts";
-
 import { StyledButton, StyledVendorsButtonsGroup } from "./styles.ts";
 
 type VendorsButtonsGroupProperties = {
-	onClick: () => void;
+	isProductShown: boolean;
+	onProductsClick: () => void;
+	onReviewsClick: () => void;
 	reviewsNumber: number;
 };
+
 const VendorsButtonsGroup: React.FC<VendorsButtonsGroupProperties> = ({
-	onClick,
+	isProductShown,
+	onProductsClick,
+	onReviewsClick,
 	reviewsNumber,
 }) => {
 	const { t } = useTranslation();
 
 	return (
 		<StyledVendorsButtonsGroup>
-			<StyledButton onClick={onClick} variant="primary_black_regular">
+			<StyledButton
+				onClick={onProductsClick}
+				variant={isProductShown ? "primary_black_regular" : "secondary_black"}
+			>
 				{t("VendorProfilePage.products")}
 			</StyledButton>
 			<StyledButton
-				onClick={onClick}
-				sx={{
-					backgroundColor: colors.lightGray,
-					border: "none",
-				}}
-				variant="secondary_black"
+				onClick={onReviewsClick}
+				// sx={{
+				// 	backgroundColor: colors.lightGray,
+				// 	border: "none",
+				// }}
+				variant={isProductShown ? "secondary_black" : "primary_black_regular"}
 			>
 				{t("VendorProfilePage.reviews")}
 				<Typography component="span">{`(${reviewsNumber})`}</Typography>

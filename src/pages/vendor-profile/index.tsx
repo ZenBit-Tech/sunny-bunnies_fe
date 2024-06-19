@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
+import { Loader } from "~/components/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 import { useGetVendorByIdQuery } from "~/redux/user/user-api.ts";
@@ -17,15 +18,19 @@ const VendorProfile: React.FC = () => {
 	const { id } = useParams();
 	const { t } = useTranslation();
 
-	const [hasAccess, setHasAccess] = useState(true);
+	const [hasAccess, setHasAccess] = useState(false);
 	const user = useAppSelector((state: RootState) => state.auth.user);
-	const { data: vendor, isError } = useGetVendorByIdQuery(id);
+	const { data: vendor, isError, isLoading } = useGetVendorByIdQuery(id);
 
 	useEffect(() => {
-		if (user?.profile.role === "buyer") {
+		if (user && user?.profile?.role === "buyer") {
 			setHasAccess(true);
 		}
 	}, [user]);
+
+	if (isLoading) {
+		return <Loader />;
+	}
 
 	return (
 		<StyledVendorProfileContainer>
@@ -41,7 +46,7 @@ const VendorProfile: React.FC = () => {
 					</Typography>
 				</Box>
 			)}
-			{(!vendor || isError) && hasAccess && (
+			{isError && hasAccess && (
 				<Box
 					alignItems="center"
 					display="flex"
@@ -53,13 +58,17 @@ const VendorProfile: React.FC = () => {
 					</Typography>
 				</Box>
 			)}
-
 			{vendor && hasAccess && (
 				<>
-					<VendorAvatarSection vendorName={vendor.name} />
+					<VendorAvatarSection
+						averageRating={vendor?.averageRating}
+						vendorId={vendor.id}
+						vendorName={vendor.name}
+						vendorPhoto={vendor?.profile.profilePhoto as string}
+					/>
 					<VendorsProductsAndReviews
 						products={vendor.products}
-						reviews={vendor.reviews}
+						reviews={vendor.reviewsReceived}
 						vendorName={vendor.name}
 					/>
 				</>

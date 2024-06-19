@@ -8,7 +8,7 @@ const StyledProductCardContainer = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	width: 180px;
+	width: 200px;
 `;
 
 const StyledProductCardImageContainer = styled(Box)`

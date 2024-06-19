@@ -4,30 +4,45 @@ import React, { useCallback, useState } from "react";
 import { Product } from "~/libs/types/products.ts";
 import { Review } from "~/libs/types/vendor.ts";
 
-import { ProductsSection } from "../products-section/index.tsx";
-import { VendorsButtonsGroup } from "../vendor-buttons-group/index.tsx";
+import {
+	ProductsSection,
+	ReviewsSection,
+	VendorsButtonsGroup,
+} from "../index.ts";
 import { StyledVendorProductsAndReviews } from "./styles.ts";
 
 type VendorsProductsAndReviewsProperties = {
 	products: Product[];
-	reviews?: Review[];
+	reviews: Review[];
 	vendorName: string;
 };
 
 const VendorsProductsAndReviews: React.FC<
 	VendorsProductsAndReviewsProperties
-> = ({ products, vendorName }) => {
+> = ({ products, reviews, vendorName }) => {
 	const [isProductShown, setIsProductShown] = useState(true);
 
-	const handleButtonsClick = useCallback(() => {
-		setIsProductShown(!isProductShown);
-	}, [isProductShown]);
+	const handleProductsClick = useCallback(() => {
+		setIsProductShown(true);
+	}, []);
+
+	const handleReviewsClick = useCallback(() => {
+		setIsProductShown(false);
+	}, []);
 
 	return (
 		<StyledVendorProductsAndReviews>
-			<VendorsButtonsGroup onClick={handleButtonsClick} reviewsNumber={10} />
+			<VendorsButtonsGroup
+				isProductShown={isProductShown}
+				onProductsClick={handleProductsClick}
+				onReviewsClick={handleReviewsClick}
+				reviewsNumber={reviews.length}
+			/>
 			<Box>
-				<ProductsSection products={products} vendorName={vendorName} />
+				{isProductShown && (
+					<ProductsSection products={products} vendorName={vendorName} />
+				)}
+				{!isProductShown && <ReviewsSection reviews={reviews} />}
 			</Box>
 		</StyledVendorProductsAndReviews>
 	);

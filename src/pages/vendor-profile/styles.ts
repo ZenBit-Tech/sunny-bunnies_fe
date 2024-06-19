@@ -5,7 +5,7 @@ const StyledVendorProfileContainer = styled(Box)`
 	display: flex;
 	gap: 52px;
 	min-height: 55%;
-	padding: 0 52px;
+	padding: 16px 52px;
 `;
 
 export { StyledVendorProfileContainer };
