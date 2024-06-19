@@ -24,7 +24,7 @@ import { useAppForm } from "~/libs/hooks/index.ts";
 import { GeneralInformation } from "~/libs/types/user-profile.type.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
-import { useUpdateMutation } from "~/redux/user/user-api.ts";
+import { useUpdateMutation, useUploadMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
 import { generalInformationValidation } from "../validation/general-information-validation.ts";
@@ -34,9 +34,12 @@ import { StyledFormContainer, VisuallyHiddenInput } from "./styles.ts";
 const GeneralInformationForm: React.FC = () => {
 	const user = useAppSelector((state) => state.auth.user);
 	const [serverError, setServerError] = useState("");
-	const [selectedFile, setSelectedFile] = useState<File | null>(null);
+	const [selectedFile, setSelectedFile] = useState<File | null | string>(
+		user?.profile.profilePhoto || null,
+	);
 	const [phone, setPhone] = useState(user?.profile.phoneNumber ?? "");
 	const [update] = useUpdateMutation();
+	const [upload] = useUploadMutation();
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const zero = 0;
@@ -51,7 +54,7 @@ const GeneralInformationForm: React.FC = () => {
 	const { errors, handleSubmit, setValue } = useAppForm<GeneralInformation>({
 		defaultValues: {
 			phoneNumber: user?.profile.phoneNumber ?? "",
-			profilePhoto: null,
+			profilePhoto: user?.profile.profilePhoto ?? null,
 		},
 		validationSchema: generalInformationValidation,
 	});
@@ -59,17 +62,25 @@ const GeneralInformationForm: React.FC = () => {
 	const handleInputChange = useCallback(
 		async (formData: GeneralInformation): Promise<void> => {
 			try {
-				const updatedUser = await update(formData).unwrap();
+				if (formData.profilePhoto instanceof File) {
+					const formDataToSend = new FormData();
+					formDataToSend.append("file", formData.profilePhoto);
+					await upload(formDataToSend).unwrap();
+				}
+				const updatedUser = await update({
+					phoneNumber: formData.phoneNumber,
+				}).unwrap();
+
 				dispatch(setUser(updatedUser));
 				navigate(AppRoute.ADDRESS);
 			} catch (error) {
 				const loadError = (error as FetchBaseQueryError).data
 					? ((error as FetchBaseQueryError).data as Error)
-					: { message: t("Error.unknowError") };
+					: { message: t("Error.technicalError") };
 				setServerError(loadError.message);
 			}
 		},
-		[dispatch, navigate, update],
+		[dispatch, navigate, update, upload],
 	);
 
 	const handleFormSubmit = useCallback(
@@ -91,8 +102,9 @@ const GeneralInformationForm: React.FC = () => {
 	const handleFileChange = useCallback(
 		(e: React.ChangeEvent<HTMLInputElement>) => {
 			setSelectedFile(e.target.files ? e.target.files[zero] : null);
+			setValue("profilePhoto", e.target.files ? e.target.files[zero] : null);
 		},
-		[],
+		[setValue],
 	);
 
 	return (
@@ -156,7 +168,9 @@ const GeneralInformationForm: React.FC = () => {
 							tabIndex={-1}
 							variant="primary_black_bold"
 						>
-							{t("Form.uploadButtonText")}
+							{selectedFile === null
+								? t("Form.uploadButtonText")
+								: t("Form.changeButtonText")}
 							<VisuallyHiddenInput onChange={handleFileChange} type="file" />
 						</Button>
 						{errors.profilePhoto && (

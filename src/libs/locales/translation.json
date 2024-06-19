@@ -46,7 +46,8 @@
 		"profilePhotoText":"Choose photo for your profile",
 		"phoneNumberTitle": "Phone Number",
 		"phoneNumberText": "Please enter your phone number",
-		"uploadButtonText":"Upload Photo"
+		"uploadButtonText":"Upload Photo",
+		"changeButtonText":"Change Photo"
 	},
 	"footer": {
 		"footerColumnsLogIn": {
@@ -152,7 +153,8 @@
 		"errorLoadingProducts": "Error loading products..."
 	},
 	"Error": {
-		"unknowError": "Unknown error"
+		"unknowError": "Unknown error",
+		"technicalError" : "Failed to upload image. Please try again"
 	},
 	"PrivacyPolicy": {
 		"title": "Privacy Policy",
