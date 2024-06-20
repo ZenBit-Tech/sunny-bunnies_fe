@@ -6,6 +6,8 @@ import storage from "redux-persist/lib/storage";
 
 import { authApi } from "./auth/auth-api.ts";
 import { authReducer } from "./auth/auth-slice.ts";
+import { filtersReducer } from "./filters/filters.slice.ts";
+import { filtersApi } from "./filters/filters-api.ts";
 import { productsApi } from "./products/products-api.ts";
 import { productsReducer } from "./products/products-slice.ts";
 import { api } from "./services.ts";
@@ -15,6 +17,8 @@ import { userReducer } from "./user/user-slice.ts";
 const rootReducer = combineReducers({
 	auth: authReducer,
 	[authApi.reducerPath]: authApi.reducer,
+	filters: filtersReducer,
+	filtersApiSlice: filtersApi.reducer,
 	products: productsReducer,
 	productsApiSlice: productsApi.reducer,
 	user: userReducer,

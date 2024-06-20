@@ -157,7 +157,9 @@
 		"justIn": "Just In",
 		"yourSize": "Your Size",
 		"productsWereNotFound": "Products from this category were not found",
-		"errorLoadingProducts": "Error loading products..."
+		"errorLoadingProducts": "Error loading products...",
+		"searchProducts": "Search products",
+		"noProducts": "There are no products with such name"
 	},
 	"Error": {
 		"unknowError": "Unknown error"
@@ -234,5 +236,19 @@
 		"emailLink": "mailto:support.black.circle@gmail.com",
 		"weWillHelpYou": " We're here to help!",
 		"goToHome": "Go to Home"
+	},
+	"ProductFilters": {
+		"filters": "Filters",
+		"gender": "gender",
+		"male": "male",
+		"female": "female",
+		"color": "color",
+		"brand": "brand",
+		"material": "material",
+		"size": "size",
+		"style": "style",
+		"price": "price",
+		"applyFilters": "Apply filters",
+		"clearFilters": "Clear filters"
 	}
 }
