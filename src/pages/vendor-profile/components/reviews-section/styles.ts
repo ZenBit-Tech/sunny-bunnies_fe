@@ -7,4 +7,11 @@ const StyledReviewsSection = styled(Box)`
 	gap: 24px;
 `;
 
-export { StyledReviewsSection };
+const StyledReviewsContent = styled(Box)`
+	align-item: flex-start;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+`;
+
+export { StyledReviewsContent, StyledReviewsSection };

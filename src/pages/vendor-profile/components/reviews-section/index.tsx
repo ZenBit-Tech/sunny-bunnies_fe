@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -6,7 +6,7 @@ import { fontSizes } from "~/libs/constants/index.ts";
 import { Review } from "~/libs/types/vendor.ts";
 
 import { ReviewItem } from "../index.ts";
-import { StyledReviewsSection } from "./styles.ts";
+import { StyledReviewsContent, StyledReviewsSection } from "./styles.ts";
 
 const zeroIndex = 0;
 
@@ -33,11 +33,11 @@ const ReviewsSection: React.FC<ReviewsSectionProperties> = ({ reviews }) => {
 					{t("VendorProfilePage.thisVendorDoesNotReceiveAnyReviewYet")}
 				</Typography>
 			) : (
-				<Box>
+				<StyledReviewsContent>
 					{reviews.map((review) => (
 						<ReviewItem key={review.id} review={review} />
 					))}
-				</Box>
+				</StyledReviewsContent>
 			)}
 		</StyledReviewsSection>
 	);

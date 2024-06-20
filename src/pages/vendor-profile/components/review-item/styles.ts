@@ -1,6 +1,6 @@
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Button, Typography, styled } from "@mui/material";
 
-import { colors } from "~/libs/constants/index.ts";
+import { colors, fontSizes } from "~/libs/constants/index.ts";
 
 const StyledReviewItemContainer = styled(Box)`
 	border: 1px solid ${colors.borderGray};
@@ -8,7 +8,6 @@ const StyledReviewItemContainer = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
-	height: 163px;
 	padding: 16px 25px 16px 16px;
 	width: 100%;
 `;
@@ -37,9 +36,17 @@ const StyledBuyerRating = styled(Typography)(() => ({
 	top: "5px",
 }));
 
+const StyledReadMoreLessButton = styled(Button)(({ theme }) => ({
+	...theme.typography.dmSans,
+	fontSize: fontSizes.medium,
+	padding: 0,
+	textTransform: "none",
+}));
+
 export {
 	StyledBuyerRating,
 	StyledRatingIcon,
+	StyledReadMoreLessButton,
 	StyledReviewContent,
 	StyledReviewItemBuyerData,
 	StyledReviewItemContainer,

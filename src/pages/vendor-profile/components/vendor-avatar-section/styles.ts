@@ -4,7 +4,6 @@ const StyledVendorProfileData = styled(Box)`
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
-	height: 844px;
 	gap: 52px;
 	width: 412px;
 `;
