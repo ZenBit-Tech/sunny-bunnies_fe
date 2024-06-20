@@ -9,10 +9,18 @@ import {
 } from "./constants.ts";
 
 type GetProductsRequestQuery = {
+	brand?: string;
 	category?: string;
+	color?: string;
 	dateRange?: number;
+	gender?: string;
 	limit?: number;
+	material?: string;
+	maxPrice?: number;
+	minPrice?: number;
 	offset?: number;
+	size?: string;
+	style?: string;
 };
 
 export const productsApi = api.injectEndpoints({
@@ -29,7 +37,15 @@ export const productsApi = api.injectEndpoints({
 					currentArg?.category !== previousArg?.category ||
 					currentArg?.limit !== previousArg?.limit ||
 					currentArg?.offset !== previousArg?.offset ||
-					currentArg?.dateRange !== previousArg?.dateRange
+					currentArg?.dateRange !== previousArg?.dateRange ||
+					currentArg?.gender !== previousArg?.gender ||
+					currentArg?.minPrice !== previousArg?.minPrice ||
+					currentArg?.maxPrice !== previousArg?.maxPrice ||
+					currentArg?.size !== previousArg?.size ||
+					currentArg?.color !== previousArg?.color ||
+					currentArg?.style !== previousArg?.style ||
+					currentArg?.brand !== previousArg?.brand ||
+					currentArg?.material !== previousArg?.material
 				);
 			},
 			merge: (currentCache, newItems, { arg }) => {
@@ -56,7 +72,21 @@ export const productsApi = api.injectEndpoints({
 				return endpointName;
 			},
 		}),
+		getProductsByName: builder.query<Product[], { name: string }>({
+			forceRefetch({ currentArg, previousArg }) {
+				return currentArg?.name !== previousArg?.name;
+			},
+			query: ({ name }) => ({
+				method: httpMethods.GET,
+				params: { name },
+				url: productsApiPath.ROOT,
+			}),
+		}),
 	}),
 });
 
-export const { useGetProductByIdQuery, useGetProductsQuery } = productsApi;
+export const {
+	useGetProductByIdQuery,
+	useGetProductsByNameQuery,
+	useGetProductsQuery,
+} = productsApi;

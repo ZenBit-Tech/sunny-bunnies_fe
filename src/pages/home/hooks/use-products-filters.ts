@@ -16,6 +16,7 @@ type UseProductFiltersResult = {
 	handleChooseCategory: (category: string) => void;
 	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
 	handleLoadMore: () => void;
+	hasAdditionalFilters: boolean;
 	hasMore: boolean;
 	isError: boolean;
 	isFetching: boolean;
@@ -61,6 +62,10 @@ const useProductFilters = (): UseProductFiltersResult => {
 
 	const hasMore = !isLoading && data?.length === productsLoadLimit;
 
+	const hasAdditionalFilters = Object.keys(additionalFilters).some(
+		(key) => additionalFilters[key] !== undefined,
+	);
+
 	return {
 		additionalFilters,
 		data,
@@ -68,6 +73,7 @@ const useProductFilters = (): UseProductFiltersResult => {
 		handleChooseCategory,
 		handleFilterChange,
 		handleLoadMore,
+		hasAdditionalFilters,
 		hasMore,
 		isError,
 		isFetching,
