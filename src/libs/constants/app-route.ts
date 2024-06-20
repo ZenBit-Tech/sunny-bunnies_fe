@@ -6,6 +6,7 @@ const AppRoute = {
 	GENERAL_INFORMATION: "/general-information",
 	HOME: "/home",
 	PRIVACY_POLICY: "/privacy-policy",
+	PROFILE: "/profile",
 	ROLE: "/profile-role",
 	ROOT: "/",
 	SIGN_IN: "/sign-in",
