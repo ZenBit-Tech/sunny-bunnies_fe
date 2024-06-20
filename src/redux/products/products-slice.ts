@@ -4,10 +4,12 @@ import { type Product } from "~/libs/types/products.ts";
 
 type ProductsState = {
 	products: Product[] | null;
+	productsByName: Product[] | null;
 };
 
 const initialState: ProductsState = {
 	products: null,
+	productsByName: null,
 };
 
 const productsSlice = createSlice({
@@ -16,6 +18,9 @@ const productsSlice = createSlice({
 	reducers: {
 		setProducts: (state, action: PayloadAction<Product[]>) => {
 			state.products = action.payload;
+		},
+		setProductsByName: (state, action: PayloadAction<Product[]>) => {
+			state.productsByName = action.payload;
 		},
 	},
 });
