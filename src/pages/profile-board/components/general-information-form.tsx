@@ -111,7 +111,6 @@ const GeneralInformationForm: React.FC = () => {
 							color="primary"
 							marginBottom="8px"
 							sx={{ fontSize: theme.typography.playfairDisplayBold }}
-							variant="h6"
 						>
 							{t("Form.profilePhotoTitle")}
 						</Typography>
@@ -172,7 +171,6 @@ const GeneralInformationForm: React.FC = () => {
 							color="primary"
 							marginBottom="8px"
 							sx={{ fontSize: theme.typography.playfairDisplayBold }}
-							variant="h6"
 						>
 							{t("Form.phoneNumberTitle")}
 						</Typography>

@@ -140,7 +140,6 @@ const AddressForm: React.FC = () => {
 					color="primary"
 					marginBottom="8px"
 					sx={{ fontSize: theme.typography.playfairDisplayBold }}
-					variant="h6"
 				>
 					{t("Form.adressTitle")}
 				</Typography>
@@ -149,7 +148,6 @@ const AddressForm: React.FC = () => {
 						color: theme.palette.fontGray,
 						fontSize: theme.typography.dmSans,
 					}}
-					variant="body1"
 				>
 					{t("Form.adressText")}
 				</Typography>
