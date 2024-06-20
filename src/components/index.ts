@@ -10,6 +10,7 @@ export { CustomRadioButtons } from "./custom-radio-buttons/index.tsx";
 export { CustomSelect } from "./custom-select/index.tsx";
 export { CustomSlider } from "./custom-slider/index.tsx";
 export { FilterButton } from "./filter-button/index.tsx";
+export { ImagePreview } from "./image-preview/image-preview.tsx";
 export { Loader } from "./loader/index.tsx";
 export { Newsletter } from "./newsletter/index.tsx";
 export { PrivateRoute } from "./private-route/index.tsx";

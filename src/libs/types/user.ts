@@ -1,6 +1,10 @@
+import { type Profile } from "./user-profile.type.ts";
+
 type User = {
 	email: string;
+	isVerified: boolean;
 	name: string;
+	profile: Profile;
 };
 
 type UserSignUpResponseDto = {
@@ -33,6 +37,15 @@ type UserSignUpRequestDto = {
 	password: string;
 };
 
+type UserVerifyEmailRequestDto = {
+	email: string;
+};
+
+type UserVerifyOtpReuestDto = {
+	code: string;
+	email: string;
+};
+
 export {
 	type User,
 	type UserSignInRequestDto,
@@ -40,4 +53,6 @@ export {
 	type UserSignUpFormData,
 	type UserSignUpRequestDto,
 	type UserSignUpResponseDto,
+	type UserVerifyEmailRequestDto,
+	type UserVerifyOtpReuestDto,
 };

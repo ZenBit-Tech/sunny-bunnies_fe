@@ -2,6 +2,7 @@ import { Button, ButtonProps, CircularProgress } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { Interpolation, SxProps } from "@mui/system";
 import React, { cloneElement } from "react";
+import { Link } from "react-router-dom";
 
 type BaseButtonProperties = {
 	children?: React.ReactNode;
@@ -10,6 +11,7 @@ type BaseButtonProperties = {
 	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 	startIcon?: React.ReactNode;
 	sx?: SxProps<Theme>;
+	to?: string;
 } & ButtonProps;
 
 const BaseButton: React.FC<BaseButtonProperties> = ({
@@ -19,13 +21,31 @@ const BaseButton: React.FC<BaseButtonProperties> = ({
 	onClick,
 	startIcon,
 	sx,
+	to,
 	...props
 }) => {
 	const iconStyle: Interpolation<Theme> = {
 		color: iconColor,
 	};
 
-	return (
+	return to ? (
+		<Link style={{ textDecoration: "none" }} to={to}>
+			<Button
+				onClick={onClick}
+				startIcon={
+					startIcon
+						? cloneElement(startIcon as React.ReactElement, {
+								style: iconStyle,
+						  })
+						: undefined
+				}
+				sx={sx}
+				{...props}
+			>
+				{isLoading ? <CircularProgress color="inherit" size={24} /> : children}
+			</Button>
+		</Link>
+	) : (
 		<Button
 			onClick={onClick}
 			startIcon={
