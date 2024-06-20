@@ -13,8 +13,8 @@ type CustomSliderProps = {
 	value: [number, number];
 };
 
-const VALUE_INDEX_MIN = 0;
-const VALUE_INDEX_MAX = 1;
+const valueIndexMin = 0;
+const valueIndexMax = 1;
 
 const CustomSlider: React.FC<CustomSliderProps> = ({
 	inputStartAdornment,
@@ -24,7 +24,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
 	onChange,
 	onMaxChange,
 	onMinChange,
-	step = VALUE_INDEX_MAX,
+	step = valueIndexMax,
 	value,
 }) => {
 	return (
@@ -56,7 +56,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
 						),
 					}}
 					onChange={onMinChange}
-					value={value[VALUE_INDEX_MIN]}
+					value={value[valueIndexMin]}
 				/>
 				<Typography sx={{ marginX: 2 }}>-</Typography>
 				<TextField
@@ -66,7 +66,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
 						),
 					}}
 					onChange={onMaxChange}
-					value={value[VALUE_INDEX_MAX]}
+					value={value[valueIndexMax]}
 				/>
 			</Box>
 		</Box>

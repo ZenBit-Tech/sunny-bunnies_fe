@@ -18,10 +18,10 @@ import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import { ColorPicker } from "../index.ts";
 import { StyledFiltersContainer } from "./styles.ts";
 
-const MIN_PRODUCT_PRICE = 0;
-const MAX_PRODUCT_PRICE = 10000;
-const MIN_INPUT_VALUE = 0;
-const MAX_INPUT_VALUE = 1;
+const minProductPrice = 0;
+const maxProductPrice = 10000;
+const minInputValue = 0;
+const maxInputValue = 1;
 
 type ProductFiltersProps = {
 	initialFilters: Filters;
@@ -43,10 +43,10 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 	const { data, error, isLoading } = useGetFiltersQuery({});
 
 	const [minPrice, setMinPrice] = useState<number>(
-		initialFilters.minPrice || MIN_PRODUCT_PRICE,
+		initialFilters.minPrice || minProductPrice,
 	);
 	const [maxPrice, setMaxPrice] = useState<number>(
-		initialFilters.maxPrice || MAX_PRODUCT_PRICE,
+		initialFilters.maxPrice || maxProductPrice,
 	);
 	const [selectedBrand, setSelectedBrand] = useState<string>(
 		initialFilters.brand ? String(initialFilters.brand) : "",
@@ -76,8 +76,8 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 	const handlePriceChange = useCallback(
 		(_event: Event, newValue: number | number[]): void => {
 			if (Array.isArray(newValue)) {
-				setMinPrice(newValue[MIN_INPUT_VALUE]);
-				setMaxPrice(newValue[MAX_INPUT_VALUE]);
+				setMinPrice(newValue[minInputValue]);
+				setMaxPrice(newValue[maxInputValue]);
 			}
 		},
 		[],
@@ -140,7 +140,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 		const filters: Record<string, number | string> = {};
 
 		if (minPrice !== undefined) filters.minPrice = minPrice;
-		if (maxPrice !== MAX_PRODUCT_PRICE) filters.maxPrice = maxPrice;
+		if (maxPrice !== maxProductPrice) filters.maxPrice = maxPrice;
 		if (selectedBrand) filters.brand = selectedBrand;
 		if (selectedColor) filters.color = selectedColor;
 		if (selectedSize) filters.size = selectedSize;
@@ -162,8 +162,8 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 	]);
 
 	const handleClear = useCallback((): void => {
-		setMinPrice(MIN_PRODUCT_PRICE);
-		setMaxPrice(MAX_PRODUCT_PRICE);
+		setMinPrice(minProductPrice);
+		setMaxPrice(maxProductPrice);
 		setSelectedBrand("");
 		setSelectedColor("");
 		setSelectedSize("");
@@ -240,8 +240,8 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 			<CustomSlider
 				inputStartAdornment="$"
 				label={t("ProductFilters.price")}
-				max={MAX_PRODUCT_PRICE}
-				min={MIN_PRODUCT_PRICE}
+				max={maxProductPrice}
+				min={minProductPrice}
 				onChange={handlePriceChange}
 				onMaxChange={handleMaxPriceChange}
 				onMinChange={handleMinPriceChange}
