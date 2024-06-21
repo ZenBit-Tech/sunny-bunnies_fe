@@ -6,7 +6,21 @@ import theme from "~/theme.ts";
 
 import styles from "./styles.module.css";
 
-const ImagePreview: React.FC<{ file: File | null }> = ({ file }) => {
+interface ImagePreviewProps {
+	file: File | null | string;
+}
+
+const ImagePreview: React.FC<ImagePreviewProps> = ({ file }) => {
+	let src: string;
+
+	if (file instanceof File) {
+		src = URL.createObjectURL(file);
+	} else if (typeof file === "string") {
+		src = file;
+	} else {
+		src = avatar;
+	}
+
 	return (
 		<Box
 			alignItems="center"
@@ -21,15 +35,7 @@ const ImagePreview: React.FC<{ file: File | null }> = ({ file }) => {
 				width: "120px",
 			}}
 		>
-			{file ? (
-				<img
-					alt="Uploaded"
-					className={styles["image"]}
-					src={URL.createObjectURL(file)}
-				/>
-			) : (
-				<img alt="Placeholder" className={styles["image"]} src={avatar} />
-			)}
+			<img alt="Preview" className={styles["image"]} src={src} />
 		</Box>
 	);
 };

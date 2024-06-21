@@ -22,9 +22,14 @@ type Size = {
 	shoeSize: string;
 };
 
-type GeneralInformation = {
+type GeneralInformation = PhoneNumber & ProfilePhoto;
+
+type PhoneNumber = {
 	phoneNumber: string;
-	profilePhoto: File | null;
+};
+
+type ProfilePhoto = {
+	profilePhoto: File | null | string;
 };
 
 type Profile = Address & CreditCard & GeneralInformation & Role & Size;
@@ -33,7 +38,9 @@ export {
 	type Address,
 	type CreditCard,
 	type GeneralInformation,
+	type PhoneNumber,
 	type Profile,
+	type ProfilePhoto,
 	type Role,
 	type Size,
 };
