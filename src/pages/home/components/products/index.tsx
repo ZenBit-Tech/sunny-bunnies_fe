@@ -1,13 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Drawer, Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { FilterButton } from "~/components/index.ts";
+import { BaseButton, FilterButton } from "~/components/index.ts";
+import { Filters } from "~/libs/types/filters.ts";
 import { Product } from "~/libs/types/products.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
-import { ProductCard } from "../index.ts";
+import {
+	FilterTags,
+	ProductCard,
+	ProductFilters,
+	ProductSearch,
+} from "../index.ts";
 import { StyledProductsContainer } from "./styles.ts";
 
 const minNumberOfProducts = 1;
@@ -26,12 +32,16 @@ const allFilters = [
 ];
 
 type ProductsProperties = {
+	additionalFilters: Record<string, number | undefined>;
 	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
+	hasAdditionalFilters: boolean;
 	products?: Product[];
 };
 
 const Products: React.FC<ProductsProperties> = ({
+	additionalFilters,
 	handleFilterChange,
+	hasAdditionalFilters,
 	products,
 }) => {
 	const user = useAppSelector((state: RootState) => state.auth.user);
@@ -42,6 +52,7 @@ const Products: React.FC<ProductsProperties> = ({
 	const [selectedFilter, setSelectedFilter] = useState(
 		allFilters[defaultFilter].value,
 	);
+	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	const handleFilterClick = useCallback(
 		(filter: string): void => {
@@ -59,18 +70,85 @@ const Products: React.FC<ProductsProperties> = ({
 		[handleFilterChange, t],
 	);
 
+	const handleApplyFilters = useCallback(
+		(filters: Filters): void => {
+			const { maxPrice, minPrice, ...otherFilters } = filters;
+
+			const updatedFilters = {
+				...otherFilters,
+				maxPrice: maxPrice ? +maxPrice : undefined,
+				minPrice: minPrice ? +minPrice : undefined,
+			};
+
+			handleFilterChange(updatedFilters);
+			setDrawerOpen(false);
+		},
+		[handleFilterChange],
+	);
+
+	const handleClearFilters = useCallback(() => {
+		const clearedFilters = {};
+		handleFilterChange(clearedFilters);
+	}, [handleFilterChange]);
+
+	const handleClearFilter = useCallback(
+		(filterKey: string) => {
+			const updatedFilters = { ...additionalFilters };
+			delete updatedFilters[filterKey];
+			handleFilterChange(updatedFilters);
+		},
+		[additionalFilters, handleFilterChange],
+	);
+
+	const toggleDrawer = useCallback((): void => {
+		setDrawerOpen((prev) => !prev);
+	}, []);
+
 	return (
 		<Box sx={{ padding: "52px", width: "100%" }}>
-			<Box sx={{ display: "flex", gap: "15px", height: "40px" }}>
-				{filtersToShow.map((filter) => (
-					<FilterButton
-						filter={filter.value}
-						key={filter.value}
-						onClick={handleFilterClick}
-						selected={selectedFilter === filter.value}
-					/>
-				))}
+			<Box
+				sx={{
+					alignItems: "center",
+					display: "flex",
+					flexWrap: "wrap",
+					gap: "15px",
+				}}
+			>
+				<Box sx={{ display: "flex", gap: "15px" }}>
+					{filtersToShow.map((filter) => (
+						<FilterButton
+							filter={filter.value}
+							key={filter.value}
+							onClick={handleFilterClick}
+							selected={selectedFilter === filter.value}
+						/>
+					))}
+				</Box>
+
+				<ProductSearch />
+				<BaseButton onClick={toggleDrawer} variant="contained">
+					{t("ProductFilters.filters")}
+				</BaseButton>
 			</Box>
+			<Drawer
+				anchor="right"
+				onClose={toggleDrawer}
+				open={drawerOpen}
+				sx={{ "& .MuiDrawer-paper": { width: "400px" } }}
+			>
+				<ProductFilters
+					initialFilters={additionalFilters}
+					onApply={handleApplyFilters}
+					onClear={handleClearFilters}
+				/>
+			</Drawer>
+			{hasAdditionalFilters && (
+				<FilterTags
+					filters={additionalFilters}
+					onClearAll={handleClearFilters}
+					onClearFilter={handleClearFilter}
+				/>
+			)}
 			<StyledProductsContainer>
 				{products?.map((product, index) => (
 					<ProductCard key={index} product={product} />
