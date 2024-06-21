@@ -20,6 +20,7 @@ const GetStartedFooterRoutes = [
 	AppRoute.PRIVACY_POLICY,
 	AppRoute.PRODUCT,
 	AppRoute.SIZE_GUIDE,
+	AppRoute.VENDORS_PROFILE,
 ];
 
 const FooterWrapper: React.FC = () => {

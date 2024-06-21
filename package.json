@@ -23,6 +23,7 @@
 		"@reduxjs/toolkit": "^2.2.5",
 		"@types/react-redux": "^7.1.33",
 		"country-state-city": "^3.2.1",
+		"date-fns": "^3.6.0",
 		"colord": "^2.9.3",
 		"google-auth-library": "^9.10.0",
 		"i18next": "^23.11.5",
@@ -72,8 +73,8 @@
 		"vite": "^5.2.0"
 	},
 	"optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
-  },
+		"@rollup/rollup-linux-x64-gnu": "4.6.1"
+	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged"

@@ -26,6 +26,7 @@ const StyledDescriptionSubtitle = styled(Typography)(({ theme }) => ({
 const StyledDescriptionData = styled(Typography)(({ theme }) => ({
 	...theme.typography.dmSans,
 	fontSize: fontSizes.mediumLarge,
+	paddingLeft: "5px",
 }));
 
 const StyledProductDetails = styled(Box)`

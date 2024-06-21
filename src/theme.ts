@@ -115,7 +115,8 @@ const theme = createTheme({
 				{
 					props: { variant: "secondary_black" },
 					style: {
-						border: "1px solid #333333",
+						backgroundColor: colors.lightGray,
+						border: "none",
 						borderRadius: "12px",
 						fontFamily: fontFamily.piayfairDisplay,
 						fontSize: fontSizes.large,
@@ -233,6 +234,10 @@ const theme = createTheme({
 			letterSpacing: "-1%",
 			lineHeight: "37px",
 		},
+	},
+	zIndex: {
+		low: 0,
+		medium: 1,
 	},
 });
 

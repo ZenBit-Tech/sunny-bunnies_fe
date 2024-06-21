@@ -20,7 +20,7 @@ const StyledRadioGroup = styled(RadioGroup)`
 	gap: "24px";
 `;
 
-const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
+const StyledFormControlLabel = styled(FormControlLabel)(() => ({
 	"& .Mui-checked + .MuiFormControlLabel-label": {
 		background: colors.pastelGreen,
 		borderRadius: "0 12px 12px 0",

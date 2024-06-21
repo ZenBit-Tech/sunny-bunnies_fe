@@ -18,7 +18,14 @@ import {
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
 import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
-import { Auth, Home, NotFound, ProductPage, SizeGuide } from "./pages/index.ts";
+import {
+	Auth,
+	Home,
+	NotFound,
+	ProductPage,
+	SizeGuide,
+	VendorProfile,
+} from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";
 import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
@@ -113,6 +120,10 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <ProfileBoard />,
 																	path: AppRoute.SIZE,
+																},
+																{
+																	element: <VendorProfile />,
+																	path: AppRoute.VENDORS_PROFILE,
 																},
 															],
 															element: <PrivateRoute />,

@@ -83,7 +83,7 @@
 			"PrivacyPolicy": "Privacy Policy",
 			"ContactUs": "Contact Us"
 		},
-		"copyrightText": "© 2023 Black Cycle",
+		"copyrightText": "© 2023 Black Circle",
 		"textLogIn": {
 			"row1": "Some text will be here",
 			"row2": "two - three lines"
@@ -238,6 +238,23 @@
 		"emailLink": "mailto:support.black.circle@gmail.com",
 		"weWillHelpYou": " We're here to help!",
 		"goToHome": "Go to Home"
+	},
+	"VendorProfilePage": {
+		"home": "Home",
+		"vendors": "Vendors",
+		"vendorWasNotFound": "Vendor Was Not Found",
+		"products": "Products",
+		"reviews": "Reviews",
+		"vendorsCloset": "Vendor's Closet",
+		"follow": "Follow",
+		"unFollow": "UnFollow",
+		"dontHaveAccess": "You don't have access to this page",
+		"noRatingsYet": "No ratings yet",
+		"thisVendorDoesNotReceiveAnyReviewYet": "This vendor doesn't receive any review yet",
+		"readMore":  "Read more...",
+		"readLess":  "Read less",
+		"error": "error",
+		"anErrorOccurred": "An error occurred"
 	},
 	"ProductPage": {
 		"home": "Home",

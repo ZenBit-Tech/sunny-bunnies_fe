@@ -6,10 +6,8 @@ import { fontSizes } from "~/libs/constants/fonts.ts";
 
 import { DescriptionDetailsItem } from "./description-details-item.tsx";
 import {
-	StyledDescriptionSubtitle,
 	StyledDescriptionTitle,
 	StyledProductDescriptionContainer,
-	StyledProductDetails,
 } from "./styles.ts";
 
 type ProductDescriptionProperties = {
@@ -38,11 +36,6 @@ const ProductDescription: React.FC<ProductDescriptionProperties> = ({
 			</Box>
 			<DescriptionDetailsItem items={sizes} title={t("ProductPage.sizes")} />
 			<DescriptionDetailsItem items={colors} title={t("ProductPage.colors")} />
-			<StyledProductDetails>
-				<StyledDescriptionSubtitle>
-					{t("ProductPage.height")}
-				</StyledDescriptionSubtitle>
-			</StyledProductDetails>
 		</StyledProductDescriptionContainer>
 	);
 };

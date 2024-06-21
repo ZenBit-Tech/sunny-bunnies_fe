@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import { Loader } from "~/components/index.ts";
-import { productStatus } from "~/libs/constants/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { useGetProductByIdQuery } from "~/redux/products/products-api.ts";
 import { type RootState } from "~/redux/store.ts";
@@ -38,18 +37,11 @@ const ProductPage: React.FC = () => {
 	const [isPreviewMode, setIsPreviewMode] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const [selectedSizeId, setSelectedSizeId] = useState<null | number>(null);
-	const [selectedStatus, setSelectedStatus] = useState<null | string>(null);
-
 	useEffect(() => {
 		if (user && user.id === product?.user.id) {
 			setIsPreviewMode(true);
 		}
 	}, [user, product]);
-
-	const handleSelectSize = useCallback((sizeId: number): void => {
-		setSelectedSizeId(sizeId);
-	}, []);
 
 	const handleVendorClick = useCallback((): void => {
 		if (isPreviewMode) {
@@ -60,10 +52,6 @@ const ProductPage: React.FC = () => {
 	const handleModalClose = useCallback((): void => {
 		setIsModalOpen(false);
 	}, [setIsModalOpen]);
-
-	const handleSelectStatus = useCallback((status: string): void => {
-		setSelectedStatus(status);
-	}, []);
 
 	if (isLoading) {
 		return (
@@ -85,11 +73,6 @@ const ProductPage: React.FC = () => {
 
 	const { description, images, maxPrice, minPrice, name, status, variants } =
 		product;
-
-	const defaultStatus =
-		product.status === productStatus.BOTH
-			? productStatus.FOR_RENT
-			: product.status;
 
 	const colors = [...new Set(variants.map((variant) => variant.color.name))];
 	const sizes = [...new Set(variants.map((variant) => variant.size.name))];
@@ -125,15 +108,10 @@ const ProductPage: React.FC = () => {
 							</Typography>
 							{variants && (
 								<>
-									<SizesDropdown
-										onSelectSize={handleSelectSize}
-										variants={variants}
-									/>
+									<SizesDropdown variants={variants} />
 									<ProductStatusRadio
-										defaultSelectedStatus={defaultStatus}
 										image={images[defaultProductDataIndex].url}
 										name={name}
-										onSelectStatus={handleSelectStatus}
 										price={minPrice}
 										status={status}
 									/>
