@@ -4,6 +4,9 @@ import { useTranslation } from "react-i18next";
 
 import { StyledButton, StyledVendorsButtonsGroup } from "./styles.ts";
 
+const zIndexZero = 0;
+const zIndexOne = 1;
+
 type VendorsButtonsGroupProperties = {
 	isProductShown: boolean;
 	onProductsClick: () => void;
@@ -23,12 +26,17 @@ const VendorsButtonsGroup: React.FC<VendorsButtonsGroupProperties> = ({
 		<StyledVendorsButtonsGroup>
 			<StyledButton
 				onClick={onProductsClick}
+				sx={{
+					marginRight: "-15px",
+					zIndex: isProductShown ? zIndexOne : zIndexZero,
+				}}
 				variant={isProductShown ? "primary_black_regular" : "secondary_black"}
 			>
 				{t("VendorProfilePage.products")}
 			</StyledButton>
 			<StyledButton
 				onClick={onReviewsClick}
+				sx={{ zIndex: isProductShown ? zIndexZero : zIndexOne }}
 				variant={isProductShown ? "secondary_black" : "primary_black_regular"}
 			>
 				{t("VendorProfilePage.reviews")}
