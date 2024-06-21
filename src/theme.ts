@@ -12,9 +12,6 @@ declare module "@mui/material/styles" {
 	interface BreakpointOverrides {
 		tablet: true;
 	}
-}
-
-declare module "@mui/material/styles" {
 	interface Palette {
 		darkGrey: string;
 		fontGray: string;
@@ -30,6 +27,32 @@ declare module "@mui/material/styles" {
 		lightGreen: string;
 		transparent: string;
 		white: string;
+	}
+	interface Theme {
+		fontSizes: {
+			large: string;
+			lg: string;
+			medium: string;
+			mediumLarge: string;
+			small: string;
+			title: string;
+			xl: string;
+			xs: string;
+			xxl: string;
+		};
+	}
+	interface ThemeOptions {
+		fontSizes: {
+			large: string;
+			lg: string;
+			medium: string;
+			mediumLarge: string;
+			small: string;
+			title: string;
+			xl: string;
+			xs: string;
+			xxl: string;
+		};
 	}
 }
 
@@ -143,6 +166,17 @@ const theme = createTheme({
 				},
 			],
 		},
+	},
+	fontSizes: {
+		large: fontSizes.large,
+		lg: fontSizes.lg,
+		medium: fontSizes.medium,
+		mediumLarge: fontSizes.mediumLarge,
+		small: fontSizes.small,
+		title: fontSizes.title,
+		xl: fontSizes.xl,
+		xs: fontSizes.xs,
+		xxl: fontSizes.xxl,
 	},
 	palette: {
 		darkGrey: colors.darkGrey,
