@@ -116,29 +116,13 @@ createRoot(document.getElementById("root")!).render(
 																	element: <ProfileBoard />,
 																	path: AppRoute.SIZE,
 																},
+																{
+																	element: <VendorProfile />,
+																	path: AppRoute.VENDOR_PROFILE,
+																},
 															],
 															element: <PrivateRoute />,
 															path: AppRoute.ROOT,
-														},
-														{
-															element: <Home />,
-															path: AppRoute.HOME,
-														},
-														{
-															element: <PrivacyPolicy />,
-															path: AppRoute.PRIVACY_POLICY,
-														},
-														{
-															element: <TermsConditions />,
-															path: AppRoute.TERMS_OF_USE,
-														},
-														{
-															element: <SizeGuide />,
-															path: AppRoute.SIZE_GUIDE,
-														},
-														{
-															element: <VendorProfile />,
-															path: AppRoute.VENDOR_PROFILE,
 														},
 													],
 													element: <FooterWrapper />,
