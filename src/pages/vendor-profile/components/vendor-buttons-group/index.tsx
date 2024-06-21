@@ -29,10 +29,6 @@ const VendorsButtonsGroup: React.FC<VendorsButtonsGroupProperties> = ({
 			</StyledButton>
 			<StyledButton
 				onClick={onReviewsClick}
-				// sx={{
-				// 	backgroundColor: colors.lightGray,
-				// 	border: "none",
-				// }}
 				variant={isProductShown ? "secondary_black" : "primary_black_regular"}
 			>
 				{t("VendorProfilePage.reviews")}
