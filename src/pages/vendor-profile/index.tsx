@@ -20,7 +20,7 @@ const VendorProfile: React.FC = () => {
 	const { id } = useParams();
 	const { t } = useTranslation();
 
-	const [hasAccess, setHasAccess] = useState(true);
+	const [hasAccess, setHasAccess] = useState(false);
 	const user = useAppSelector((state: RootState) => state.auth.user);
 	const { data: vendor, isError, isLoading } = useGetVendorByIdQuery(id);
 
