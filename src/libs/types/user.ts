@@ -2,6 +2,7 @@ import { type Profile } from "./user-profile.type.ts";
 
 type User = {
 	email: string;
+	id: string;
 	isVerified: boolean;
 	name: string;
 	profile: Profile;

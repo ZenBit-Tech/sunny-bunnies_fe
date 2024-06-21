@@ -24,10 +24,6 @@ const Home: React.FC = () => {
 		isError,
 	} = useProductFilters();
 
-	if (isError) {
-		return <Box>{t("HomePage.errorLoadingProducts")}</Box>;
-	}
-
 	return (
 		<Box
 			sx={{
@@ -59,6 +55,7 @@ const Home: React.FC = () => {
 						products={data}
 					/>
 				)}
+				{isError && <Box>{t("HomePage.errorLoadingProducts")}</Box>}
 			</InfiniteScroll>
 			<Newsletter />
 		</Box>
