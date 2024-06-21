@@ -25,7 +25,7 @@ const DescriptionDetailsItem: React.FC<DescriptionDetailsItemProperties> = ({
 				{items.map((item, index) => (
 					<React.Fragment key={index}>
 						<StyledDescriptionData>{item}</StyledDescriptionData>
-						{index < items.length - numberForCountLastIndex && ", "}
+						{index < items.length - numberForCountLastIndex && ","}
 					</React.Fragment>
 				))}
 			</Box>
