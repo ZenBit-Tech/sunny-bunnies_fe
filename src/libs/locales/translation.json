@@ -242,7 +242,9 @@
 		"noRatingsYet": "No ratings yet",
 		"thisVendorDoesNotReceiveAnyReviewYet": "This vendor doesn't receive any review yet",
 		"readMore":  "Read more...",
-		"readLess":  "Read less"
+		"readLess":  "Read less",
+		"error": "error",
+		"anErrorOccurred": "An error occurred"
 	},
 	"ProductPage": {
 		"home": "Home",

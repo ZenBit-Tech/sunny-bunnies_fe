@@ -1,15 +1,11 @@
 import { Avatar, Box, Typography } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
 import StarRatingIcon from "~/assets/icons/star-rating-icon.svg?react";
 import { BaseButton } from "~/components/index.ts";
 import { fontSizes } from "~/libs/constants/fonts.ts";
-import {
-	useCheckFollowStatusQuery,
-	useFollowMutation,
-	useUnFollowMutation,
-} from "~/redux/user/user-api.ts";
+import { useFollowHandler } from "~/pages/vendor-profile/hooks/index.ts";
 
 import { HeaderLinksGroup } from "../index.ts";
 import {
@@ -33,37 +29,8 @@ const VendorAvatarSection: React.FC<VendorAvatarSectionProperties> = ({
 }) => {
 	const { t } = useTranslation();
 
-	const { data: followStatus } = useCheckFollowStatusQuery({
-		userId: vendorId,
-	});
-
-	const [error, setError] = useState("");
-	const [isFollowing, setIsFollowing] = useState(false);
-	const [followMutation] = useFollowMutation();
-	const [unfollowMutation] = useUnFollowMutation();
-
-	useEffect(() => {
-		if (followStatus) {
-			setIsFollowing(followStatus);
-		}
-	}, [followStatus, vendorId]);
-
-	const handleFollowClick = useCallback(async () => {
-		try {
-			if (isFollowing) {
-				await unfollowMutation({ userId: vendorId });
-			} else {
-				await followMutation({ userId: vendorId });
-			}
-			setIsFollowing(!isFollowing);
-		} catch (error) {
-			if (error instanceof Error) {
-				setError(error.message);
-			} else {
-				setError("An error occurred");
-			}
-		}
-	}, [isFollowing, followMutation, unfollowMutation, vendorId]);
+	const { handleFollowClick, isFollowing, serverError } =
+		useFollowHandler(vendorId);
 
 	return (
 		<StyledVendorProfileData>
@@ -106,9 +73,9 @@ const VendorAvatarSection: React.FC<VendorAvatarSectionProperties> = ({
 					? t("VendorProfilePage.unFollow")
 					: t("VendorProfilePage.follow")}
 			</BaseButton>
-			{error && (
+			{serverError && (
 				<Typography color="error" variant="dmSans">
-					{error}
+					{serverError}
 				</Typography>
 			)}
 		</StyledVendorProfileData>
