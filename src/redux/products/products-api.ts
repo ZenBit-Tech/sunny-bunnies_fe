@@ -25,6 +25,12 @@ type GetProductsRequestQuery = {
 
 export const productsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
+		getProductById: builder.query<Product, string | undefined>({
+			query: (id) => ({
+				method: httpMethods.GET,
+				url: productsApiPath.ROOT + `/${id}`,
+			}),
+		}),
 		getProducts: builder.query<Product[], GetProductsRequestQuery>({
 			forceRefetch({ currentArg, previousArg }) {
 				return (
@@ -79,4 +85,8 @@ export const productsApi = api.injectEndpoints({
 	}),
 });
 
-export const { useGetProductsByNameQuery, useGetProductsQuery } = productsApi;
+export const {
+	useGetProductByIdQuery,
+	useGetProductsByNameQuery,
+	useGetProductsQuery,
+} = productsApi;

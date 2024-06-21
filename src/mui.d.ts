@@ -6,6 +6,7 @@ declare module "@mui/material/Button" {
 		primary_black_bold: true;
 		primary_black_regular: true;
 		secondary_black: true;
+		small_icon: true;
 	}
 }
 
