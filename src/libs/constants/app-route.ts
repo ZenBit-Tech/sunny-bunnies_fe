@@ -6,6 +6,8 @@ const AppRoute = {
 	GENERAL_INFORMATION: "/general-information",
 	HOME: "/home",
 	PRIVACY_POLICY: "/privacy-policy",
+	PRODUCT: "/product/:id",
+	PRODUCT_LIST: "/product-list",
 	ROLE: "/profile-role",
 	ROOT: "/",
 	SIGN_IN: "/sign-in",

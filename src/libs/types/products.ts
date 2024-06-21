@@ -42,6 +42,7 @@ type Product = {
 	maxPrice: number;
 	minPrice: number;
 	name: string;
+	quantity: number;
 	status: string;
 	style: string;
 	updatedAt: Date;

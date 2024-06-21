@@ -21,6 +21,7 @@ import {
 	Auth,
 	Home,
 	NotFound,
+	ProductPage,
 	SizeGuide,
 	VendorProfile,
 } from "./pages/index.ts";
@@ -68,6 +69,10 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <Home />,
 																	path: AppRoute.HOME,
+																},
+																{
+																	element: <ProductPage />,
+																	path: AppRoute.PRODUCT,
 																},
 																{
 																	element: <PrivacyPolicy />,

@@ -14,17 +14,15 @@ const Home: React.FC = () => {
 	const { t } = useTranslation();
 
 	const {
+		additionalFilters,
 		data,
 		handleChooseCategory,
 		handleFilterChange,
 		handleLoadMore,
+		hasAdditionalFilters,
 		hasMore,
 		isError,
 	} = useProductFilters();
-
-	if (isError) {
-		return <Box>{t("HomePage.errorLoadingProducts")}</Box>;
-	}
 
 	return (
 		<Box
@@ -50,8 +48,14 @@ const Home: React.FC = () => {
 				}}
 			>
 				{data && (
-					<Products handleFilterChange={handleFilterChange} products={data} />
+					<Products
+						additionalFilters={additionalFilters}
+						handleFilterChange={handleFilterChange}
+						hasAdditionalFilters={hasAdditionalFilters}
+						products={data}
+					/>
 				)}
+				{isError && <Box>{t("HomePage.errorLoadingProducts")}</Box>}
 			</InfiniteScroll>
 			<Newsletter />
 		</Box>

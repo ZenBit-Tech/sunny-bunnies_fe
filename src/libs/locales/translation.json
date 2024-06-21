@@ -149,7 +149,9 @@
 		"justIn": "Just In",
 		"yourSize": "Your Size",
 		"productsWereNotFound": "Products from this category were not found",
-		"errorLoadingProducts": "Error loading products..."
+		"errorLoadingProducts": "Error loading products...",
+		"searchProducts": "Search products",
+		"noProducts": "There are no products with such name"
 	},
 	"Error": {
 		"unknowError": "Unknown error"
@@ -241,5 +243,45 @@
 		"thisVendorDoesNotReceiveAnyReviewYet": "This vendor doesn't receive any review yet",
 		"readMore":  "Read more...",
 		"readLess":  "Read less"
+	},
+	"ProductPage": {
+		"home": "Home",
+		"productCategory": "Product Category",
+		"productName": "Product Name",
+		"chooseSize": "Choose Size",
+		"productStatus": "productStatus",
+		"oneTimeRental": "One-Time Rental",
+		"buyNow": "Buy Now",
+		"reserveAnItem": "Reserve an item for 7 or 14 days",
+		"preLovedItem": "Pre-loved item in excellent condition",
+		"addToCart": "Add To Cart",
+		"makeAnOffer": "Make An Offer",
+		"wishlist": "Wishlist",
+		"messenger": "Messenger",
+		"description": "Description",
+		"sizes": "SIZES",
+		"colors": "COLORS",
+		"height": "HEIGHT",
+		"errorMessage": "Error fetching product details",
+		"errorMessageRecommended": "Error loading recommended products",
+		"youMightAlsoLike": "You Might Also Like",
+		"toProductList": "To Product List",
+		"payAttention": "Pay Attention",
+		"vendorMessage": "You are in preview mode. On this page you can see how the buyer sees your product page",
+		"ok": "OK"
+	},
+	"ProductFilters": {
+		"filters": "Filters",
+		"gender": "gender",
+		"male": "male",
+		"female": "female",
+		"color": "color",
+		"brand": "brand",
+		"material": "material",
+		"size": "size",
+		"style": "style",
+		"price": "price",
+		"applyFilters": "Apply filters",
+		"clearFilters": "Clear filters"
 	}
 }
