@@ -34,12 +34,12 @@ const creditCardValidationRules = {
 };
 
 const creditCardErrorMessages = {
-	cardNumberLength: `Card number must be exactly ${creditCardValidationRules.CARD_NUMBER_LENGTH} digits`,
-	cardNumberRequired: "Card number is required",
-	cvvCodeLength: `CVV code must be exactly ${creditCardValidationRules.CVV_CODE_LENGTH} digits`,
-	cvvCodeRequired: "CVV code is required",
-	expirationDateFormat: "Expiration date must be in the format MM/YY",
-	expirationDateRequired: "Expiration date is required",
+	CARD_NUMBER_LENGTH: `Card number must be exactly ${creditCardValidationRules.CARD_NUMBER_LENGTH} digits`,
+	CARD_NUMBER_REQUIRED: "Card number is required",
+	CVV_CODE_LENGTH: `CVV code must be exactly ${creditCardValidationRules.CVV_CODE_LENGTH} digits`,
+	CVV_CODE_REQUIRED: "CVV code is required",
+	EXPIRATION_DATE_FORMAT: "Expiration date must be in the format MM/YY",
+	EXPIRATION_DATE_REQUIRED: "Expiration date is required",
 };
 
 const sizeValidationMessages = {
