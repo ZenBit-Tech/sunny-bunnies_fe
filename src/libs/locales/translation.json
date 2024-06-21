@@ -128,6 +128,14 @@
 		"emailExample": "your_email@gmail.com",
 		"passwordPlaceholder": "Min. 8 characters"
 	},
+	"AdminLogin":{
+		"signIn": "Sign in",
+		"signInDescription": "Please enter your credentials to sign in",
+		"email": "Email",
+		"password": "Password",
+		"emailExample": "your_email@gmail.com",
+		"passwordPlaceholder": "Min. 8 characters"
+	},
 	"SignInComponent": {
 		"signIn": "Sign In",
 		"signInWithGoogle": "Sign In with Google",

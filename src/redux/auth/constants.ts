@@ -1,4 +1,5 @@
 const authApiPath = {
+	ADMIN_SIGN_IN: "/auth/admin-sign-in",
 	GENERATE_ACCESS: "/auth/generate-access",
 	GOOGLE: "/auth/google",
 	GOOGLE_LOGIN: "/auth/google-login",

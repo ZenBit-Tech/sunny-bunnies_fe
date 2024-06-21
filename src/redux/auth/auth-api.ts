@@ -23,6 +23,13 @@ export const authApi = api.injectEndpoints({
 				url: authApiPath.GOOGLE,
 			}),
 		}),
+		adminLogin: build.mutation<UserSignInResponseDto, UserSignInRequestDto>({
+			query: (body) => ({
+				body,
+				method: httpMethods.POST,
+				url: authApiPath.ADMIN_SIGN_IN,
+			}),
+		}),
 		getUser: build.query<User, undefined>({
 			query: () => ({
 				method: httpMethods.GET,
@@ -69,6 +76,7 @@ export const authApi = api.injectEndpoints({
 
 export const {
 	useAddUserGoogleMutation,
+	useAdminLoginMutation,
 	useGetUserQuery,
 	useLoginByGoogleMutation,
 	useLoginMutation,

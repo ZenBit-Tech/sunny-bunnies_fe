@@ -17,6 +17,7 @@ import {
 } from "./components/index.ts";
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
+import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
 import { Auth, Home, NotFound, ProductPage, SizeGuide } from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";
@@ -52,6 +53,10 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <Auth />,
 																	path: AppRoute.SIGN_IN,
+																},
+																{
+																	element: <AdminLogin />,
+																	path: AppRoute.ADMIN_SIGN_IN,
 																},
 															],
 															element: <AuthRoute />,

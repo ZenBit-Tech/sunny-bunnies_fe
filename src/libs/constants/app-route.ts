@@ -1,5 +1,7 @@
 const AppRoute = {
 	ADDRESS: "/address",
+	ADMIN_PANEL: "/admin-panel",
+	ADMIN_SIGN_IN: "/admin-sign-in",
 	ANY: "*",
 	CREDIT_CARD: "/credit-card",
 	FORGOT_PASSWORD: "/forgot-password",

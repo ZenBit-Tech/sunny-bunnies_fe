@@ -37,7 +37,7 @@ const ProfileBoard: React.FC = () => {
 	};
 
 	const handleTabChange = useCallback(
-		(event: React.SyntheticEvent, newValue: string): void => {
+		(_event: React.SyntheticEvent, newValue: string): void => {
 			navigate(newValue);
 		},
 		[navigate],
