@@ -35,11 +35,11 @@ const ReviewItem: React.FC<ReviewItemProperties> = ({ review }) => {
 		setIsReviewLarge(review.review.length > maxReviewLength);
 	}, [review]);
 
-	const toggleExpanded = useCallback(() => {
+	const toggleExpanded = useCallback((): void => {
 		setIsReviewExpanded(!isReviewExpanded);
 	}, [isReviewExpanded]);
 
-	const shortenReview = useCallback((reviewText: string) => {
+	const shortenReview = useCallback((reviewText: string): string => {
 		if (reviewText.length > maxReviewLength) {
 			return reviewText.slice(zeroIndex, maxReviewLength);
 		}
