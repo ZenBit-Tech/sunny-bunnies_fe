@@ -11,14 +11,10 @@ import { type ProductVariant } from "~/libs/types/products.ts";
 const defaultSizeIndex = 0;
 
 type SizesDropdownProperties = {
-	onSelectSize: (size: number) => void;
 	variants: ProductVariant[];
 };
 
-const SizesDropdown: React.FC<SizesDropdownProperties> = ({
-	onSelectSize,
-	variants,
-}) => {
+const SizesDropdown: React.FC<SizesDropdownProperties> = ({ variants }) => {
 	const [selectedSize, setSelectedSize] = useState(
 		variants[defaultSizeIndex].size.id,
 	);
@@ -27,9 +23,8 @@ const SizesDropdown: React.FC<SizesDropdownProperties> = ({
 		(event: SelectChangeEvent<number>) => {
 			const size = event.target.value as number;
 			setSelectedSize(size);
-			onSelectSize(size);
 		},
-		[onSelectSize, setSelectedSize],
+		[setSelectedSize],
 	);
 
 	return (

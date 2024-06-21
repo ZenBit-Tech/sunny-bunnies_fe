@@ -37,17 +37,11 @@ const ProductPage: React.FC = () => {
 	const [isPreviewMode, setIsPreviewMode] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const [selectedSizeId, setSelectedSizeId] = useState<null | number>(null);
-
 	useEffect(() => {
 		if (user && user.id === product?.user.id) {
 			setIsPreviewMode(true);
 		}
 	}, [user, product]);
-
-	const handleSelectSize = useCallback((sizeId: number): void => {
-		setSelectedSizeId(sizeId);
-	}, []);
 
 	const handleVendorClick = useCallback((): void => {
 		if (isPreviewMode) {
@@ -114,10 +108,7 @@ const ProductPage: React.FC = () => {
 							</Typography>
 							{variants && (
 								<>
-									<SizesDropdown
-										onSelectSize={handleSelectSize}
-										variants={variants}
-									/>
+									<SizesDropdown variants={variants} />
 									<ProductStatusRadio
 										image={images[defaultProductDataIndex].url}
 										name={name}
