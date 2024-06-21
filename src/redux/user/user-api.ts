@@ -3,7 +3,7 @@ import { User } from "~/libs/types/user.ts";
 import {
 	Address,
 	CreditCard,
-	GeneralInformation,
+	PhoneNumber,
 	Role,
 	Size,
 } from "~/libs/types/user-profile.type.ts";
@@ -38,7 +38,7 @@ export const userApi = api.injectEndpoints({
 				url: `${userApiPath.USER_FOLLOW}/${userId}`,
 			}),
 		}),
-		update: build.mutation<User, Address | GeneralInformation | Role | Size>({
+		update: build.mutation<User, Address | PhoneNumber | Role | Size>({
 			query: (body) => ({
 				body,
 				method: httpMethods.PATCH,
@@ -52,6 +52,13 @@ export const userApi = api.injectEndpoints({
 				url: userApiPath.USER_UPDATE_CARD,
 			}),
 		}),
+		upload: build.mutation<User, FormData>({
+			query: (formData: FormData) => ({
+				body: formData,
+				method: httpMethods.POST,
+				url: userApiPath.USER_UPLOAD_AVATAR,
+			}),
+		}),
 	}),
 });
 
@@ -62,4 +69,5 @@ export const {
 	useUnFollowMutation,
 	useUpdateCardMutation,
 	useUpdateMutation,
+	useUploadMutation,
 } = userApi;
