@@ -2,10 +2,9 @@ import { Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { StyledButton, StyledVendorsButtonsGroup } from "./styles.ts";
+import theme from "~/theme.ts";
 
-const zIndexZero = 0;
-const zIndexOne = 1;
+import { StyledButton, StyledVendorsButtonsGroup } from "./styles.ts";
 
 type VendorsButtonsGroupProperties = {
 	isProductShown: boolean;
@@ -28,7 +27,7 @@ const VendorsButtonsGroup: React.FC<VendorsButtonsGroupProperties> = ({
 				onClick={onProductsClick}
 				sx={{
 					marginRight: "-15px",
-					zIndex: isProductShown ? zIndexOne : zIndexZero,
+					zIndex: isProductShown ? theme.zIndex.medium : theme.zIndex.low,
 				}}
 				variant={isProductShown ? "primary_black_regular" : "secondary_black"}
 			>
@@ -36,7 +35,7 @@ const VendorsButtonsGroup: React.FC<VendorsButtonsGroupProperties> = ({
 			</StyledButton>
 			<StyledButton
 				onClick={onReviewsClick}
-				sx={{ zIndex: isProductShown ? zIndexZero : zIndexOne }}
+				sx={{ zIndex: isProductShown ? theme.zIndex.low : theme.zIndex.medium }}
 				variant={isProductShown ? "secondary_black" : "primary_black_regular"}
 			>
 				{t("VendorProfilePage.reviews")}

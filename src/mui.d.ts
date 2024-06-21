@@ -37,3 +37,15 @@ declare module "@mui/material/Typography" {
 		playfairDisplayTitle: true;
 	}
 }
+
+declare module "@mui/material/styles" {
+	interface ZIndex {
+		low: number;
+		medium: number;
+	}
+
+	interface ZIndexOptions {
+		low?: number;
+		medium?: number;
+	}
+}

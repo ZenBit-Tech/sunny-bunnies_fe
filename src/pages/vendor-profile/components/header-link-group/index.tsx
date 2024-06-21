@@ -2,7 +2,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { AppRoute } from "~/libs/constants/app-route.ts";
+import { AppRoute, colors, fontSizes } from "~/libs/constants/index.ts";
 
 import { StyledHeaderLink, StyledHeaderLinksGroup } from "./styles.ts";
 
@@ -20,15 +20,13 @@ const HeaderLinksGroup: React.FC<HeaderLinksGroupProperties> = ({
 				{t("VendorProfilePage.home")}
 			</StyledHeaderLink>
 			<ArrowForwardIosIcon
-				color="secondary"
-				sx={{ fontSize: "12px", height: "100%" }}
+				sx={{ color: colors.gray, fontSize: fontSizes.xs, height: "100%" }}
 			/>
 			<StyledHeaderLink href={AppRoute.HOME}>
 				{t("VendorProfilePage.vendors")}
 			</StyledHeaderLink>
 			<ArrowForwardIosIcon
-				color="secondary"
-				sx={{ fontSize: "12px", height: "100%" }}
+				sx={{ color: colors.gray, fontSize: fontSizes.xs, height: "100%" }}
 			/>
 			<StyledHeaderLink>{vendorName}</StyledHeaderLink>
 		</StyledHeaderLinksGroup>

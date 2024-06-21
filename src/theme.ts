@@ -201,6 +201,10 @@ const theme = createTheme({
 			lineHeight: "37px",
 		},
 	},
+	zIndex: {
+		low: 0,
+		medium: 1,
+	},
 });
 
 export default responsiveFontSizes(theme);
