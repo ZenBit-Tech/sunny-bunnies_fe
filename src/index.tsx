@@ -118,7 +118,7 @@ createRoot(document.getElementById("root")!).render(
 																},
 																{
 																	element: <VendorProfile />,
-																	path: AppRoute.VENDOR_PROFILE,
+																	path: AppRoute.VENDORS_PROFILE,
 																},
 															],
 															element: <PrivateRoute />,
