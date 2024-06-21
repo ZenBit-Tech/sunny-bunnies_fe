@@ -36,14 +36,12 @@ const RadioLabel: React.FC<ProductStatusRadioProperties> = ({
 					fontWeight={fontWeight.medium}
 					variant="playfairDisplayBold"
 				>
-					{status === productStatus.FOR_RENT
-						? `${t("ProductPage.oneTimeRental")}`
-						: `${t("ProductPage.buyNow")}`}
+					{status === productStatus.FOR_RENT &&
+						`${t("ProductPage.oneTimeRental")}`}
 				</Typography>
 				<Typography variant="dmSansBold">
-					{status === productStatus.FOR_RENT
-						? `${t("ProductPage.reserveAnItem")}`
-						: `${t("ProductPage.preLovedItem")}`}
+					{status === productStatus.FOR_RENT &&
+						`${t("ProductPage.reserveAnItem")}`}
 				</Typography>
 				<Typography fontSize={fontSizes.medium} variant="dmSansBold">
 					{`$${price}`}

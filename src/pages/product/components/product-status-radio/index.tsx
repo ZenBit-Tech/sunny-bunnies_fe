@@ -1,8 +1,6 @@
-import { Box, Radio } from "@mui/material";
+import { Radio } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import { productStatus } from "~/libs/constants/product-status.ts";
 
 import { RadioLabel } from "../radio-label/index.tsx";
 import {
@@ -49,60 +47,18 @@ const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 				onChange={handleProductChange}
 				value={selectedStatus}
 			>
-				{status === productStatus.BOTH ? (
-					<Box
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							gap: "24px",
-							width: "100%",
-						}}
-					>
-						<StyledFormControlLabel
-							checked={selectedStatus === productStatus.FOR_RENT}
-							control={<Radio />}
-							label={
-								<RadioLabel
-									image={image}
-									name={name}
-									price={price}
-									status={productStatus.FOR_RENT}
-								/>
-							}
-							value={productStatus.FOR_RENT}
+				<StyledFormControlLabel
+					control={<Radio />}
+					label={
+						<RadioLabel
+							image={image}
+							name={name}
+							price={price}
+							status={status}
 						/>
-						<StyledFormControlLabel
-							checked={selectedStatus === productStatus.FOR_SALE}
-							control={<Radio />}
-							label={
-								<RadioLabel
-									image={image}
-									name={name}
-									price={price}
-									status={productStatus.FOR_SALE}
-								/>
-							}
-							value={productStatus.FOR_SALE}
-						/>
-					</Box>
-				) : (
-					<StyledFormControlLabel
-						control={<Radio />}
-						label={
-							<RadioLabel
-								image={image}
-								name={name}
-								price={price}
-								status={
-									status === productStatus.FOR_RENT
-										? productStatus.FOR_RENT
-										: productStatus.FOR_SALE
-								}
-							/>
-						}
-						value={status}
-					/>
-				)}
+					}
+					value={status}
+				/>
 			</StyledRadioGroup>
 		</StyledRadioFormControl>
 	);
