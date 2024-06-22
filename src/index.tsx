@@ -91,6 +91,10 @@ createRoot(document.getElementById("root")!).render(
 																	element: <SizeGuide />,
 																	path: AppRoute.SIZE_GUIDE,
 																},
+																{
+																	element: <VendorProfile />,
+																	path: AppRoute.VENDORS_PROFILE,
+																},
 															],
 															element: <PublicRoute />,
 															path: AppRoute.ROOT,
@@ -120,10 +124,6 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <ProfileBoard />,
 																	path: AppRoute.SIZE,
-																},
-																{
-																	element: <VendorProfile />,
-																	path: AppRoute.VENDORS_PROFILE,
 																},
 															],
 															element: <PrivateRoute />,
