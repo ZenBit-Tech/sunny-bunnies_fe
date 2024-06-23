@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { Loader } from "~/components/index.ts";
-import { AppRoute } from "~/libs/constants/app-route.ts";
 import { userRole } from "~/libs/constants/user-role.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
@@ -20,19 +20,20 @@ const VendorProfile: React.FC = () => {
 	const { id } = useParams();
 	const { t } = useTranslation();
 
-	const [hasAccess, setHasAccess] = useState(false);
 	const user = useAppSelector((state: RootState) => state.auth.user);
-	const { data: vendor, isError, isLoading } = useGetVendorByIdQuery(id);
+	const [hasAccess, setHasAccess] = useState(false);
+	const [serverError, setServerError] = useState("");
+	const { data: vendor, error, isError, isLoading } = useGetVendorByIdQuery(id);
 
 	useEffect(() => {
 		if (user && user?.profile?.role === userRole.BUYER) {
 			setHasAccess(true);
 		}
+		if (error) {
+			const err = (error as FetchBaseQueryError).data as Error;
+			setServerError(err.message);
+		}
 	}, [user]);
-
-	if (!hasAccess) {
-		return <Navigate to={AppRoute.HOME} />;
-	}
 
 	if (isLoading) {
 		return <Loader />;
@@ -40,6 +41,18 @@ const VendorProfile: React.FC = () => {
 
 	return (
 		<StyledVendorProfileContainer>
+			{!hasAccess && (
+				<Box
+					alignItems="center"
+					display="flex"
+					justifyContent="center"
+					width="100%"
+				>
+					<Typography textAlign="center" variant="playfairDisplayBold">
+						{t("VendorProfilePage.dontHaveAccess")}
+					</Typography>
+				</Box>
+			)}
 			{isError && hasAccess && (
 				<Box
 					alignItems="center"
@@ -48,7 +61,7 @@ const VendorProfile: React.FC = () => {
 					width="100%"
 				>
 					<Typography textAlign="center" variant="playfairDisplayBold">
-						{t("VendorProfilePage.vendorWasNotFound")}
+						{serverError}
 					</Typography>
 				</Box>
 			)}
