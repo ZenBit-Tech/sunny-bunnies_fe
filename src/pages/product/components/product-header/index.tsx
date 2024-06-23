@@ -11,7 +11,7 @@ import {
 	StyledProductShortDescription,
 } from "./styles.ts";
 
-const shortDescriptionEndIndex = 10;
+const shortDescriptionEndIndex = 125;
 const shortDescriptionStartIndex = 0;
 
 type ProductHeaderProperties = {
@@ -35,7 +35,7 @@ const ProductHeader: React.FC<ProductHeaderProperties> = ({
 				{description?.slice(
 					shortDescriptionStartIndex,
 					shortDescriptionEndIndex,
-				)}
+				) + "..."}
 			</StyledProductShortDescription>
 			<Box display="flex" gap="12px">
 				<Typography fontSize={fontSizes.l} variant="dmSansBold">

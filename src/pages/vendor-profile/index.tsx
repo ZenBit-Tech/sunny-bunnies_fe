@@ -1,9 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import { Loader } from "~/components/index.ts";
+import { userRole } from "~/libs/constants/user-role.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 import { useGetVendorByIdQuery } from "~/redux/user/user-api.ts";
@@ -14,19 +16,22 @@ import {
 } from "./components/index.ts";
 import { StyledVendorProfileContainer } from "./styles.ts";
 
-const userBuyerRole = "buyer";
-
 const VendorProfile: React.FC = () => {
 	const { id } = useParams();
 	const { t } = useTranslation();
 
-	const [hasAccess, setHasAccess] = useState(false);
 	const user = useAppSelector((state: RootState) => state.auth.user);
-	const { data: vendor, isError, isLoading } = useGetVendorByIdQuery(id);
+	const [hasAccess, setHasAccess] = useState(false);
+	const [serverError, setServerError] = useState("");
+	const { data: vendor, error, isError, isLoading } = useGetVendorByIdQuery(id);
 
 	useEffect(() => {
-		if (user && user?.profile?.role === userBuyerRole) {
+		if (user && user?.profile?.role === userRole.BUYER) {
 			setHasAccess(true);
+		}
+		if (error) {
+			const err = (error as FetchBaseQueryError).data as Error;
+			setServerError(err.message);
 		}
 	}, [user]);
 
@@ -56,7 +61,7 @@ const VendorProfile: React.FC = () => {
 					width="100%"
 				>
 					<Typography textAlign="center" variant="playfairDisplayBold">
-						{t("VendorProfilePage.vendorWasNotFound")}
+						{serverError}
 					</Typography>
 				</Box>
 			)}

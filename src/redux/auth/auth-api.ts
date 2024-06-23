@@ -45,13 +45,6 @@ export const authApi = api.injectEndpoints({
 				url: authApiPath.SIGN_IN,
 			}),
 		}),
-		loginByGoogle: build.mutation<UserSignInResponseDto, CredentialResponse>({
-			query: (post) => ({
-				body: post,
-				method: httpMethods.POST,
-				url: authApiPath.GOOGLE_LOGIN,
-			}),
-		}),
 		register: build.mutation<UserSignUpResponseDto, UserSignUpRequestDto>({
 			query: (body) => ({
 				body,
@@ -94,7 +87,6 @@ export const {
 	useAddUserGoogleMutation,
 	useAdminLoginMutation,
 	useGetUserQuery,
-	useLoginByGoogleMutation,
 	useLoginMutation,
 	useRegisterMutation,
 	useResetPasswordMutation,

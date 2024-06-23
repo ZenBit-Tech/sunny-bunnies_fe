@@ -20,8 +20,7 @@ const PrivateRoute: React.FC = () => {
 
 		if (!user.profile.role) return <Outlet />;
 
-		if (user.profile.isRegistrationCompleted)
-			return <Navigate to={AppRoute.HOME} />;
+		if (user.profile.isRegistrationCompleted) return <Outlet />;
 	}
 
 	return <Outlet />;

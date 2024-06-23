@@ -2,10 +2,14 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useGetUser } from "~/app/hooks.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { User } from "~/libs/types/user.ts";
-import { useVerifyOtpMutation } from "~/redux/auth/auth-api.ts";
+import {
+	useGetUserQuery,
+	useVerifyOtpMutation,
+} from "~/redux/auth/auth-api.ts";
+import { setUser } from "~/redux/auth/auth-slice.ts";
+import { useAppDispatch } from "~/redux/hooks.ts";
 
 type Properties = {
 	user: User;
@@ -20,8 +24,8 @@ type ReturnType = {
 };
 
 const useVerifyOtpForm = ({ user }: Properties): ReturnType => {
-	const { refetch } = useGetUser();
 	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
 
 	const [otpCode, setOtpCode] = useState("");
 	const OTP_LENGTH = 6;
@@ -36,7 +40,9 @@ const useVerifyOtpForm = ({ user }: Properties): ReturnType => {
 		[setOtpCode],
 	);
 
-	const [verifyOtp, { error, isSuccess }] = useVerifyOtpMutation();
+	const [verifyOtp, { data: verifiedUser, error, isSuccess }] =
+		useVerifyOtpMutation();
+	const { refetch } = useGetUserQuery(undefined);
 	const [serverError, setServerError] = useState<null | string>(null);
 
 	const onVerifyOtpSubmit = useCallback(
@@ -50,17 +56,18 @@ const useVerifyOtpForm = ({ user }: Properties): ReturnType => {
 				.unwrap()
 				.then(() => void refetch());
 		},
-		[user.email, otpCode, verifyOtp, refetch],
+		[verifyOtp, otpCode, user.email, refetch],
 	);
 
 	useEffect(() => {
-		if (isSuccess) {
-			navigate(AppRoute.HOME);
+		if (isSuccess && verifiedUser) {
+			dispatch(setUser(verifiedUser));
+			navigate(AppRoute.ROLE);
 		} else if (error) {
 			const err = (error as FetchBaseQueryError).data as Error;
 			setServerError(err.message);
 		}
-	}, [isSuccess, error, navigate]);
+	}, [isSuccess, error, verifiedUser, navigate, dispatch]);
 
 	return {
 		isOtpCodeFilled,

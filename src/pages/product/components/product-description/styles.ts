@@ -8,7 +8,7 @@ const StyledProductDescriptionContainer = styled(Box)`
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 30px;
-	padding: 0 166px 0 90px;
+	padding: 20px 166px 0 90px;
 `;
 
 const StyledDescriptionTitle = styled(Typography)(({ theme }) => ({
