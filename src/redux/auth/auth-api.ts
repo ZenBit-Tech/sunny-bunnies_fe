@@ -64,7 +64,7 @@ export const authApi = api.injectEndpoints({
 				url: authApiPath.VERIFY_EMAIL,
 			}),
 		}),
-		verifyOtp: build.mutation<void, UserVerifyOtpReuestDto>({
+		verifyOtp: build.mutation<User, UserVerifyOtpReuestDto>({
 			query: (body) => ({
 				body,
 				method: httpMethods.POST,
