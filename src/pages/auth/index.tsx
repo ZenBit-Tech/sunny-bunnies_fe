@@ -61,6 +61,12 @@ const Auth: React.FC = () => {
 				return authImages.SignUpImage;
 			case AppRoute.VERIFY_EMAIL:
 				return authImages.VerifyEmailImage;
+			case AppRoute.RESTORE_PASSWORD: {
+				return authImages.RestorePasswordImage;
+			}
+			case AppRoute.RESET_PASSWORD: {
+				return authImages.ResetPasswordImage;
+			}
 			default:
 				return authImages.SignUpImage;
 		}
