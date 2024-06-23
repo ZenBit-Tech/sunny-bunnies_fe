@@ -22,6 +22,8 @@ const PrivateRoute: React.FC = () => {
 
 		if (user.profile.isRegistrationCompleted) return <Outlet />;
 	}
+
+	return <Outlet />;
 };
 
 export { PrivateRoute };
