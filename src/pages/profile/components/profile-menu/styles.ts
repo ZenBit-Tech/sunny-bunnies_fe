@@ -8,7 +8,7 @@ const StyledButtonsContainer = styled(Box)`
 	flex-direction: column;
 	padding: 12px;
 	border-radius: 16px;
-	box-shadow: 0px 6px 20px 0px #1919190f;
+	box-shadow: 0px 6px 20px 0px ${colors.grayishRed};
 `;
 
 const StyledBaseButton = styled(BaseButton)`

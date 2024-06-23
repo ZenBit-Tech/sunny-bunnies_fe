@@ -230,8 +230,17 @@
 	"Profile": {
 		"myProfile": "my profile",
 		"personalInformation": "personal information",
+		"generalInformation": "General Information",
 		"settings": "settings",
 		"support": "support",
-		"logout": "log out"
+		"logout": "log out",
+		"address": "Adress",
+		"paymentMethod": "Payment Method",
+		"profilePhotoTitle": "Avatar",
+		"profilePhotoText": "Only *.png, *.jpg and *.jpeg image files are accepted",
+		"formName": "Name",
+		"formEmail": "Email",
+		"enterYourName": "Enter your name",
+		"emailExample": "your_email@gmail.com"
 	}
 }

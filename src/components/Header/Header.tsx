@@ -64,7 +64,6 @@ export const Header: React.FC = () => {
 						) : (
 							<>
 								<ShopIcon />
-								<UserIcon />
 							</>
 						)}
 					</IconsSection>

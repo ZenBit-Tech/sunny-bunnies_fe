@@ -20,6 +20,7 @@ const GetStartedHeaderRoutes = [
 	AppRoute.ADDRESS,
 	AppRoute.CREDIT_CARD,
 	AppRoute.SIZE,
+	AppRoute.PROFILE,
 ];
 
 const HeaderWrapper: React.FC = () => {
