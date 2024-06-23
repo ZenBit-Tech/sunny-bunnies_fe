@@ -4,8 +4,20 @@ import { useTranslation } from "react-i18next";
 
 import { StyledAddressBox, StyledButton } from "./styles.ts";
 
-const ProfileAddress: React.FC = () => {
+type ProfileAddressProps = {
+	addressLine?: string;
+	city?: string;
+	country?: string;
+};
+
+const ProfileAddress: React.FC<ProfileAddressProps> = ({
+	addressLine,
+	city,
+	country,
+}) => {
 	const { t } = useTranslation();
+
+	const isData = addressLine && city && country;
 
 	return (
 		<>
@@ -14,15 +26,17 @@ const ProfileAddress: React.FC = () => {
 			</Typography>
 
 			<StyledAddressBox>
-				<Typography variant="playfairDisplay">Street 3</Typography>
-				<Box>
-					<Typography variant="body2">
-						South Banasree Road No: 5/2 Blog (D)
-					</Typography>
-					<Typography variant="body2">Unity Aid</Typography>
-					<Typography variant="body2">Toronto, Canada</Typography>
-					<Typography variant="body2">Postcode</Typography>
-				</Box>
+				<Typography variant="playfairDisplay">Street</Typography>
+				{isData ? (
+					<Box>
+						<Typography variant="body2">{addressLine}</Typography>
+						<Typography variant="body2">
+							{city}, {country}
+						</Typography>
+					</Box>
+				) : (
+					<Typography>{t("Profile.noAddress")}</Typography>
+				)}
 				<StyledButton variant="outlined">Edit</StyledButton>
 			</StyledAddressBox>
 		</>

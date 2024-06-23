@@ -11,6 +11,7 @@ const StyledAddressBox = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+	min-width: 308px;
 `;
 
 const StyledButton = styled(BaseButton)`

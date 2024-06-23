@@ -1,5 +1,6 @@
 import {
 	Box,
+	Button,
 	FormControl,
 	FormHelperText,
 	FormLabel,
@@ -8,7 +9,6 @@ import {
 	Select as MuiSelect,
 	SelectChangeEvent,
 	Typography,
-	Button,
 } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,44 +21,58 @@ import {
 import "react-international-phone/style.css";
 
 import { CustomFormGroup, ImagePreview } from "~/components/index.ts";
+import { fontSizes } from "~/libs/constants/fonts.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
-import { userSignUpValidation } from "~/pages/auth/validation/index.ts";
 import {
 	clothingSizes,
 	jeansSizes,
 	shoeSizes,
 } from "~/pages/profile-board/constants.ts/size.ts";
+import { setUser } from "~/redux/auth/auth-slice.ts";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
+import { useUpdateMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
+import { profileValidation } from "../../validation/profile-schema.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
 import { StyledInputWrapper, VisuallyHiddenInput } from "./styles.ts";
-import { fontSizes } from "~/libs/constants/fonts.ts";
 
-type ProfileFormProps = {};
-
-const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
+const ProfileForm: React.FC = () => {
 	const { t } = useTranslation();
+	const user = useAppSelector((state) => state.auth.user);
+	const [update] = useUpdateMutation();
+	const dispatch = useAppDispatch();
+
 	const zero = 0;
-	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const requiredCodes = ["ua", "ca"];
-	const [phone, setPhone] = useState("");
+
+	const [selectedFile, setSelectedFile] = useState<File | null>(null);
+	const [phone, setPhone] = useState(user?.profile.phoneNumber ?? "");
 	const [selectedClothingSize, setSelectedClothingSize] = useState<
 		null | string
-	>("");
-	const [selectedShoeSize, setSelectedShoeSize] = useState<null | string>("");
-	const [selectedJeansSize, setSelectedJeansSize] = useState<null | string>("");
+	>(user?.profile.clothesSize ?? "");
+	const [selectedShoeSize, setSelectedShoeSize] = useState<null | string>(
+		user?.profile.shoeSize ?? "",
+	);
+	const [selectedJeansSize, setSelectedJeansSize] = useState<null | string>(
+		user?.profile.jeansSize ?? "",
+	);
+
 	const { control, errors, handleSubmit, setValue } = useAppForm({
 		defaultValues: {
-			clothesSize: "",
-			email: "",
-			jeansSize: "",
-			name: "",
-			phoneNumber: "",
-			shoeSize: "",
-			profilePhoto: null,
+			email: user?.email ?? "",
+			name: user?.name ?? "",
+			profile: {
+				clothesSize: user?.profile.clothesSize ?? "",
+				jeansSize: user?.profile.jeansSize ?? "",
+				phoneNumber: user?.profile.phoneNumber ?? "",
+				profilePhoto: null,
+				shoeSize: user?.profile.shoeSize ?? "",
+			},
 		},
-		validationSchema: userSignUpValidation,
+		validationSchema: profileValidation,
 	});
+
 	const countries = defaultCountries.filter((country: CountryData) => {
 		const { iso2 } = parseCountry(country);
 
@@ -68,7 +82,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 	const handleChangePhone = useCallback(
 		(phone: string) => {
 			setPhone(phone);
-			setValue("phoneNumber", phone);
+			setValue("profile.phoneNumber", phone);
 		},
 		[setValue],
 	);
@@ -76,7 +90,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 	const handleClothingSizeChange = useCallback(
 		(event: SelectChangeEvent<string>) => {
 			setSelectedClothingSize(event.target.value);
-			setValue("clothesSize", event.target.value);
+			setValue("profile.clothesSize", event.target.value);
 		},
 		[setValue],
 	);
@@ -84,7 +98,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 	const handleShoeSizeChange = useCallback(
 		(event: SelectChangeEvent<string>) => {
 			setSelectedShoeSize(event.target.value);
-			setValue("shoeSize", event.target.value);
+			setValue("profile.shoeSize", event.target.value);
 		},
 		[setValue],
 	);
@@ -92,7 +106,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 	const handleJeansSizeChange = useCallback(
 		(event: SelectChangeEvent<string>) => {
 			setSelectedJeansSize(event.target.value);
-			setValue("jeansSize", event.target.value);
+			setValue("profile.jeansSize", event.target.value);
 		},
 		[setValue],
 	);
@@ -104,24 +118,49 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 		[],
 	);
 
+	const handleInputChange = useCallback(
+		async (formData: any): Promise<void> => {
+			try {
+				const updatedUser = await update(formData).unwrap();
+
+				dispatch(setUser(updatedUser));
+			} catch (error) {
+				// const loadError = (error as FetchBaseQueryError).data
+				// 	? ((error as FetchBaseQueryError).data as Error)
+				// 	: { message: t("Error.unknowError") };
+				// setServerError(loadError.message);
+			}
+		},
+		[dispatch, update],
+	);
+
+	const handleFormSubmit = useCallback(
+		(event: React.BaseSyntheticEvent): void => {
+			event.preventDefault();
+
+			void handleSubmit(handleInputChange)(event);
+		},
+		[handleSubmit, handleInputChange],
+	);
+
 	return (
 		<Box
-			width="80%"
 			sx={{
-				padding: "24px",
 				display: "flex",
 				flexDirection: "column",
 				gap: "24px",
+				padding: "24px",
 			}}
+			width="80%"
 		>
-			<Typography variant="playfairDisplayBold" fontSize={fontSizes.large}>
+			<Typography fontSize={fontSizes.large} variant="playfairDisplayBold">
 				{t("Profile.generalInformation")}
 			</Typography>
 			<Box
 				autoComplete="off"
 				component="form"
 				mb={1}
-				// onSubmit={handleFormSubmit}
+				onSubmit={handleFormSubmit}
 				sx={{
 					display: "flex",
 					flexDirection: "column",
@@ -150,7 +189,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 					</Box>
 					<FormControl
 						component="fieldset"
-						error={Boolean(errors.profilePhoto)}
+						error={Boolean(errors.profile?.profilePhoto)}
 						sx={{
 							alignItems: "center",
 							display: "flex",
@@ -181,9 +220,9 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 							{t("Form.uploadButtonText")}
 							<VisuallyHiddenInput onChange={handleFileChange} type="file" />
 						</Button>
-						{errors.profilePhoto && (
+						{errors.profile?.profilePhoto && (
 							<FormHelperText sx={{ marginLeft: 0 }}>
-								{errors.profilePhoto.message as string}
+								{errors.profile.profilePhoto.message as string}
 							</FormHelperText>
 						)}
 					</FormControl>
@@ -204,7 +243,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 					placeholder={t("Profile.emailExample")}
 					type="email"
 				/>
-				<FormControl component="fieldset" error={Boolean(errors.phoneNumber)}>
+				<FormControl
+					component="fieldset"
+					error={Boolean(errors.profile?.phoneNumber)}
+				>
 					<FormLabel
 						sx={{
 							color: theme.palette.primary.main,
@@ -222,13 +264,16 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 							value={phone}
 						/>
 					</StyledInputWrapper>
-					{errors.phoneNumber && (
+					{errors.profile?.phoneNumber && (
 						<FormHelperText sx={{ marginLeft: 0 }}>
-							{errors.phoneNumber.message as string}
+							{errors.profile.phoneNumber.message as string}
 						</FormHelperText>
 					)}
 				</FormControl>
-				<FormControl component="fieldset" error={Boolean(errors.clothesSize)}>
+				<FormControl
+					component="fieldset"
+					error={Boolean(errors.profile?.clothesSize)}
+				>
 					<FormLabel
 						component="legend"
 						sx={{
@@ -254,7 +299,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 						))}
 					</MuiSelect>
 				</FormControl>
-				<FormControl component="fieldset" error={Boolean(errors.jeansSize)}>
+				<FormControl
+					component="fieldset"
+					error={Boolean(errors.profile?.jeansSize)}
+				>
 					<FormLabel
 						component="legend"
 						sx={{
@@ -264,32 +312,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 						}}
 					>
 						{t("Form.jeansTitle")}
-					</FormLabel>
-					{!selectedShoeSize && (
-						<InputLabel shrink={false}>{t("Form.selectSize")}</InputLabel>
-					)}
-					<MuiSelect
-						onChange={handleShoeSizeChange}
-						value={selectedShoeSize || ""}
-					>
-						<MenuItem value="">{t("Form.selectSize")}</MenuItem>
-						{shoeSizes.map((size) => (
-							<MenuItem key={size} value={size}>
-								{size}
-							</MenuItem>
-						))}
-					</MuiSelect>
-				</FormControl>
-				<FormControl component="fieldset" error={Boolean(errors.jeansSize)}>
-					<FormLabel
-						component="legend"
-						sx={{
-							color: theme.palette.primary.main,
-							...theme.typography.playfairDisplay,
-							marginBottom: "8px",
-						}}
-					>
-						{t("Form.shoesTitle")}
 					</FormLabel>
 					{!selectedJeansSize && (
 						<InputLabel shrink={false}>{t("Form.selectSize")}</InputLabel>
@@ -306,8 +328,44 @@ const ProfileForm: React.FC<ProfileFormProps> = ({}) => {
 						))}
 					</MuiSelect>
 				</FormControl>
+				<FormControl
+					component="fieldset"
+					error={Boolean(errors.profile?.shoeSize)}
+				>
+					<FormLabel
+						component="legend"
+						sx={{
+							color: theme.palette.primary.main,
+							...theme.typography.playfairDisplay,
+							marginBottom: "8px",
+						}}
+					>
+						{t("Form.shoesTitle")}
+					</FormLabel>
+					{!selectedShoeSize && (
+						<InputLabel shrink={false}>{t("Form.selectSize")}</InputLabel>
+					)}
+					<MuiSelect
+						onChange={handleShoeSizeChange}
+						value={selectedShoeSize || ""}
+					>
+						<MenuItem value="">{t("Form.selectSize")}</MenuItem>
+						{shoeSizes.map((size) => (
+							<MenuItem key={size} value={size}>
+								{size}
+							</MenuItem>
+						))}
+					</MuiSelect>
+				</FormControl>
+				<Button type="submit" variant="primary_black_regular">
+					{t("Form.submitButtonText")}
+				</Button>
 			</Box>
-			<ProfileAddress />
+			<ProfileAddress
+				addressLine={user?.profile.addressLineOne}
+				city={user?.profile.city}
+				country={user?.profile.country}
+			/>
 			<ProfileCard />
 		</Box>
 	);

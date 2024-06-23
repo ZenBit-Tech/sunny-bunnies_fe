@@ -235,6 +235,7 @@
 		"support": "support",
 		"logout": "log out",
 		"address": "Adress",
+		"noAddress": "Please provide an adress",
 		"paymentMethod": "Payment Method",
 		"profilePhotoTitle": "Avatar",
 		"profilePhotoText": "Only *.png, *.jpg and *.jpeg image files are accepted",
