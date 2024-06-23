@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/index.ts";
 import { User } from "~/libs/types/user.ts";
-import { useVerifyOtpMutation } from "~/redux/auth/auth-api.ts";
+import {
+	useGetUserQuery,
+	useVerifyOtpMutation,
+} from "~/redux/auth/auth-api.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 
@@ -39,6 +42,7 @@ const useVerifyOtpForm = ({ user }: Properties): ReturnType => {
 
 	const [verifyOtp, { data: verifiedUser, error, isSuccess }] =
 		useVerifyOtpMutation();
+	const { refetch } = useGetUserQuery(undefined);
 	const [serverError, setServerError] = useState<null | string>(null);
 
 	const onVerifyOtpSubmit = useCallback(
@@ -48,9 +52,11 @@ const useVerifyOtpForm = ({ user }: Properties): ReturnType => {
 			return void verifyOtp({
 				code: otpCode,
 				email: user.email,
-			});
+			})
+				.unwrap()
+				.then(() => void refetch());
 		},
-		[user.email, otpCode, verifyOtp],
+		[verifyOtp, otpCode, user.email, refetch],
 	);
 
 	useEffect(() => {
