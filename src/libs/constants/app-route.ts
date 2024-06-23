@@ -10,6 +10,8 @@ const AppRoute = {
 	PRIVACY_POLICY: "/privacy-policy",
 	PRODUCT: "/product/:id",
 	PRODUCT_LIST: "/product-list",
+	RESET_PASSWORD: "/reset-password",
+	RESTORE_PASSWORD: "/restore-password",
 	ROLE: "/profile-role",
 	ROOT: "/",
 	SIGN_IN: "/sign-in",

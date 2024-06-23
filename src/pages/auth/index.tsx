@@ -1,12 +1,19 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { matchPath, useLocation } from "react-router-dom";
+import {
+	Navigate,
+	matchPath,
+	useLocation,
+	useSearchParams,
+} from "react-router-dom";
 
 import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
+import ResetPasswordForm from "~/pages/auth/components/reset-password-form.tsx";
+import { RestorePasswordForm } from "~/pages/auth/components/restore-password-form.tsx";
 import { VerifyEmailForm } from "~/pages/auth/components/verify-email-form.tsx";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
@@ -16,6 +23,7 @@ const NoLogoRoutes = [AppRoute.VERIFY_EMAIL];
 
 const Auth: React.FC = () => {
 	const { pathname } = useLocation();
+	const [searchParams] = useSearchParams();
 	const { t } = useTranslation();
 
 	const getScreen = (screen: string): React.ReactNode => {
@@ -28,6 +36,16 @@ const Auth: React.FC = () => {
 			}
 			case AppRoute.VERIFY_EMAIL: {
 				return <VerifyEmailForm />;
+			}
+			case AppRoute.RESTORE_PASSWORD: {
+				return <RestorePasswordForm />;
+			}
+			case AppRoute.RESET_PASSWORD: {
+				const token = searchParams.get("token");
+
+				if (!token) return <Navigate to={AppRoute.HOME} />;
+
+				return <ResetPasswordForm token={token} />;
 			}
 			default: {
 				return <SignUpForm />;

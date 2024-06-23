@@ -2,6 +2,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useGetUser } from "~/app/hooks.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { User } from "~/libs/types/user.ts";
 import { useVerifyOtpMutation } from "~/redux/auth/auth-api.ts";
@@ -19,6 +20,7 @@ type ReturnType = {
 };
 
 const useVerifyOtpForm = ({ user }: Properties): ReturnType => {
+	const { refetch } = useGetUser();
 	const navigate = useNavigate();
 
 	const [otpCode, setOtpCode] = useState("");
@@ -44,9 +46,11 @@ const useVerifyOtpForm = ({ user }: Properties): ReturnType => {
 			return void verifyOtp({
 				code: otpCode,
 				email: user.email,
-			});
+			})
+				.unwrap()
+				.then(() => void refetch());
 		},
-		[user.email, otpCode, verifyOtp],
+		[user.email, otpCode, verifyOtp, refetch],
 	);
 
 	useEffect(() => {

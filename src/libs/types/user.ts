@@ -42,18 +42,35 @@ type UserVerifyEmailRequestDto = {
 	email: string;
 };
 
-type UserVerifyOtpReuestDto = {
+type UserVerifyOtpRequestDto = {
 	code: string;
 	email: string;
 };
 
+type UserRestorePasswordRequestDto = {
+	email: string;
+};
+
+type UserResetPasswordRequestDto = {
+	password: string;
+	token: string;
+};
+
+type UserRestorePasswordForm = {
+	password: string;
+	repeatPassword: string;
+};
+
 export {
 	type User,
+	type UserResetPasswordRequestDto,
+	type UserRestorePasswordForm,
+	type UserRestorePasswordRequestDto,
 	type UserSignInRequestDto,
 	type UserSignInResponseDto,
 	type UserSignUpFormData,
 	type UserSignUpRequestDto,
 	type UserSignUpResponseDto,
 	type UserVerifyEmailRequestDto,
-	type UserVerifyOtpReuestDto,
+	type UserVerifyOtpRequestDto,
 };

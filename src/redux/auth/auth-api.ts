@@ -3,12 +3,14 @@ import { CredentialResponse } from "@react-oauth/google";
 import { httpMethods } from "~/libs/constants/http-methods.ts";
 import {
 	type User,
+	type UserResetPasswordRequestDto,
+	type UserRestorePasswordRequestDto,
 	type UserSignInRequestDto,
 	type UserSignInResponseDto,
 	type UserSignUpRequestDto,
 	type UserSignUpResponseDto,
 	type UserVerifyEmailRequestDto,
-	type UserVerifyOtpReuestDto,
+	type UserVerifyOtpRequestDto,
 } from "~/libs/types/user.ts";
 
 import { api } from "../services.ts";
@@ -57,6 +59,20 @@ export const authApi = api.injectEndpoints({
 				url: authApiPath.SIGN_UP,
 			}),
 		}),
+		resetPassword: build.mutation<void, UserResetPasswordRequestDto>({
+			query: (body) => ({
+				body,
+				method: httpMethods.POST,
+				url: authApiPath.RESET_PASSWORD,
+			}),
+		}),
+		restorePassword: build.mutation<void, UserRestorePasswordRequestDto>({
+			query: (body) => ({
+				body,
+				method: httpMethods.POST,
+				url: authApiPath.RESTORE_PASSWORD,
+			}),
+		}),
 		verifyEmail: build.mutation<void, UserVerifyEmailRequestDto>({
 			query: (body) => ({
 				body,
@@ -64,7 +80,7 @@ export const authApi = api.injectEndpoints({
 				url: authApiPath.VERIFY_EMAIL,
 			}),
 		}),
-		verifyOtp: build.mutation<void, UserVerifyOtpReuestDto>({
+		verifyOtp: build.mutation<void, UserVerifyOtpRequestDto>({
 			query: (body) => ({
 				body,
 				method: httpMethods.POST,
@@ -81,6 +97,8 @@ export const {
 	useLoginByGoogleMutation,
 	useLoginMutation,
 	useRegisterMutation,
+	useResetPasswordMutation,
+	useRestorePasswordMutation,
 	useVerifyEmailMutation,
 	useVerifyOtpMutation,
 } = authApi;

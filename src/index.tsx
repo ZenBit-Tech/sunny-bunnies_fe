@@ -62,6 +62,14 @@ createRoot(document.getElementById("root")!).render(
 																	path: AppRoute.SIGN_IN,
 																},
 																{
+																	element: <Auth />,
+																	path: AppRoute.RESTORE_PASSWORD,
+																},
+																{
+																	element: <Auth />,
+																	path: AppRoute.RESET_PASSWORD,
+																},
+																{
 																	element: <AdminLogin />,
 																	path: AppRoute.ADMIN_SIGN_IN,
 																},
