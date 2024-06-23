@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { BaseButton, CustomFormGroup } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import { useLoginByGoogleMutation } from "~/redux/auth/auth-api.ts";
+import { useAddUserGoogleMutation } from "~/redux/auth/auth-api.ts";
 import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
@@ -38,7 +38,7 @@ const SignInForm: React.FC = () => {
 			isError: isLoginError,
 			isSuccess: isLoginSuccess,
 		},
-	] = useLoginByGoogleMutation();
+	] = useAddUserGoogleMutation();
 
 	useEffect(() => {
 		if (isLoginSuccess) {
