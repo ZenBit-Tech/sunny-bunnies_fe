@@ -1,9 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 import { Loader } from "~/components/index.ts";
+import { AppRoute } from "~/libs/constants/app-route.ts";
 import { userRole } from "~/libs/constants/user-role.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
@@ -19,7 +20,7 @@ const VendorProfile: React.FC = () => {
 	const { id } = useParams();
 	const { t } = useTranslation();
 
-	const [hasAccess, setHasAccess] = useState(true);
+	const [hasAccess, setHasAccess] = useState(false);
 	const user = useAppSelector((state: RootState) => state.auth.user);
 	const { data: vendor, isError, isLoading } = useGetVendorByIdQuery(id);
 
@@ -29,24 +30,16 @@ const VendorProfile: React.FC = () => {
 		}
 	}, [user]);
 
+	if (!hasAccess) {
+		return <Navigate to={AppRoute.HOME} />;
+	}
+
 	if (isLoading) {
 		return <Loader />;
 	}
 
 	return (
 		<StyledVendorProfileContainer>
-			{!hasAccess && (
-				<Box
-					alignItems="center"
-					display="flex"
-					justifyContent="center"
-					width="100%"
-				>
-					<Typography textAlign="center" variant="playfairDisplayBold">
-						{t("VendorProfilePage.dontHaveAccess")}
-					</Typography>
-				</Box>
-			)}
 			{isError && hasAccess && (
 				<Box
 					alignItems="center"
