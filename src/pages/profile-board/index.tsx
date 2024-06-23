@@ -1,8 +1,10 @@
 import { Box, Grid, Tab, Tabs } from "@mui/material";
 import React, { useCallback } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/index.ts";
+import { useAppSelector } from "~/redux/hooks.ts";
+import { type RootState } from "~/redux/store.ts";
 import theme from "~/theme.ts";
 
 import {
@@ -18,6 +20,7 @@ import { tabRoutes } from "./constants.ts/index.ts";
 const ProfileBoard: React.FC = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
+	const user = useAppSelector((state: RootState) => state.auth.user);
 
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
@@ -42,6 +45,10 @@ const ProfileBoard: React.FC = () => {
 		},
 		[navigate],
 	);
+
+	if (user && user.profile.isRegistrationCompleted) {
+		return <Navigate to={AppRoute.HOME} />;
+	}
 
 	return (
 		<Grid

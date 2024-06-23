@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import { Loader } from "~/components/index.ts";
+import { userRole } from "~/libs/constants/user-role.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { useGetProductByIdQuery } from "~/redux/products/products-api.ts";
 import { type RootState } from "~/redux/store.ts";
@@ -30,15 +31,18 @@ const defaultProductDataIndex = 0;
 const ProductPage: React.FC = () => {
 	const { id } = useParams();
 	const { t } = useTranslation();
+	const user = useAppSelector((state: RootState) => state.auth.user);
 
 	const { data: product, isError, isLoading } = useGetProductByIdQuery(id);
-	const user = useAppSelector((state: RootState) => state.auth.user);
 
 	const [isPreviewMode, setIsPreviewMode] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
-		if (user && user.id === product?.user.id) {
+		if (
+			user?.profile.role === userRole.VENDOR &&
+			user.id === product?.user.id
+		) {
 			setIsPreviewMode(true);
 		}
 	}, [user, product]);
@@ -94,7 +98,7 @@ const ProductPage: React.FC = () => {
 				{isPreviewMode && <VendorPreviewHeader />}
 				<StyledProductPageContainer>
 					<StyledProductDetailsContainer>
-						<ImagesSlider images={images} vendorName={product.user.name} />
+						<ImagesSlider images={images} vendorName={product?.user.name} />
 						<StyledProductDetailsContent>
 							<ProductHeader
 								description={description}
