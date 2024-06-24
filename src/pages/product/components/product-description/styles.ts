@@ -1,6 +1,7 @@
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Divider, Typography, styled } from "@mui/material";
 
 import { fontSizes, fontWeight } from "~/libs/constants/index.ts";
+import theme from "~/theme.ts";
 
 const StyledProductDescriptionContainer = styled(Box)`
 	align-item: flex-start;
@@ -8,7 +9,7 @@ const StyledProductDescriptionContainer = styled(Box)`
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 30px;
-	padding: 20px 166px 0 90px;
+	padding: 20px 0 0 90px;
 `;
 
 const StyledDescriptionTitle = styled(Typography)(({ theme }) => ({
@@ -35,10 +36,30 @@ const StyledProductDetails = styled(Box)`
 	gap: 30px;
 `;
 
+const StyledDivider = styled(Divider)`
+	background-color: transparent;
+	height: 2px;
+	position: relative;
+	width: 100%;
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		height: 100%;
+	}
+	&::before {
+		left: 0;
+		width: 112px;
+		background-color: ${theme.palette.primary.main};
+	}
+`;
+
 export {
 	StyledDescriptionData,
 	StyledDescriptionSubtitle,
 	StyledDescriptionTitle,
+	StyledDivider,
 	StyledProductDescriptionContainer,
 	StyledProductDetails,
 };

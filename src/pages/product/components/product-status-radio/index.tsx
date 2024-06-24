@@ -41,6 +41,7 @@ const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 							status={status}
 						/>
 					}
+					sx={{ pointerEvents: "none" }}
 					value={status}
 				/>
 			</StyledRadioGroup>

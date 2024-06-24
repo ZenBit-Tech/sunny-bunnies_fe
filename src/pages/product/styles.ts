@@ -1,5 +1,11 @@
 import { Box, styled } from "@mui/material";
 
+const StyledProductPageWrapper = styled(Box)`
+	display: flex;
+	flex-direction: column;
+	max-width: 1298px;
+`;
+
 const StyledProductPageContainer = styled(Box)`
 	align-item: center;
 	display: flex;
@@ -28,4 +34,5 @@ export {
 	StyledProductDetailsContainer,
 	StyledProductDetailsContent,
 	StyledProductPageContainer,
+	StyledProductPageWrapper,
 };

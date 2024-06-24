@@ -33,7 +33,7 @@ const VendorProfile: React.FC = () => {
 			const err = (error as FetchBaseQueryError).data as Error;
 			setServerError(err.message);
 		}
-	}, [user]);
+	}, [error, user]);
 
 	if (isLoading) {
 		return <Loader />;
@@ -57,6 +57,7 @@ const VendorProfile: React.FC = () => {
 				<Box
 					alignItems="center"
 					display="flex"
+					height="45%"
 					justifyContent="center"
 					width="100%"
 				>

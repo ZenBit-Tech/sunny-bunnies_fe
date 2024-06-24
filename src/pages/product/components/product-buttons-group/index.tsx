@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { productIcons } from "~/assets/images/product/index.ts";
 import { BaseButton } from "~/components/index.ts";
 
-import { StyledButtonsContainer } from "./styles.ts";
+import { StyledBaseButton, StyledButtonsContainer } from "./styles.ts";
 
 type ProductButtonsGroupProperties = {
 	isPreviewMode: boolean;
@@ -28,22 +28,18 @@ const ProductButtonsGroup: React.FC<ProductButtonsGroupProperties> = ({
 
 	return (
 		<StyledButtonsContainer>
-			<BaseButton
+			<StyledBaseButton
 				startIcon={<productIcons.ShopIcon />}
+				sx={{ pointerEvents: "none" }}
 				variant="primary_black_bold"
 			>
 				{t("ProductPage.addToCart")}
-			</BaseButton>
-			{!isPreviewMode && (
-				<BaseButton variant="secondary_black">
-					{t("ProductPage.makeAnOffer")}
-				</BaseButton>
-			)}
+			</StyledBaseButton>
 			<Box display="flex" gap="32px">
 				<BaseButton
 					onClick={handleLikeButtonClick}
 					startIcon={isLikeClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-					sx={{ fill: "black", textTransform: "none" }}
+					sx={{ fill: "black", pointerEvents: "none", textTransform: "none" }}
 					variant="text"
 				>
 					{t("ProductPage.wishlist")}
