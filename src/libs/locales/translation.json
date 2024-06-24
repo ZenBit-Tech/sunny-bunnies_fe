@@ -5,7 +5,7 @@
 		"submit": "Submit",
 		"thisFieldRequired": "This field is required"
 	},
-	"FormTabs":{
+	"FormTabs": {
 		"role": "User Role",
 		"general": "General Information",
 		"addresss": "Your Address",
@@ -19,35 +19,35 @@
 		"next": "Next",
 		"prev": "Prev",
 		"roleText": "Choose what type of account you want to create",
-		"adressText":"Add your shipping adress",
-		"adressTitle":"Shipping address",
-		"adressFirstLine":"Adress Line 1",
-		"adressSecondLine":"Adress Line 2 (optional)",
-		"enterYourAddress":"Enter your address",
-		"country":"Country",
-		"state":"State",
-		"city":"City",
-		"selectCountry":"Select country",
-		"selectState":"Select state",
-		"selectCity":"Select city",
-		"cvvCode":"CVV Code",
+		"adressText": "Add your shipping adress",
+		"adressTitle": "Shipping address",
+		"adressFirstLine": "Adress Line 1",
+		"adressSecondLine": "Adress Line 2 (optional)",
+		"enterYourAddress": "Enter your address",
+		"country": "Country",
+		"state": "State",
+		"city": "City",
+		"selectCountry": "Select country",
+		"selectState": "Select state",
+		"selectCity": "Select city",
+		"cvvCode": "CVV Code",
 		"expireDate": "Expire date",
-		"cardNumber":"Card number",
-		"creditCardTitle":"Credit Card",
-		"creditCardtext":"Please add your card to have ability to buy or sell in app",
-		"cardPlaceholder":"1234 5678 8900 7890",
-		"expireDatePlaceholder":"MM/YY",
-		"clothesTitle":"Clothes Size",
-		"sizeText":"Choice your size",
-		"selectSize":"Select size",
-		"jeansTitle":"Jeans Size",
-		"shoesTitle":"Shoes Size",
-		"profilePhotoTitle":"Profile Photo",
-		"profilePhotoText":"Choose photo for your profile",
+		"cardNumber": "Card number",
+		"creditCardTitle": "Credit Card",
+		"creditCardtext": "Please add your card to have ability to buy or sell in app",
+		"cardPlaceholder": "1234 5678 8900 7890",
+		"expireDatePlaceholder": "MM/YY",
+		"clothesTitle": "Clothes Size",
+		"sizeText": "Choice your size",
+		"selectSize": "Select size",
+		"jeansTitle": "Jeans Size",
+		"shoesTitle": "Shoes Size",
+		"profilePhotoTitle": "Profile Photo",
+		"profilePhotoText": "Choose photo for your profile",
 		"phoneNumberTitle": "Phone Number",
 		"phoneNumberText": "Please enter your phone number",
-		"uploadButtonText":"Upload Photo",
-		"changeButtonText":"Change Photo"
+		"uploadButtonText": "Upload Photo",
+		"changeButtonText": "Change Photo"
 	},
 	"footer": {
 		"footerColumnsLogIn": {
@@ -128,7 +128,7 @@
 		"emailExample": "your_email@gmail.com",
 		"passwordPlaceholder": "Min. 8 characters"
 	},
-	"AdminLogin":{
+	"AdminLogin": {
 		"signIn": "Sign in",
 		"signInDescription": "Please enter your credentials to sign in",
 		"email": "Email",
@@ -160,11 +160,11 @@
 		"productsWereNotFound": "Products from this category were not found",
 		"errorLoadingProducts": "Error loading products...",
 		"searchProducts": "Search products",
-		"noProducts": "There are no products with such name"
+		"noProducts": "There are no matches."
 	},
 	"Error": {
 		"unknowError": "Unknown error",
-		"technicalError" : "Failed to upload image. Please try again"
+		"technicalError": "Failed to upload image. Please try again"
 	},
 	"PrivacyPolicy": {
 		"title": "Privacy Policy",
@@ -251,8 +251,8 @@
 		"dontHaveAccess": "You don't have access to this page",
 		"noRatingsYet": "No ratings yet",
 		"thisVendorDoesNotReceiveAnyReviewYet": "This vendor doesn't receive any review yet",
-		"readMore":  "Read more...",
-		"readLess":  "Read less",
+		"readMore": "Read more...",
+		"readLess": "Read less",
 		"error": "error",
 		"anErrorOccurred": "An error occurred"
 	},
