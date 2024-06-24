@@ -39,7 +39,7 @@ const ProductSearch: React.FC = () => {
 			<TextField
 				{...params}
 				placeholder={`${t("HomePage.searchProducts")}...`}
-				sx={{ width: "400px" }}
+				size="small"
 				variant="outlined"
 			/>
 		),
@@ -55,8 +55,10 @@ const ProductSearch: React.FC = () => {
 		<Box
 			sx={{
 				display: "flex",
-				flex: 1,
+				flexShrink: 1,
 				justifyContent: "center",
+				margin: "0 auto",
+				width: "50%",
 			}}
 		>
 			<Autocomplete
@@ -69,6 +71,7 @@ const ProductSearch: React.FC = () => {
 				options={options}
 				renderInput={renderInput}
 				renderOption={renderOption}
+				sx={{ width: "100%" }}
 			/>
 		</Box>
 	);
