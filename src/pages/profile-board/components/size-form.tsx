@@ -201,7 +201,7 @@ const SizeForm: React.FC = () => {
 							value={selectedShoeSize || ""}
 						>
 							<MenuItem value="">{t("Form.selectSize")}</MenuItem>
-							{shoeSizes.map((size) => (
+							{jeansSizes.map((size) => (
 								<MenuItem key={size} value={size}>
 									{size}
 								</MenuItem>
@@ -251,7 +251,7 @@ const SizeForm: React.FC = () => {
 							value={selectedJeansSize || ""}
 						>
 							<MenuItem value="">{t("Form.selectSize")}</MenuItem>
-							{jeansSizes.map((size) => (
+							{shoeSizes.map((size) => (
 								<MenuItem key={size} value={size}>
 									{size}
 								</MenuItem>
