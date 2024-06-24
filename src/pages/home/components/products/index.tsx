@@ -75,6 +75,7 @@ const Products: React.FC<ProductsProperties> = ({
 			const { maxPrice, minPrice, ...otherFilters } = filters;
 
 			const updatedFilters = {
+				...additionalFilters,
 				...otherFilters,
 				maxPrice: maxPrice ? +maxPrice : undefined,
 				minPrice: minPrice ? +minPrice : undefined,
@@ -83,7 +84,7 @@ const Products: React.FC<ProductsProperties> = ({
 			handleFilterChange(updatedFilters);
 			setDrawerOpen(false);
 		},
-		[handleFilterChange],
+		[additionalFilters, handleFilterChange],
 	);
 
 	const handleClearFilters = useCallback(() => {
