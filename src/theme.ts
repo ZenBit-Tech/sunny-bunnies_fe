@@ -13,18 +13,22 @@ declare module "@mui/material/styles" {
 		tablet: true;
 	}
 	interface Palette {
+		borderGray: string;
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
 		lightGreen: string;
+		shadowColor: string;
 		transparent: string;
 		white: string;
 	}
 	interface PaletteOptions {
+		borderGray: string;
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
 		lightGreen: string;
+		shadowColor: string;
 		transparent: string;
 		white: string;
 	}
@@ -179,6 +183,7 @@ const theme = createTheme({
 		xxl: fontSizes.xxl,
 	},
 	palette: {
+		borderGray: colors.borderGray,
 		darkGrey: colors.darkGrey,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
@@ -190,6 +195,7 @@ const theme = createTheme({
 		secondary: {
 			main: colors.gray,
 		},
+		shadowColor: colors.shadowColor,
 		transparent: colors.transparent,
 		white: colors.white,
 	},
