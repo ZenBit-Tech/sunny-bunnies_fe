@@ -33,7 +33,7 @@ const VendorProfile: React.FC = () => {
 			const err = (error as FetchBaseQueryError).data as Error;
 			setServerError(err.message);
 		}
-	}, [user]);
+	}, [error, user]);
 
 	if (isLoading) {
 		return <Loader />;
