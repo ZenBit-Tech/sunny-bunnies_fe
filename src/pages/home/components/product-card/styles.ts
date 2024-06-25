@@ -9,8 +9,6 @@ const StyledProductCardContainer = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-	height: 360px;
-	max-height: 360px;
 	max-width: 300px;
 	padding-bottom: 15px;
 	width: 300px;
@@ -28,7 +26,7 @@ const StyledProductCardContent = styled(Box)`
 const StyledProductCardImage = styled("img")`
 	border-radius: 12px 12px 0 0;
 	box-shadow: 4px 4px 24px 0px ${colors.cardBoxShadow};
-	height: 80%;
+	height: 240px;
 	width: 100%;
 `;
 
