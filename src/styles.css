@@ -115,3 +115,7 @@ label {
 legend {
   display: block;
 }
+
+a:active  {
+  color:inherit
+}

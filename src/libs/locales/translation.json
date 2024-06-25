@@ -136,6 +136,16 @@
 		"emailExample": "your_email@gmail.com",
 		"passwordPlaceholder": "Min. 8 characters"
 	},
+	"AdminPage":{
+		"admin": "Admin",
+		"logout": "Logout",
+		"products":"Products",
+		"users": "Users",
+		"chats": "Chats",
+		"userList": "User List",
+		"request" :"Request",
+		"productList": "Product List"
+	},
 	"SignInComponent": {
 		"signIn": "Sign In",
 		"signInWithGoogle": "Sign In with Google",
