@@ -232,7 +232,7 @@ const ProfileForm: React.FC = () => {
 				</Box>
 				<CustomFormGroup
 					control={control}
-					error={errors.name}
+					error={errors?.name}
 					label={t("Profile.formName")}
 					name="name"
 					placeholder={t("Profile.enterYourName")}
@@ -240,7 +240,7 @@ const ProfileForm: React.FC = () => {
 				/>
 				<CustomFormGroup
 					control={control}
-					error={errors.email}
+					error={errors?.email}
 					label={t("Profile.formEmail")}
 					name="email"
 					placeholder={t("Profile.emailExample")}
@@ -370,9 +370,10 @@ const ProfileForm: React.FC = () => {
 				</Button>
 			</Box>
 			<ProfileAddress
-				addressLine={user?.profile.addressLineOne}
-				city={user?.profile.city}
-				country={user?.profile.country}
+				addressLine={user?.profile.addressLineOne as string}
+				city={user?.profile.city as string}
+				country={user?.profile.country as string}
+				state={user?.profile.state as string}
 			/>
 			<ProfileCard />
 		</Box>

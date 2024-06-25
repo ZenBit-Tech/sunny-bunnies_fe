@@ -1,23 +1,31 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { AddressModal } from "../address-modal/address-modal.tsx";
 import { StyledAddressBox, StyledButton } from "./styles.ts";
 
 type ProfileAddressProps = {
-	addressLine?: string;
-	city?: string;
-	country?: string;
+	addressLine: string;
+	city: string;
+	country: string;
+	state: string;
 };
 
 const ProfileAddress: React.FC<ProfileAddressProps> = ({
 	addressLine,
 	city,
 	country,
+	state,
 }) => {
 	const { t } = useTranslation();
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const isData = addressLine && city && country;
+
+	const toggleModal = useCallback((): void => {
+		setIsModalOpen((prev) => !prev);
+	}, []);
 
 	return (
 		<>
@@ -37,7 +45,16 @@ const ProfileAddress: React.FC<ProfileAddressProps> = ({
 				) : (
 					<Typography>{t("Profile.noAddress")}</Typography>
 				)}
-				<StyledButton variant="outlined">Edit</StyledButton>
+				<StyledButton onClick={toggleModal} variant="outlined">
+					Edit
+				</StyledButton>
+				<AddressModal
+					addressLine={addressLine}
+					city={city}
+					country={country}
+					isModalOpen={isModalOpen}
+					state={state}
+				/>
 			</StyledAddressBox>
 		</>
 	);
