@@ -113,6 +113,7 @@ const Products: React.FC<ProductsProperties> = ({
 					display: "flex",
 					flexWrap: "wrap",
 					gap: "15px",
+					justifyContent: "space-between",
 				}}
 			>
 				<Box sx={{ display: "flex", gap: "15px" }}>
