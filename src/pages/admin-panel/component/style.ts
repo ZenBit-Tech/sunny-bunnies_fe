@@ -1,4 +1,5 @@
 import { Box, Divider, styled } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import theme from "~/theme.ts";
 
@@ -16,4 +17,25 @@ const VerticalDivider = styled(Divider)(({ theme }) => ({
 	width: "1px",
 }));
 
-export { StyledContainer, VerticalDivider };
+const ProductBox = styled(Box)({
+	alignItems: "center",
+	display: "flex",
+	justifyContent: "space-between",
+	width: "100%",
+});
+
+const StyledLink = styled(Link)(({ theme }) => ({
+	"&.active": {
+		backgroundColor: theme.palette.lightGreen,
+	},
+	alignItems: "center",
+	backgroundColor: theme.palette.transparent,
+	borderRadius: "4px",
+	display: "flex",
+	height: "48px",
+	minWidth: "36px",
+	padding: "8px 12px",
+	textDecoration: "none",
+}));
+
+export { ProductBox, StyledContainer, StyledLink, VerticalDivider };
