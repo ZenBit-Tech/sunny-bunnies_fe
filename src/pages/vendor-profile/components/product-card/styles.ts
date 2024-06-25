@@ -2,6 +2,10 @@ import { Box, IconButton, styled } from "@mui/material";
 
 import { colors } from "~/libs/constants/index.ts";
 
+type SliderDotProps = {
+	active: boolean;
+};
+
 const StyledProductCardContainer = styled(Box)`
 	align-item: flex-start;
 	border-radius: 12px;
@@ -16,9 +20,27 @@ const StyledProductCardImageContainer = styled(Box)`
 	border: 1px solid ${colors.lightGray};
 	border-radius: 12px 12px 0 0;
 	height: 183px;
+	overflow: hidden;
 	position: relative;
 	width: 100%;
 `;
+
+const ImageSlider = styled(Box)(() => ({
+	bottom: "10px",
+	display: "flex",
+	gap: "5px",
+	left: "50%",
+	position: "absolute",
+	transform: "translateX(-50%)",
+}));
+
+const SliderDot = styled(Box)<SliderDotProps>(({ active, theme }) => ({
+	backgroundColor: active ? theme.palette.primary.main : theme.palette.darkGrey,
+	borderRadius: "2px",
+	cursor: "pointer",
+	height: "3.87px",
+	width: active ? "18px" : "9px",
+}));
 
 const StyledProductCardDataContainer = styled(Box)`
 	display: flex;
@@ -67,6 +89,8 @@ const StyledShopIconButton = styled(IconButton)`
 `;
 
 export {
+	ImageSlider,
+	SliderDot,
 	StyledLikeIconButton,
 	StyledProductCardContainer,
 	StyledProductCardDataContainer,

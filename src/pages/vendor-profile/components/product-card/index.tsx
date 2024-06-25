@@ -7,6 +7,8 @@ import { colors, fontSizes, fontWeight } from "~/libs/constants/index.ts";
 import { Product } from "~/libs/types/products.ts";
 
 import {
+	ImageSlider,
+	SliderDot,
 	StyledLikeIconButton,
 	StyledProductCardContainer,
 	StyledProductCardDataContainer,
@@ -28,6 +30,18 @@ const ProductCard: React.FC<ProductCardProperties> = ({
 	vendorName,
 }) => {
 	const [isLikeClicked, setIsLikeClicked] = useState(false);
+	const [currentImageIndex, setCurrentImageIndex] = useState(defaultImageIndex);
+
+	const handleImageChange = useCallback((index: number): void => {
+		setCurrentImageIndex(index);
+	}, []);
+
+	const handleSlideClickWithIndex = useCallback(
+		(index: number) => (): void => {
+			handleImageChange(index);
+		},
+		[handleImageChange],
+	);
 
 	const handleLikeClick = useCallback((): void => {
 		setIsLikeClicked(!isLikeClicked);
@@ -37,8 +51,8 @@ const ProductCard: React.FC<ProductCardProperties> = ({
 		<StyledProductCardContainer>
 			<StyledProductCardImageContainer>
 				<StyledProductCardImage
-					alt={product.images[defaultImageIndex].description}
-					src={product.images[defaultImageIndex].url}
+					alt={product.images[currentImageIndex].description}
+					src={product.images[currentImageIndex].url}
 				/>
 				<StyledLikeIconButton onClick={handleLikeClick}>
 					{isLikeClicked ? (
@@ -47,6 +61,15 @@ const ProductCard: React.FC<ProductCardProperties> = ({
 						<LikeIcon sx={{ color: colors.white }} />
 					)}
 				</StyledLikeIconButton>
+				<ImageSlider>
+					{product.images.map((_, index) => (
+						<SliderDot
+							active={index === currentImageIndex}
+							key={index}
+							onClick={handleSlideClickWithIndex(index)}
+						/>
+					))}
+				</ImageSlider>
 			</StyledProductCardImageContainer>
 			<StyledProductCardDataContainer>
 				<StyledProductCardDataContent>
