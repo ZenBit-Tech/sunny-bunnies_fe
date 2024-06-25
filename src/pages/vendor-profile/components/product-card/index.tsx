@@ -19,6 +19,7 @@ import {
 } from "./styles.ts";
 
 const defaultImageIndex = 0;
+const minImagesForSlider = 1;
 
 type ProductCardProperties = {
 	product: Product;
@@ -61,15 +62,18 @@ const ProductCard: React.FC<ProductCardProperties> = ({
 						<LikeIcon sx={{ color: colors.white }} />
 					)}
 				</StyledLikeIconButton>
-				<ImageSlider>
-					{product.images.map((_, index) => (
-						<SliderDot
-							active={index === currentImageIndex}
-							key={index}
-							onClick={handleSlideClickWithIndex(index)}
-						/>
-					))}
-				</ImageSlider>
+				_
+				{product.images.length > minImagesForSlider && (
+					<ImageSlider>
+						{product.images.map((_, index) => (
+							<SliderDot
+								active={index === currentImageIndex}
+								key={index}
+								onClick={handleSlideClickWithIndex(index)}
+							/>
+						))}
+					</ImageSlider>
+				)}
 			</StyledProductCardImageContainer>
 			<StyledProductCardDataContainer>
 				<StyledProductCardDataContent>
