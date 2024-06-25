@@ -9,6 +9,7 @@ import { useFollowHandler } from "~/pages/vendor-profile/hooks/index.ts";
 
 import { HeaderLinksGroup } from "../index.ts";
 import {
+	StyledFollowButtonContainer,
 	StyledRatingContainer,
 	StyledRatingIcon,
 	StyledVendorProfileData,
@@ -64,20 +65,22 @@ const VendorAvatarSection: React.FC<VendorAvatarSectionProperties> = ({
 					</Typography>
 				</StyledRatingContainer>
 			</Box>
-			<BaseButton
-				onClick={handleFollowClick}
-				sx={{ height: "53px", margin: "0 auto", width: "196px" }}
-				variant="primary_black_regular"
-			>
-				{isFollowing
-					? t("VendorProfilePage.unFollow")
-					: t("VendorProfilePage.follow")}
-			</BaseButton>
-			{serverError && (
-				<Typography color="error" variant="dmSans">
-					{serverError}
-				</Typography>
-			)}
+			<StyledFollowButtonContainer>
+				<BaseButton
+					onClick={handleFollowClick}
+					sx={{ height: "53px", width: "196px" }}
+					variant="primary_black_regular"
+				>
+					{isFollowing
+						? t("VendorProfilePage.unFollow")
+						: t("VendorProfilePage.follow")}
+				</BaseButton>
+				{serverError && (
+					<Typography color="error" variant="dmSans">
+						{serverError}
+					</Typography>
+				)}
+			</StyledFollowButtonContainer>
 		</StyledVendorProfileData>
 	);
 };

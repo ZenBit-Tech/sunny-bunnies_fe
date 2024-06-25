@@ -1,8 +1,7 @@
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
 
+import { LikeIcon } from "~/assets/icons/like-icon.tsx";
 import ShopCart from "~/assets/icons/shop-cart.svg?react";
 import { colors, fontSizes, fontWeight } from "~/libs/constants/index.ts";
 import { Product } from "~/libs/types/products.ts";
@@ -42,7 +41,11 @@ const ProductCard: React.FC<ProductCardProperties> = ({
 					src={product.images[defaultImageIndex].url}
 				/>
 				<StyledLikeIconButton onClick={handleLikeClick}>
-					{isLikeClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+					{isLikeClicked ? (
+						<LikeIcon sx={{ color: colors.likeIconColor }} />
+					) : (
+						<LikeIcon sx={{ color: colors.white }} />
+					)}
 				</StyledLikeIconButton>
 			</StyledProductCardImageContainer>
 			<StyledProductCardDataContainer>

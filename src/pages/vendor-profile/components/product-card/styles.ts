@@ -4,15 +4,17 @@ import { colors } from "~/libs/constants/index.ts";
 
 const StyledProductCardContainer = styled(Box)`
 	align-item: flex-start;
-	box-shadow: 4px 4px 24px 0px #0000000a;
+	border-radius: 12px;
+	box-shadow: 4px 4px 24px 0px ${colors.cardBoxShadow};
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
+	cursor: pointer;
 	width: 200px;
 `;
 
 const StyledProductCardImageContainer = styled(Box)`
 	border: 1px solid ${colors.lightGray};
+	border-radius: 12px 12px 0 0;
 	height: 183px;
 	position: relative;
 	width: 100%;
@@ -25,12 +27,15 @@ const StyledProductCardDataContainer = styled(Box)`
 `;
 
 const StyledProductCardDataContent = styled(Box)`
+	border-radius: 0 0 12px 12px;
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+	padding: 8px;
 `;
 
 const StyledProductCardImage = styled("img")`
+	border-radius: 12px 12px 0 0;
 	height: 100%;
 	width: 100%;
 `;

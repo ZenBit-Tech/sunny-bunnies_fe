@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import StarRatingIcon from "~/assets/icons/star-rating-icon.svg?react";
-import { colors, fontSizes } from "~/libs/constants/index.ts";
+import { colors, dateFormat, fontSizes } from "~/libs/constants/index.ts";
 import { type Review } from "~/libs/types/vendor.ts";
 
 import {
@@ -16,7 +16,7 @@ import {
 	StyledReviewItemContainer,
 } from "./styles.ts";
 
-const maxReviewLength = 150;
+const maxReviewLength = 200;
 const zeroIndex = 0;
 
 type ReviewItemProperties = {
@@ -27,7 +27,7 @@ const ReviewItem: React.FC<ReviewItemProperties> = ({ review }) => {
 	const { t } = useTranslation();
 
 	const updatedAtDate = new Date(review.updatedAt);
-	const formattedDate = format(updatedAtDate, "MMM d, yyyy");
+	const formattedDate = format(updatedAtDate, dateFormat);
 	const [isReviewExpanded, setIsReviewExpanded] = useState(false);
 	const [isReviewLarge, setIsReviewLarge] = useState(false);
 

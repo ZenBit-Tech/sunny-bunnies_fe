@@ -4,8 +4,8 @@ const StyledVendorProfileData = styled(Box)`
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
-	gap: 52px;
-	width: 412px;
+	gap: 32px;
+	min-width: 312px;
 `;
 
 const StyledRatingContainer = styled(Box)`
@@ -21,4 +21,19 @@ const StyledRatingIcon = styled(Box)`
 	width: 24px;
 `;
 
-export { StyledRatingContainer, StyledRatingIcon, StyledVendorProfileData };
+const StyledFollowButtonContainer = styled(Box)(({ theme }) => ({
+	alignSelf: "center",
+	border: `1px solid ${theme.palette.graylishRed}`,
+	borderRadius: "12px",
+	display: "flex",
+	justifyContent: "center",
+	padding: "16px 25px 16px 16px",
+	width: "100%",
+}));
+
+export {
+	StyledFollowButtonContainer,
+	StyledRatingContainer,
+	StyledRatingIcon,
+	StyledVendorProfileData,
+};
