@@ -9,7 +9,7 @@ import { UsersIcon } from "~/assets/icons/users-icon.tsx";
 import { AppRoute } from "~/libs/constants/index.ts";
 import theme from "~/theme.ts";
 
-import { useIsRouteActive } from "../hooks/index.ts";
+import { useIsRouteActive } from "../hooks/use-is-route-active.ts";
 import { ProductBox, StyledLink, VerticalDivider } from "./style.ts";
 
 const SidebarList: React.FC = () => {

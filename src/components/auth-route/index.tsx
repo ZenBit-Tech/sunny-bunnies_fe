@@ -1,16 +1,15 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-import { AppRoute } from "~/libs/constants/index.ts";
+import { AppRoute, userRole } from "~/libs/constants/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { RootState } from "~/redux/store.ts";
 
 const AuthRoute: React.FC = () => {
 	const user = useAppSelector((state: RootState) => state.auth.user);
-	const role = "admin";
 
 	if (user) {
-		if (user.profile.role === role)
+		if (user.profile.role === userRole.ADMIN)
 			return <Navigate to={AppRoute.USER_MANAGEMENT} />;
 
 		if (user.isVerified && user.profile.isRegistrationCompleted)
