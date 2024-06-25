@@ -4,6 +4,7 @@ import {
 	Address,
 	CreditCard,
 	GeneralInformation,
+	Profile,
 	Role,
 	Size,
 } from "~/libs/types/user-profile.type.ts";
@@ -17,7 +18,7 @@ export const userApi = api.injectEndpoints({
 			query: (body) => ({
 				body,
 				method: httpMethods.PATCH,
-				url: userApiPath.USER_UPDATE,
+				url: userApiPath.USER_UPDATE_PROFILE,
 			}),
 		}),
 		updateCard: build.mutation<User, CreditCard>({
@@ -27,7 +28,18 @@ export const userApi = api.injectEndpoints({
 				url: userApiPath.USER_UPDATE_CARD,
 			}),
 		}),
+		updateUserAndProfile: build.mutation<User, Profile>({
+			query: (body) => ({
+				body,
+				method: httpMethods.PATCH,
+				url: userApiPath.USER_UPDATE_USER_AND_PROFILE,
+			}),
+		}),
 	}),
 });
 
-export const { useUpdateCardMutation, useUpdateMutation } = userApi;
+export const {
+	useUpdateCardMutation,
+	useUpdateMutation,
+	useUpdateUserAndProfileMutation,
+} = userApi;

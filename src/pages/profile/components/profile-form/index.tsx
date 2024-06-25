@@ -10,6 +10,7 @@ import {
 	SelectChangeEvent,
 	Typography,
 } from "@mui/material";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -30,9 +31,10 @@ import {
 } from "~/pages/profile-board/constants.ts/size.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
-import { useUpdateMutation } from "~/redux/user/user-api.ts";
+import { useUpdateUserAndProfileMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
+import { ProfileFormData } from "../../types/index.ts";
 import { profileValidation } from "../../validation/profile-schema.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
 import { StyledInputWrapper, VisuallyHiddenInput } from "./styles.ts";
@@ -40,12 +42,13 @@ import { StyledInputWrapper, VisuallyHiddenInput } from "./styles.ts";
 const ProfileForm: React.FC = () => {
 	const { t } = useTranslation();
 	const user = useAppSelector((state) => state.auth.user);
-	const [update] = useUpdateMutation();
+	const [updateUserAndProfile] = useUpdateUserAndProfileMutation();
 	const dispatch = useAppDispatch();
 
 	const zero = 0;
 	const requiredCodes = ["ua", "ca"];
 
+	const [serverError, setServerError] = useState("");
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const [phone, setPhone] = useState(user?.profile.phoneNumber ?? "");
 	const [selectedClothingSize, setSelectedClothingSize] = useState<
@@ -119,19 +122,19 @@ const ProfileForm: React.FC = () => {
 	);
 
 	const handleInputChange = useCallback(
-		async (formData: any): Promise<void> => {
+		async (formData: ProfileFormData): Promise<void> => {
 			try {
-				const updatedUser = await update(formData).unwrap();
+				const updatedUser = await updateUserAndProfile(formData).unwrap();
 
 				dispatch(setUser(updatedUser));
 			} catch (error) {
-				// const loadError = (error as FetchBaseQueryError).data
-				// 	? ((error as FetchBaseQueryError).data as Error)
-				// 	: { message: t("Error.unknowError") };
-				// setServerError(loadError.message);
+				const loadError = (error as FetchBaseQueryError).data
+					? ((error as FetchBaseQueryError).data as Error)
+					: { message: t("Error.unknowError") };
+				setServerError(loadError.message);
 			}
 		},
-		[dispatch, update],
+		[dispatch, t, updateUserAndProfile],
 	);
 
 	const handleFormSubmit = useCallback(
@@ -357,8 +360,13 @@ const ProfileForm: React.FC = () => {
 						))}
 					</MuiSelect>
 				</FormControl>
-				<Button type="submit" variant="primary_black_regular">
-					{t("Form.submitButtonText")}
+				{serverError && (
+					<Typography color="error" variant="body2">
+						{serverError}
+					</Typography>
+				)}
+				<Button sx={{ width: "15%" }} type="submit" variant="secondary_black">
+					{t("Profile.submitForm")}
 				</Button>
 			</Box>
 			<ProfileAddress

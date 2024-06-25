@@ -242,6 +242,7 @@
 		"formName": "Name",
 		"formEmail": "Email",
 		"enterYourName": "Enter your name",
-		"emailExample": "your_email@gmail.com"
+		"emailExample": "your_email@gmail.com",
+		"submitForm": "Save Changes"
 	}
 }
