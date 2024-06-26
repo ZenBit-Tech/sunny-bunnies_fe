@@ -1,6 +1,9 @@
 const profileValidationMessages = {
 	EMAIL_INCORRECT: "Email format is incorrect",
 	EMAIL_REQUIRED: "Email is required",
+	FILE_IS_REQUIRED: "You need to provide a file",
+	FILE_TOO_LARGE: "The file is too large",
+	INVALID_FORMAT: "Please select an image in JPG, HEIC, or PNG format",
 	NAME_MIN_LENGTH: "Name should have at least 2 characters",
 	NAME_REQUIRED: "Name is required",
 	PHONE_NUMBER_INVALID: "Invalid phone number",

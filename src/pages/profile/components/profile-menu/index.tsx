@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -6,13 +6,15 @@ import { LogoutIcon } from "~/assets/icons/logout-icon.tsx";
 import { MessageIcon } from "~/assets/icons/message-icon.tsx";
 import { SettingsIcon } from "~/assets/icons/settings-icon.tsx";
 import { UserIcon } from "~/assets/icons/user-icon.tsx";
-import { IconWrapper, ImagePreview } from "~/components/index.ts";
+import { IconWrapper } from "~/components/index.ts";
 import { colors } from "~/libs/constants/index.ts";
+import { useAppSelector } from "~/redux/hooks.ts";
 
 import { StyledBaseButton, StyledButtonsContainer } from "./styles.ts";
 
 const ProfileMenu: React.FC = () => {
 	const { t } = useTranslation();
+	const user = useAppSelector((state) => state.auth.user);
 
 	const buttonsConfig = useMemo(
 		() => [
@@ -67,9 +69,16 @@ const ProfileMenu: React.FC = () => {
 				padding: "24px",
 			}}
 		>
-			<ImagePreview file={null} />
+			<Avatar
+				alt={user?.name}
+				src={user?.profile.profilePhoto as string}
+				sx={{
+					height: "120px",
+					width: "120px",
+				}}
+			/>
 			<Typography fontSize={20} variant="playfairDisplay">
-				Anna Asol
+				{user?.name}
 			</Typography>
 			<StyledButtonsContainer>
 				{buttonsConfig.map((button, index) => (

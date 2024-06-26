@@ -41,6 +41,34 @@ const profileValidation = Yup.object().shape({
 					return false;
 				},
 			),
+		profilePhoto: Yup.lazy((value) => {
+			if (typeof value === "string") {
+				return Yup.mixed().notRequired();
+			} else {
+				return Yup.mixed()
+					.required(profileValidationMessages.FILE_IS_REQUIRED)
+					.test(
+						"fileSize",
+						profileValidationMessages.FILE_TOO_LARGE,
+						function (value) {
+							const file = value as File;
+							const maxSize = 1048576;
+
+							return file.size <= maxSize;
+						},
+					)
+					.test(
+						"fileType",
+						profileValidationMessages.INVALID_FORMAT,
+						function (value) {
+							const file = value as File;
+							const allowedTypes = ["image/jpeg", "image/png", "image/heic"];
+
+							return allowedTypes.includes(file.type);
+						},
+					);
+			}
+		}),
 		shoeSize: Yup.string().required(
 			profileValidationMessages.REQUIRED_SHOE_SIZE,
 		),

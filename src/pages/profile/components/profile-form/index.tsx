@@ -32,7 +32,11 @@ import {
 } from "~/pages/profile-board/constants.ts/size.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
-import { useUpdateUserAndProfileMutation } from "~/redux/user/user-api.ts";
+import {
+	// useUpdateMutation,
+	useUpdateUserAndProfileMutation,
+	useUploadMutation,
+} from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
 import { profileValidation } from "../../validation/profile-schema.ts";
@@ -43,13 +47,16 @@ const ProfileForm: React.FC = () => {
 	const { t } = useTranslation();
 	const user = useAppSelector((state) => state.auth.user);
 	const [updateUserAndProfile] = useUpdateUserAndProfileMutation();
+	const [upload] = useUploadMutation();
 	const dispatch = useAppDispatch();
 
 	const zero = 0;
 	const requiredCodes = ["ua", "ca"];
 
 	const [serverError, setServerError] = useState("");
-	const [selectedFile, setSelectedFile] = useState<File | null>(null);
+	const [selectedFile, setSelectedFile] = useState<File | null | string>(
+		user?.profile.profilePhoto || null,
+	);
 	const [phone, setPhone] = useState(user?.profile.phoneNumber ?? "");
 	const [selectedClothingSize, setSelectedClothingSize] = useState<
 		null | string
@@ -69,7 +76,7 @@ const ProfileForm: React.FC = () => {
 				clothesSize: user?.profile.clothesSize ?? "",
 				jeansSize: user?.profile.jeansSize ?? "",
 				phoneNumber: user?.profile.phoneNumber ?? "",
-				profilePhoto: null,
+				profilePhoto: user?.profile.profilePhoto ?? null,
 				shoeSize: user?.profile.shoeSize ?? "",
 			},
 		},
@@ -117,14 +124,25 @@ const ProfileForm: React.FC = () => {
 	const handleFileChange = useCallback(
 		(e: React.ChangeEvent<HTMLInputElement>) => {
 			setSelectedFile(e.target.files ? e.target.files[zero] : null);
+			setValue(
+				"profile.profilePhoto",
+				e.target.files ? e.target.files[zero] : null,
+			);
 		},
-		[],
+		[setValue],
 	);
 
 	const handleInputChange = useCallback(
 		async (formData: UserAndProfile): Promise<void> => {
 			try {
-				const updatedUser = await updateUserAndProfile(formData).unwrap();
+				if (formData.profile.profilePhoto instanceof File) {
+					const formDataToSend = new FormData();
+					formDataToSend.append("file", formData.profile.profilePhoto);
+					await upload(formDataToSend).unwrap();
+				}
+				const formDataCopy = { ...formData };
+				delete formDataCopy.profile.profilePhoto;
+				const updatedUser = await updateUserAndProfile(formDataCopy).unwrap();
 
 				dispatch(setUser(updatedUser));
 			} catch (error) {
@@ -134,7 +152,7 @@ const ProfileForm: React.FC = () => {
 				setServerError(loadError.message);
 			}
 		},
-		[dispatch, t, updateUserAndProfile],
+		[dispatch, t, updateUserAndProfile, upload],
 	);
 
 	const handleFormSubmit = useCallback(
