@@ -123,6 +123,14 @@ createRoot(document.getElementById("root")!).render(
 																	path: AppRoute.PROFILE,
 																},
 																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE_SETTINGS,
+																},
+																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE_SUPPORT,
+																},
+																{
 																	element: <ProfileBoard />,
 																	path: AppRoute.ROLE,
 																},

@@ -23,6 +23,8 @@ const GetStartedHeaderRoutes = [
 	AppRoute.SIZE,
 	AppRoute.VENDORS_PROFILE,
 	AppRoute.PROFILE,
+	AppRoute.PROFILE_SETTINGS,
+	AppRoute.PROFILE_SUPPORT,
 ];
 
 const HeaderWrapper: React.FC = () => {

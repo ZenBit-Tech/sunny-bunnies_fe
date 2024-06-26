@@ -1,31 +1,40 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 import { LogoutIcon } from "~/assets/icons/logout-icon.tsx";
 import { MessageIcon } from "~/assets/icons/message-icon.tsx";
 import { SettingsIcon } from "~/assets/icons/settings-icon.tsx";
 import { UserIcon } from "~/assets/icons/user-icon.tsx";
 import { IconWrapper } from "~/components/index.ts";
-import { colors } from "~/libs/constants/index.ts";
+import { AppRoute, colors } from "~/libs/constants/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 
-import { StyledBaseButton, StyledButtonsContainer } from "./styles.ts";
+import {
+	StyledButtonContainer,
+	StyledButtonsContainer,
+	StyledMenuButton,
+	StyledMenuContainer,
+} from "./styles.ts";
 
 const ProfileMenu: React.FC = () => {
 	const { t } = useTranslation();
 	const user = useAppSelector((state) => state.auth.user);
+	const location = useLocation();
 
 	const buttonsConfig = useMemo(
 		() => [
 			{
+				color: colors.pastelGreen,
 				startIcon: (
 					<IconWrapper color={colors.pastelGreen} icon={<UserIcon />} />
 				),
 				text: t("Profile.personalInformation"),
-				to: "/profile",
+				to: AppRoute.PROFILE,
 			},
 			{
+				color: colors.grayishRed,
 				startIcon: (
 					<IconWrapper
 						color={colors.grayishRed}
@@ -33,9 +42,10 @@ const ProfileMenu: React.FC = () => {
 					/>
 				),
 				text: t("Profile.settings"),
-				to: "/profile",
+				to: AppRoute.PROFILE_SETTINGS,
 			},
 			{
+				color: colors.pastelGreen,
 				startIcon: (
 					<IconWrapper
 						color={colors.pastelGreen}
@@ -43,9 +53,10 @@ const ProfileMenu: React.FC = () => {
 					/>
 				),
 				text: t("Profile.support"),
-				to: "/profile",
+				to: AppRoute.PROFILE_SUPPORT,
 			},
 			{
+				color: colors.pastelGreen,
 				startIcon: (
 					<IconWrapper
 						color={colors.grayishRed}
@@ -53,22 +64,14 @@ const ProfileMenu: React.FC = () => {
 					/>
 				),
 				text: t("Profile.logout"),
-				to: "/profile",
+				to: "/",
 			},
 		],
 		[t],
 	);
 
 	return (
-		<Box
-			sx={{
-				alignItems: "center",
-				display: "flex",
-				flexDirection: "column",
-				gap: "24px",
-				padding: "24px",
-			}}
-		>
+		<StyledMenuContainer>
 			<Avatar
 				alt={user?.name}
 				src={user?.profile.profilePhoto as string}
@@ -81,17 +84,24 @@ const ProfileMenu: React.FC = () => {
 				{user?.name}
 			</Typography>
 			<StyledButtonsContainer>
-				{buttonsConfig.map((button, index) => (
-					<StyledBaseButton
-						key={index}
-						startIcon={button.startIcon}
-						to={button.to}
-					>
-						{button.text}
-					</StyledBaseButton>
-				))}
+				{buttonsConfig.map((button) => {
+					const isActive = location.pathname === button.to;
+
+					return (
+						<StyledButtonContainer key={button.text}>
+							<StyledMenuButton
+								customColor={button.color}
+								isActive={isActive}
+								startIcon={button.startIcon}
+								to={button.to}
+							>
+								{button.text}
+							</StyledMenuButton>
+						</StyledButtonContainer>
+					);
+				})}
 			</StyledButtonsContainer>
-		</Box>
+		</StyledMenuContainer>
 	);
 };
 
