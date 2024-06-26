@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { App } from "./app/app.tsx";
 import { AuthRoute } from "./components/auth-route/index.tsx";
 import {
+	AdminRoute,
 	FooterWrapper,
 	HeaderWrapper,
 	PrivateRoute,
@@ -17,6 +18,7 @@ import {
 } from "./components/index.ts";
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
+import { AdminPanel } from "./pages/admin-panel/admin-panel.tsx";
 import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
 import {
 	Auth,
@@ -75,6 +77,20 @@ createRoot(document.getElementById("root")!).render(
 																},
 															],
 															element: <AuthRoute />,
+															path: AppRoute.ROOT,
+														},
+														{
+															children: [
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.PRODUCT_MANAGEMENT,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.USER_MANAGEMENT,
+																},
+															],
+															element: <AdminRoute />,
 															path: AppRoute.ROOT,
 														},
 														{
