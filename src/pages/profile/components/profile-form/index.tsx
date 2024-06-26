@@ -7,11 +7,9 @@ import {
 	InputLabel,
 	MenuItem,
 	Select as MuiSelect,
-	SelectChangeEvent,
 	Typography,
 } from "@mui/material";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import {
 	CountryData,
@@ -23,146 +21,44 @@ import "react-international-phone/style.css";
 
 import { CustomFormGroup, ImagePreview } from "~/components/index.ts";
 import { fontSizes } from "~/libs/constants/fonts.ts";
-import { useAppForm } from "~/libs/hooks/index.ts";
-import { type UserAndProfile } from "~/libs/types/user-profile.type.ts";
 import {
 	clothingSizes,
 	jeansSizes,
 	shoeSizes,
 } from "~/pages/profile-board/constants.ts/size.ts";
-import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
-import {
-	// useUpdateMutation,
-	useUpdateUserAndProfileMutation,
-	useUploadMutation,
-} from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
-import { profileValidation } from "../../validation/profile-schema.ts";
+import { useProfileForm } from "../../hooks/use-profile-form.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
 import { StyledInputWrapper, VisuallyHiddenInput } from "./styles.ts";
 
 const ProfileForm: React.FC = () => {
 	const { t } = useTranslation();
-	const user = useAppSelector((state) => state.auth.user);
-	const [updateUserAndProfile] = useUpdateUserAndProfileMutation();
-	const [upload] = useUploadMutation();
-	const dispatch = useAppDispatch();
+	const {
+		control,
+		errors,
+		handleChangePhone,
+		handleClothingSizeChange,
+		handleFileChange,
+		handleFormSubmit,
+		handleJeansSizeChange,
+		handleShoeSizeChange,
+		phone,
+		selectedClothingSize,
+		selectedFile,
+		selectedJeansSize,
+		selectedShoeSize,
+		serverError,
+		user,
+	} = useProfileForm();
 
-	const zero = 0;
 	const requiredCodes = ["ua", "ca"];
-
-	const [serverError, setServerError] = useState("");
-	const [selectedFile, setSelectedFile] = useState<File | null | string>(
-		user?.profile.profilePhoto || null,
-	);
-	const [phone, setPhone] = useState(user?.profile.phoneNumber ?? "");
-	const [selectedClothingSize, setSelectedClothingSize] = useState<
-		null | string
-	>(user?.profile.clothesSize ?? "");
-	const [selectedShoeSize, setSelectedShoeSize] = useState<null | string>(
-		user?.profile.shoeSize ?? "",
-	);
-	const [selectedJeansSize, setSelectedJeansSize] = useState<null | string>(
-		user?.profile.jeansSize ?? "",
-	);
-
-	const { control, errors, handleSubmit, setValue } = useAppForm({
-		defaultValues: {
-			email: user?.email ?? "",
-			name: user?.name ?? "",
-			profile: {
-				clothesSize: user?.profile.clothesSize ?? "",
-				jeansSize: user?.profile.jeansSize ?? "",
-				phoneNumber: user?.profile.phoneNumber ?? "",
-				profilePhoto: user?.profile.profilePhoto ?? null,
-				shoeSize: user?.profile.shoeSize ?? "",
-			},
-		},
-		validationSchema: profileValidation,
-	});
 
 	const countries = defaultCountries.filter((country: CountryData) => {
 		const { iso2 } = parseCountry(country);
 
 		return requiredCodes.includes(iso2);
 	});
-
-	const handleChangePhone = useCallback(
-		(phone: string) => {
-			setPhone(phone);
-			setValue("profile.phoneNumber", phone);
-		},
-		[setValue],
-	);
-
-	const handleClothingSizeChange = useCallback(
-		(event: SelectChangeEvent<string>) => {
-			setSelectedClothingSize(event.target.value);
-			setValue("profile.clothesSize", event.target.value);
-		},
-		[setValue],
-	);
-
-	const handleShoeSizeChange = useCallback(
-		(event: SelectChangeEvent<string>) => {
-			setSelectedShoeSize(event.target.value);
-			setValue("profile.shoeSize", event.target.value);
-		},
-		[setValue],
-	);
-
-	const handleJeansSizeChange = useCallback(
-		(event: SelectChangeEvent<string>) => {
-			setSelectedJeansSize(event.target.value);
-			setValue("profile.jeansSize", event.target.value);
-		},
-		[setValue],
-	);
-
-	const handleFileChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			setSelectedFile(e.target.files ? e.target.files[zero] : null);
-			setValue(
-				"profile.profilePhoto",
-				e.target.files ? e.target.files[zero] : null,
-			);
-		},
-		[setValue],
-	);
-
-	const handleInputChange = useCallback(
-		async (formData: UserAndProfile): Promise<void> => {
-			try {
-				if (formData.profile.profilePhoto instanceof File) {
-					const formDataToSend = new FormData();
-					formDataToSend.append("file", formData.profile.profilePhoto);
-					await upload(formDataToSend).unwrap();
-				}
-				const formDataCopy = { ...formData };
-				delete formDataCopy.profile.profilePhoto;
-				const updatedUser = await updateUserAndProfile(formDataCopy).unwrap();
-
-				dispatch(setUser(updatedUser));
-			} catch (error) {
-				const loadError = (error as FetchBaseQueryError).data
-					? ((error as FetchBaseQueryError).data as Error)
-					: { message: t("Error.unknowError") };
-				setServerError(loadError.message);
-			}
-		},
-		[dispatch, t, updateUserAndProfile, upload],
-	);
-
-	const handleFormSubmit = useCallback(
-		(event: React.BaseSyntheticEvent): void => {
-			event.preventDefault();
-
-			void handleSubmit(handleInputChange)(event);
-		},
-		[handleSubmit, handleInputChange],
-	);
 
 	return (
 		<Box
