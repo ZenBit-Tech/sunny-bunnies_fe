@@ -1,6 +1,7 @@
 import { type Profile } from "./user-profile.type.ts";
 
 type User = {
+	createdAt: Date;
 	email: string;
 	id: string;
 	isVerified: boolean;

@@ -144,7 +144,20 @@
 		"chats": "Chats",
 		"userList": "User List",
 		"request" :"Request",
-		"productList": "Product List"
+		"productList": "Product List",
+		"vendors": "Vendors",
+		"buyers":"Buyers"
+	},
+	"AdminUserManagementPage":{
+		"name": "Name",
+		"email":"Email",
+		"address": "Address",
+		"date": "Date",
+		"action": "Action",
+		"search": "Search",
+		"sort": "Sort by",
+		"ascending": "Ascending",
+		"descending": "Descending"
 	},
 	"SignInComponent": {
 		"signIn": "Sign In",

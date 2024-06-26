@@ -15,28 +15,87 @@ import { ProductBox, StyledLink, VerticalDivider } from "./style.ts";
 const SidebarList: React.FC = () => {
 	const { t } = useTranslation();
 	const [productsOpen, setProductsOpen] = useState(false);
+	const [usersOpen, setusersOpen] = useState(false);
 
 	const handleProductsClick = useCallback(() => {
 		setProductsOpen((prevOpen) => !prevOpen);
+	}, []);
+
+	const handleUsersClick = useCallback(() => {
+		setusersOpen((prevOpen) => !prevOpen);
 	}, []);
 
 	return (
 		<List sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
 			<StyledLink
 				className={useIsRouteActive(AppRoute.USER_MANAGEMENT) ? "active" : ""}
-				to={AppRoute.USER_MANAGEMENT}
+				onClick={handleUsersClick}
+				to="#"
 			>
 				<ListItemIcon sx={{ minWidth: "36px" }}>
 					<UsersIcon />
 				</ListItemIcon>
-				<Typography
+				<ProductBox>
+					<Typography
+						sx={{
+							fontSize: theme.typography.playfairDisplay,
+						}}
+					>
+						{t("AdminPage.users")}
+					</Typography>
+					{usersOpen ? <ExpandLess /> : <ExpandMore />}
+				</ProductBox>
+			</StyledLink>
+			<Collapse in={usersOpen} timeout="auto" unmountOnExit>
+				<List
+					component="div"
+					disablePadding
 					sx={{
-						fontSize: theme.typography.playfairDisplay,
+						display: "flex",
 					}}
 				>
-					{t("AdminPage.users")}
-				</Typography>
-			</StyledLink>
+					<VerticalDivider />
+					<Box display="flex" flexDirection="column" gap="12px" width="100%">
+						<StyledLink
+							className={
+								useIsRouteActive(AppRoute.MANAGEMENT_BUYERS) ? "active" : ""
+							}
+							to={AppRoute.MANAGEMENT_BUYERS}
+						>
+							<Typography
+								sx={{
+									alignItems: "center",
+									display: "flex",
+									fontSize: theme.typography.dmSans,
+									fontWeight: theme.fontWeight.medium,
+									height: "32px",
+								}}
+							>
+								{t("AdminPage.buyers")}
+							</Typography>
+						</StyledLink>
+						<StyledLink
+							className={
+								useIsRouteActive(AppRoute.MANAGEMENT_VENDORS) ? "active" : ""
+							}
+							to={AppRoute.MANAGEMENT_VENDORS}
+						>
+							<Typography
+								sx={{
+									alignItems: "center",
+									display: "flex",
+									fontSize: theme.typography.dmSans,
+									fontWeight: theme.fontWeight.medium,
+									height: "32px",
+								}}
+							>
+								{t("AdminPage.vendors")}
+							</Typography>
+						</StyledLink>
+					</Box>
+				</List>
+			</Collapse>
+
 			<StyledLink
 				className={
 					useIsRouteActive(AppRoute.PRODUCT_MANAGEMENT) ? "active" : ""

@@ -18,7 +18,7 @@ import {
 } from "./components/index.ts";
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
-import { AdminPanel } from "./pages/admin-panel/admin-panel.tsx";
+import { AdminPanel } from "./pages/admin-panel/index.tsx";
 import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
 import {
 	Auth,
@@ -79,7 +79,11 @@ createRoot(document.getElementById("root")!).render(
 																},
 																{
 																	element: <AdminPanel />,
-																	path: AppRoute.USER_MANAGEMENT,
+																	path: AppRoute.MANAGEMENT_VENDORS,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_BUYERS,
 																},
 															],
 															element: <AdminRoute />,

@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
 import { ArrowDownIcon } from "~/assets/icons/arrow-down-icon.tsx";
-import { AppRoute } from "~/libs/constants/index.ts";
+import { AppRoute, userRole } from "~/libs/constants/index.ts";
 import { logout } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
@@ -50,14 +50,17 @@ const AdminPanel: React.FC = () => {
 	const getScreen = (screen: string): React.ReactNode => {
 		// eslint-disable-next-line sonarjs/no-all-duplicated-branches
 		switch (screen) {
-			case AppRoute.USER_MANAGEMENT: {
-				return <UserManagement />;
+			case AppRoute.MANAGEMENT_BUYERS: {
+				return <UserManagement role={userRole.BUYER} />;
+			}
+			case AppRoute.MANAGEMENT_VENDORS: {
+				return <UserManagement role={userRole.VENDOR} />;
 			}
 			case AppRoute.PRODUCT_MANAGEMENT: {
-				return <UserManagement />;
+				return <UserManagement role={userRole.BUYER} />;
 			}
 			default: {
-				return <UserManagement />;
+				return <UserManagement role={userRole.BUYER} />;
 			}
 		}
 	};
