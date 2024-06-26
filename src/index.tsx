@@ -180,6 +180,5 @@ createRoot(document.getElementById("root")!).render(
 				</PersistGate>
 			</StoreProvider>
 		</GoogleOAuthProvider>
-		,
 	</React.StrictMode>,
 );
