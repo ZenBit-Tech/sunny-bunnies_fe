@@ -3,7 +3,6 @@ import {
 	Button,
 	FormControl,
 	FormHelperText,
-	FormLabel,
 	InputLabel,
 	MenuItem,
 	Select as MuiSelect,
@@ -34,7 +33,12 @@ import theme from "~/theme.ts";
 
 import { useProfileForm } from "../../hooks/use-profile-form.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
-import { StyledInputWrapper, VisuallyHiddenInput } from "./styles.ts";
+import {
+	StyledFormLabel,
+	StyledPhoneCountryInput,
+	StyledPhoneInput,
+	VisuallyHiddenInput,
+} from "./styles.ts";
 
 const ProfileForm: React.FC = () => {
 	const { t } = useTranslation();
@@ -168,23 +172,19 @@ const ProfileForm: React.FC = () => {
 					component="fieldset"
 					error={Boolean(errors.profile?.phoneNumber)}
 				>
-					<FormLabel
-						sx={{
-							color: theme.palette.primary.main,
-							...theme.typography.playfairDisplay,
-							marginBottom: "8px",
+					<StyledFormLabel>{t("Form.phoneNumberTitle")}</StyledFormLabel>
+
+					<PhoneInput
+						countries={countries}
+						countrySelectorStyleProps={{
+							buttonStyle: StyledPhoneCountryInput,
 						}}
-					>
-						Phone
-					</FormLabel>
-					<StyledInputWrapper>
-						<PhoneInput
-							countries={countries}
-							defaultCountry="ua"
-							onChange={handleChangePhone}
-							value={phone}
-						/>
-					</StyledInputWrapper>
+						defaultCountry="ua"
+						inputStyle={StyledPhoneInput}
+						onChange={handleChangePhone}
+						value={phone}
+					/>
+
 					{errors.profile?.phoneNumber && (
 						<FormHelperText sx={{ marginLeft: 0 }}>
 							{errors.profile.phoneNumber.message as string}
@@ -195,16 +195,9 @@ const ProfileForm: React.FC = () => {
 					component="fieldset"
 					error={Boolean(errors.profile?.clothesSize)}
 				>
-					<FormLabel
-						component="legend"
-						sx={{
-							color: theme.palette.primary.main,
-							...theme.typography.playfairDisplay,
-							marginBottom: "8px",
-						}}
-					>
+					<StyledFormLabel component="legend">
 						{t("Form.clothesTitle")}
-					</FormLabel>
+					</StyledFormLabel>
 					{!selectedClothingSize && (
 						<InputLabel shrink={false}>{t("Form.selectSize")}</InputLabel>
 					)}
@@ -224,16 +217,9 @@ const ProfileForm: React.FC = () => {
 					component="fieldset"
 					error={Boolean(errors.profile?.jeansSize)}
 				>
-					<FormLabel
-						component="legend"
-						sx={{
-							color: theme.palette.primary.main,
-							...theme.typography.playfairDisplay,
-							marginBottom: "8px",
-						}}
-					>
+					<StyledFormLabel component="legend">
 						{t("Form.jeansTitle")}
-					</FormLabel>
+					</StyledFormLabel>
 					{!selectedJeansSize && (
 						<InputLabel shrink={false}>{t("Form.selectSize")}</InputLabel>
 					)}
@@ -253,16 +239,9 @@ const ProfileForm: React.FC = () => {
 					component="fieldset"
 					error={Boolean(errors.profile?.shoeSize)}
 				>
-					<FormLabel
-						component="legend"
-						sx={{
-							color: theme.palette.primary.main,
-							...theme.typography.playfairDisplay,
-							marginBottom: "8px",
-						}}
-					>
+					<StyledFormLabel component="legend">
 						{t("Form.shoesTitle")}
-					</FormLabel>
+					</StyledFormLabel>
 					{!selectedShoeSize && (
 						<InputLabel shrink={false}>{t("Form.selectSize")}</InputLabel>
 					)}

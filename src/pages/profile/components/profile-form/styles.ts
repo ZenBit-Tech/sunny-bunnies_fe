@@ -1,8 +1,6 @@
-import { Box, styled } from "@mui/material";
+import { FormLabel, FormLabelProps, styled } from "@mui/material";
 
-const StyledInputWrapper = styled(Box)`
-	width: 100%;
-`;
+import { colors, fontFamily, fontSizes } from "~/libs/constants/index.ts";
 
 const VisuallyHiddenInput = styled("input")({
 	border: "0",
@@ -16,4 +14,32 @@ const VisuallyHiddenInput = styled("input")({
 	width: "1px",
 });
 
-export { StyledInputWrapper, VisuallyHiddenInput };
+const StyledFormLabel = styled(FormLabel)<FormLabelProps>(({ theme }) => ({
+	...theme.typography.playfairDisplay,
+	color: theme.palette.primary.main,
+	marginBottom: "8px",
+}));
+
+const StyledPhoneInput = {
+	borderBottomRightRadius: "6px",
+	borderColor: `${colors.borderGray}`,
+	borderTopRightRadius: "6px",
+	fontFamily: `${fontFamily.dmSans}`,
+	fontSize: `${fontSizes.small}`,
+	padding: "27px 7px",
+	width: "100%",
+};
+
+const StyledPhoneCountryInput = {
+	borderBottomLeftRadius: "6px",
+	borderColor: `${colors.borderGray}`,
+	borderTopLeftRadius: "6px",
+	padding: "27px 7px",
+};
+
+export {
+	StyledFormLabel,
+	StyledPhoneCountryInput,
+	StyledPhoneInput,
+	VisuallyHiddenInput,
+};
