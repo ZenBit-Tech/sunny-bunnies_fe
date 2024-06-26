@@ -7,6 +7,7 @@ import {
 	Profile,
 	Role,
 	Size,
+	UserAndProfile,
 } from "~/libs/types/user-profile.type.ts";
 
 import { api } from "../services.ts";
@@ -28,7 +29,7 @@ export const userApi = api.injectEndpoints({
 				url: userApiPath.USER_UPDATE_CARD,
 			}),
 		}),
-		updateUserAndProfile: build.mutation<User, Profile>({
+		updateUserAndProfile: build.mutation<User, Profile | UserAndProfile>({
 			query: (body) => ({
 				body,
 				method: httpMethods.PATCH,

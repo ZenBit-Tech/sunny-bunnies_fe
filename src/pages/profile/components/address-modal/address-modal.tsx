@@ -2,33 +2,20 @@ import {
 	Box,
 	Button,
 	FormControl,
-	FormLabel,
 	InputLabel,
 	MenuItem,
 	Modal,
 	Select as MuiSelect,
-	SelectChangeEvent,
 	Typography,
 } from "@mui/material";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import {
-	City,
-	Country,
-	ICity,
-	ICountry,
-	IState,
-	State,
-} from "country-state-city";
+import { City, Country, State } from "country-state-city";
 import { t } from "i18next";
-import React, { useCallback, useState } from "react";
+import React from "react";
 
 import { CustomFormGroup } from "~/components/index.ts";
-import { useAppForm } from "~/libs/hooks/index.ts";
-import { type Address } from "~/libs/types/user-profile.type.ts";
-import { setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks.ts";
-import { useUpdateMutation } from "~/redux/user/user-api.ts";
-import theme from "~/theme.ts";
+
+import { useAddressForm } from "../../hooks/use-address-form.ts";
+import { StyledFormLabel, StyledModalContainer } from "./styles.ts";
 
 type AddressModalProps = {
 	addressLine: string;
@@ -36,6 +23,7 @@ type AddressModalProps = {
 	country: string;
 	isModalOpen: boolean;
 	state: string;
+	toggleModal: () => void;
 };
 
 const AddressModal: React.FC<AddressModalProps> = ({
@@ -44,116 +32,37 @@ const AddressModal: React.FC<AddressModalProps> = ({
 	country,
 	isModalOpen,
 	state,
+	toggleModal,
 }) => {
-	const dispatch = useAppDispatch();
-	const [selectedCountry, setSelectedCountry] = useState<ICountry | null>(null);
-	const [selectedState, setSelectedState] = useState<IState | null>(null);
-	const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
-	const [serverError, setServerError] = useState("");
-	const { control, errors, handleSubmit, setValue } = useAppForm<Address>({
-		defaultValues: {
-			addressLineOne: addressLine ?? "",
-			city: city ?? "",
-			country: country ?? "",
-			state: state ?? "",
+	const {
+		control,
+		errors,
+		handleCityChange,
+		handleCountryChange,
+		handleFormSubmit,
+		handleStateChange,
+		selectedCity,
+		selectedCountry,
+		selectedState,
+		serverError,
+	} = useAddressForm(
+		{
+			addressLineOne: addressLine,
+			addressLineTwo: "",
+			city,
+			country,
+			state,
 		},
-	});
-
-	const [update] = useUpdateMutation();
+		toggleModal,
+	);
 
 	const filteredCountries = Country.getAllCountries().filter((country) =>
 		["CA"].includes(country.isoCode),
 	);
 
-	const handleCountryChange = useCallback(
-		(event: SelectChangeEvent<string>) => {
-			const country = filteredCountries.find(
-				(country) => country.name === event.target.value,
-			);
-
-			setSelectedCountry(country || null);
-			setValue("country", country?.name || "");
-			if (!country) {
-				setValue("state", "");
-				setValue("city", "");
-				setSelectedCity(null);
-				setSelectedState(null);
-			}
-		},
-		[filteredCountries, setValue],
-	);
-
-	const handleStateChange = useCallback(
-		(event: SelectChangeEvent<string>) => {
-			const state = selectedCountry
-				? State.getStatesOfCountry(selectedCountry.isoCode).find(
-						(state) => state.name === event.target.value,
-				  )
-				: null;
-
-			setSelectedState(state || null);
-			setValue("state", state?.name || "");
-			if (!state) {
-				setValue("city", "");
-				setSelectedCity(null);
-			}
-		},
-		[selectedCountry, setValue],
-	);
-
-	const handleCityChange = useCallback(
-		(event: SelectChangeEvent<string>) => {
-			const city = selectedState
-				? City.getCitiesOfState(
-						selectedState.countryCode,
-						selectedState.isoCode,
-				  ).find((city) => city.name === event.target.value)
-				: null;
-
-			setSelectedCity(city || null);
-			setValue("city", city?.name || "");
-		},
-		[selectedState, setValue],
-	);
-
-	const handleInputChange = useCallback(
-		async (formData: Address): Promise<void> => {
-			try {
-				const updatedUser = await update(formData).unwrap();
-				dispatch(setUser(updatedUser));
-			} catch (error) {
-				const loadError = (error as FetchBaseQueryError).data
-					? ((error as FetchBaseQueryError).data as Error)
-					: { message: t("Error.unknowError") };
-				setServerError(loadError.message);
-			}
-		},
-		[dispatch, update],
-	);
-
-	const handleFormSubmit = useCallback(
-		(event: React.BaseSyntheticEvent): void => {
-			event.preventDefault();
-			void handleSubmit(handleInputChange)(event);
-		},
-		[handleSubmit, handleInputChange],
-	);
-
 	return (
 		<Modal open={isModalOpen}>
-			<Box
-				boxShadow={24}
-				sx={{
-					backgroundColor: "white",
-					borderRadius: "10px",
-					left: "35%",
-					maxWidth: "600px",
-					padding: "20px",
-					position: "absolute",
-					top: "25%",
-					width: "70%",
-				}}
-			>
+			<StyledModalContainer>
 				<Box
 					autoComplete="off"
 					component="form"
@@ -172,16 +81,9 @@ const AddressModal: React.FC<AddressModalProps> = ({
 						type="text"
 					/>
 					<FormControl component="fieldset" error={Boolean(errors.country)}>
-						<FormLabel
-							component="legend"
-							sx={{
-								color: theme.palette.primary.main,
-								...theme.typography.playfairDisplay,
-								marginBottom: "8px",
-							}}
-						>
+						<StyledFormLabel component="legend">
 							{t("Form.country")}
-						</FormLabel>
+						</StyledFormLabel>
 						{!selectedCountry && (
 							<InputLabel shrink={false}>{t("Form.selectCountry")}</InputLabel>
 						)}
@@ -198,16 +100,9 @@ const AddressModal: React.FC<AddressModalProps> = ({
 						</MuiSelect>
 					</FormControl>
 					<FormControl component="fieldset" error={Boolean(errors.state)}>
-						<FormLabel
-							component="legend"
-							sx={{
-								color: theme.palette.primary.main,
-								...theme.typography.playfairDisplay,
-								marginBottom: "8px",
-							}}
-						>
+						<StyledFormLabel component="legend">
 							{t("Form.state")}
-						</FormLabel>
+						</StyledFormLabel>
 						{!selectedState && (
 							<InputLabel shrink={false}>{t("Form.selectState")}</InputLabel>
 						)}
@@ -228,16 +123,9 @@ const AddressModal: React.FC<AddressModalProps> = ({
 						</MuiSelect>
 					</FormControl>
 					<FormControl component="fieldset" error={Boolean(errors.city)}>
-						<FormLabel
-							component="legend"
-							sx={{
-								color: theme.palette.primary.main,
-								...theme.typography.playfairDisplay,
-								marginBottom: "8px",
-							}}
-						>
+						<StyledFormLabel component="legend">
 							{t("Form.city")}
-						</FormLabel>
+						</StyledFormLabel>
 						{!selectedCity && (
 							<InputLabel shrink={false}>{t("Form.selectCity")}</InputLabel>
 						)}
@@ -263,12 +151,21 @@ const AddressModal: React.FC<AddressModalProps> = ({
 							{serverError}
 						</Typography>
 					)}
-
-					<Button sx={{ width: "30%" }} type="submit" variant="contained">
-						{t("Profile.submitForm")}
-					</Button>
+					<Box display="flex" gap="20px">
+						<Button sx={{ width: "30%" }} type="submit" variant="contained">
+							{t("Profile.submitForm")}
+						</Button>
+						<Button
+							onClick={toggleModal}
+							sx={{ width: "30%" }}
+							type="button"
+							variant="outlined"
+						>
+							{t("Profile.cancelForm")}
+						</Button>
+					</Box>
 				</Box>
-			</Box>
+			</StyledModalContainer>
 		</Modal>
 	);
 };

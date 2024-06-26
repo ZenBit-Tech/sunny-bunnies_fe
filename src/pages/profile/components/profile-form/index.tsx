@@ -24,6 +24,7 @@ import "react-international-phone/style.css";
 import { CustomFormGroup, ImagePreview } from "~/components/index.ts";
 import { fontSizes } from "~/libs/constants/fonts.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
+import { type UserAndProfile } from "~/libs/types/user-profile.type.ts";
 import {
 	clothingSizes,
 	jeansSizes,
@@ -34,7 +35,6 @@ import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import { useUpdateUserAndProfileMutation } from "~/redux/user/user-api.ts";
 import theme from "~/theme.ts";
 
-import { ProfileFormData } from "../../types/index.ts";
 import { profileValidation } from "../../validation/profile-schema.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
 import { StyledInputWrapper, VisuallyHiddenInput } from "./styles.ts";
@@ -122,7 +122,7 @@ const ProfileForm: React.FC = () => {
 	);
 
 	const handleInputChange = useCallback(
-		async (formData: ProfileFormData): Promise<void> => {
+		async (formData: UserAndProfile): Promise<void> => {
 			try {
 				const updatedUser = await updateUserAndProfile(formData).unwrap();
 

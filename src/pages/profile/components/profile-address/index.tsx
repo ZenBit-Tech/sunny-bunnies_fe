@@ -54,6 +54,7 @@ const ProfileAddress: React.FC<ProfileAddressProps> = ({
 					country={country}
 					isModalOpen={isModalOpen}
 					state={state}
+					toggleModal={toggleModal}
 				/>
 			</StyledAddressBox>
 		</>
