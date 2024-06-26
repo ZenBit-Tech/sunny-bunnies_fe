@@ -19,7 +19,11 @@ import {
 } from "react-international-phone";
 import "react-international-phone/style.css";
 
-import { CustomFormGroup, ImagePreview } from "~/components/index.ts";
+import {
+	BaseButton,
+	CustomFormGroup,
+	ImagePreview,
+} from "~/components/index.ts";
 import { fontSizes } from "~/libs/constants/fonts.ts";
 import {
 	clothingSizes,
@@ -279,9 +283,9 @@ const ProfileForm: React.FC = () => {
 						{serverError}
 					</Typography>
 				)}
-				<Button sx={{ width: "15%" }} type="submit" variant="secondary_black">
+				<BaseButton sx={{ width: "15%" }} type="submit" variant="contained">
 					{t("Profile.submitForm")}
-				</Button>
+				</BaseButton>
 			</Box>
 			<ProfileAddress
 				addressLine={user?.profile.addressLineOne as string}
