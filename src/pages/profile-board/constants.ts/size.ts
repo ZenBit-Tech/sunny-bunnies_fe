@@ -33,20 +33,16 @@ const shoeSizes: string[] = [
 ];
 
 const jeansSizes: string[] = [
-	"00",
-	"0",
-	"2",
-	"4",
-	"6",
-	"8",
-	"10",
-	"12",
-	"14",
-	"16",
-	"18",
-	"20",
-	"22",
-	"24",
+	"4XS",
+	"3XS",
+	"XXS",
+	"XS",
+	"S",
+	"M",
+	"L",
+	"XL",
+	"XXL",
+	"XXXL",
 ];
 
 export { clothingSizes, jeansSizes, shoeSizes };

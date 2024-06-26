@@ -15,6 +15,9 @@ const addressValidationMessages = {
 };
 
 const generalInformationValidationMessage = {
+	FILE_IS_REQUIRED: "You need to provide a file",
+	FILE_TOO_LARGE: "The file is too large",
+	INVALID_FORMAT: "Please select an image in JPG, HEIC, or PNG format",
 	PHONE_NUMBER_INVALID: "Invalid phone number",
 	PHONE_NUMBER_REQUIRED: "Phone number is required",
 	PROFILE_IMAGE_REQUIRED: "Profile image is required",
@@ -29,13 +32,14 @@ const creditCardValidationRules = {
 	CVV_CODE_LENGTH: 3,
 	EXPIRATION_DATE_REGEX: /^(0[1-9]|1[0-2])\/\d{2}$/,
 };
+
 const creditCardErrorMessages = {
-	cardNumberLength: `Card number must be exactly ${creditCardValidationRules.CARD_NUMBER_LENGTH} digits`,
-	cardNumberRequired: "Card number is required",
-	cvvCodeLength: `CVV code must be exactly ${creditCardValidationRules.CVV_CODE_LENGTH} digits`,
-	cvvCodeRequired: "CVV code is required",
-	expirationDateFormat: "Expiration date must be in the format MM/YY",
-	expirationDateRequired: "Expiration date is required",
+	CARD_NUMBER_LENGTH: `Card number must be exactly ${creditCardValidationRules.CARD_NUMBER_LENGTH} digits`,
+	CARD_NUMBER_REQUIRED: "Card number is required",
+	CVV_CODE_LENGTH: `CVV code must be exactly ${creditCardValidationRules.CVV_CODE_LENGTH} digits`,
+	CVV_CODE_REQUIRED: "CVV code is required",
+	EXPIRATION_DATE_FORMAT: "Expiration date must be in the format MM/YY",
+	EXPIRATION_DATE_REQUIRED: "Expiration date is required",
 };
 
 const sizeValidationMessages = {

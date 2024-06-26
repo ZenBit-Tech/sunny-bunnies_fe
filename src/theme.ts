@@ -12,9 +12,6 @@ declare module "@mui/material/styles" {
 	interface BreakpointOverrides {
 		tablet: true;
 	}
-}
-
-declare module "@mui/material/styles" {
 	interface Palette {
 		darkGrey: string;
 		fontGray: string;
@@ -30,6 +27,44 @@ declare module "@mui/material/styles" {
 		lightGreen: string;
 		transparent: string;
 		white: string;
+	}
+	interface Theme {
+		fontSizes: {
+			large: string;
+			lg: string;
+			medium: string;
+			mediumLarge: string;
+			small: string;
+			title: string;
+			xl: string;
+			xs: string;
+			xxl: string;
+		};
+		fontWeight: {
+			bold: number;
+			medium: number;
+			regular: number;
+			semiBold: number;
+		};
+	}
+	interface ThemeOptions {
+		fontSizes: {
+			large: string;
+			lg: string;
+			medium: string;
+			mediumLarge: string;
+			small: string;
+			title: string;
+			xl: string;
+			xs: string;
+			xxl: string;
+		};
+		fontWeight: {
+			bold: number;
+			medium: number;
+			regular: number;
+			semiBold: number;
+		};
 	}
 }
 
@@ -75,7 +110,7 @@ const theme = createTheme({
 					style: {
 						...commonPrimaryBlackButtonStyles,
 						fontFamily: fontFamily.piayfairDisplay,
-						fontSize: fontSizes.medium,
+						fontSize: fontSizes.large,
 						fontWeight: fontSizes.medium,
 						letterSpacing: "-0.5px",
 					},
@@ -92,15 +127,74 @@ const theme = createTheme({
 				{
 					props: { variant: "secondary_black" },
 					style: {
-						border: "1px solid #333333",
+						backgroundColor: colors.lightGray,
+						border: "none",
 						borderRadius: "12px",
-						fontSize: fontSizes.small,
-						fontWeight: fontWeight.medium,
-						padding: "8px 24px",
+						fontFamily: fontFamily.piayfairDisplay,
+						fontSize: fontSizes.large,
+						fontWeight: fontWeight.regular,
+						padding: "16px 24px",
+						textTransform: "none",
+					},
+				},
+				{
+					props: { variant: "text" },
+					style: {
+						"& .MuiTouchRipple-root": {
+							display: "none",
+						},
+						"&:active": {
+							background: "transparent",
+							backgroundColor: "transparent",
+						},
+						"&:hover, &:focus": {
+							background: "transparent",
+							backgroundColor: "transparent",
+							boxShadow: "none",
+						},
+						fontFamily: fontFamily.piayfairDisplay,
+						fontSize: fontSizes.medium,
+						fontWeight: fontWeight.bold,
+						textTransform: "none",
+					},
+				},
+				{
+					props: { variant: "small_icon" },
+					style: {
+						"& .MuiButton-icon": {
+							margin: 0,
+						},
+						"& .MuiButton-startIcon": {
+							margin: 0,
+						},
+						backgroundColor: colors.lightGreen,
+						borderRadius: "100px",
+						height: "44px",
+						margin: 0,
+						minWidth: "44px",
+						padding: "10px",
+						width: "44px",
 					},
 				},
 			],
 		},
+	},
+	fontSizes: {
+		large: fontSizes.large,
+		lg: fontSizes.lg,
+		medium: fontSizes.medium,
+		mediumLarge: fontSizes.mediumLarge,
+		small: fontSizes.small,
+		title: fontSizes.title,
+		xl: fontSizes.xl,
+		xs: fontSizes.xs,
+		xxl: fontSizes.xxl,
+	},
+	fontWeight: {
+		bold: fontWeight.bold,
+		medium: fontWeight.medium,
+		regular: fontWeight.regular,
+		semiBold: fontWeight.semiBold,
 	},
 	palette: {
 		darkGrey: colors.darkGrey,
@@ -158,6 +252,10 @@ const theme = createTheme({
 			letterSpacing: "-1%",
 			lineHeight: "37px",
 		},
+	},
+	zIndex: {
+		low: 0,
+		medium: 1,
 	},
 });
 

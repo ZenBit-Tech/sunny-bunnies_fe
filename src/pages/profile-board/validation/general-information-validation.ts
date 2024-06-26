@@ -20,6 +20,34 @@ const generalInformationValidation = Yup.object().shape({
 				return false;
 			},
 		),
+	profilePhoto: Yup.lazy((value) => {
+		if (typeof value === "string") {
+			return Yup.mixed().notRequired();
+		} else {
+			return Yup.mixed()
+				.required(generalInformationValidationMessage.FILE_IS_REQUIRED)
+				.test(
+					"fileSize",
+					generalInformationValidationMessage.FILE_TOO_LARGE,
+					function (value) {
+						const file = value as File;
+						const maxSize = 1048576;
+
+						return file.size <= maxSize;
+					},
+				)
+				.test(
+					"fileType",
+					generalInformationValidationMessage.INVALID_FORMAT,
+					function (value) {
+						const file = value as File;
+						const allowedTypes = ["image/jpeg", "image/png", "image/heic"];
+
+						return allowedTypes.includes(file.type);
+					},
+				);
+		}
+	}),
 });
 
 export { generalInformationValidation };

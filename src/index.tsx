@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { App } from "./app/app.tsx";
 import { AuthRoute } from "./components/auth-route/index.tsx";
 import {
+	AdminRoute,
 	FooterWrapper,
 	HeaderWrapper,
 	PrivateRoute,
@@ -17,7 +18,17 @@ import {
 } from "./components/index.ts";
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
-import { Auth, Home, NotFound, Profile, SizeGuide } from "./pages/index.ts";
+import { AdminPanel } from "./pages/admin-panel/admin-panel.tsx";
+import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
+import {
+	Auth,
+	Home,
+	NotFound,
+	ProductPage,
+	Profile,
+	SizeGuide,
+	VendorProfile,
+} from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";
 import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
@@ -53,6 +64,10 @@ createRoot(document.getElementById("root")!).render(
 																	element: <Auth />,
 																	path: AppRoute.SIGN_IN,
 																},
+																{
+																	element: <AdminLogin />,
+																	path: AppRoute.ADMIN_SIGN_IN,
+																},
 															],
 															element: <AuthRoute />,
 															path: AppRoute.ROOT,
@@ -60,8 +75,26 @@ createRoot(document.getElementById("root")!).render(
 														{
 															children: [
 																{
+																	element: <AdminPanel />,
+																	path: AppRoute.PRODUCT_MANAGEMENT,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.USER_MANAGEMENT,
+																},
+															],
+															element: <AdminRoute />,
+															path: AppRoute.ROOT,
+														},
+														{
+															children: [
+																{
 																	element: <Home />,
 																	path: AppRoute.HOME,
+																},
+																{
+																	element: <ProductPage />,
+																	path: AppRoute.PRODUCT,
 																},
 																{
 																	element: <PrivacyPolicy />,
@@ -108,6 +141,10 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <ProfileBoard />,
 																	path: AppRoute.SIZE,
+																},
+																{
+																	element: <VendorProfile />,
+																	path: AppRoute.VENDORS_PROFILE,
 																},
 															],
 															element: <PrivateRoute />,

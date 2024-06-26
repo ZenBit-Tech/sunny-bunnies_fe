@@ -15,11 +15,13 @@ const GetStartedHeaderRoutes = [
 	AppRoute.HOME,
 	AppRoute.PRIVACY_POLICY,
 	AppRoute.SIZE_GUIDE,
+	AppRoute.PRODUCT,
 	AppRoute.ROLE,
 	AppRoute.GENERAL_INFORMATION,
 	AppRoute.ADDRESS,
 	AppRoute.CREDIT_CARD,
 	AppRoute.SIZE,
+	AppRoute.VENDORS_PROFILE,
 	AppRoute.PROFILE,
 ];
 

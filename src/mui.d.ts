@@ -6,6 +6,7 @@ declare module "@mui/material/Button" {
 		primary_black_bold: true;
 		primary_black_regular: true;
 		secondary_black: true;
+		small_icon: true;
 	}
 }
 
@@ -34,5 +35,17 @@ declare module "@mui/material/Typography" {
 		playfairDisplay: true;
 		playfairDisplayBold: true;
 		playfairDisplayTitle: true;
+	}
+}
+
+declare module "@mui/material/styles" {
+	interface ZIndex {
+		low: number;
+		medium: number;
+	}
+
+	interface ZIndexOptions {
+		low?: number;
+		medium?: number;
 	}
 }

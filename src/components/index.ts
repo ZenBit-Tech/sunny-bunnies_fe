@@ -1,10 +1,15 @@
 export { Footer } from "./Footer/Footer.tsx";
 export { Header } from "./Header/Header.tsx";
 export { Link } from "./Header/Link.tsx";
+export { AdminRoute } from "./admin-route/admin-route.tsx";
 export { BaseButton } from "./base-button/index.tsx";
 export { FooterWrapper } from "./common/wrappers/footer-wrapper.tsx";
 export { HeaderWrapper } from "./common/wrappers/header-wrapper.tsx";
 export { CustomFormGroup } from "./custom-form-group/index.tsx";
+export { CustomRadioButtonGroup } from "./custom-radio-button-group/index.tsx";
+export { CustomRadioButtons } from "./custom-radio-buttons/index.tsx";
+export { CustomSelect } from "./custom-select/index.tsx";
+export { CustomSlider } from "./custom-slider/index.tsx";
 export { FilterButton } from "./filter-button/index.tsx";
 export { IconWrapper } from "./icon-wrapper/index.tsx";
 export { ImagePreview } from "./image-preview/image-preview.tsx";
