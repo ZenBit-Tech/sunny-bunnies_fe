@@ -34,7 +34,7 @@ const StyledMenuButton = styled(BaseButton)<MenuButtonProps>(
 			backgroundColor: isActive ? customColor : colors.transparent,
 		},
 		"&:hover": {
-			backgroundColor: isActive ? colors.transparent : customColor,
+			backgroundColor: customColor,
 		},
 		alignItems: "center",
 		backgroundColor: isActive ? customColor : colors.transparent,

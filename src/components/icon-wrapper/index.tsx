@@ -16,7 +16,7 @@ const IconWrapper: React.FC<IconWrapperProps> = ({ color, icon }) => {
 				display: "flex",
 				height: "32px",
 				justifyContent: "center",
-				padding: "5px",
+				padding: "7px",
 				width: "32px",
 			}}
 		>
