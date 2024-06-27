@@ -124,6 +124,14 @@ createRoot(document.getElementById("root")!).render(
 																},
 																{
 																	element: <Profile />,
+																	path: AppRoute.PROFILE_ORDERS,
+																},
+																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE_WISHLIST,
+																},
+																{
+																	element: <Profile />,
 																	path: AppRoute.PROFILE_SETTINGS,
 																},
 																{

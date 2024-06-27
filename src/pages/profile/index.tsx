@@ -8,8 +8,10 @@ import { colors } from "~/libs/constants/colors.ts";
 import {
 	ProfileForm,
 	ProfileMenu,
+	ProfileOrders,
 	ProfileSettings,
 	ProfileSupport,
+	ProfileWishlist,
 } from "./components/index.ts";
 
 const Profile: React.FC = () => {
@@ -19,6 +21,12 @@ const Profile: React.FC = () => {
 		switch (screen) {
 			case AppRoute.PROFILE: {
 				return <ProfileForm />;
+			}
+			case AppRoute.PROFILE_ORDERS: {
+				return <ProfileOrders />;
+			}
+			case AppRoute.PROFILE_WISHLIST: {
+				return <ProfileWishlist />;
 			}
 			case AppRoute.PROFILE_SETTINGS: {
 				return <ProfileSettings />;

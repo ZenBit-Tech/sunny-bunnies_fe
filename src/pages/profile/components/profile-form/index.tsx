@@ -23,6 +23,7 @@ import {
 	CustomFormGroup,
 	ImagePreview,
 } from "~/components/index.ts";
+import { AppRoute } from "~/libs/constants/app-route.ts";
 import { fontSizes } from "~/libs/constants/fonts.ts";
 import {
 	clothingSizes,
@@ -257,14 +258,26 @@ const ProfileForm: React.FC = () => {
 						))}
 					</MuiSelect>
 				</FormControl>
+				<Box display="flex" justifyContent="space-between">
+					<BaseButton sx={{ width: "15%" }} type="submit" variant="contained">
+						{t("Profile.submitForm")}
+					</BaseButton>
+					<BaseButton
+						sx={{
+							fontSize: "14px",
+							textDecoration: "underline",
+						}}
+						to={AppRoute.SIZE_GUIDE}
+						variant="text"
+					>
+						{t("SizesGuidePage.sizesGuide")}
+					</BaseButton>
+				</Box>
 				{serverError && (
 					<Typography color="error" variant="body2">
 						{serverError}
 					</Typography>
 				)}
-				<BaseButton sx={{ width: "15%" }} type="submit" variant="contained">
-					{t("Profile.submitForm")}
-				</BaseButton>
 			</Box>
 			<ProfileAddress
 				addressLine={user?.profile.addressLineOne as string}

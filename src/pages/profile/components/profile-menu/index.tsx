@@ -1,16 +1,11 @@
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Typography, useTheme } from "@mui/material";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
-import { LogoutIcon } from "~/assets/icons/logout-icon.tsx";
-import { MessageIcon } from "~/assets/icons/message-icon.tsx";
-import { SettingsIcon } from "~/assets/icons/settings-icon.tsx";
-import { UserIcon } from "~/assets/icons/user-icon.tsx";
-import { IconWrapper } from "~/components/index.ts";
-import { AppRoute, colors } from "~/libs/constants/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 
+import { getButtonsConfig } from "./get-buttons.tsx";
 import {
 	StyledButtonContainer,
 	StyledButtonsContainer,
@@ -22,52 +17,11 @@ const ProfileMenu: React.FC = () => {
 	const { t } = useTranslation();
 	const user = useAppSelector((state) => state.auth.user);
 	const location = useLocation();
+	const theme = useTheme();
 
 	const buttonsConfig = useMemo(
-		() => [
-			{
-				color: colors.pastelGreen,
-				startIcon: (
-					<IconWrapper color={colors.pastelGreen} icon={<UserIcon />} />
-				),
-				text: t("Profile.personalInformation"),
-				to: AppRoute.PROFILE,
-			},
-			{
-				color: colors.grayishRed,
-				startIcon: (
-					<IconWrapper
-						color={colors.grayishRed}
-						icon={<SettingsIcon fontSize="small" />}
-					/>
-				),
-				text: t("Profile.settings"),
-				to: AppRoute.PROFILE_SETTINGS,
-			},
-			{
-				color: colors.pastelGreen,
-				startIcon: (
-					<IconWrapper
-						color={colors.pastelGreen}
-						icon={<MessageIcon fontSize="small" />}
-					/>
-				),
-				text: t("Profile.support"),
-				to: AppRoute.PROFILE_SUPPORT,
-			},
-			{
-				color: colors.pastelGreen,
-				startIcon: (
-					<IconWrapper
-						color={colors.grayishRed}
-						icon={<LogoutIcon fontSize="small" />}
-					/>
-				),
-				text: t("Profile.logout"),
-				to: "/",
-			},
-		],
-		[t],
+		() => getButtonsConfig(t, theme, user?.profile.role),
+		[t, theme, user?.profile.role],
 	);
 
 	return (

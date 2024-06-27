@@ -16,6 +16,7 @@ declare module "@mui/material/styles" {
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
+		lightGray: string;
 		lightGreen: string;
 		transparent: string;
 		white: string;
@@ -24,6 +25,7 @@ declare module "@mui/material/styles" {
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
+		lightGray: string;
 		lightGreen: string;
 		transparent: string;
 		white: string;
@@ -200,6 +202,7 @@ const theme = createTheme({
 		darkGrey: colors.darkGrey,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
+		lightGray: colors.lightGray,
 		lightGreen: colors.lightGreen,
 		primary: {
 			dark: colors.hoverBlack,
