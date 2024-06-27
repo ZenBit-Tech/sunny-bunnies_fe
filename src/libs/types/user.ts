@@ -7,6 +7,11 @@ type User = {
 	isVerified: boolean;
 	name: string;
 	profile: Profile;
+	status: UserStatus;
+};
+
+type UserStatus = {
+	status: string;
 };
 
 type UserSignUpResponseDto = {
@@ -55,6 +60,7 @@ export {
 	type UserSignUpFormData,
 	type UserSignUpRequestDto,
 	type UserSignUpResponseDto,
+	type UserStatus,
 	type UserVerifyEmailRequestDto,
 	type UserVerifyOtpReuestDto,
 };

@@ -157,7 +157,13 @@
 		"search": "Search",
 		"sort": "Sort by",
 		"ascending": "Ascending",
-		"descending": "Descending"
+		"descending": "Descending",
+		"buyerProfile": "Buyer Profile",
+		"status": "status",
+		"addressLineOne": "Address",
+		"phoneNumber": "Phone number",
+		"buyers": "Buyers",
+		"vendors": "Vendors"
 	},
 	"SignInComponent": {
 		"signIn": "Sign In",

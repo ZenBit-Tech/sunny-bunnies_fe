@@ -1,7 +1,19 @@
-import { Box, Button, Divider, TableCell, styled } from "@mui/material";
+import {
+	Box,
+	Button,
+	Divider,
+	TableCell,
+	Typography,
+	styled,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 
 import theme from "~/theme.ts";
+
+type StyledUserBoxProps = {
+	gap?: string;
+	width?: string;
+};
 
 const StyledContainer = styled(Box)({
 	backgroundColor: theme.palette.gray,
@@ -94,6 +106,22 @@ const StyledSortButton = styled(Button)(({ theme }) => ({
 	padding: "6px 16px",
 }));
 
+const StyledUserBox = styled(Box)<StyledUserBoxProps>`
+	display: flex;
+	flex-direction: column;
+	gap: ${(props): null | string => props.gap || null};
+	width: ${(props): null | string => props.width || null};
+`;
+
+const StyledTitle = styled(Typography)({
+	...theme.typography.playfairDisplay,
+	marginBottom: "16px",
+});
+
+const StyledTitleDmSans = styled(Typography)({
+	...theme.typography.dmSans,
+});
+
 export {
 	BoldDivider,
 	CustomTableCell,
@@ -103,6 +131,9 @@ export {
 	StyledLink,
 	StyledPaper,
 	StyledSortButton,
+	StyledTitle,
+	StyledTitleDmSans,
+	StyledUserBox,
 	StyledWrapperContainer,
 	StyledWrapperHeader,
 	StylesSearchBox,

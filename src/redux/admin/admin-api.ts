@@ -6,6 +6,12 @@ import { adminApiPath } from "./constants.ts";
 
 export const adminApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		getUserById: build.query<User, string | undefined>({
+			query: (id: string) => ({
+				method: httpMethods.GET,
+				url: `${adminApiPath.GET_USER}/${id}`,
+			}),
+		}),
 		getUsersByOptions: build.query<
 			User[],
 			{
@@ -27,4 +33,4 @@ export const adminApi = api.injectEndpoints({
 	}),
 });
 
-export const { useGetUsersByOptionsQuery } = adminApi;
+export const { useGetUserByIdQuery, useGetUsersByOptionsQuery } = adminApi;

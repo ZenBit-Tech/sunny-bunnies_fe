@@ -79,11 +79,19 @@ createRoot(document.getElementById("root")!).render(
 																},
 																{
 																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_BUYERS,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_VENDOR_$ID,
+																},
+																{
+																	element: <AdminPanel />,
 																	path: AppRoute.MANAGEMENT_VENDORS,
 																},
 																{
 																	element: <AdminPanel />,
-																	path: AppRoute.MANAGEMENT_BUYERS,
+																	path: AppRoute.MANAGEMENT_BUYER_$ID,
 																},
 															],
 															element: <AdminRoute />,

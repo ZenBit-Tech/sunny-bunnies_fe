@@ -10,7 +10,7 @@ const AuthRoute: React.FC = () => {
 
 	if (user) {
 		if (user.profile.role === userRole.ADMIN)
-			return <Navigate to={AppRoute.USER_MANAGEMENT} />;
+			return <Navigate to={AppRoute.MANAGEMENT_BUYER_$ID} />;
 
 		if (user.isVerified && user.profile.isRegistrationCompleted)
 			return <Navigate to={AppRoute.HOME} />;

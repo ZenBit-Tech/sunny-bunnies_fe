@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import { ArrowDownIcon } from "~/assets/icons/arrow-down-icon.tsx";
 import { AppRoute, userRole } from "~/libs/constants/index.ts";
@@ -20,6 +20,7 @@ import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
 
 import { Sidebar, UserManagement } from "./component/index.ts";
+import { UserProfile } from "./component/user-profile.tsx";
 import { VerticalDivider } from "./styles.ts";
 
 const firstLetter = 0;
@@ -47,8 +48,8 @@ const AdminPanel: React.FC = () => {
 		handleMenuClose();
 	}, [dispatch, handleMenuClose]);
 
+	const { id } = useParams<{ id: string }>();
 	const getScreen = (screen: string): React.ReactNode => {
-		// eslint-disable-next-line sonarjs/no-all-duplicated-branches
 		switch (screen) {
 			case AppRoute.MANAGEMENT_BUYERS: {
 				return <UserManagement role={userRole.BUYER} />;
@@ -60,6 +61,18 @@ const AdminPanel: React.FC = () => {
 				return <UserManagement role={userRole.BUYER} />;
 			}
 			default: {
+				if (id !== undefined && id !== "") {
+					return (
+						<UserProfile
+							role={
+								screen.includes(AppRoute.MANAGEMENT_BUYERS)
+									? userRole.BUYER
+									: userRole.VENDOR
+							}
+						/>
+					);
+				}
+
 				return <UserManagement role={userRole.BUYER} />;
 			}
 		}
