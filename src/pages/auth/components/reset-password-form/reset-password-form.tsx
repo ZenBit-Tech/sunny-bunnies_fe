@@ -6,17 +6,22 @@ import { ArrowLeftIcon } from "~/assets/icons/arrow-left-icon.tsx";
 import { BaseButton, CustomFormGroup, Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { StyledFormContainer } from "~/pages/auth/components/styles.ts";
-import { useRestorePasswordForm } from "~/pages/auth/hooks/index.ts";
 import theme from "~/theme.ts";
 
-const RestorePasswordForm: React.FC = () => {
+import { useResetPasswordForm } from "./use-reset-password-form.hook.ts";
+
+type Properties = {
+	token: string;
+};
+
+const ResetPasswordForm: React.FC<Properties> = ({ token }: Properties) => {
 	const { control, errors, handleFormSubmit, serverError } =
-		useRestorePasswordForm();
+		useResetPasswordForm({ token });
 
 	return (
 		<StyledFormContainer width="60%">
 			<Stack alignItems="center" direction="row" gap={1}>
-				<Link to={AppRoute.SIGN_IN}>
+				<Link to={AppRoute.RESTORE_PASSWORD}>
 					<Icon>
 						<ArrowLeftIcon />
 					</Icon>
@@ -25,34 +30,37 @@ const RestorePasswordForm: React.FC = () => {
 					color={theme.palette.primary.main}
 					variant="playfairDisplayTitle"
 				>
-					{t("Restore password")}
+					{t("Enter new password")}
 				</Typography>
 			</Stack>
-			<Typography color={theme.palette.secondary.main} variant="dmSans">
-				{t("Enter your email for restore")}
-			</Typography>
-			<Stack flexDirection="column" gap={0} width="100%">
-				<CustomFormGroup
-					control={control}
-					error={errors.email}
-					label={t("SignUpComponent.email")}
-					name="email"
-					placeholder={t("SignUpComponent.emailExample")}
-					type="email"
-				/>
+			<CustomFormGroup
+				control={control}
+				error={errors.password}
+				label={t("Password")}
+				name="password"
+				placeholder={t("SignUpComponent.passwordPlaceholder")}
+				type="password"
+			/>
+			<CustomFormGroup
+				control={control}
+				error={errors.repeatPassword}
+				label={t("Repeat password")}
+				name="repeatPassword"
+				placeholder={t("SignUpComponent.passwordPlaceholder")}
+				type="password"
+			/>
+			<Box component="form" onSubmit={handleFormSubmit} width="100%">
 				{serverError && (
-					<Typography color="error" fontSize={12} variant="body2">
+					<Typography color="error" fontSize={16} mb={1} variant="body2">
 						{serverError}
 					</Typography>
 				)}
-			</Stack>
-			<Box component="form" onSubmit={handleFormSubmit} width="100%">
 				<BaseButton fullWidth type="submit" variant="primary_black_bold">
-					{t("Send Code")}
+					{t("Save & Login")}
 				</BaseButton>
 			</Box>
 		</StyledFormContainer>
 	);
 };
 
-export { RestorePasswordForm };
+export default ResetPasswordForm;

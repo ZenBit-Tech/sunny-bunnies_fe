@@ -12,8 +12,8 @@ import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
-import ResetPasswordForm from "~/pages/auth/components/reset-password-form.tsx";
-import { RestorePasswordForm } from "~/pages/auth/components/restore-password-form.tsx";
+import ResetPasswordForm from "~/pages/auth/components/reset-password-form/reset-password-form.tsx";
+import { RestorePasswordForm } from "~/pages/auth/components/restore-password-form/restore-password-form.tsx";
 import { VerifyEmailForm } from "~/pages/auth/components/verify-email-form.tsx";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
