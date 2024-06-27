@@ -47,6 +47,12 @@ declare module "@mui/material/styles" {
 			xs: string;
 			xxl: string;
 		};
+		fontWeight: {
+			bold: number;
+			medium: number;
+			regular: number;
+			semiBold: number;
+		};
 	}
 	interface ThemeOptions {
 		fontSizes: {
@@ -60,6 +66,12 @@ declare module "@mui/material/styles" {
 			xl: string;
 			xs: string;
 			xxl: string;
+		};
+		fontWeight: {
+			bold: number;
+			medium: number;
+			regular: number;
+			semiBold: number;
 		};
 	}
 }
@@ -186,6 +198,12 @@ const theme = createTheme({
 		xl: fontSizes.xl,
 		xs: fontSizes.xs,
 		xxl: fontSizes.xxl,
+	},
+	fontWeight: {
+		bold: fontWeight.bold,
+		medium: fontWeight.medium,
+		regular: fontWeight.regular,
+		semiBold: fontWeight.semiBold,
 	},
 	palette: {
 		borderGray: colors.borderGray,

@@ -13,6 +13,7 @@ type UseProductSearchReturn = {
 		event: React.SyntheticEvent<Element, Event>,
 		newValue: Product | null | string,
 	) => void;
+	isMinSearchLengthMet: boolean;
 	options: Product[];
 	searchTerm: string;
 };
@@ -62,9 +63,12 @@ const useProductSearch = (
 		}
 	};
 
+	const isMinSearchLengthMet = searchTerm.length > MIN_SEARCH_LENGTH;
+
 	return {
 		handleInputChange,
 		handleProductSelect,
+		isMinSearchLengthMet,
 		options,
 		searchTerm,
 	};
