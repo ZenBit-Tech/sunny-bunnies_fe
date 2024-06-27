@@ -1,6 +1,6 @@
 import { Box, Divider, Typography, styled } from "@mui/material";
 
-import { fontSizes, fontWeight } from "~/libs/constants/index.ts";
+import { fontWeight } from "~/libs/constants/index.ts";
 import theme from "~/theme.ts";
 
 const StyledProductDescriptionContainer = styled(Box)`
@@ -14,19 +14,19 @@ const StyledProductDescriptionContainer = styled(Box)`
 
 const StyledDescriptionTitle = styled(Typography)(({ theme }) => ({
 	...theme.typography.playfairDisplayBold,
-	fontSize: fontSizes.large,
+	fontSize: theme.fontSizes.large,
 }));
 
 const StyledDescriptionSubtitle = styled(Typography)(({ theme }) => ({
 	...theme.typography.dmSansBold,
-	fontSize: fontSizes.mediumLarge,
+	fontSize: theme.fontSizes.mediumLarge,
 	fontWeight: fontWeight.bold,
 	width: "150px",
 }));
 
 const StyledDescriptionData = styled(Typography)(({ theme }) => ({
 	...theme.typography.dmSans,
-	fontSize: fontSizes.mediumLarge,
+	fontSize: theme.fontSizes.mediumLarge,
 	paddingLeft: "5px",
 }));
 
@@ -37,7 +37,7 @@ const StyledProductDetails = styled(Box)`
 `;
 
 const StyledDivider = styled(Divider)`
-	background-color: transparent;
+	background-color: ${theme.palette.transparent};
 	height: 2px;
 	position: relative;
 	width: 100%;
