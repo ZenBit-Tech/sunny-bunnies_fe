@@ -1,25 +1,24 @@
 import { Box, styled } from "@mui/material";
 
 import { BaseButton } from "~/components/index.ts";
-import { colors, fontFamily } from "~/libs/constants/index.ts";
 
-const StyledAddressBox = styled(Box)`
-	border: 1px solid ${colors.grayishRed};
-	border-radius: 12px;
-	padding: 16px;
-	width: fit-content;
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	min-width: 308px;
-`;
+const StyledAddressBox = styled(Box)(({ theme }) => ({
+	border: `1px solid ${theme.palette.lightGray}`,
+	borderRadius: "12px",
+	display: "flex",
+	flexDirection: "column",
+	gap: "8px",
+	minWidth: "308px",
+	padding: "16px",
+	width: "fit-content",
+}));
 
-const StyledButton = styled(BaseButton)`
-	border-radius: 12px;
-	padding: 8px 24px;
-	width: 100px;
-	font-family: ${fontFamily.piayfairDisplay};
-	text-transform: capitalize;
-`;
+const StyledButton = styled(BaseButton)(({ theme }) => ({
+	borderRadius: "12px",
+	fontFamily: `${theme.typography.playfairDisplay.fontFamily}`,
+	padding: "8px 24px",
+	textTransform: "capitalize",
+	width: "100px",
+}));
 
 export { StyledAddressBox, StyledButton };

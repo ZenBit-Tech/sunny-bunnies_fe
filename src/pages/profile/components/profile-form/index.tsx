@@ -24,7 +24,6 @@ import {
 	ImagePreview,
 } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import { fontSizes } from "~/libs/constants/fonts.ts";
 import {
 	clothingSizes,
 	jeansSizes,
@@ -35,6 +34,7 @@ import theme from "~/theme.ts";
 import { useProfileForm } from "../../hooks/use-profile-form.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
 import {
+	StyledContainer,
 	StyledFormLabel,
 	StyledPhoneCountryInput,
 	StyledPhoneInput,
@@ -70,16 +70,11 @@ const ProfileForm: React.FC = () => {
 	});
 
 	return (
-		<Box
-			sx={{
-				display: "flex",
-				flexDirection: "column",
-				gap: "24px",
-				padding: "24px",
-			}}
-			width="80%"
-		>
-			<Typography fontSize={fontSizes.large} variant="playfairDisplayBold">
+		<StyledContainer>
+			<Typography
+				fontSize={theme.fontSizes.large}
+				variant="playfairDisplayBold"
+			>
 				{t("Profile.generalInformation")}
 			</Typography>
 			<Box
@@ -286,7 +281,7 @@ const ProfileForm: React.FC = () => {
 				state={user?.profile.state as string}
 			/>
 			<ProfileCard />
-		</Box>
+		</StyledContainer>
 	);
 };
 

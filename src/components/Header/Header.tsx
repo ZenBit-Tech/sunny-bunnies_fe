@@ -62,9 +62,7 @@ export const Header: React.FC = () => {
 								<ShopIcon />
 							</>
 						) : (
-							<>
-								<ShopIcon />
-							</>
+							<ShopIcon />
 						)}
 					</IconsSection>
 				</Box>

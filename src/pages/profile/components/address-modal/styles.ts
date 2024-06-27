@@ -1,18 +1,18 @@
 import { Box, FormLabel, FormLabelProps, styled } from "@mui/material";
 
-import { colors } from "~/libs/constants/index.ts";
+const boxShadow = 24;
 
-const StyledModalContainer = styled(Box)`
-	background-color: ${colors.white};
-	border-radius: 10px;
-	box-shadow: 24;
-	left: 35%;
-	max-width: 600px;
-	padding: 20px;
-	position: absolute;
-	top: 25%;
-	width: 70%;
-`;
+const StyledModalContainer = styled(Box)(({ theme }) => ({
+	backgroundColor: theme.palette.white,
+	borderRadius: "10px",
+	boxShadow: theme.shadows[boxShadow],
+	left: "35%",
+	maxWidth: "600px",
+	padding: "20px",
+	position: "absolute",
+	top: "25%",
+	width: "70%",
+}));
 
 const StyledFormLabel = styled(FormLabel)<FormLabelProps>(({ theme }) => ({
 	...theme.typography.playfairDisplay,

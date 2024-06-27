@@ -1,4 +1,4 @@
-import { FormLabel, FormLabelProps, styled } from "@mui/material";
+import { Box, FormLabel, FormLabelProps, styled } from "@mui/material";
 
 import { colors, fontFamily, fontSizes } from "~/libs/constants/index.ts";
 
@@ -37,7 +37,16 @@ const StyledPhoneCountryInput = {
 	padding: "27px 7px",
 };
 
+const StyledContainer = styled(Box)({
+	display: "flex",
+	flexDirection: "column",
+	gap: "24px",
+	padding: "24px",
+	width: "80%",
+});
+
 export {
+	StyledContainer,
 	StyledFormLabel,
 	StyledPhoneCountryInput,
 	StyledPhoneInput,

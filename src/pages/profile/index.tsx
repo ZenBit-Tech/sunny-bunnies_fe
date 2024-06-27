@@ -1,9 +1,10 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import { colors } from "~/libs/constants/colors.ts";
+import theme from "~/theme.ts";
 
 import {
 	ProfileForm,
@@ -16,6 +17,7 @@ import {
 
 const Profile: React.FC = () => {
 	const { pathname } = useLocation();
+	const { t } = useTranslation();
 
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
@@ -41,12 +43,16 @@ const Profile: React.FC = () => {
 	};
 
 	return (
-		<Box sx={{ backgroundColor: `${colors.grayishRed}`, padding: "32px" }}>
-			<Typography variant="playfairDisplayTitle">My Profile</Typography>
+		<Box
+			sx={{ backgroundColor: `${theme.palette.lightGray}`, padding: "32px" }}
+		>
+			<Typography variant="playfairDisplayTitle">
+				{t("Profile.myProfile")}
+			</Typography>
 			<Grid
 				container
 				sx={{
-					backgroundColor: `${colors.white}`,
+					backgroundColor: `${theme.palette.white}`,
 					borderRadius: "10px",
 					marginTop: "24px",
 				}}
