@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { productIcons } from "~/assets/images/product/index.ts";
 import { BaseButton } from "~/components/index.ts";
+import theme from "~/theme.ts";
 
 import { StyledBaseButton, StyledButtonsContainer } from "./styles.ts";
 
@@ -30,7 +31,7 @@ const ProductButtonsGroup: React.FC<ProductButtonsGroupProperties> = ({
 		<StyledButtonsContainer>
 			<StyledBaseButton
 				startIcon={<productIcons.ShopIcon />}
-				sx={{ pointerEvents: "none" }}
+				sx={{ cursor: isPreviewMode ? "none" : "pointer" }}
 				variant="primary_black_bold"
 			>
 				{t("ProductPage.addToCart")}
@@ -39,7 +40,11 @@ const ProductButtonsGroup: React.FC<ProductButtonsGroupProperties> = ({
 				<BaseButton
 					onClick={handleLikeButtonClick}
 					startIcon={isLikeClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-					sx={{ fill: "black", pointerEvents: "none", textTransform: "none" }}
+					sx={{
+						cursor: isPreviewMode ? "none" : "pointer",
+						fill: theme.palette.primary.main,
+						textTransform: "none",
+					}}
 					variant="text"
 				>
 					{t("ProductPage.wishlist")}
