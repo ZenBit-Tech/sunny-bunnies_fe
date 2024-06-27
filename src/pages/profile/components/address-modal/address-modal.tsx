@@ -15,7 +15,7 @@ import React from "react";
 import { CustomFormGroup } from "~/components/index.ts";
 
 import { useAddressForm } from "../../hooks/use-address-form.ts";
-import { StyledFormLabel, StyledModalContainer } from "./styles.ts";
+import { StyledForm, StyledFormLabel, StyledModalContainer } from "./styles.ts";
 
 type AddressModalProps = {
 	addressLine: string;
@@ -63,14 +63,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
 	return (
 		<Modal open={isModalOpen}>
 			<StyledModalContainer>
-				<Box
-					autoComplete="off"
-					component="form"
-					display="flex"
-					flexDirection="column"
-					gap="20px"
-					onSubmit={handleFormSubmit}
-				>
+				<StyledForm autoComplete="off" onSubmit={handleFormSubmit}>
 					<CustomFormGroup
 						control={control}
 						error={errors.addressLineOne}
@@ -164,7 +157,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
 							{t("Profile.cancelForm")}
 						</Button>
 					</Box>
-				</Box>
+				</StyledForm>
 			</StyledModalContainer>
 		</Modal>
 	);

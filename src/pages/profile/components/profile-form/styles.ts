@@ -1,4 +1,10 @@
-import { Box, FormLabel, FormLabelProps, styled } from "@mui/material";
+import {
+	Box,
+	FormControl,
+	FormLabel,
+	FormLabelProps,
+	styled,
+} from "@mui/material";
 
 import { colors, fontFamily, fontSizes } from "~/libs/constants/index.ts";
 
@@ -12,6 +18,13 @@ const VisuallyHiddenInput = styled("input")({
 	position: "absolute",
 	whiteSpace: "nowrap",
 	width: "1px",
+});
+const StyledForm = styled("form")({
+	display: "flex",
+	flexDirection: "column",
+	gap: "16px",
+	marginBottom: "10px",
+	width: "100%",
 });
 
 const StyledFormLabel = styled(FormLabel)<FormLabelProps>(({ theme }) => ({
@@ -45,9 +58,38 @@ const StyledContainer = styled(Box)({
 	width: "80%",
 });
 
+const StyledImageLabel = styled("label")(({ theme }) => ({
+	"&:hover": {
+		backgroundColor: theme.palette.gray,
+	},
+	alignItems: "center",
+	backgroundColor: theme.palette.black,
+	border: `solid 1px`,
+	borderRadius: "12px",
+	color: theme.palette.white,
+	display: "flex",
+	height: "40px",
+	justifyContent: "center",
+	margin: "5px",
+	minWidth: "143px",
+	padding: "8px",
+	textTransform: "none",
+}));
+
+const StyledFormControl = styled(FormControl)({
+	alignItems: "center",
+	display: "flex",
+	flexDirection: "row",
+	gap: "48px",
+	width: "70%",
+});
+
 export {
 	StyledContainer,
+	StyledForm,
+	StyledFormControl,
 	StyledFormLabel,
+	StyledImageLabel,
 	StyledPhoneCountryInput,
 	StyledPhoneInput,
 	VisuallyHiddenInput,

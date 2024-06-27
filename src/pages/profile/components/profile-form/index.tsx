@@ -1,6 +1,5 @@
 import {
 	Box,
-	Button,
 	FormControl,
 	FormHelperText,
 	InputLabel,
@@ -35,7 +34,10 @@ import { useProfileForm } from "../../hooks/use-profile-form.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
 import {
 	StyledContainer,
+	StyledForm,
+	StyledFormControl,
 	StyledFormLabel,
+	StyledImageLabel,
 	StyledPhoneCountryInput,
 	StyledPhoneInput,
 	VisuallyHiddenInput,
@@ -77,23 +79,11 @@ const ProfileForm: React.FC = () => {
 			>
 				{t("Profile.generalInformation")}
 			</Typography>
-			<Box
-				autoComplete="off"
-				component="form"
-				mb={1}
-				onSubmit={handleFormSubmit}
-				sx={{
-					display: "flex",
-					flexDirection: "column",
-					gap: "16px",
-					width: "100%",
-				}}
-			>
+			<StyledForm autoComplete="off" onSubmit={handleFormSubmit}>
 				<Box alignItems="center" display="flex">
 					<Box width="30%">
 						<Typography
 							color="primary"
-							marginBottom="8px"
 							sx={{ fontSize: theme.typography.playfairDisplayBold }}
 						>
 							{t("Profile.profilePhotoTitle")}
@@ -101,52 +91,24 @@ const ProfileForm: React.FC = () => {
 						<Typography
 							sx={{
 								color: theme.palette.fontGray,
-								fontSize: theme.typography.dmSans,
 							}}
 							variant="body1"
 						>
 							{t("Profile.profilePhotoText")}
 						</Typography>
 					</Box>
-					<FormControl
-						component="fieldset"
-						error={Boolean(errors.profile?.profilePhoto)}
-						sx={{
-							alignItems: "center",
-							display: "flex",
-							flexDirection: "row",
-							gap: "48px",
-							width: "70%",
-						}}
-					>
+					<StyledFormControl error={Boolean(errors.profile?.profilePhoto)}>
 						<ImagePreview file={selectedFile} />
-						<Button
-							component="label"
-							role={undefined}
-							sx={{
-								alignItems: "center",
-								border: "solid",
-								borderRadius: "8px",
-								borderWidth: "1px",
-								display: "flex",
-								height: "40px",
-								justifyContent: "center",
-								margin: "5px",
-								minWidth: "143px",
-								padding: "8px",
-							}}
-							tabIndex={-1}
-							variant="primary_black_bold"
-						>
+						<StyledImageLabel role={undefined} tabIndex={-1}>
 							{t("Form.uploadButtonText")}
 							<VisuallyHiddenInput onChange={handleFileChange} type="file" />
-						</Button>
+						</StyledImageLabel>
 						{errors.profile?.profilePhoto && (
 							<FormHelperText sx={{ marginLeft: 0 }}>
 								{errors.profile.profilePhoto.message as string}
 							</FormHelperText>
 						)}
-					</FormControl>
+					</StyledFormControl>
 				</Box>
 				<CustomFormGroup
 					control={control}
@@ -273,7 +235,7 @@ const ProfileForm: React.FC = () => {
 						{serverError}
 					</Typography>
 				)}
-			</Box>
+			</StyledForm>
 			<ProfileAddress
 				addressLine={user?.profile.addressLineOne as string}
 				city={user?.profile.city as string}

@@ -1,10 +1,9 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import theme from "~/theme.ts";
 
 import {
 	ProfileForm,
@@ -14,6 +13,7 @@ import {
 	ProfileSupport,
 	ProfileWishlist,
 } from "./components/index.ts";
+import { StyledGrid, StyledProfileContainer } from "./styles.ts";
 
 const Profile: React.FC = () => {
 	const { pathname } = useLocation();
@@ -43,24 +43,15 @@ const Profile: React.FC = () => {
 	};
 
 	return (
-		<Box
-			sx={{ backgroundColor: `${theme.palette.lightGray}`, padding: "32px" }}
-		>
+		<StyledProfileContainer>
 			<Typography variant="playfairDisplayTitle">
 				{t("Profile.myProfile")}
 			</Typography>
-			<Grid
-				container
-				sx={{
-					backgroundColor: `${theme.palette.white}`,
-					borderRadius: "10px",
-					marginTop: "24px",
-				}}
-			>
+			<StyledGrid container>
 				<ProfileMenu />
 				{getScreen(pathname)}
-			</Grid>
-		</Box>
+			</StyledGrid>
+		</StyledProfileContainer>
 	);
 };
 

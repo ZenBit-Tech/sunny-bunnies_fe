@@ -20,4 +20,10 @@ const StyledFormLabel = styled(FormLabel)<FormLabelProps>(({ theme }) => ({
 	marginBottom: "8px",
 }));
 
-export { StyledFormLabel, StyledModalContainer };
+const StyledForm = styled("form")({
+	display: "flex",
+	flexDirection: "column",
+	gap: "20px",
+});
+
+export { StyledForm, StyledFormLabel, StyledModalContainer };

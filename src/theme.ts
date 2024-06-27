@@ -13,6 +13,7 @@ declare module "@mui/material/styles" {
 		tablet: true;
 	}
 	interface Palette {
+		black: string;
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
@@ -22,6 +23,7 @@ declare module "@mui/material/styles" {
 		white: string;
 	}
 	interface PaletteOptions {
+		black: string;
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
@@ -199,6 +201,7 @@ const theme = createTheme({
 		semiBold: fontWeight.semiBold,
 	},
 	palette: {
+		black: colors.black,
 		darkGrey: colors.darkGrey,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
