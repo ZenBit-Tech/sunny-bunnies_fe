@@ -1,6 +1,5 @@
 import { Box, Divider, Typography, styled } from "@mui/material";
 
-import { fontWeight } from "~/libs/constants/index.ts";
 import theme from "~/theme.ts";
 
 const StyledProductDescriptionContainer = styled(Box)`
@@ -20,7 +19,7 @@ const StyledDescriptionTitle = styled(Typography)(({ theme }) => ({
 const StyledDescriptionSubtitle = styled(Typography)(({ theme }) => ({
 	...theme.typography.dmSansBold,
 	fontSize: theme.fontSizes.mediumLarge,
-	fontWeight: fontWeight.bold,
+	fontWeight: theme.fontWeight.bold,
 	width: "150px",
 }));
 
