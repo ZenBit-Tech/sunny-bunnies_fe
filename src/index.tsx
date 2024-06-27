@@ -21,6 +21,7 @@ import "./libs/locales/i18n.ts";
 import { AdminPanel } from "./pages/admin-panel/admin-panel.tsx";
 import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
 import {
+	AddProducts,
 	Auth,
 	Home,
 	NotFound,
@@ -140,6 +141,22 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <VendorProfile />,
 																	path: AppRoute.VENDORS_PROFILE,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_PHOTOS,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_CATEGORY,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_DESCRIPTION,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_FINISH,
 																},
 															],
 															element: <PrivateRoute />,

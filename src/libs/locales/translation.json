@@ -305,5 +305,18 @@
 		"price": "price",
 		"applyFilters": "Apply filters",
 		"clearFilters": "Clear filters"
+	},
+	"AddVendorProduct": {
+		"addProduct": "Add Product",
+		"productPhotos": "Product Photos",
+		"categoryAndType": "Category & Type",
+		"productDescription": "Product Description",
+		"finishAndPublish": "Finish & Publish",
+		"photoProduct": "Photo Product",
+		"recommendedMinWidth": "Recommended minimum width 1080px X 1080px, with a max size of 5MB, only *.png, *.jpg and *.jpeg image files are accepted",
+		"addImage": "Add Image",
+		"changeImage": "Change Image",
+		"orDropImageToUpload": "Or Drop Image To Upload",
+		"primary": "Primary"
 	}
 }

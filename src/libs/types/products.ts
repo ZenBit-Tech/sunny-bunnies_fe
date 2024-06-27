@@ -1,6 +1,15 @@
 import { gender } from "../constants/index.ts";
 import { type User } from "./user.ts";
 
+type AddProductImage = {
+	isPrimary: boolean;
+	productImage: File | null | string;
+};
+
+type AddProductImages = {
+	productImages: AddProductImage[];
+};
+
 type ProductSize = {
 	id: number;
 	name: string;
@@ -51,6 +60,8 @@ type Product = {
 };
 
 export {
+	type AddProductImage,
+	type AddProductImages,
 	type Product,
 	type ProductImage,
 	type ProductSize,

@@ -82,6 +82,13 @@ export const productsApi = api.injectEndpoints({
 				url: productsApiPath.ROOT,
 			}),
 		}),
+		uploadProductImage: builder.mutation<string, FormData>({
+			query: (formData: FormData) => ({
+				body: formData,
+				method: httpMethods.POST,
+				url: productsApiPath.UPLOAD_IMAGE,
+			}),
+		}),
 	}),
 });
 
@@ -89,4 +96,5 @@ export const {
 	useGetProductByIdQuery,
 	useGetProductsByNameQuery,
 	useGetProductsQuery,
+	useUploadProductImageMutation,
 } = productsApi;
