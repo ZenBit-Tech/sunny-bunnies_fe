@@ -2,8 +2,8 @@ import { Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { colors, fontSizes, fontWeight } from "~/libs/constants/index.ts";
 import { type Product } from "~/libs/types/products.ts";
+import theme from "~/theme.ts";
 
 import {
 	StyledProductCardContainer,
@@ -32,16 +32,16 @@ const ProductCard: React.FC<ProductCardProperties> = ({ product }) => {
 			/>
 			<StyledProductCardContent>
 				<Typography
-					color="primary"
-					fontWeight={fontWeight.medium}
+					color={theme.palette.primary.main}
+					fontWeight={theme.fontWeight.medium}
 					variant="playfairDisplayBold"
 				>
 					{product.name}
 				</Typography>
-				<Typography color={colors.gray} variant="dmSansBold">
+				<Typography color={theme.palette.primary.main} variant="dmSansBold">
 					{`$ ${product.minPrice}`}
 				</Typography>
-				<Typography fontSize={fontSizes.small} variant="dmSans">
+				<Typography fontSize={theme.fontSizes.small} variant="dmSans">
 					{product.user.name}
 				</Typography>
 			</StyledProductCardContent>
