@@ -59,9 +59,11 @@ const CategoryCarousel: React.FC<CategoryCarouselProperties> = ({
 							))}
 				</StyledCategoriesItems>
 				{showNextButton && (
-					<IconButton onClick={handleNext}>
-						<ArrowForwardIos sx={{ height: "82px", width: "82px" }} />
-					</IconButton>
+					<Box alignItems="center" display="flex">
+						<IconButton onClick={handleNext} sx={{ paddingBottom: "44px" }}>
+							<ArrowForwardIos sx={{ height: "82px", width: "82px" }} />
+						</IconButton>
+					</Box>
 				)}
 			</StyledCategoriesContainer>
 		</StyledCategoryCarouselContainer>
