@@ -163,6 +163,26 @@ export default tseslint.config(
 					"ignoreCase": false,
 				},
 			],
+			"perfectionist/sort-imports": [
+				"error",
+				{
+					"type": "natural",
+					"order": "asc",
+					"groups": [
+						"react",
+						"mui",
+						["builtin", "external"],
+						"internal",
+						["parent", "sibling", "index"],
+						"type",
+						"style",
+					],
+					"custom-groups": {
+						value: { "react": ["react", "react-*"], "mui": ["^@mui/**"] },
+					},
+					"newlines-between": "always",
+				},
+			],
 		},
 	},
 );

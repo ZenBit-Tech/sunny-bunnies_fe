@@ -1,3 +1,6 @@
+import React, { useCallback } from "react";
+import { useTranslation } from "react-i18next";
+
 import CloseIcon from "@mui/icons-material/Close";
 import {
 	DialogActions,
@@ -5,8 +8,6 @@ import {
 	DialogTitle,
 	Typography,
 } from "@mui/material";
-import React, { useCallback } from "react";
-import { useTranslation } from "react-i18next";
 
 import { BaseButton } from "~/components/index.ts";
 import { fontSizes } from "~/libs/constants/index.ts";

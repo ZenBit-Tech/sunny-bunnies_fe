@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { Box, Typography } from "@mui/material";
 
 import { fontSizes, fontWeights } from "~/libs/constants/font.ts";
 import { type Product } from "~/libs/types/products.ts";

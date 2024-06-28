@@ -1,6 +1,7 @@
 import React from "react";
-import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
+
+import { Box } from "@mui/material";
 
 const ProfileWishlist: React.FC = () => {
 	const { t } = useTranslation();

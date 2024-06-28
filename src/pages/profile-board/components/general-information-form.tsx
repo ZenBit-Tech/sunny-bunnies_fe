@@ -1,3 +1,12 @@
+import React, { useCallback, useState } from "react";
+import {
+	CountryData,
+	PhoneInput,
+	defaultCountries,
+	parseCountry,
+} from "react-international-phone";
+import { useNavigate } from "react-router-dom";
+
 import {
 	Box,
 	Button,
@@ -7,15 +16,6 @@ import {
 } from "@mui/material";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { t } from "i18next";
-import React, { useCallback, useState } from "react";
-import {
-	CountryData,
-	PhoneInput,
-	defaultCountries,
-	parseCountry,
-} from "react-international-phone";
-import "react-international-phone/style.css";
-import { useNavigate } from "react-router-dom";
 
 import { UploadIcon } from "~/assets/icons/upload-icon.tsx";
 import { ImagePreview } from "~/components/index.ts";
@@ -30,6 +30,8 @@ import theme from "~/theme.ts";
 import { generalInformationValidation } from "../validation/general-information-validation.ts";
 import { FormButtons } from "./buttons.tsx";
 import { StyledFormContainer, VisuallyHiddenInput } from "./styles.ts";
+
+import "react-international-phone/style.css";
 
 const GeneralInformationForm: React.FC = () => {
 	const user = useAppSelector((state) => state.auth.user);

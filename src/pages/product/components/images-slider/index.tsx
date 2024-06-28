@@ -1,5 +1,6 @@
-import { Box, Paper, Typography } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
+
+import { Box, Paper, Typography } from "@mui/material";
 
 import { colors } from "~/libs/constants/colors.ts";
 import { type ProductImage } from "~/libs/types/products.ts";

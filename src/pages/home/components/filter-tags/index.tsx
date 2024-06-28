@@ -1,6 +1,7 @@
-import { Box, Chip } from "@mui/material";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Box, Chip } from "@mui/material";
 
 type FilterTagsProps = {
 	filters: Record<string, number | string | undefined>;

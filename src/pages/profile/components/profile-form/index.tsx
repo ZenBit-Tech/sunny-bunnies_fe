@@ -1,5 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { PhoneInput } from "react-international-phone";
+
 import {
 	Box,
 	FormControl,
@@ -9,8 +11,6 @@ import {
 	Select as MuiSelect,
 	Typography,
 } from "@mui/material";
-import { PhoneInput } from "react-international-phone";
-import "react-international-phone/style.css";
 
 import {
 	BaseButton,
@@ -25,7 +25,6 @@ import {
 } from "~/pages/profile-board/constants.ts/size.ts";
 import theme from "~/theme.ts";
 
-import { useProfileForm } from "./use-profile-form.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
 import {
 	StyledContainer,
@@ -37,6 +36,9 @@ import {
 	StyledPhoneInput,
 	VisuallyHiddenInput,
 } from "./styles.ts";
+import { useProfileForm } from "./use-profile-form.ts";
+
+import "react-international-phone/style.css";
 
 const ProfileForm: React.FC = () => {
 	const { t } = useTranslation();

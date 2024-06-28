@@ -1,10 +1,11 @@
+import React, { useCallback, useState } from "react";
+
 import {
 	FormControl,
 	MenuItem,
 	Select,
 	SelectChangeEvent,
 } from "@mui/material";
-import React, { useCallback, useState } from "react";
 
 import { type ProductVariant } from "~/libs/types/products.ts";
 

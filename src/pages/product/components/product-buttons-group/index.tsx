@@ -1,8 +1,9 @@
+import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Box } from "@mui/material";
-import React, { useCallback, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import { productIcons } from "~/assets/images/product/index.ts";
 import { BaseButton } from "~/components/index.ts";

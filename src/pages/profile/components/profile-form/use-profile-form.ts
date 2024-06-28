@@ -1,5 +1,3 @@
-import { SelectChangeEvent } from "@mui/material";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import {
 	BaseSyntheticEvent,
 	ChangeEvent,
@@ -14,6 +12,9 @@ import {
 	defaultCountries,
 	parseCountry,
 } from "react-international-phone";
+
+import { SelectChangeEvent } from "@mui/material";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { User } from "~/libs/types/user.ts";

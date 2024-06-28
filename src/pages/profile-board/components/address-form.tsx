@@ -1,3 +1,6 @@
+import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
 	Box,
 	FormControl,
@@ -18,8 +21,6 @@ import {
 	State,
 } from "country-state-city";
 import { t } from "i18next";
-import React, { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { CustomFormGroup } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";

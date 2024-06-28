@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
 	Box,
 	Button,
@@ -10,7 +12,6 @@ import {
 } from "@mui/material";
 import { City, State } from "country-state-city";
 import { t } from "i18next";
-import React from "react";
 
 import { CustomFormGroup } from "~/components/index.ts";
 

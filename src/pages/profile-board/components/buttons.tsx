@@ -1,5 +1,6 @@
-import { t } from "i18next";
 import React from "react";
+
+import { t } from "i18next";
 
 import { BaseButton } from "~/components/index.ts";
 import theme from "~/theme.ts";

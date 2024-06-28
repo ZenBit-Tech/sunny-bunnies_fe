@@ -1,7 +1,8 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+
+import { Box, Typography } from "@mui/material";
 
 import { AppRoute } from "~/libs/constants/index.ts";
 

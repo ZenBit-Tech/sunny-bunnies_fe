@@ -1,7 +1,8 @@
-import { Box, Divider, Typography } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+
+import { Box, Divider, Typography } from "@mui/material";
 
 import { Loader } from "~/components/index.ts";
 import { userRole } from "~/libs/constants/user-role.ts";

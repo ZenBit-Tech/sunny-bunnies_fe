@@ -1,5 +1,6 @@
-import { Theme } from "@mui/material/styles";
 import React from "react";
+
+import { Theme } from "@mui/material/styles";
 
 import HeartIcon from "~/assets/icons/heart-icon.svg?react";
 import LogoutIcon from "~/assets/icons/logout-icon.svg?react";

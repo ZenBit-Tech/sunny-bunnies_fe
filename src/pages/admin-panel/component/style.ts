@@ -1,5 +1,6 @@
-import { Box, Divider, styled } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import { Box, Divider, styled } from "@mui/material";
 
 import theme from "~/theme.ts";
 

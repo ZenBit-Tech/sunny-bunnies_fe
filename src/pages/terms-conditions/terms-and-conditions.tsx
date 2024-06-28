@@ -1,6 +1,7 @@
-import { Box } from "@mui/system";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { Box } from "@mui/system";
 
 import { FIRST_INDEX } from "~/libs/constants/random.ts";
 

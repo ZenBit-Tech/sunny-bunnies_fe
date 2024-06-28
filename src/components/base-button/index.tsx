@@ -1,8 +1,9 @@
+import React, { cloneElement } from "react";
+import { Link } from "react-router-dom";
+
 import { Button, ButtonProps, CircularProgress } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { Interpolation, SxProps } from "@mui/system";
-import React, { cloneElement } from "react";
-import { Link } from "react-router-dom";
 
 type BaseButtonProperties = {
 	children?: React.ReactNode;
