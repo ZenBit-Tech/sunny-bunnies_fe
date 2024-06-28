@@ -1,2 +1,2 @@
-export { productImageValidation } from "./images-validation.ts";
-export { addProductValidation } from "./product-validation.ts";
+export { categoryTypeStyleValidation } from "./category-type-style-validation.ts";
+export { productImagesValidation } from "./images-validation.ts";

@@ -6,8 +6,9 @@ type AddProductImage = {
 	productImage: File | null | string;
 };
 
-type AddProductImages = {
-	productImages: AddProductImage[];
+type ProductImageDto = {
+	isPrimary: boolean;
+	productImage: string;
 };
 
 type ProductSize = {
@@ -59,11 +60,18 @@ type Product = {
 	variants: ProductVariant[];
 };
 
+type ProductCategoryTypeStyle = {
+	category: null | number;
+	style: null | number;
+	type: null | number;
+};
+
 export {
 	type AddProductImage,
-	type AddProductImages,
 	type Product,
+	type ProductCategoryTypeStyle,
 	type ProductImage,
+	type ProductImageDto,
 	type ProductSize,
 	type ProductVariant,
 };

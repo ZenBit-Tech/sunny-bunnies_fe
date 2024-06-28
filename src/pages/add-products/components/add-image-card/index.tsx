@@ -5,11 +5,13 @@ import { useTranslation } from "react-i18next";
 
 import { UploadImage } from "~/assets/images/add-product/index.ts";
 import { useAppForm } from "~/libs/hooks/use-app-form.hook.ts";
-import { AddProductImage } from "~/libs/types/products.ts";
-import { productImageValidation } from "~/pages/add-products/validation/images-validation.ts";
+import { AddProductImage, ProductImageDto } from "~/libs/types/products.ts";
+import { productImageUploadValidation } from "~/pages/add-products/validation/images-validation.ts";
 import { VisuallyHiddenInput } from "~/pages/profile-board/components/styles.ts";
-import { useAppDispatch } from "~/redux/hooks.ts";
-import { useUploadProductImageMutation } from "~/redux/products/products-api.ts";
+import {
+	useDeleteProductImageMutation,
+	useUploadProductImageMutation,
+} from "~/redux/products/products-api.ts";
 import theme from "~/theme.ts";
 
 import { ProductImagePreview } from "../image-preview/index.tsx";
@@ -21,7 +23,7 @@ type AddProductImageProperties = {
 	index: number;
 	isPrimary: boolean;
 	onDeleteImage: (index: number) => void;
-	onImageChange: (index: number, image: AddProductImage) => void;
+	onImageChange: (index: number, image: ProductImageDto) => void;
 	onSetPrimary: (index: number) => void;
 };
 
@@ -34,18 +36,19 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 }) => {
 	const { t } = useTranslation();
 	const [uploadProductImage] = useUploadProductImageMutation();
-	const dispatch = useAppDispatch();
+	const [deleteProductImage] = useDeleteProductImageMutation();
 
 	const [selectedFile, setSelectedFile] = useState<File | null | string>(null);
 	const [imagePreview, setImagePreview] = useState<null | string>(null);
 	const [isImagePrimary, setIsImagePrimary] = useState(false);
 	const [serverError, setServerError] = useState("");
+	const [uploadedImageUrl, setUploadedImageUrl] = useState("");
 
 	const { errors, setValue } = useAppForm<AddProductImage>({
 		defaultValues: {
 			productImage: null,
 		},
-		validationSchema: productImageValidation,
+		validationSchema: productImageUploadValidation,
 	});
 
 	const handleFileChange = useCallback(
@@ -60,11 +63,14 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 					if (file instanceof File) {
 						const formDataToSend = new FormData();
 						formDataToSend.append("file", file);
-						const imageUrl = await uploadProductImage(formDataToSend).unwrap();
+						const { url } = await uploadProductImage(formDataToSend).unwrap();
+
 						const productImage = {
 							isPrimary,
-							productImage: imageUrl,
+							productImage: url,
 						};
+						setServerError("");
+						setUploadedImageUrl(url);
 						onImageChange(index, productImage);
 					}
 				} else {
@@ -80,17 +86,26 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 		[index, isPrimary, onImageChange, setValue, t, uploadProductImage],
 	);
 
-	const handleDeleteImage = useCallback(() => {
-		setSelectedFile(null);
-		setImagePreview(null);
-		onDeleteImage(index);
-	}, [index, onDeleteImage]);
+	const handleDeleteImage = useCallback(async () => {
+		try {
+			await deleteProductImage(uploadedImageUrl).unwrap();
+			setSelectedFile(null);
+			setImagePreview(null);
+			onDeleteImage(index);
+		} catch (error) {
+			const deleteError = (error as FetchBaseQueryError).data
+				? ((error as FetchBaseQueryError).data as Error)
+				: { message: t("Error.technicalError") };
+			setServerError(deleteError.message);
+		}
+	}, [deleteProductImage, index, onDeleteImage, uploadedImageUrl, t]);
 
 	const handleEditImage = useCallback(() => {
 		setSelectedFile(null);
 		setImagePreview(null);
+		handleDeleteImage();
 		onDeleteImage(index);
-	}, [index, onDeleteImage]);
+	}, [index, handleDeleteImage, onDeleteImage]);
 
 	const handleStarClick = useCallback(() => {
 		setIsImagePrimary(!isImagePrimary);

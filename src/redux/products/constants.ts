@@ -1,6 +1,6 @@
 const productsApiPath = {
 	ROOT: "/products",
-	UPLOAD_IMAGE: "/upload/product-image",
+	UPLOAD_IMAGE: "upload/product-image",
 } as const;
 
 const productsLoadLimit = 10;

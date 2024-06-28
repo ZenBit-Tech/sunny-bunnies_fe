@@ -25,6 +25,13 @@ type GetProductsRequestQuery = {
 
 export const productsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
+		deleteProductImage: builder.mutation<boolean, string>({
+			query: (imageUrl) => ({
+				body: { url: imageUrl },
+				method: httpMethods.DELETE,
+				url: productsApiPath.UPLOAD_IMAGE,
+			}),
+		}),
 		getProductById: builder.query<Product, string | undefined>({
 			query: (id) => ({
 				method: httpMethods.GET,
@@ -82,7 +89,7 @@ export const productsApi = api.injectEndpoints({
 				url: productsApiPath.ROOT,
 			}),
 		}),
-		uploadProductImage: builder.mutation<string, FormData>({
+		uploadProductImage: builder.mutation<{ url: string }, FormData>({
 			query: (formData: FormData) => ({
 				body: formData,
 				method: httpMethods.POST,
@@ -93,6 +100,7 @@ export const productsApi = api.injectEndpoints({
 });
 
 export const {
+	useDeleteProductImageMutation,
 	useGetProductByIdQuery,
 	useGetProductsByNameQuery,
 	useGetProductsQuery,

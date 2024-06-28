@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import { useAppForm } from "~/libs/hooks/use-app-form.hook.ts";
 import {
-	type AddProductImage,
+	type ProductCategoryTypeStyle,
+	type ProductImageDto,
 	type ProductVariant,
 } from "~/libs/types/products.ts";
 import theme from "~/theme.ts";
@@ -20,30 +20,18 @@ import {
 	StyledAddProductForms,
 	StyledAddProductSteps,
 } from "./styles.ts";
-import { type AddProductRequestDto } from "./types.ts";
-import { addProductValidation } from "./validation/product-validation.ts";
 
 const AddProducts: React.FC = () => {
 	const { t } = useTranslation();
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
-	const { handleSubmit } = useAppForm<AddProductRequestDto>({
-		defaultValues: {
-			brand: 0,
-			category: 0,
-			material: 0,
-			productImages: [],
-			type: 0,
-			variants: [],
-		},
-		validationSchema: addProductValidation,
-	});
-	const [productImages, setProductImages] = useState<AddProductImage[] | null>(
+	const [productImages, setProductImages] = useState<ProductImageDto[] | null>(
 		null,
 	);
 	const [category, setCategory] = useState<null | number>(null);
 	const [type, setType] = useState<null | number>(null);
+	const [style, setStyle] = useState<null | number>(null);
 	const [variants, setVariants] = useState<ProductVariant[] | null>(null);
 	const [serverError, setServerError] = useState("");
 
@@ -63,27 +51,28 @@ const AddProducts: React.FC = () => {
 		}
 	}, [category, navigate, productImages, t, type, variants]);
 
-	const handleFormSubmit = useCallback(
-		(event_: React.BaseSyntheticEvent): void => {
-			event_.preventDefault();
-			handleSubmit(handleInputChange)(event_);
-		},
-		[handleSubmit, handleInputChange],
-	);
-
 	const handleTabChange = useCallback(
 		(_event: React.SyntheticEvent, newValue: string): void => {
 			navigate(newValue);
 		},
-		[navigate],
+		[],
 	);
 
-	const handleSetImages = useCallback((images: AddProductImage[]): void => {
+	const handleSetImages = useCallback((images: ProductImageDto[]): void => {
 		setProductImages(images);
 	}, []);
 
+	const handleCategoryChange = useCallback(
+		(data: ProductCategoryTypeStyle): void => {
+			setCategory(data.category);
+			setType(data.type);
+			setStyle(data.style);
+		},
+		[],
+	);
+
 	return (
-		<StyledAddProductContainer component="form" onSubmit={handleFormSubmit}>
+		<StyledAddProductContainer>
 			<Typography fontSize={theme.fontSizes.lg} variant="playfairDisplayTitle">
 				{t("AddVendorProduct.addProduct")}
 			</Typography>
@@ -122,7 +111,11 @@ const AddProducts: React.FC = () => {
 					{pathname === AppRoute.PRODUCT_PHOTOS && (
 						<ProductImages onChangeImages={handleSetImages} />
 					)}
-					{pathname === AppRoute.PRODUCT_CATEGORY && <ProductCategoryAndType />}
+					{pathname === AppRoute.PRODUCT_CATEGORY && (
+						<ProductCategoryAndType
+							onCategoryTypeStyleChange={handleCategoryChange}
+						/>
+					)}
 				</StyledAddProductForms>
 			</StyledAddProductSteps>
 		</StyledAddProductContainer>

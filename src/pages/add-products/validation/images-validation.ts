@@ -5,7 +5,7 @@ import {
 	productImageValidationMessage,
 } from "./constants.ts";
 
-const productImageValidation = Yup.object().shape({
+const productImageUploadValidation = Yup.object().shape({
 	productImage: Yup.lazy((value) => {
 		if (typeof value === "string") {
 			return Yup.mixed().notRequired();
@@ -36,10 +36,21 @@ const productImageValidation = Yup.object().shape({
 	}),
 });
 
-const productImagesValidation = Yup.object().shape({
-	productImages: Yup.array()
-		.of(productImageValidation)
-		.min(minNumberOfImages, "Four product images are required"),
+const productImageSchema = Yup.object({
+	isPrimary: Yup.boolean().required(
+		productImageValidationMessage.REQUIRED_PRODUCT_PRIMARY_FLAG,
+	),
+	productImage: Yup.string().required(
+		productImageValidationMessage.REQUIRED_PRODUCT_IMAGE_URL,
+	),
 });
 
-export { productImageValidation, productImagesValidation };
+const productImagesValidation = Yup.object().shape({
+	productImages: Yup.array()
+		.of(productImageSchema)
+		.required()
+		.min(minNumberOfImages, productImageValidationMessage.MINIMUM_FOUR_IMAGES)
+		.max(minNumberOfImages, productImageValidationMessage.MINIMUM_FOUR_IMAGES),
+});
+
+export { productImageUploadValidation, productImagesValidation };

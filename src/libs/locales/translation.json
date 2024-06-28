@@ -317,6 +317,15 @@
 		"addImage": "Add Image",
 		"changeImage": "Change Image",
 		"orDropImageToUpload": "Or Drop Image To Upload",
-		"primary": "Primary"
+		"primary": "Primary",
+		"category": "Category",
+		"categoryDescription": "Please select your product category from the list provided",
+		"type": "Type",
+		"typeDescription": "Please select product Type",
+		"style": "Style",
+		"styleDescription": "Please select product Style",
+		"categories": "Categories",
+		"types": "Types",
+		"styles": "Styles"
 	}
 }
