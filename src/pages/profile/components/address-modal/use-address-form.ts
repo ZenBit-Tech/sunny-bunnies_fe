@@ -23,6 +23,7 @@ import { addressValidation } from "./address-schema.ts";
 type UseAddressFormReturn = {
 	control: Control<Address>;
 	errors: FieldErrors<Address>;
+	filteredCountries: ICountry[];
 	handleCityChange: (event: SelectChangeEvent<string>) => void;
 	handleCountryChange: (event: SelectChangeEvent<string>) => void;
 	handleFormSubmit: (event: BaseSyntheticEvent) => void;
@@ -162,6 +163,7 @@ const useAddressForm = (
 	return {
 		control,
 		errors,
+		filteredCountries,
 		handleCityChange,
 		handleCountryChange,
 		handleFormSubmit,

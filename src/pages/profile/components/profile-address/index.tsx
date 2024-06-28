@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import { AddressModal } from "../address-modal/address-modal.tsx";
+import { AddressModal } from "../address-modal/index.tsx";
 import { StyledAddressBox, StyledButton } from "./styles.ts";
 
 type ProfileAddressProps = {
