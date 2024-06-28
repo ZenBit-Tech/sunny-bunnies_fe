@@ -1,13 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { fontSizes, fontWeights } from "~/libs/constants/font.ts";
 import { type Product } from "~/libs/types/products.ts";
+import theme from "~/theme.ts";
 
-import { StyledProductCardContent } from "./styles.ts";
+import {
+	StyledProductCardContainer,
+	StyledProductCardContent,
+	StyledProductCardImage,
+} from "./styles.ts";
 
-const zeroIndex = 0;
+const defaultImageIndex = 0;
 
 type ProductCardProperties = {
 	product: Product;
@@ -21,43 +25,27 @@ const ProductCard: React.FC<ProductCardProperties> = ({ product }) => {
 	}, [navigate, product]);
 
 	return (
-		<Box
-			onClick={handleClick}
-			sx={{
-				display: "flex",
-				flexDirection: "column",
-				gap: "12px",
-				height: "360px",
-				maxWidth: "300px",
-				width: "300px",
-			}}
-		>
-			<img
-				alt={product.name}
-				src={product.images[zeroIndex]?.url}
-				style={{ height: "80%", width: "100%" }}
+		<StyledProductCardContainer onClick={handleClick}>
+			<StyledProductCardImage
+				alt={product.images[defaultImageIndex].description}
+				src={product.images[defaultImageIndex].url}
 			/>
 			<StyledProductCardContent>
-				<Typography color="primary" variant="playfairDisplayBold">
+				<Typography
+					color={theme.palette.primary.main}
+					fontWeight={theme.fontWeight.medium}
+					variant="playfairDisplayBold"
+				>
 					{product.name}
 				</Typography>
-				<Box sx={{ alignItem: "center", display: "flex", gap: "5px" }}>
-					<Typography color="primary" component="span" variant="dmSansBold">
-						{product.minPrice}
-					</Typography>
-					<Typography
-						color="secondary"
-						component="span"
-						fontSize={fontSizes.small}
-						fontWeight={fontWeights.regular}
-						sx={{ textDecoration: "line-through" }}
-						variant="dmSansBold"
-					>
-						{product.maxPrice}
-					</Typography>
-				</Box>
+				<Typography color={theme.palette.primary.main} variant="dmSansBold">
+					{`$ ${product.minPrice}`}
+				</Typography>
+				<Typography fontSize={theme.fontSizes.small} variant="dmSans">
+					{product.user.name}
+				</Typography>
 			</StyledProductCardContent>
-		</Box>
+		</StyledProductCardContainer>
 	);
 };
 

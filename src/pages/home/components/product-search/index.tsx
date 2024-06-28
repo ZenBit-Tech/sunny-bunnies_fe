@@ -13,8 +13,12 @@ import { useProductSearch } from "../../hooks/index.ts";
 
 const ProductSearch: React.FC = () => {
 	const { t } = useTranslation();
-	const { handleInputChange, handleProductSelect, options } =
-		useProductSearch("");
+	const {
+		handleInputChange,
+		handleProductSelect,
+		isMinSearchLengthMet,
+		options,
+	} = useProductSearch("");
 
 	const getOptionLabel = useCallback(
 		(option: Product | string): string =>
@@ -38,8 +42,12 @@ const ProductSearch: React.FC = () => {
 		(params: AutocompleteRenderInputParams): React.ReactNode => (
 			<TextField
 				{...params}
+				InputProps={{
+					...params.InputProps,
+					endAdornment: null,
+				}}
 				placeholder={`${t("HomePage.searchProducts")}...`}
-				sx={{ width: "400px" }}
+				size="small"
 				variant="outlined"
 			/>
 		),
@@ -55,20 +63,23 @@ const ProductSearch: React.FC = () => {
 		<Box
 			sx={{
 				display: "flex",
-				flex: 1,
+				flexShrink: 1,
 				justifyContent: "center",
+				margin: "0 auto",
+				width: "50%",
 			}}
 		>
 			<Autocomplete
+				clearIcon
 				filterOptions={filterOptions}
-				freeSolo
 				getOptionLabel={getOptionLabel}
-				noOptionsText={t("HomePage.noProducts")}
+				noOptionsText={isMinSearchLengthMet && t("HomePage.noProducts")}
 				onChange={handleProductSelect}
 				onInputChange={handleInputChange}
 				options={options}
 				renderInput={renderInput}
 				renderOption={renderOption}
+				sx={{ width: "100%" }}
 			/>
 		</Box>
 	);
