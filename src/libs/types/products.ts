@@ -1,3 +1,5 @@
+import { Category } from "~/pages/home/types/index.ts";
+
 import { gender } from "../constants/index.ts";
 import { type User } from "./user.ts";
 
@@ -29,6 +31,16 @@ type Color = {
 };
 
 type Size = {
+	id: number;
+	name: string;
+};
+
+type ProductType = {
+	id: number;
+	name: string;
+};
+
+type ProductStyle = {
 	id: number;
 	name: string;
 };
@@ -66,12 +78,17 @@ type ProductCategoryTypeStyle = {
 	type: null | number;
 };
 
+type CategoryWithTypes = { types: ProductType[] } & Category;
+
 export {
 	type AddProductImage,
+	type CategoryWithTypes,
 	type Product,
 	type ProductCategoryTypeStyle,
 	type ProductImage,
 	type ProductImageDto,
 	type ProductSize,
+	type ProductStyle,
+	type ProductType,
 	type ProductVariant,
 };

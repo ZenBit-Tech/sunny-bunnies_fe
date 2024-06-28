@@ -1,6 +1,6 @@
 import { Box, SelectChangeEvent } from "@mui/material";
 import { type FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -8,9 +8,13 @@ import { AppRoute } from "~/libs/constants/index.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { type ProductCategoryTypeStyle } from "~/libs/types/products.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
+import { useAppDispatch } from "~/redux/hooks.ts";
+import {
+	useGetCategoriesWithTypesQuery,
+	useGetProductStylesQuery,
+} from "~/redux/products/products-api.ts";
 
 import { categoryTypeStyleValidation } from "../../validation/index.ts";
-import { SelectField } from "../select-field.tsx";
 import {
 	StyledFormContainer,
 	StyledFormDescription,
@@ -27,6 +31,11 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 	onCategoryTypeStyleChange,
 }) => {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const { data: categoriesWithTypes } =
+		useGetCategoriesWithTypesQuery(undefined);
+	const { data: styles } = useGetProductStylesQuery(undefined);
 
 	const [selectedCategory, setSelectedCategory] = useState<number>();
 	const [selectedType, setSelectedType] = useState<number>();
@@ -42,8 +51,6 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 			},
 			validationSchema: categoryTypeStyleValidation,
 		});
-
-	const navigate = useNavigate();
 
 	const handleInputChange = useCallback(
 		async (formData: ProductCategoryTypeStyle): Promise<void> => {
@@ -95,12 +102,6 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 		[handleSubmit, handleInputChange],
 	);
 
-	const categories = [{ label: "Category 1", value: 1 }];
-
-	const types = [{ label: "Type 1", value: 1 }];
-
-	const styles = [{ label: "Style 1", value: 1 }];
-
 	return (
 		<StyledFormContainer component="form" onSubmit={handleFormSubmit}>
 			<StyledFormGroup>
@@ -110,11 +111,11 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 						{t("AddVendorProduct.categoryDescription")}
 					</StyledFormDescription>
 				</StyledTextGroup>
-				<Box display="flex" gap="26px" width="100%">
-					<SelectField
+				{/* <Box display="flex" gap="26px" width="100%"> */}
+				{/* <SelectField
 						error={Boolean(errors.category)}
 						helperText={errors.category?.message as string}
-						items={categories}
+						items={categoriesWithTypes}
 						label={t("AddVendorProduct.categories")}
 						onChange={handleCategoryChange}
 						value={selectedCategory}
@@ -138,7 +139,7 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 						onChange={handleTypeChange}
 						value={selectedType}
 					/>
-				</Box>
+				</Box> */}
 			</StyledFormGroup>
 
 			<StyledFormGroup>
@@ -148,7 +149,7 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 						{t("AddVendorProduct.styleDescription")}
 					</StyledFormDescription>
 				</StyledTextGroup>
-				<Box display="flex" gap="26px" width="100%">
+				{/* <Box display="flex" gap="26px" width="100%">
 					<SelectField
 						error={Boolean(errors.style)}
 						helperText={errors.style?.message as string}
@@ -157,7 +158,7 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 						onChange={handleStyleChange}
 						value={selectedStyle}
 					/>
-				</Box>
+				</Box> */}
 			</StyledFormGroup>
 
 			<Box

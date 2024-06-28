@@ -1,5 +1,9 @@
 import { httpMethods } from "~/libs/constants/http-methods.ts";
-import { type Product } from "~/libs/types/products.ts";
+import {
+	type CategoryWithTypes,
+	type Product,
+	type ProductStyle,
+} from "~/libs/types/products.ts";
 
 import { api } from "../services.ts";
 import {
@@ -32,10 +36,22 @@ export const productsApi = api.injectEndpoints({
 				url: productsApiPath.UPLOAD_IMAGE,
 			}),
 		}),
+		getCategoriesWithTypes: builder.query<CategoryWithTypes, undefined>({
+			query: () => ({
+				method: httpMethods.GET,
+				url: productsApiPath.PRODUCT_DETAILS_CATEGORIES,
+			}),
+		}),
 		getProductById: builder.query<Product, string | undefined>({
 			query: (id) => ({
 				method: httpMethods.GET,
 				url: productsApiPath.ROOT + `/${id}`,
+			}),
+		}),
+		getProductStyles: builder.query<ProductStyle[], undefined>({
+			query: () => ({
+				method: httpMethods.GET,
+				url: productsApiPath.PRODUCT_DETAILS_STYLES,
 			}),
 		}),
 		getProducts: builder.query<Product[], GetProductsRequestQuery>({
@@ -101,7 +117,9 @@ export const productsApi = api.injectEndpoints({
 
 export const {
 	useDeleteProductImageMutation,
+	useGetCategoriesWithTypesQuery,
 	useGetProductByIdQuery,
+	useGetProductStylesQuery,
 	useGetProductsByNameQuery,
 	useGetProductsQuery,
 	useUploadProductImageMutation,

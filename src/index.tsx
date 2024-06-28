@@ -108,6 +108,22 @@ createRoot(document.getElementById("root")!).render(
 																	element: <SizeGuide />,
 																	path: AppRoute.SIZE_GUIDE,
 																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_PHOTOS,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_CATEGORY,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_DESCRIPTION,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_FINISH,
+																},
 															],
 															element: <PublicRoute />,
 															path: AppRoute.ROOT,
@@ -141,22 +157,6 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <VendorProfile />,
 																	path: AppRoute.VENDORS_PROFILE,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_PHOTOS,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_CATEGORY,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_DESCRIPTION,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_FINISH,
 																},
 															],
 															element: <PrivateRoute />,
