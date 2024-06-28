@@ -1,6 +1,7 @@
 const colors = {
 	black: "#333333",
 	borderGray: "rgba(0, 0, 0, 0.24)",
+	cardBoxShadow: "rgba(0, 0, 0, 0.04)",
 	darkGrey: "#D1D5DB",
 	disabledButtonBg: "#777777",
 	gray: "#6D6B6B",
