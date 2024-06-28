@@ -1,5 +1,5 @@
+import React, { useCallback, useMemo, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { AddressModal } from "../address-modal/address-modal.tsx";
@@ -21,7 +21,9 @@ const ProfileAddress: React.FC<ProfileAddressProps> = ({
 	const { t } = useTranslation();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const isData = addressLine && city && country;
+	const isData = useMemo(() => {
+		return addressLine && city && country;
+	}, [addressLine, city, country]);
 
 	const toggleModal = useCallback((): void => {
 		setIsModalOpen((prev) => !prev);

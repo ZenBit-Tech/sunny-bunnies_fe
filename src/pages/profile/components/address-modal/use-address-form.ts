@@ -14,10 +14,11 @@ import { Control, FieldErrors } from "react-hook-form";
 
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { Address } from "~/libs/types/user-profile.type.ts";
-import { addressValidation } from "~/pages/profile-board/validation/index.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 import { useUpdateMutation } from "~/redux/user/user-api.ts";
+
+import { addressValidation } from "./address-schema.ts";
 
 type UseAddressFormReturn = {
 	control: Control<Address>;
@@ -31,6 +32,8 @@ type UseAddressFormReturn = {
 	selectedState: IState | null;
 	serverError: string;
 };
+
+const allowedCountries = ["CA"];
 
 const useAddressForm = (
 	initialValues: Address,
@@ -49,7 +52,7 @@ const useAddressForm = (
 	const [update] = useUpdateMutation();
 
 	const filteredCountries = Country.getAllCountries().filter((country) =>
-		["CA"].includes(country.isoCode),
+		allowedCountries.includes(country.isoCode),
 	);
 
 	useEffect(() => {

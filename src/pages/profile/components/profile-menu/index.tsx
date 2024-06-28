@@ -1,7 +1,7 @@
-import { Avatar, Typography, useTheme } from "@mui/material";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { Avatar, Typography, useTheme } from "@mui/material";
 
 import { useAppSelector } from "~/redux/hooks.ts";
 

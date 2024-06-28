@@ -1,8 +1,11 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
+import { Box } from "@mui/material";
 
 const ProfileSupport: React.FC = () => {
-	return <Box>ProfileSupport</Box>;
+	const { t } = useTranslation();
+
+	return <Box>{t("Profile.support")}</Box>;
 };
 
 export { ProfileSupport };

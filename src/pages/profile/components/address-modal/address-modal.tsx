@@ -1,3 +1,6 @@
+import React from "react";
+import { t } from "i18next";
+import { City, Country, State } from "country-state-city";
 import {
 	Box,
 	Button,
@@ -8,13 +11,9 @@ import {
 	Select as MuiSelect,
 	Typography,
 } from "@mui/material";
-import { City, Country, State } from "country-state-city";
-import { t } from "i18next";
-import React from "react";
 
 import { CustomFormGroup } from "~/components/index.ts";
-
-import { useAddressForm } from "../../hooks/use-address-form.ts";
+import { useAddressForm } from "./use-address-form.ts";
 import { StyledForm, StyledFormLabel, StyledModalContainer } from "./styles.ts";
 
 type AddressModalProps = {

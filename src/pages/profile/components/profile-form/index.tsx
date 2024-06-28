@@ -1,3 +1,5 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
 import {
 	Box,
 	FormControl,
@@ -7,14 +9,7 @@ import {
 	Select as MuiSelect,
 	Typography,
 } from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import {
-	CountryData,
-	PhoneInput,
-	defaultCountries,
-	parseCountry,
-} from "react-international-phone";
+import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 
 import {
@@ -30,7 +25,7 @@ import {
 } from "~/pages/profile-board/constants.ts/size.ts";
 import theme from "~/theme.ts";
 
-import { useProfileForm } from "../../hooks/use-profile-form.ts";
+import { useProfileForm } from "./use-profile-form.ts";
 import { ProfileAddress, ProfileCard } from "../index.ts";
 import {
 	StyledContainer,
@@ -55,6 +50,7 @@ const ProfileForm: React.FC = () => {
 		handleJeansSizeChange,
 		handleShoeSizeChange,
 		phone,
+		phoneCountries,
 		selectedClothingSize,
 		selectedFile,
 		selectedJeansSize,
@@ -62,14 +58,6 @@ const ProfileForm: React.FC = () => {
 		serverError,
 		user,
 	} = useProfileForm();
-
-	const requiredCodes = ["ua", "ca"];
-
-	const countries = defaultCountries.filter((country: CountryData) => {
-		const { iso2 } = parseCountry(country);
-
-		return requiredCodes.includes(iso2);
-	});
 
 	return (
 		<StyledContainer>
@@ -133,7 +121,7 @@ const ProfileForm: React.FC = () => {
 					<StyledFormLabel>{t("Form.phoneNumberTitle")}</StyledFormLabel>
 
 					<PhoneInput
-						countries={countries}
+						countries={phoneCountries}
 						countrySelectorStyleProps={{
 							buttonStyle: StyledPhoneCountryInput,
 						}}

@@ -1,8 +1,19 @@
 import { SelectChangeEvent } from "@mui/material";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { BaseSyntheticEvent, ChangeEvent, useCallback, useState } from "react";
+import {
+	BaseSyntheticEvent,
+	ChangeEvent,
+	useCallback,
+	useMemo,
+	useState,
+} from "react";
 import { Control, FieldErrors } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import {
+	CountryData,
+	defaultCountries,
+	parseCountry,
+} from "react-international-phone";
 
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { User } from "~/libs/types/user.ts";
@@ -14,7 +25,7 @@ import {
 	useUploadMutation,
 } from "~/redux/user/user-api.ts";
 
-import { profileValidation } from "../validation/profile-schema.ts";
+import { profileValidation } from "./profile-schema.ts";
 
 type UseProfileFormReturnType = {
 	control: Control<UserAndProfile>;
@@ -26,6 +37,7 @@ type UseProfileFormReturnType = {
 	handleJeansSizeChange: (event: SelectChangeEvent<string>) => void;
 	handleShoeSizeChange: (event: SelectChangeEvent<string>) => void;
 	phone: string;
+	phoneCountries: CountryData[];
 	selectedClothingSize: null | string;
 	selectedFile: File | null | string;
 	selectedJeansSize: null | string;
@@ -34,14 +46,15 @@ type UseProfileFormReturnType = {
 	user: User | null;
 };
 
+const zero = 0;
+const requiredCodes = ["ua", "ca"];
+
 const useProfileForm = (): UseProfileFormReturnType => {
 	const { t } = useTranslation();
 	const user = useAppSelector((state) => state.auth.user);
 	const [updateUserAndProfile] = useUpdateUserAndProfileMutation();
 	const [upload] = useUploadMutation();
 	const dispatch = useAppDispatch();
-
-	const zero = 0;
 
 	const [serverError, setServerError] = useState("");
 	const [selectedFile, setSelectedFile] = useState<File | null | string>(
@@ -57,6 +70,14 @@ const useProfileForm = (): UseProfileFormReturnType => {
 	const [selectedJeansSize, setSelectedJeansSize] = useState<null | string>(
 		user?.profile.jeansSize ?? "",
 	);
+
+	const phoneCountries = useMemo(() => {
+		return defaultCountries.filter((country: CountryData) => {
+			const { iso2 } = parseCountry(country);
+
+			return requiredCodes.includes(iso2);
+		});
+	}, []);
 
 	const { control, errors, handleSubmit, setValue } =
 		useAppForm<UserAndProfile>({
@@ -159,6 +180,7 @@ const useProfileForm = (): UseProfileFormReturnType => {
 		handleJeansSizeChange,
 		handleShoeSizeChange,
 		phone,
+		phoneCountries,
 		selectedClothingSize,
 		selectedFile,
 		selectedJeansSize,

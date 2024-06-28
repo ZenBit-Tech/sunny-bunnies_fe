@@ -1,6 +1,6 @@
+import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import React from "react";
 import { useTranslation } from "react-i18next";
 
 const ProfileCard: React.FC = () => {
