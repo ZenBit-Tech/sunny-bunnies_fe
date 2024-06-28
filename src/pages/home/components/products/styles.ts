@@ -1,11 +1,10 @@
 import { Box, styled } from "@mui/material";
 
 const StyledProductsContainer = styled(Box)`
-	align-item: flex-start;
-	display: flex;
-	justify-content: space-evenly;
-	gap: 30px;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 300px);
+	grid-gap: 56px;
+	justify-content: space-between;
 	padding: 25px 0px;
 `;
 
