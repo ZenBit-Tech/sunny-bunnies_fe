@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Logo from "~/assets/images/logo/big.png";
 import { AppRoute } from "~/libs/constants/index.ts";
 
-import { SidebarList } from "./sidebar-list.tsx";
+import { SidebarList } from "./sidebar-list/index.tsx";
 
 const Sidebar: React.FC = () => {
 	const { t } = useTranslation();

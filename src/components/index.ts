@@ -5,6 +5,7 @@ export { AdminRoute } from "./admin-route/admin-route.tsx";
 export { BaseButton } from "./base-button/index.tsx";
 export { FooterWrapper } from "./common/wrappers/footer-wrapper.tsx";
 export { HeaderWrapper } from "./common/wrappers/header-wrapper.tsx";
+export { CustomError } from "./custom-error/index.tsx";
 export { CustomFormGroup } from "./custom-form-group/index.tsx";
 export { CustomRadioButtonGroup } from "./custom-radio-button-group/index.tsx";
 export { CustomRadioButtons } from "./custom-radio-buttons/index.tsx";

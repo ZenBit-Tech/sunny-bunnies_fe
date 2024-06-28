@@ -9,6 +9,7 @@ const Loader: React.FC = () => {
 				display: "flex",
 				height: "100%",
 				justifyContent: "center",
+				margin: "12px",
 				width: "100%",
 			}}
 		>

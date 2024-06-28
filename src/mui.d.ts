@@ -5,6 +5,7 @@ declare module "@mui/material/Button" {
 	interface ButtonPropsVariantOverrides {
 		primary_black_bold: true;
 		primary_black_regular: true;
+		primary_outlined: true;
 		secondary_black: true;
 		small_icon: true;
 	}
@@ -25,6 +26,77 @@ declare module "@mui/material/styles" {
 		playfairDisplay?: React.CSSProperties;
 		playfairDisplayBold?: React.CSSProperties;
 		playfairDisplayTitle?: React.CSSProperties;
+	}
+	interface BreakpointOverrides {
+		tablet: true;
+	}
+	interface Palette {
+		black: string;
+		contentBlack: string;
+		darkGrey: string;
+		fontGray: string;
+		gray: string;
+		lightGreen: string;
+		lightRed: string;
+		pink: string;
+		red: string;
+		secondaryTextGray: string;
+		transparent: string;
+		white: string;
+	}
+	interface PaletteOptions {
+		black: string;
+		contentBlack: string;
+		darkGrey: string;
+		fontGray: string;
+		gray: string;
+		lightGreen: string;
+		lightRed: string;
+		pink: string;
+		red: string;
+		secondaryTextGray: string;
+		transparent: string;
+		white: string;
+	}
+	interface Theme {
+		fontSizes: {
+			extraLarge: string;
+			large: string;
+			lg: string;
+			medium: string;
+			mediumLarge: string;
+			small: string;
+			title: string;
+			xl: string;
+			xs: string;
+			xxl: string;
+		};
+		fontWeight: {
+			bold: number;
+			medium: number;
+			regular: number;
+			semiBold: number;
+		};
+	}
+	interface ThemeOptions {
+		fontSizes: {
+			extraLarge: string;
+			large: string;
+			lg: string;
+			medium: string;
+			mediumLarge: string;
+			small: string;
+			title: string;
+			xl: string;
+			xs: string;
+			xxl: string;
+		};
+		fontWeight: {
+			bold: number;
+			medium: number;
+			regular: number;
+			semiBold: number;
+		};
 	}
 }
 

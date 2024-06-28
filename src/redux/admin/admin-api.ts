@@ -6,6 +6,12 @@ import { adminApiPath } from "./constants.ts";
 
 export const adminApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		deleteUser: build.mutation<void, string>({
+			query: (id) => ({
+				method: httpMethods.DELETE,
+				url: `${adminApiPath.DELETE_USER}/${id}`,
+			}),
+		}),
 		getUserById: build.query<User, string | undefined>({
 			query: (id: string) => ({
 				method: httpMethods.GET,
@@ -30,7 +36,19 @@ export const adminApi = api.injectEndpoints({
 				)}`,
 			}),
 		}),
+		updateUserStatus: build.mutation<void, { id: string; status: string }>({
+			query: ({ id, status }) => ({
+				body: { status },
+				method: httpMethods.PATCH,
+				url: `${adminApiPath.UPDATE_USER_STATUS}/${id}`,
+			}),
+		}),
 	}),
 });
 
-export const { useGetUserByIdQuery, useGetUsersByOptionsQuery } = adminApi;
+export const {
+	useDeleteUserMutation,
+	useGetUserByIdQuery,
+	useGetUsersByOptionsQuery,
+	useUpdateUserStatusMutation,
+} = adminApi;

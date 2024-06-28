@@ -10,9 +10,7 @@ type User = {
 	status: UserStatus;
 };
 
-type UserStatus = {
-	status: string;
-};
+type UserStatus = "active" | "inactive";
 
 type UserSignUpResponseDto = {
 	accessToken: string;

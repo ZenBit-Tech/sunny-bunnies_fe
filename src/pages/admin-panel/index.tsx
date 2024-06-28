@@ -20,7 +20,7 @@ import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
 
 import { Sidebar, UserManagement } from "./component/index.ts";
-import { UserProfile } from "./component/user-profile.tsx";
+import { UserProfile } from "./component/user-profile/index.tsx";
 import { VerticalDivider } from "./styles.ts";
 
 const firstLetter = 0;

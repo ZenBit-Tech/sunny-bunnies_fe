@@ -9,22 +9,22 @@ import {
 	Typography,
 } from "@mui/material";
 import { t } from "i18next";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
+import { CustomError, Loader } from "~/components/index.ts";
 import { useGetUsersByOptionsQuery } from "~/redux/admin/admin-api.ts";
 import theme from "~/theme.ts";
 
-import { sortFieldNames, sortOption } from "../constants/index.ts";
+import { sortFieldNames, sortOption } from "../../constants/index.ts";
 import {
 	BoldDivider,
 	StyledContainer,
-	StyledPaper,
 	StyledSortButton,
 	StyledWrapperContainer,
 	StyledWrapperHeader,
-	StylesSearchBox,
-} from "./style.ts";
-import { UserTable } from "./user-table.tsx";
+} from "../styles.ts";
+import { UserTable } from "../user-table/index.tsx";
+import { StyledPaper, StylesSearchBox } from "./styles.ts";
 
 type Properties = {
 	role: string;
@@ -36,13 +36,17 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 	const [sortOrder, setSortOrder] = useState<"ASC" | "DESC">("ASC");
 	const [sortField, setSortField] = useState("name");
 
-	const { data: fetchedUsers = [], refetch } = useGetUsersByOptionsQuery({
+	const {
+		data: fetchedUsers = [],
+		isError,
+		isLoading,
+		refetch,
+	} = useGetUsersByOptionsQuery({
 		order: sortOrder,
 		role,
 		searchQuery,
 		sortField,
 	});
-
 	const handleSearch = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			const { value } = event.target;
@@ -76,6 +80,11 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 		setSortOrder((prevSortOrder) => (prevSortOrder === "ASC" ? "DESC" : "ASC"));
 		refetch();
 	}, [refetch]);
+
+	useEffect(() => {
+		refetch();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [location.pathname, refetch]);
 
 	return (
 		<StyledContainer>
@@ -159,6 +168,12 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 					role={role}
 					users={fetchedUsers}
 				/>
+				{isLoading && <Loader />}
+				{isError && (
+					<CustomError
+						errorMessage={t("AdminUserManagementPage.errorLoadingProfile")}
+					/>
+				)}
 			</StyledWrapperContainer>
 		</StyledContainer>
 	);

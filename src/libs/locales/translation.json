@@ -5,6 +5,7 @@
 		"submit": "Submit",
 		"thisFieldRequired": "This field is required"
 	},
+
 	"FormTabs": {
 		"role": "User Role",
 		"general": "General Information",
@@ -159,11 +160,19 @@
 		"ascending": "Ascending",
 		"descending": "Descending",
 		"buyerProfile": "Buyer Profile",
-		"status": "status",
+		"vendorProfile": "Vendor Profile",
 		"addressLineOne": "Address",
 		"phoneNumber": "Phone number",
 		"buyers": "Buyers",
-		"vendors": "Vendors"
+		"vendors": "Vendors",
+		"status": "Status",
+		"save": "Save",
+		"errorLoadingProfile":"Error loading user profile",
+		"errorLoadingUsers" :"Error loading users",
+		"cancel" :"Cancel",
+		"delete" :"Delete",
+		"attention" :"Deleted user will lose the ability to use the application",
+		"question" :"Are you sure want to delete user’s profile"
 	},
 	"SignInComponent": {
 		"signIn": "Sign In",
