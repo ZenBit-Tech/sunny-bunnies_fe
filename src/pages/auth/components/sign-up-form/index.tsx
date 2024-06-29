@@ -12,9 +12,10 @@ import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
 
-import { useSignUpForm } from "../hooks/index.ts";
-import { AuthLinks, SignInLink } from "./index.ts";
-import { StyledFormContainer } from "./styles.ts";
+import { AuthLinks } from "../auth-links/index.tsx";
+import { SignInLink } from "../sign-in-link/index.tsx";
+import { StyledFormContainer } from "../styles.ts";
+import { useSignUpForm } from "./use-sign-up-form.ts";
 
 const SignUpForm: React.FC = () => {
 	const dispatch = useAppDispatch();

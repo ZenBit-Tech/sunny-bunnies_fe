@@ -10,11 +10,12 @@ import { AppRoute } from "~/libs/constants/index.ts";
 import { useTimer } from "~/libs/hooks/index.ts";
 import { User } from "~/libs/types/user.ts";
 import { StyledFormContainer } from "~/pages/auth/components/styles.ts";
-import { useVerifyOtpForm } from "~/pages/auth/hooks/use-verify-otp-form.ts";
 import { useVerifyEmailMutation } from "~/redux/auth/auth-api.ts";
 import { logout } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
+
+import { useVerifyOtpForm } from "./use-verify-otp-form.ts";
 
 const VerifyEmailForm: React.FC = () => {
 	const { t } = useTranslation();

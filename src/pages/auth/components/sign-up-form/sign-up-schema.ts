@@ -4,7 +4,7 @@ import {
 	emailRegex,
 	userValidationMessage,
 	userValidationRules,
-} from "./constants.ts";
+} from "~/pages/auth/validation/constants.ts";
 
 const userSignUpValidation = Yup.object().shape({
 	email: Yup.string()

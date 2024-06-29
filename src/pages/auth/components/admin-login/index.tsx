@@ -9,12 +9,11 @@ import { BaseButton, CustomFormGroup } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
 import { UserSignInRequestDto } from "~/libs/types/user.ts";
+import { userSignInValidation } from "~/pages/auth/validation/sign-in-schema.ts";
 import { useAdminLoginMutation } from "~/redux/auth/auth-api.ts";
 import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
-
-import { userSignInValidation } from "../validation/sign-in-schema.ts";
 
 const AdminLogin: React.FC = () => {
 	const dispatch = useAppDispatch();

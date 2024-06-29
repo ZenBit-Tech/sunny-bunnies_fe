@@ -19,7 +19,7 @@ import {
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
 import { AdminPanel } from "./pages/admin-panel/admin-panel.tsx";
-import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
+import { AdminLogin } from "./pages/auth/components/admin-login/index.tsx";
 import {
 	Auth,
 	Home,

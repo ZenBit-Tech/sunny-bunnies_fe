@@ -10,7 +10,7 @@ import { useRegisterMutation } from "~/redux/auth/auth-api.ts";
 import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 
-import { userSignUpValidation } from "../validation/sign-up-schema.ts";
+import { userSignUpValidation } from "./sign-up-schema.ts";
 
 type SignUpFormResult = {
 	control: Control<UserSignUpFormData>;

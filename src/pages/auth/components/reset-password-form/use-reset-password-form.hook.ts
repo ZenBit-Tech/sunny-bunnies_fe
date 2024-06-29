@@ -9,8 +9,9 @@ import {
 	type UserResetPasswordRequestDto,
 	type UserRestorePasswordForm,
 } from "~/libs/types/user.ts";
-import { userResetPassword } from "~/pages/auth/validation/index.ts";
 import { useResetPasswordMutation } from "~/redux/auth/auth-api.ts";
+
+import { userResetPassword } from "./reset-password-schema.ts";
 
 type ResetPasswordFormResult = {
 	control: Control<UserRestorePasswordForm>;

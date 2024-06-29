@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import { Control, FieldError, useForm } from "react-hook-form";
 
 import { type UserRestorePasswordRequestDto } from "~/libs/types/user.ts";
-import { userRestorePassword } from "~/pages/auth/validation/index.ts";
 import { useRestorePasswordMutation } from "~/redux/auth/auth-api.ts";
+
+import { userRestorePassword } from "../forgot-password-link/restore-password-schema.ts";
 
 type RestorePasswordFormResult = {
 	control: Control<UserRestorePasswordRequestDto>;
