@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -7,6 +7,7 @@ import { fontSizes } from "~/libs/constants/fonts.ts";
 import { DescriptionDetailsItem } from "./description-details-item.tsx";
 import {
 	StyledDescriptionTitle,
+	StyledDivider,
 	StyledProductDescriptionContainer,
 } from "./styles.ts";
 
@@ -28,7 +29,7 @@ const ProductDescription: React.FC<ProductDescriptionProperties> = ({
 			<StyledDescriptionTitle>
 				{t("ProductPage.description")}
 			</StyledDescriptionTitle>
-			<Divider />
+			<StyledDivider />
 			<Box>
 				<Typography fontSize={fontSizes.small} variant="dmSans">
 					{description}

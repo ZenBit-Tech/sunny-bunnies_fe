@@ -289,7 +289,8 @@
 		"youMightAlsoLike": "You Might Also Like",
 		"toProductList": "To Product List",
 		"payAttention": "Pay Attention",
-		"vendorMessage": "You are in preview mode. On this page you can see how the buyer sees your product page",
+		"youAreInPreviewMode": "You are in preview mode",
+		"onThisPageYouCanSee": "On this page you can see how the buyer sees your product page",
 		"ok": "OK"
 	},
 	"ProductFilters": {
