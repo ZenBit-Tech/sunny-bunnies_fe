@@ -8,6 +8,7 @@ import { fontSizes } from "~/libs/constants/fonts.ts";
 import { DescriptionDetailsItem } from "./description-details-item.tsx";
 import {
 	StyledDescriptionTitle,
+	StyledDivider,
 	StyledProductDescriptionContainer,
 } from "./styles.ts";
 
@@ -29,7 +30,7 @@ const ProductDescription: React.FC<ProductDescriptionProperties> = ({
 			<StyledDescriptionTitle>
 				{t("ProductPage.description")}
 			</StyledDescriptionTitle>
-			<Divider />
+			<StyledDivider />
 			<Box>
 				<Typography fontSize={fontSizes.small} variant="dmSans">
 					{description}

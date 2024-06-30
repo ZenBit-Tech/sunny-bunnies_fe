@@ -58,6 +58,7 @@ const VendorProfile: React.FC = () => {
 				<Box
 					alignItems="center"
 					display="flex"
+					height="45%"
 					justifyContent="center"
 					width="100%"
 				>

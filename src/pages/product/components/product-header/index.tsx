@@ -38,7 +38,7 @@ const ProductHeader: React.FC<ProductHeaderProperties> = ({
 					shortDescriptionEndIndex,
 				) + "..."}
 			</StyledProductShortDescription>
-			<Box display="flex" gap="12px">
+			<Box display="flex" gap="12px" paddingTop="10px">
 				<Typography fontSize={fontSizes.l} variant="dmSansBold">
 					{minPrice}
 				</Typography>

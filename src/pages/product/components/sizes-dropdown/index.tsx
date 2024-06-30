@@ -6,23 +6,30 @@ import {
 	Select,
 	SelectChangeEvent,
 } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { type ProductVariant } from "~/libs/types/products.ts";
+
+import { StyledSelect } from "./styles.ts";
 
 const defaultSizeIndex = 0;
 
 type SizesDropdownProperties = {
+	disabled: boolean;
 	variants: ProductVariant[];
 };
 
-const SizesDropdown: React.FC<SizesDropdownProperties> = ({ variants }) => {
+const SizesDropdown: React.FC<SizesDropdownProperties> = ({
+	disabled,
+	variants,
+}) => {
 	const [selectedSize, setSelectedSize] = useState(
 		variants[defaultSizeIndex].size.id,
 	);
 
 	const handleChange = useCallback(
-		(event: SelectChangeEvent<number>) => {
-			const size = event.target.value as number;
+		(event: SelectChangeEvent<unknown>) => {
+			const size = event?.target?.value as number;
 			setSelectedSize(size);
 		},
 		[setSelectedSize],
@@ -30,8 +37,10 @@ const SizesDropdown: React.FC<SizesDropdownProperties> = ({ variants }) => {
 
 	return (
 		<FormControl fullWidth>
-			<Select
+			<StyledSelect
+				IconComponent={ExpandMoreIcon}
 				defaultValue={selectedSize}
+				disabled={disabled}
 				onChange={handleChange}
 				value={selectedSize}
 			>
@@ -40,7 +49,7 @@ const SizesDropdown: React.FC<SizesDropdownProperties> = ({ variants }) => {
 						{variant.size.name}
 					</MenuItem>
 				))}
-			</Select>
+			</StyledSelect>
 		</FormControl>
 	);
 };

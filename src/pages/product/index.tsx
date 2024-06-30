@@ -5,10 +5,12 @@ import { useParams } from "react-router-dom";
 import { Box, Divider, Typography } from "@mui/material";
 
 import { Loader } from "~/components/index.ts";
+import { sortByAscOrder } from "~/helpers/sort-sizes.ts";
 import { userRole } from "~/libs/constants/user-role.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { useGetProductByIdQuery } from "~/redux/products/products-api.ts";
 import { type RootState } from "~/redux/store.ts";
+import theme from "~/theme.ts";
 
 import {
 	ImagesSlider,
@@ -25,6 +27,7 @@ import {
 	StyledProductDetailsContainer,
 	StyledProductDetailsContent,
 	StyledProductPageContainer,
+	StyledProductPageWrapper,
 } from "./styles.ts";
 
 const defaultProductDataIndex = 0;
@@ -34,8 +37,13 @@ const ProductPage: React.FC = () => {
 	const { t } = useTranslation();
 	const user = useAppSelector((state: RootState) => state.auth.user);
 
-	const { data: product, isError, isLoading } = useGetProductByIdQuery(id);
-
+	const {
+		data: product,
+		error,
+		isError,
+		isLoading,
+	} = useGetProductByIdQuery(id);
+	const [serverError, setServerError] = useState("");
 	const [isPreviewMode, setIsPreviewMode] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,13 +54,22 @@ const ProductPage: React.FC = () => {
 		) {
 			setIsPreviewMode(true);
 		}
-	}, [user, product]);
-
-	const handleVendorClick = useCallback((): void => {
-		if (isPreviewMode) {
-			setIsModalOpen(true);
+		if (isError) {
+			const err = (error as FetchBaseQueryError).data as Error;
+			setServerError(err.message);
 		}
-	}, [isPreviewMode]);
+	}, [error, isError, user, product]);
+
+	const handleVendorClick = useCallback(
+		(event: React.MouseEvent): void => {
+			if (isPreviewMode) {
+				setIsModalOpen(true);
+				event.stopPropagation();
+				event.preventDefault();
+			}
+		},
+		[isPreviewMode],
+	);
 
 	const handleModalClose = useCallback((): void => {
 		setIsModalOpen(false);
@@ -66,11 +83,17 @@ const ProductPage: React.FC = () => {
 		);
 	}
 
-	if (isError || !product) {
+	if (serverError || !product) {
 		return (
-			<Box display="flex" justifyContent="center">
-				<Typography variant="dmSansBold">
-					{t("ProductPage.errorMessage")}
+			<Box
+				alignItems="center"
+				display="flex"
+				height="45%"
+				justifyContent="center"
+				width="100%"
+			>
+				<Typography textAlign="center" variant="playfairDisplayBold">
+					{serverError}
 				</Typography>
 			</Box>
 		);
@@ -80,7 +103,8 @@ const ProductPage: React.FC = () => {
 		product;
 
 	const colors = [...new Set(variants.map((variant) => variant.color.name))];
-	const sizes = [...new Set(variants.map((variant) => variant.size.name))];
+	const sizes = [...new Set(variants?.map((variant) => variant.size.name))];
+	const sortedSizes = sortByAscOrder(sizes);
 
 	return (
 		<>
@@ -90,16 +114,15 @@ const ProductPage: React.FC = () => {
 					onClose={handleModalClose}
 				/>
 			)}
-			<Box
-				display="flex"
-				flexDirection="column"
-				max-width="1298px"
-				onClick={handleVendorClick}
-			>
+			<StyledProductPageWrapper onClick={handleVendorClick}>
 				{isPreviewMode && <VendorPreviewHeader />}
 				<StyledProductPageContainer>
 					<StyledProductDetailsContainer>
-						<ImagesSlider images={images} vendorName={product?.user.name} />
+						<ImagesSlider
+							images={images}
+							isPreviewMode={isPreviewMode}
+							vendorName={product?.user.name}
+						/>
 						<StyledProductDetailsContent>
 							<ProductHeader
 								description={description}
@@ -107,15 +130,18 @@ const ProductPage: React.FC = () => {
 								minPrice={minPrice}
 								name={name}
 							/>
-							<Divider />
-							<Typography color="primary" variant="playfairDisplay">
+							<Typography
+								color={theme.palette.primary.main}
+								variant="playfairDisplay"
+							>
 								{t("ProductPage.chooseSize")}
 							</Typography>
 							{variants && (
 								<>
-									<SizesDropdown variants={variants} />
+									<SizesDropdown disabled={isPreviewMode} variants={variants} />
 									<ProductStatusRadio
 										image={images[defaultProductDataIndex].url}
+										isPreviewMode={isPreviewMode}
 										name={name}
 										price={minPrice}
 										status={status}
@@ -128,11 +154,11 @@ const ProductPage: React.FC = () => {
 					<ProductDescription
 						colors={colors}
 						description={description}
-						sizes={sizes}
+						sizes={sortedSizes}
 					/>
 					{!isPreviewMode && <RecommendedProducts />}
 				</StyledProductPageContainer>
-			</Box>
+			</StyledProductPageWrapper>
 		</>
 	);
 };

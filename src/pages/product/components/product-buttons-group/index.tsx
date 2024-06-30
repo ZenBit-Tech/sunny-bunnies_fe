@@ -7,8 +7,9 @@ import { Box } from "@mui/material";
 
 import { productIcons } from "~/assets/images/product/index.ts";
 import { BaseButton } from "~/components/index.ts";
+import theme from "~/theme.ts";
 
-import { StyledButtonsContainer } from "./styles.ts";
+import { StyledBaseButton, StyledButtonsContainer } from "./styles.ts";
 
 type ProductButtonsGroupProperties = {
 	isPreviewMode: boolean;
@@ -29,22 +30,22 @@ const ProductButtonsGroup: React.FC<ProductButtonsGroupProperties> = ({
 
 	return (
 		<StyledButtonsContainer>
-			<BaseButton
+			<StyledBaseButton
 				startIcon={<productIcons.ShopIcon />}
+				sx={{ cursor: isPreviewMode ? "none" : "pointer" }}
 				variant="primary_black_bold"
 			>
 				{t("ProductPage.addToCart")}
-			</BaseButton>
-			{!isPreviewMode && (
-				<BaseButton variant="secondary_black">
-					{t("ProductPage.makeAnOffer")}
-				</BaseButton>
-			)}
+			</StyledBaseButton>
 			<Box display="flex" gap="32px">
 				<BaseButton
 					onClick={handleLikeButtonClick}
 					startIcon={isLikeClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-					sx={{ fill: "black", textTransform: "none" }}
+					sx={{
+						cursor: isPreviewMode ? "none" : "pointer",
+						fill: theme.palette.primary.main,
+						textTransform: "none",
+					}}
 					variant="text"
 				>
 					{t("ProductPage.wishlist")}

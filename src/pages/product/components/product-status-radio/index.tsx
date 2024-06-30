@@ -12,6 +12,7 @@ import {
 
 type ProductStatusRadioProperties = {
 	image: string;
+	isPreviewMode: boolean;
 	name: string;
 	price: number;
 	status: string;
@@ -19,6 +20,7 @@ type ProductStatusRadioProperties = {
 
 const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 	image,
+	isPreviewMode,
 	name,
 	price,
 	status,
@@ -42,6 +44,7 @@ const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 							status={status}
 						/>
 					}
+					sx={{ cursor: isPreviewMode ? "none" : "pointer" }}
 					value={status}
 				/>
 			</StyledRadioGroup>

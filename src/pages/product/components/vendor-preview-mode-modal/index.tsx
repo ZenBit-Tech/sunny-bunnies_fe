@@ -3,16 +3,23 @@ import { useTranslation } from "react-i18next";
 
 import CloseIcon from "@mui/icons-material/Close";
 import {
+  Box,
 	DialogActions,
 	DialogContent,
 	DialogTitle,
 	Typography,
 } from "@mui/material";
 
+import VendorPreviewIcon from "~/assets/icons/vendor-preview-icon.svg?react";
 import { BaseButton } from "~/components/index.ts";
-import { fontSizes } from "~/libs/constants/index.ts";
+import theme from "~/theme.ts";
 
-import { StyledCrossIconButton, VendorDialog } from "./styles.ts";
+import {
+	StyledCrossIconButton,
+	StyledDialogContent,
+	StyledVendorPreviewIcon,
+	VendorDialog,
+} from "./styles.ts";
 
 type VendorPreviewModeModalProperties = {
 	isModalOpen: boolean;
@@ -31,22 +38,35 @@ const VendorPreviewModeModal: React.FC<VendorPreviewModeModalProperties> = ({
 	return (
 		<>
 			<VendorDialog onClose={handleClose} open={isModalOpen}>
-				<DialogTitle sx={{ m: 1, p: 2 }} variant="playfairDisplayBold">
-					{t("ProductPage.payAttention")}
-				</DialogTitle>
-				<StyledCrossIconButton aria-label="close" onClick={handleClose}>
-					<CloseIcon />
-				</StyledCrossIconButton>
-				<DialogContent sx={{ m: 1, p: 3 }}>
+				<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+					<StyledCrossIconButton aria-label="close" onClick={handleClose}>
+						<CloseIcon />
+					</StyledCrossIconButton>
+				</Box>
+				<StyledDialogContent>
+					<StyledVendorPreviewIcon>
+						<VendorPreviewIcon />
+					</StyledVendorPreviewIcon>
 					<Typography
-						sx={{ fontSize: fontSizes.mediumLarge, lineHeight: "30px" }}
+						sx={{ fontSize: theme.fontSizes.extraLarge, textAlign: "center" }}
+						variant="playfairDisplayBold"
+					>
+						{t("ProductPage.youAreInPreviewMode")}
+					</Typography>
+					<Typography
+						sx={{ color: theme.palette.secondaryTextGray, textAlign: "center" }}
 						variant="dmSans"
 					>
-						{t("ProductPage.vendorMessage")}
+						{t("ProductPage.onThisPageYouCanSee")}
 					</Typography>
-				</DialogContent>
+				</StyledDialogContent>
 				<DialogActions>
-					<BaseButton onClick={handleClose} variant="text">
+					<BaseButton
+						fullWidth
+						onClick={handleClose}
+						sx={{ height: "42px" }}
+						variant="primary_black_regular"
+					>
 						{t("ProductPage.ok")}
 					</BaseButton>
 				</DialogActions>
