@@ -1,5 +1,6 @@
-import { SvgIconProps } from "@mui/material";
 import React from "react";
+
+import { SvgIconProps } from "@mui/material";
 
 import { SocialIcon } from "~/components/Footer/social-icon.tsx";
 import { SocialIconsBox } from "~/components/Footer/styles.ts";

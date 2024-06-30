@@ -1,3 +1,6 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 import {
 	Paper,
 	Table,
@@ -6,8 +9,6 @@ import {
 	TableHead,
 	Typography,
 } from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
 
 import { colors, fontSizes } from "~/libs/constants/index.ts";
 

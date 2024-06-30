@@ -8,7 +8,7 @@ const StyledProductDetailsHeader = styled(Box)`
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 16px;
-	padding: 0 0 24px 0;
+	padding-bottom: 8px;
 `;
 
 const StyledProductName = styled(Typography)(({ theme }) => ({

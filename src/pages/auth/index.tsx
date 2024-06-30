@@ -1,7 +1,8 @@
-import { Box, Grid } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { matchPath, useLocation } from "react-router-dom";
+
+import { Box, Grid } from "@mui/material";
 
 import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
@@ -10,6 +11,7 @@ import { AppRoute } from "~/libs/constants/index.ts";
 import { VerifyEmailForm } from "~/pages/auth/components/verify-email-form.tsx";
 
 import { SignInForm, SignUpForm } from "./components/index.ts";
+
 import styles from "./styles.module.css";
 
 const NoLogoRoutes = [AppRoute.VERIFY_EMAIL];

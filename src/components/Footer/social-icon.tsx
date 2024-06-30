@@ -1,5 +1,6 @@
-import { SvgIconProps } from "@mui/material";
 import React from "react";
+
+import { SvgIconProps } from "@mui/material";
 
 import { CircularElement } from "~/components/Footer/Circular.tsx";
 import { Link } from "~/components/Header/Link.tsx";

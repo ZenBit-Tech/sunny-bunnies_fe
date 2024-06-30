@@ -1,6 +1,7 @@
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import {
 	useCheckFollowStatusQuery,

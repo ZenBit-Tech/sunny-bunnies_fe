@@ -4,8 +4,10 @@ import {
 	Address,
 	CreditCard,
 	PhoneNumber,
+	Profile,
 	Role,
 	Size,
+	UserAndProfile,
 } from "~/libs/types/user-profile.type.ts";
 import { Vendor } from "~/libs/types/vendor.ts";
 
@@ -42,7 +44,7 @@ export const userApi = api.injectEndpoints({
 			query: (body) => ({
 				body,
 				method: httpMethods.PATCH,
-				url: userApiPath.USER_UPDATE,
+				url: userApiPath.USER_UPDATE_PROFILE,
 			}),
 		}),
 		updateCard: build.mutation<User, CreditCard>({
@@ -50,6 +52,13 @@ export const userApi = api.injectEndpoints({
 				body,
 				method: httpMethods.PATCH,
 				url: userApiPath.USER_UPDATE_CARD,
+			}),
+		}),
+		updateUserAndProfile: build.mutation<User, Profile | UserAndProfile>({
+			query: (body) => ({
+				body,
+				method: httpMethods.PATCH,
+				url: userApiPath.USER_UPDATE_USER_AND_PROFILE,
 			}),
 		}),
 		upload: build.mutation<User, FormData>({
@@ -69,5 +78,6 @@ export const {
 	useUnFollowMutation,
 	useUpdateCardMutation,
 	useUpdateMutation,
+	useUpdateUserAndProfileMutation,
 	useUploadMutation,
 } = userApi;

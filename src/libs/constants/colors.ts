@@ -1,6 +1,7 @@
 const colors = {
 	black: "#333333",
 	borderGray: "rgba(0, 0, 0, 0.24)",
+	borderLightGray: "#605F5F",
 	cardBoxShadow: "rgba(0, 0, 0, 0.04)",
 	contentBlack: "#101623",
 	darkGrey: "#D1D5DB",
@@ -16,6 +17,7 @@ const colors = {
 	pink: "#F5B4C2",
 	red: "#DE506F",
 	secondaryTextGray: "#A0A8B0",
+	shadowColor: "#2F2F2F",
 	smallTextGray: "#807E7E",
 	tableCellColor: "#000000",
 	textBlack: "#121212",

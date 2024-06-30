@@ -1,5 +1,6 @@
-import { SvgIconProps } from "@mui/material";
 import React from "react";
+
+import { SvgIconProps } from "@mui/material";
 
 import { StyledSvgIcon } from "~/components/Header/styles.ts";
 
