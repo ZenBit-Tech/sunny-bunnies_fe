@@ -1,6 +1,7 @@
+import React from "react";
+
 import { Box, Icon, Stack, Typography } from "@mui/material";
 import { t } from "i18next";
-import React from "react";
 
 import { ArrowLeftIcon } from "~/assets/icons/arrow-left-icon.tsx";
 import { BaseButton, CustomFormGroup, Link } from "~/components/index.ts";

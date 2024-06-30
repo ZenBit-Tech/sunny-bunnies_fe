@@ -1,7 +1,8 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useEffect, useState } from "react";
 import { Control, FieldError, useForm } from "react-hook-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { type UserRestorePasswordRequestDto } from "~/libs/types/user.ts";
 import { useRestorePasswordMutation } from "~/redux/auth/auth-api.ts";
