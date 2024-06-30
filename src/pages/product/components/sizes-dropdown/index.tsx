@@ -1,12 +1,7 @@
 import React, { useCallback, useState } from "react";
 
-import {
-	FormControl,
-	MenuItem,
-	Select,
-	SelectChangeEvent,
-} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { FormControl, MenuItem, SelectChangeEvent } from "@mui/material";
 
 import { type ProductVariant } from "~/libs/types/products.ts";
 
