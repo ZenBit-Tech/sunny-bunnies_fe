@@ -16,6 +16,7 @@ import {
 import { AppRoute } from "~/libs/constants/index.ts";
 import { userRole } from "~/libs/constants/user-role.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
+import { statusSelectItem } from "~/pages/admin-panel/constants/index.ts";
 import {
 	useDeleteUserMutation,
 	useGetUserByIdQuery,
@@ -23,7 +24,6 @@ import {
 } from "~/redux/admin/admin-api.ts";
 import theme from "~/theme.ts";
 
-import { statusSelectItem } from "../../constants/index.ts";
 import { Modal } from "../modal/index.tsx";
 import {
 	BoldDivider,

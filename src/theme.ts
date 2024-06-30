@@ -154,6 +154,7 @@ const theme = createTheme({
 		black: colors.black,
 		contentBlack: colors.contentBlack,
 		darkGrey: colors.darkGrey,
+		errorBoxColor: colors.errorBoxColor,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
 		lightGreen: colors.lightGreen,

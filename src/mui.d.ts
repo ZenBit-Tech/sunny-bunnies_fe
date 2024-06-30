@@ -34,6 +34,7 @@ declare module "@mui/material/styles" {
 		black: string;
 		contentBlack: string;
 		darkGrey: string;
+		errorBoxColor: string;
 		fontGray: string;
 		gray: string;
 		lightGreen: string;
@@ -48,6 +49,7 @@ declare module "@mui/material/styles" {
 		black: string;
 		contentBlack: string;
 		darkGrey: string;
+		errorBoxColor: string;
 		fontGray: string;
 		gray: string;
 		lightGreen: string;

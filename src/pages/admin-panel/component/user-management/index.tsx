@@ -12,10 +12,13 @@ import { t } from "i18next";
 import React, { useCallback, useEffect, useState } from "react";
 
 import { CustomError, Loader } from "~/components/index.ts";
+import {
+	sortFieldNames,
+	sortOption,
+} from "~/pages/admin-panel/constants/index.ts";
 import { useGetUsersByOptionsQuery } from "~/redux/admin/admin-api.ts";
 import theme from "~/theme.ts";
 
-import { sortFieldNames, sortOption } from "../../constants/index.ts";
 import {
 	BoldDivider,
 	StyledContainer,

@@ -1,6 +1,6 @@
 import { Box, Dialog, DialogContent, IconButton, styled } from "@mui/material";
 
-const VendorDialog = styled(Dialog)(({ theme }) => ({
+const VendorDialog = styled(Dialog)(() => ({
 	"& .MuiDialogContent-root": {
 		overflowY: "initial",
 		padding: 0,

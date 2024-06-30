@@ -1,7 +1,6 @@
-import { SvgIconProps } from "@mui/material";
 import React from "react";
 
-const ProfileDeleteIcon: React.FC = ({ ...props }: SvgIconProps) => {
+const ProfileDeleteIcon: React.FC = () => {
 	return (
 		<svg
 			fill="none"

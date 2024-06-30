@@ -5,6 +5,7 @@ const colors = {
 	contentBlack: "#101623",
 	darkGrey: "#D1D5DB",
 	disabledButtonBg: "#777777",
+	errorBoxColor: "rgba(255, 0, 0, 0.1)",
 	gray: "#6D6B6B",
 	grayishRed: "#EDEAE9",
 	hoverBlack: "black",

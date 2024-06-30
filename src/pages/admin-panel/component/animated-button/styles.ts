@@ -27,7 +27,7 @@ const wave = keyframes`
   }
 `;
 
-const AnimatedButtonContainer = styled(Box)(({ theme }) => ({
+const AnimatedButtonContainer = styled(Box)(() => ({
 	alignItems: "center",
 	display: "flex",
 	height: 100,
