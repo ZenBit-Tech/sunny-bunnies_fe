@@ -1,4 +1,5 @@
 import { Box, Typography, styled } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import theme from "~/theme.ts";
 
@@ -23,4 +24,11 @@ const StyledTitleDmSans = styled(Typography)({
 	...theme.typography.dmSans,
 });
 
-export { StyledTitle, StyledTitleDmSans, StyledUserBox };
+const StyledLink = styled(Link)(({ theme }) => ({
+	...theme.typography.playfairDisplayBold,
+	color: "inherit",
+	fontSize: theme.fontSizes.large,
+	textDecoration: "none",
+}));
+
+export { StyledLink, StyledTitle, StyledTitleDmSans, StyledUserBox };

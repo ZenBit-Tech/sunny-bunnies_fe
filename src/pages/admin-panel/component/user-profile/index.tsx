@@ -2,8 +2,9 @@ import { Box, IconButton, SelectChangeEvent, Typography } from "@mui/material";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { t } from "i18next";
 import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
+import { ArrowLeftIcon } from "~/assets/icons/arrow-left-icon.tsx";
 import { DeleteIcon } from "~/assets/icons/delete-icon.tsx";
 import { EditIcon } from "~/assets/icons/edit-icon.tsx";
 import {
@@ -30,7 +31,12 @@ import {
 	StyledWrapperContainer,
 	StyledWrapperHeader,
 } from "../styles.ts";
-import { StyledTitle, StyledTitleDmSans, StyledUserBox } from "./styles.ts";
+import {
+	StyledLink,
+	StyledTitle,
+	StyledTitleDmSans,
+	StyledUserBox,
+} from "./styles.ts";
 
 type Properties = {
 	role: string;
@@ -115,6 +121,7 @@ const UserProfile: React.FC<Properties> = ({ role }) => {
 				await updateUserStatus({ id, status }).unwrap();
 				setIsEditing(false);
 				refetch();
+				setServerError("");
 			}
 		} catch (error) {
 			const loadError = (error as FetchBaseQueryError).data
@@ -134,17 +141,29 @@ const UserProfile: React.FC<Properties> = ({ role }) => {
 
 	return (
 		<StyledContainer>
-			<Typography
-				sx={{
-					fontFamily: theme.typography.playfairDisplayBold,
-					fontSize: theme.fontSizes.medium,
-					mb: 2,
-				}}
-			>
-				{role === userRole.BUYER
-					? t("AdminUserManagementPage.buyers")
-					: t("AdminUserManagementPage.vendors")}
-			</Typography>
+			<Box alignItems="center" display="flex" mb={1}>
+				<IconButton
+					component={Link}
+					to={
+						role === userRole.BUYER
+							? AppRoute.MANAGEMENT_BUYERS
+							: AppRoute.MANAGEMENT_VENDORS
+					}
+				>
+					<ArrowLeftIcon />
+				</IconButton>
+				<StyledLink
+					to={
+						role === userRole.BUYER
+							? AppRoute.MANAGEMENT_BUYERS
+							: AppRoute.MANAGEMENT_VENDORS
+					}
+				>
+					{role === userRole.BUYER
+						? t("AdminUserManagementPage.buyers")
+						: t("AdminUserManagementPage.vendors")}
+				</StyledLink>
+			</Box>
 			<StyledWrapperContainer>
 				<StyledWrapperHeader>
 					<Box sx={{ alignItems: "center", display: "flex" }}>
@@ -194,7 +213,11 @@ const UserProfile: React.FC<Properties> = ({ role }) => {
 									<StyledTitleDmSans>{user.status}</StyledTitleDmSans>
 								)}
 								{serverError && (
-									<Typography color="error" variant="body2">
+									<Typography
+										color="error"
+										sx={{ marginBottom: "8px" }}
+										variant="body2"
+									>
 										{serverError}
 									</Typography>
 								)}
@@ -217,14 +240,30 @@ const UserProfile: React.FC<Properties> = ({ role }) => {
 					</Box>
 				)}
 				{isEditing && (
-					<BaseButton
-						isLoading={isStatusLoading}
-						onClick={handleFormSubmit}
-						type="submit"
-						variant="contained"
-					>
-						{t("AdminUserManagementPage.save")}
-					</BaseButton>
+					<Box display="flex" gap="10px">
+						<BaseButton
+							isLoading={isStatusLoading}
+							onClick={handleFormSubmit}
+							sx={{
+								borderRadius: "12px",
+							}}
+							type="submit"
+							variant="contained"
+						>
+							{t("AdminUserManagementPage.save")}
+						</BaseButton>
+						<BaseButton
+							isLoading={isStatusLoading}
+							onClick={handleEditClick}
+							sx={{
+								padding: "6px 16px",
+							}}
+							type="submit"
+							variant="primary_outlined"
+						>
+							{t("AdminUserManagementPage.cancel")}
+						</BaseButton>
+					</Box>
 				)}
 				{isLoading && <Loader />}
 				{isError && (

@@ -91,7 +91,7 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 			<Typography
 				sx={{
 					fontFamily: theme.typography.playfairDisplayBold,
-					fontSize: theme.fontSizes.medium,
+					fontSize: theme.fontSizes.large,
 					mb: 2,
 				}}
 			>

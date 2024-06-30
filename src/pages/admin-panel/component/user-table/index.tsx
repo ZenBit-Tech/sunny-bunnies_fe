@@ -12,7 +12,7 @@ import { t } from "i18next";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { EditIcon } from "~/assets/icons/edit-icon.tsx";
+import { ChatIcon } from "~/assets/icons/chat-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";
 import { configureString } from "~/helpers/configure-string.helper.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
@@ -82,10 +82,10 @@ const UserTable: React.FC<Properties> = ({
 									component={Link}
 									to={configureString(currentLink, { id: String(user.id) })}
 								>
-									<EditIcon />
+									<ViewIcon />
 								</IconButton>
 								<IconButton component={Link} to={`/view/${user.id}`}>
-									<ViewIcon />
+									<ChatIcon />
 								</IconButton>
 							</CustomTableCell>
 						</TableRow>

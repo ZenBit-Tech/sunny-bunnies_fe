@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { Typography, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -16,4 +16,17 @@ const StyledLink = styled(Link)(({ theme }) => ({
 	textDecoration: "none",
 }));
 
-export { StyledLink };
+const StyledTab = styled(Typography)(({ theme }) => ({
+	...theme.typography.dmSans,
+	alignItems: "center",
+	display: "flex",
+	fontWeight: theme.fontWeight.medium,
+	height: "32px",
+}));
+
+const StyledMainTab = styled(Typography)(({ theme }) => ({
+	...theme.typography.playfairDisplay,
+	fontSize: theme.fontSizes.medium,
+}));
+
+export { StyledLink, StyledMainTab, StyledTab };
