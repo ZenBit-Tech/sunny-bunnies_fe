@@ -33,31 +33,39 @@ declare module "@mui/material/styles" {
 	}
 	interface Palette {
 		black: string;
+		borderGray: string;
 		contentBlack: string;
 		darkGrey: string;
 		errorBoxColor: string;
 		fontGray: string;
 		gray: string;
+		lightGray: string;
 		lightGreen: string;
 		lightRed: string;
 		pink: string;
 		red: string;
 		secondaryTextGray: string;
+		secondaryTextGray: string;
+		shadowColor: string;
 		transparent: string;
 		white: string;
 	}
 	interface PaletteOptions {
 		black: string;
+		borderGray: string;
 		contentBlack: string;
 		darkGrey: string;
 		errorBoxColor: string;
 		fontGray: string;
 		gray: string;
+		lightGray: string;
 		lightGreen: string;
 		lightRed: string;
 		pink: string;
 		red: string;
 		secondaryTextGray: string;
+		secondaryTextGray: string;
+		shadowColor: string;
 		transparent: string;
 		white: string;
 	}

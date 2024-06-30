@@ -1,6 +1,7 @@
+import React from "react";
+
 import { Typography } from "@mui/material";
 import { t } from "i18next";
-import React from "react";
 
 import { ErrorBox } from "./styles.ts";
 

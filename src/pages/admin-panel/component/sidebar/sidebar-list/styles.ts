@@ -1,5 +1,6 @@
-import { Typography, styled } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import { Typography, styled } from "@mui/material";
 
 const StyledLink = styled(Link)(({ theme }) => ({
 	"&.active": {

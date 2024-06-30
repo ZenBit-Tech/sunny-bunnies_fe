@@ -1,7 +1,8 @@
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, DialogActions, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+
+import CloseIcon from "@mui/icons-material/Close";
+import { Box, DialogActions, Typography } from "@mui/material";
 
 import { BaseButton } from "~/components/index.ts";
 import theme from "~/theme.ts";

@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 import {
 	IconButton,
 	Paper,
@@ -9,8 +12,6 @@ import {
 } from "@mui/material";
 import { format } from "date-fns";
 import { t } from "i18next";
-import React from "react";
-import { Link } from "react-router-dom";
 
 import { ChatIcon } from "~/assets/icons/chat-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";

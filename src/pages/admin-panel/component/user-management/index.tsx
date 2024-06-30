@@ -1,3 +1,5 @@
+import React, { useCallback, useEffect, useState } from "react";
+
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import {
@@ -9,7 +11,6 @@ import {
 	Typography,
 } from "@mui/material";
 import { t } from "i18next";
-import React, { useCallback, useEffect, useState } from "react";
 
 import { CustomError, Loader } from "~/components/index.ts";
 import {

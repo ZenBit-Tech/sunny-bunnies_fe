@@ -1,8 +1,9 @@
+import React, { useCallback, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+
 import { Box, IconButton, SelectChangeEvent, Typography } from "@mui/material";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { t } from "i18next";
-import React, { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { ArrowLeftIcon } from "~/assets/icons/arrow-left-icon.tsx";
 import { DeleteIcon } from "~/assets/icons/delete-icon.tsx";
