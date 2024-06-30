@@ -1,8 +1,9 @@
+import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Box, Typography } from "@mui/material";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { t } from "i18next";
-import React, { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { CustomFormGroup } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";

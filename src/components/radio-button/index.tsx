@@ -1,5 +1,6 @@
-import Radio, { RadioProps } from "@mui/material/Radio";
 import React from "react";
+
+import Radio, { RadioProps } from "@mui/material/Radio";
 
 import { CustomCheckedIcon, CustomIcon } from "./styles.ts";
 

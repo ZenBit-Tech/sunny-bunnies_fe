@@ -1,6 +1,7 @@
-import { Box } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { Box } from "@mui/material";
 
 import { NotificationIcon } from "~/assets/icons/notification-icon.tsx";
 import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";

@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
 	FormControl,
 	FormControlLabel,
@@ -5,7 +7,6 @@ import {
 	RadioGroup,
 	Typography,
 } from "@mui/material";
-import React from "react";
 
 type RadioButtonOption = {
 	label: string;

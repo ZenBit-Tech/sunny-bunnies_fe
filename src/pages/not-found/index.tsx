@@ -1,7 +1,8 @@
-import { Link, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+import { Link, Typography } from "@mui/material";
 
 import { BaseButton } from "~/components/index.ts";
 import {

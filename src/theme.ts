@@ -13,10 +13,12 @@ declare module "@mui/material/styles" {
 		tablet: true;
 	}
 	interface Palette {
+		black: string;
 		borderGray: string;
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
+		lightGray: string;
 		lightGreen: string;
 		secondaryTextGray: string;
 		shadowColor: string;
@@ -24,10 +26,12 @@ declare module "@mui/material/styles" {
 		white: string;
 	}
 	interface PaletteOptions {
+		black: string;
 		borderGray: string;
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
+		lightGray: string;
 		lightGreen: string;
 		secondaryTextGray: string;
 		shadowColor: string;
@@ -206,10 +210,12 @@ const theme = createTheme({
 		semiBold: fontWeight.semiBold,
 	},
 	palette: {
+		black: colors.black,
 		borderGray: colors.borderGray,
 		darkGrey: colors.darkGrey,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
+		lightGray: colors.lightGray,
 		lightGreen: colors.lightGreen,
 		primary: {
 			dark: colors.hoverBlack,

@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
+
+import { Box } from "@mui/material";
 
 import { Loader, Newsletter, TopInfoSection } from "~/components/index.ts";
 

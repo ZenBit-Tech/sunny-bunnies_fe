@@ -1,11 +1,12 @@
+import React, { useCallback } from "react";
+import { useTranslation } from "react-i18next";
+
 import {
 	Autocomplete,
 	AutocompleteRenderInputParams,
 	Box,
 	TextField,
 } from "@mui/material";
-import React, { useCallback } from "react";
-import { useTranslation } from "react-i18next";
 
 import { Product } from "~/libs/types/products.ts";
 
