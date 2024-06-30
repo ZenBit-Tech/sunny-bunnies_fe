@@ -1,6 +1,7 @@
-import { Box, BoxProps } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { Box, BoxProps } from "@mui/material";
 
 import { NavBox, NavTitle } from "~/components/Footer/styles.ts";
 import { Link } from "~/components/Header/Link.tsx";

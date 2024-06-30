@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useLocation } from "react-router-dom";
+
+import { Box, Typography } from "@mui/material";
 
 import { CheckIcon } from "~/assets/icons/check-icon.tsx";
 import theme from "~/theme.ts";

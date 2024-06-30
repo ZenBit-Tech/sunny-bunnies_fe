@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
 	FormControl,
 	FormControlLabelProps,
@@ -6,7 +8,6 @@ import {
 	Typography,
 	useRadioGroup,
 } from "@mui/material";
-import React from "react";
 
 import { StyledFormControlLabel } from "./styles.ts";
 

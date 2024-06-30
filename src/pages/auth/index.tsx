@@ -1,4 +1,3 @@
-import { Box, Grid } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -8,6 +7,8 @@ import {
 	useSearchParams,
 } from "react-router-dom";
 
+import { Box, Grid } from "@mui/material";
+
 import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/index.ts";
@@ -16,6 +17,7 @@ import ResetPasswordForm from "~/pages/auth/components/reset-password-form/index
 import { RestorePasswordForm } from "~/pages/auth/components/restore-password-form/index.tsx";
 
 import { SignInForm, SignUpForm, VerifyEmailForm } from "./components/index.ts";
+
 import styles from "./styles.module.css";
 
 const NoLogoRoutes = [AppRoute.VERIFY_EMAIL];

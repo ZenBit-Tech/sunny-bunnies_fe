@@ -1,7 +1,8 @@
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { Box, Typography } from "@mui/material";
 
 import { colors, fontSizes, fontWeight } from "~/libs/constants/index.ts";
 

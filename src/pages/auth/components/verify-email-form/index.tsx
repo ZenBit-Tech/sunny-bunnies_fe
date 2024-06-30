@@ -1,8 +1,9 @@
-import { Box, Icon, Stack, Typography } from "@mui/material";
-import { MuiOtpInput } from "mui-one-time-password-input";
 import React, { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+import { Box, Icon, Stack, Typography } from "@mui/material";
+import { MuiOtpInput } from "mui-one-time-password-input";
 
 import { ArrowLeftIcon } from "~/assets/icons/arrow-left-icon.tsx";
 import { BaseButton } from "~/components/index.ts";

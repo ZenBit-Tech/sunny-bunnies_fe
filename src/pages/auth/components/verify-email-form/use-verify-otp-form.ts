@@ -1,6 +1,7 @@
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { AppRoute } from "~/libs/constants/index.ts";
 import { User } from "~/libs/types/user.ts";

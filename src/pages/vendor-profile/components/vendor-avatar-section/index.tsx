@@ -1,6 +1,7 @@
-import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { Avatar, Box, Typography } from "@mui/material";
 
 import StarRatingIcon from "~/assets/icons/star-rating-icon.svg?react";
 import { BaseButton } from "~/components/index.ts";

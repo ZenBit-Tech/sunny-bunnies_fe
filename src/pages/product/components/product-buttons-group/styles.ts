@@ -1,5 +1,7 @@
 import { Box, styled } from "@mui/material";
 
+import { BaseButton } from "~/components/index.ts";
+
 const StyledButtonsContainer = styled(Box)`
 	display: flex;
 	flex-direction: column;
@@ -7,4 +9,16 @@ const StyledButtonsContainer = styled(Box)`
 	padding-top: 24px;
 `;
 
-export { StyledButtonsContainer };
+const StyledBaseButton = styled(BaseButton)(({ theme }) => ({
+	"&:focus": {
+		backgroundColor: theme.palette.primary.main,
+	},
+	"&:hover": {
+		backgroundColor: theme.palette.primary.main,
+	},
+	".MuiTouchRipple-root": {
+		display: "none",
+	},
+}));
+
+export { StyledBaseButton, StyledButtonsContainer };

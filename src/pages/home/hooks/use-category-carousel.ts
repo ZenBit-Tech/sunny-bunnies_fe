@@ -7,10 +7,10 @@ const breakpoints = [
 	{ itemsPerPage: 2, width: 912 },
 	{ itemsPerPage: 3, width: 1114 },
 	{ itemsPerPage: 4, width: 1354 },
-	{ itemsPerPage: 5, width: Infinity },
+	{ itemsPerPage: 6, width: Infinity },
 ];
 
-const initialItemPerPage = 5;
+const initialItemPerPage = 6;
 const initialStartIndex = 0;
 const defaultStep = 1;
 

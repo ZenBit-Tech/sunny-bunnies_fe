@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
 	FormControl,
 	InputLabel,
@@ -5,7 +7,6 @@ import {
 	Select,
 	SelectChangeEvent,
 } from "@mui/material";
-import React from "react";
 
 import { FilterItem } from "~/libs/types/filters.ts";
 

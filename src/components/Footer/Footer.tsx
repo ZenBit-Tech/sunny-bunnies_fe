@@ -1,6 +1,7 @@
-import { Box, Container } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { Box, Container } from "@mui/material";
 
 import { FooterNav } from "~/components/Footer/Nav.tsx";
 import { SocialIcons } from "~/components/Footer/social-icons.tsx";

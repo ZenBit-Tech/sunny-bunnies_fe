@@ -1,5 +1,6 @@
-import { BoxProps } from "@mui/material";
 import React from "react";
+
+import { BoxProps } from "@mui/material";
 
 import { StyledCircularElement } from "~/components/Footer/styles.ts";
 

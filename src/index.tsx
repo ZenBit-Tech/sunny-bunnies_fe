@@ -1,7 +1,8 @@
+import React from "react";
+
 import { ThemeProvider } from "@mui/material";
 import "@preact/signals-react/auto";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import React from "react";
 import { createRoot } from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -25,6 +26,7 @@ import {
 	Home,
 	NotFound,
 	ProductPage,
+	Profile,
 	SizeGuide,
 	VendorProfile,
 } from "./pages/index.ts";
@@ -32,8 +34,9 @@ import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";
 import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
 import { persistor, store } from "./redux/store.ts";
-import "./styles.css";
 import theme from "./theme.ts";
+
+import "./styles.css";
 
 createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -124,6 +127,26 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <Auth />,
 																	path: AppRoute.VERIFY_EMAIL,
+																},
+																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE,
+																},
+																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE_ORDERS,
+																},
+																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE_WISHLIST,
+																},
+																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE_SETTINGS,
+																},
+																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE_SUPPORT,
 																},
 																{
 																	element: <ProfileBoard />,

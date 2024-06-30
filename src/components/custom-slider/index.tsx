@@ -1,5 +1,6 @@
-import { Box, Slider, TextField, Typography } from "@mui/material";
 import React from "react";
+
+import { Box, Slider, TextField, Typography } from "@mui/material";
 
 type CustomSliderProps = {
 	inputStartAdornment?: string;

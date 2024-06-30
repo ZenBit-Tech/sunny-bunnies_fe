@@ -1,7 +1,8 @@
+import React, { useCallback, useState } from "react";
+
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Typography } from "@mui/material";
-import React, { useCallback, useState } from "react";
 
 import ShopCart from "~/assets/icons/shop-cart.svg?react";
 import { colors, fontSizes, fontWeight } from "~/libs/constants/index.ts";
