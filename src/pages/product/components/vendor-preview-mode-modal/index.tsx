@@ -2,13 +2,7 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import CloseIcon from "@mui/icons-material/Close";
-import {
-  Box,
-	DialogActions,
-	DialogContent,
-	DialogTitle,
-	Typography,
-} from "@mui/material";
+import { Box, DialogActions, Typography } from "@mui/material";
 
 import VendorPreviewIcon from "~/assets/icons/vendor-preview-icon.svg?react";
 import { BaseButton } from "~/components/index.ts";
