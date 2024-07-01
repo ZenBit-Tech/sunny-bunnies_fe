@@ -165,7 +165,6 @@ const ProductDescriptionForm: React.FC = () => {
 					/>
 				</Box>
 			</StyledFormGroup>
-
 			<StyledFormGroup>
 				<StyledTextGroup>
 					<StyledFormTitle>{t("AddVendorProduct.description")}</StyledFormTitle>

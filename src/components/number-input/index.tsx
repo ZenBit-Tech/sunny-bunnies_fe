@@ -6,7 +6,7 @@ import { Box, FormLabel, IconButton, InputAdornment } from "@mui/material";
 
 import theme from "~/theme.ts";
 
-import { StyledTextField } from "./styles.ts";
+import { StyledNumberInputContainer, StyledTextField } from "./styles.ts";
 
 const minInputNumber = 0;
 const maxInputNumber = 0;
@@ -56,12 +56,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
 	);
 
 	return (
-		<Box
-			alignItems="flex-start"
-			display="flex"
-			flexDirection="column"
-			width="100%"
-		>
+		<StyledNumberInputContainer>
 			<FormLabel
 				component="legend"
 				sx={{
@@ -104,7 +99,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
 				type="number"
 				value={value}
 			/>
-		</Box>
+		</StyledNumberInputContainer>
 	);
 };
 

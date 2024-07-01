@@ -1,16 +1,16 @@
 import { Box, IconButton, styled } from "@mui/material";
 
-const StyledIconButton = styled(IconButton)(() => ({
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
 	"& .MuiTouchRipple-root": {
 		display: "none",
 	},
 	"&:active": {
-		background: "transparent",
-		backgroundColor: "transparent",
+		background: theme.palette.transparent,
+		backgroundColor: theme.palette.transparent,
 	},
 	"&:hover, &:focus": {
-		background: "transparent",
-		backgroundColor: "transparent",
+		background: theme.palette.transparent,
+		backgroundColor: theme.palette.transparent,
 		boxShadow: "none",
 	},
 	padding: 0,

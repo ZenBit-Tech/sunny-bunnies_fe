@@ -1,4 +1,4 @@
-import { TextField, styled } from "@mui/material";
+import { Box, TextField, styled } from "@mui/material";
 
 const StyledTextField = styled(TextField)({
 	"& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
@@ -11,4 +11,11 @@ const StyledTextField = styled(TextField)({
 	width: "100%",
 });
 
-export { StyledTextField };
+const StyledNumberInputContainer = styled(Box)({
+	alignItems: "flex-start",
+	display: "flex",
+	flexDirection: "column",
+	width: "100%",
+});
+
+export { StyledNumberInputContainer, StyledTextField };
