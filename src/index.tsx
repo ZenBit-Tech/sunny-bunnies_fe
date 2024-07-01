@@ -122,6 +122,10 @@ createRoot(document.getElementById("root")!).render(
 																},
 																{
 																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_VARIANTS,
+																},
+																{
+																	element: <AddProducts />,
 																	path: AppRoute.PRODUCT_FINISH,
 																},
 															],

@@ -15,6 +15,7 @@ const AppRoute = {
 	PRODUCT_LIST: "/product-list",
 	PRODUCT_MANAGEMENT: "/product-management",
 	PRODUCT_PHOTOS: "/product-photos",
+	PRODUCT_VARIANTS: "/product-variants",
 	ROLE: "/profile-role",
 	ROOT: "/",
 	SIGN_IN: "/sign-in",
