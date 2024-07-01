@@ -1,17 +1,5 @@
-import { Category } from "~/pages/home/types/index.ts";
-
 import { gender } from "../constants/index.ts";
 import { type User } from "./user.ts";
-
-type AddProductImage = {
-	isPrimary: boolean;
-	productImage: File | null | string;
-};
-
-type ProductImageDto = {
-	isPrimary: boolean;
-	productImage: string;
-};
 
 type ProductSize = {
 	id: number;
@@ -23,6 +11,11 @@ type ProductImage = {
 	description: string;
 	id: number;
 	url: string;
+};
+
+type Category = {
+	id: number;
+	name: string;
 };
 
 type Color = {
@@ -41,6 +34,16 @@ type ProductType = {
 };
 
 type ProductStyle = {
+	id: number;
+	name: string;
+};
+
+type ProductBrand = {
+	id: number;
+	name: string;
+};
+
+type ProductMaterial = {
 	id: number;
 	name: string;
 };
@@ -72,23 +75,16 @@ type Product = {
 	variants: ProductVariant[];
 };
 
-type ProductCategoryTypeStyle = {
-	category: null | number;
-	style: null | number;
-	type: null | number;
-};
-
-type CategoryWithTypes = { types: ProductType[] } & Category;
-
 export {
-	type AddProductImage,
-	type CategoryWithTypes,
+	type Category,
+	type Color,
 	type Product,
-	type ProductCategoryTypeStyle,
+	type ProductBrand,
 	type ProductImage,
-	type ProductImageDto,
+	type ProductMaterial,
 	type ProductSize,
 	type ProductStyle,
 	type ProductType,
 	type ProductVariant,
+	type Size,
 };
