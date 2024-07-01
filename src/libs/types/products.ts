@@ -13,12 +13,37 @@ type ProductImage = {
 	url: string;
 };
 
+type Category = {
+	id: number;
+	name: string;
+};
+
 type Color = {
 	id: number;
 	name: string;
 };
 
 type Size = {
+	id: number;
+	name: string;
+};
+
+type ProductType = {
+	id: number;
+	name: string;
+};
+
+type ProductStyle = {
+	id: number;
+	name: string;
+};
+
+type ProductBrand = {
+	id: number;
+	name: string;
+};
+
+type ProductMaterial = {
 	id: number;
 	name: string;
 };
@@ -51,8 +76,15 @@ type Product = {
 };
 
 export {
+	type Category,
+	type Color,
 	type Product,
+	type ProductBrand,
 	type ProductImage,
+	type ProductMaterial,
 	type ProductSize,
+	type ProductStyle,
+	type ProductType,
 	type ProductVariant,
+	type Size,
 };

@@ -14,33 +14,44 @@ declare module "@mui/material/styles" {
 	}
 	interface Palette {
 		black: string;
+		blueBlack: string;
 		borderGray: string;
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
 		lightGray: string;
+		lightGrayWithOpacity: string;
 		lightGreen: string;
+		pastelGray: string;
+		placeholderGray: string;
 		secondaryTextGray: string;
 		shadowColor: string;
+		shadowGrey: string;
 		transparent: string;
 		white: string;
 	}
 	interface PaletteOptions {
 		black: string;
+		blueBlack: string;
 		borderGray: string;
 		darkGrey: string;
 		fontGray: string;
 		gray: string;
 		lightGray: string;
+		lightGrayWithOpacity: string;
 		lightGreen: string;
+		pastelGray: string;
+		placeholderGray: string;
 		secondaryTextGray: string;
 		shadowColor: string;
+		shadowGrey: string;
 		transparent: string;
 		white: string;
 	}
 	interface Theme {
 		fontSizes: {
 			extraLarge: string;
+			extraSmall: string;
 			large: string;
 			lg: string;
 			medium: string;
@@ -61,6 +72,7 @@ declare module "@mui/material/styles" {
 	interface ThemeOptions {
 		fontSizes: {
 			extraLarge: string;
+			extraSmall: string;
 			large: string;
 			lg: string;
 			medium: string;
@@ -193,6 +205,7 @@ const theme = createTheme({
 	},
 	fontSizes: {
 		extraLarge: fontSizes.extraLarge,
+		extraSmall: fontSizes.extraSmall,
 		large: fontSizes.large,
 		lg: fontSizes.lg,
 		medium: fontSizes.medium,
@@ -211,12 +224,16 @@ const theme = createTheme({
 	},
 	palette: {
 		black: colors.black,
+		blueBlack: colors.blueBlack,
 		borderGray: colors.borderGray,
 		darkGrey: colors.darkGrey,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
 		lightGray: colors.lightGray,
+		lightGrayWithOpacity: colors.lightGrayWithOpacity,
 		lightGreen: colors.lightGreen,
+		pastelGray: colors.pastelGray,
+		placeholderGray: colors.placeholderGray,
 		primary: {
 			dark: colors.hoverBlack,
 			main: colors.black,
@@ -226,6 +243,7 @@ const theme = createTheme({
 		},
 		secondaryTextGray: colors.secondaryTextGray,
 		shadowColor: colors.shadowColor,
+		shadowGrey: colors.shadowGrey,
 		transparent: colors.transparent,
 		white: colors.white,
 	},

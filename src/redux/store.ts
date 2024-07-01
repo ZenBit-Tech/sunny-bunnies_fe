@@ -8,6 +8,7 @@ import { authApi } from "./auth/auth-api.ts";
 import { authReducer } from "./auth/auth-slice.ts";
 import { filtersReducer } from "./filters/filters.slice.ts";
 import { filtersApi } from "./filters/filters-api.ts";
+import { productFormReducer } from "./products/product-form-slice.ts";
 import { productsApi } from "./products/products-api.ts";
 import { productsReducer } from "./products/products-slice.ts";
 import { api } from "./services.ts";
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
 	[authApi.reducerPath]: authApi.reducer,
 	filters: filtersReducer,
 	filtersApiSlice: filtersApi.reducer,
+	productForm: productFormReducer,
 	products: productsReducer,
 	productsApiSlice: productsApi.reducer,
 	user: userReducer,

@@ -1,5 +1,16 @@
 import { httpMethods } from "~/libs/constants/http-methods.ts";
-import { type Product } from "~/libs/types/products.ts";
+import {
+	type Color,
+	type Product,
+	type ProductBrand,
+	type ProductMaterial,
+	type ProductStyle,
+	type Size,
+} from "~/libs/types/products.ts";
+import {
+	type AddProductRequestDto,
+	type CategoryWithTypes,
+} from "~/pages/add-products/types.ts";
 
 import { api } from "../services.ts";
 import {
@@ -25,10 +36,60 @@ type GetProductsRequestQuery = {
 
 export const productsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
+		addNewProduct: builder.mutation<Product, AddProductRequestDto>({
+			query: (newProduct) => ({
+				body: newProduct,
+				method: httpMethods.POST,
+				url: productsApiPath.ROOT,
+			}),
+		}),
+		deleteProductImage: builder.mutation<boolean, string>({
+			query: (imageUrl) => ({
+				body: { url: imageUrl },
+				method: httpMethods.DELETE,
+				url: productsApiPath.UPLOAD_IMAGE,
+			}),
+		}),
+		getCategoriesWithTypes: builder.query<CategoryWithTypes[], undefined>({
+			query: () => ({
+				method: httpMethods.GET,
+				url: productsApiPath.PRODUCT_DETAILS_CATEGORIES,
+			}),
+		}),
+		getProductBrands: builder.query<ProductBrand[], undefined>({
+			query: () => ({
+				method: httpMethods.GET,
+				url: productsApiPath.PRODUCT_DETAILS_BRANDS,
+			}),
+		}),
 		getProductById: builder.query<Product, string | undefined>({
 			query: (id) => ({
 				method: httpMethods.GET,
 				url: productsApiPath.ROOT + `/${id}`,
+			}),
+		}),
+		getProductColors: builder.query<Color[], undefined>({
+			query: () => ({
+				method: httpMethods.GET,
+				url: productsApiPath.PRODUCT_DETAILS_COLORS,
+			}),
+		}),
+		getProductMaterials: builder.query<ProductMaterial[], undefined>({
+			query: () => ({
+				method: httpMethods.GET,
+				url: productsApiPath.PRODUCT_DETAILS_MATERIAL,
+			}),
+		}),
+		getProductSizesByCategory: builder.query<Size[], number | undefined>({
+			query: (categoryId: number) => ({
+				method: httpMethods.GET,
+				url: `${productsApiPath.PRODUCT_DETAILS_SIZES}/${categoryId}`,
+			}),
+		}),
+		getProductStyles: builder.query<ProductStyle[], undefined>({
+			query: () => ({
+				method: httpMethods.GET,
+				url: productsApiPath.PRODUCT_DETAILS_STYLES,
 			}),
 		}),
 		getProducts: builder.query<Product[], GetProductsRequestQuery>({
@@ -82,11 +143,27 @@ export const productsApi = api.injectEndpoints({
 				url: productsApiPath.ROOT,
 			}),
 		}),
+		uploadProductImage: builder.mutation<{ url: string }, FormData>({
+			query: (formData: FormData) => ({
+				body: formData,
+				method: httpMethods.POST,
+				url: productsApiPath.UPLOAD_IMAGE,
+			}),
+		}),
 	}),
 });
 
 export const {
+	useAddNewProductMutation,
+	useDeleteProductImageMutation,
+	useGetCategoriesWithTypesQuery,
+	useGetProductBrandsQuery,
 	useGetProductByIdQuery,
+	useGetProductColorsQuery,
+	useGetProductMaterialsQuery,
+	useGetProductSizesByCategoryQuery,
+	useGetProductStylesQuery,
 	useGetProductsByNameQuery,
 	useGetProductsQuery,
+	useUploadProductImageMutation,
 } = productsApi;
