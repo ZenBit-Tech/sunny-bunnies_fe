@@ -43,7 +43,10 @@ const AddProducts: React.FC = () => {
 					aria-label="product tabs"
 					onChange={handleTabChange}
 					scrollButtons="auto"
-					sx={{ borderBottom: `1px solid #00000014`, borderRadius: "8px" }}
+					sx={{
+						borderBottom: `1px solid ${theme.palette.borderGray}`,
+						borderRadius: "8px",
+					}}
 					value={pathname}
 					variant="scrollable"
 				>

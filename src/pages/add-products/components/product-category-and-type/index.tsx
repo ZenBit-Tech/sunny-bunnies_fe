@@ -141,7 +141,7 @@ const ProductCategoryAndType: React.FC = () => {
 
 	if (!categoriesWithTypes || !styles || !types) {
 		return (
-			<Box height="100%">
+			<Box alignItems="center" display="flex" minHeight="550px">
 				<Loader />
 			</Box>
 		);

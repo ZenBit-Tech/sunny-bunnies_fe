@@ -26,11 +26,11 @@ type ProductDescription = {
 	name: string;
 };
 
-type AddProductRequestDto = {
+type AddProduct = {
 	brand: number;
 	category: number;
 	description: string;
-	gender: string;
+	gender: number;
 	images: ProductImageDto[];
 	material: number;
 	maxPrice: number;
@@ -55,7 +55,12 @@ type OptionType = {
 	value: number;
 };
 
+type AddProductRequestDto = {
+	variants: Omit<AddProductVariant, "id">[];
+} & Omit<AddProduct, "variants">;
+
 export {
+	type AddProduct,
 	type AddProductImage,
 	type AddProductRequestDto,
 	type AddProductVariant,

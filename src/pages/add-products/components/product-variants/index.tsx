@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import { addProductVariants } from "~/redux/products/product-form-slice.ts";
 import {
 	useGetProductColorsQuery,
-	useGetProductSizesQuery,
+	useGetProductSizesByCategoryQuery,
 } from "~/redux/products/products-api.ts";
 import { type RootState } from "~/redux/store.ts";
 
@@ -37,11 +37,13 @@ const ProductVariantsForm: React.FC = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
-	const { productVariants } = useAppSelector(
+	const { productCategory, productVariants } = useAppSelector(
 		(state: RootState) => state.productForm,
 	);
-
-	const { data: sizes } = useGetProductSizesQuery(undefined);
+	const categoryId = productCategory.category;
+	const { data: sizes } = useGetProductSizesByCategoryQuery(
+		categoryId ?? undefined,
+	);
 	const { data: colors } = useGetProductColorsQuery(undefined);
 
 	const [variants, setVariants] =
@@ -56,10 +58,10 @@ const ProductVariantsForm: React.FC = () => {
 	const [editingVariantId, setEditingVariantId] = useState<null | number>(null);
 
 	const { clearErrors, control, errors, handleSubmit, setValue } = useAppForm<{
-		productVariants: AddProductVariant[];
+		variants: AddProductVariant[];
 	}>({
 		defaultValues: {
-			productVariants,
+			variants,
 		},
 		mode: "onChange",
 		validationSchema: productVariantsValidation,
@@ -67,7 +69,7 @@ const ProductVariantsForm: React.FC = () => {
 
 	const { append } = useFieldArray({
 		control,
-		name: "productVariants",
+		name: "variants",
 	});
 
 	useEffect(() => {
@@ -77,7 +79,7 @@ const ProductVariantsForm: React.FC = () => {
 		);
 		setNextVariantId(maxId + stepVariantId);
 
-		setValue("productVariants", productVariants);
+		setValue("variants", productVariants);
 	}, [productVariants, setValue]);
 
 	const handleAddVariant = useCallback(() => {
@@ -117,7 +119,7 @@ const ProductVariantsForm: React.FC = () => {
 				(variant) => variant.id !== variantId,
 			);
 			setVariants(updatedVariants);
-			setValue("productVariants", updatedVariants);
+			setValue("variants", updatedVariants);
 		},
 		[setValue, variants],
 	);
@@ -140,8 +142,8 @@ const ProductVariantsForm: React.FC = () => {
 		(event_: React.BaseSyntheticEvent): void => {
 			event_.preventDefault();
 
-			void handleSubmit(({ productVariants }) => {
-				dispatch(addProductVariants(productVariants));
+			void handleSubmit(({ variants }) => {
+				dispatch(addProductVariants(variants));
 				navigate(AppRoute.PRODUCT_FINISH);
 			})(event_);
 		},
@@ -220,9 +222,9 @@ const ProductVariantsForm: React.FC = () => {
 			{addingVariantError && (
 				<StyledFormHelperText>{addingVariantError}</StyledFormHelperText>
 			)}
-			{errors.productVariants && (
+			{errors.variants && (
 				<StyledFormHelperText>
-					{errors.productVariants.message as string}
+					{errors.variants.message as string}
 				</StyledFormHelperText>
 			)}
 			{variants.map((variant) => (

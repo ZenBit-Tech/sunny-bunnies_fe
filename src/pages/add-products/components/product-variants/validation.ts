@@ -26,7 +26,7 @@ const productVariantValidation = Yup.object().shape({
 });
 
 const productVariantsValidation = Yup.object().shape({
-	productVariants: Yup.array()
+	variants: Yup.array()
 		.of(productVariantValidation)
 		.min(
 			productVariantsRules.MIN_VARIANT,

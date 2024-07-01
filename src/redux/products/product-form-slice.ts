@@ -8,8 +8,6 @@ import {
 } from "~/pages/add-products/types.ts";
 
 type ProductFormState = {
-	maxPrice: null | number;
-	minPrice: null | number;
 	productCategory: ProductCategoryTypeStyle;
 	productDescription: ProductDescription;
 	productImages: ProductImageDto[];
@@ -17,8 +15,6 @@ type ProductFormState = {
 };
 
 const initialProductFormState: ProductFormState = {
-	maxPrice: null,
-	minPrice: null,
 	productCategory: {
 		category: null,
 		style: null,
@@ -60,12 +56,6 @@ const productFormSlice = createSlice({
 		setProductImages: (state, action: PayloadAction<ProductImageDto[]>) => {
 			state.productImages = action.payload;
 		},
-		setProductMaxPrice: (state, action: PayloadAction<number>) => {
-			state.maxPrice = action.payload;
-		},
-		setProductMinPrice: (state, action: PayloadAction<number>) => {
-			state.minPrice = action.payload;
-		},
 		updateProductCategoryTypeStyle(
 			state,
 			action: PayloadAction<ProductCategoryTypeStyle>,
@@ -92,8 +82,6 @@ export const {
 	resetProductForm,
 	setPrimaryImage,
 	setProductImages,
-	setProductMaxPrice,
-	setProductMinPrice,
 	updateProductCategoryTypeStyle,
 	updateProductDescription,
 	updateProductImage,

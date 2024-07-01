@@ -15,7 +15,7 @@ const productDescriptionValidation = Yup.object().shape({
 			productDescriptionValidationMessage.MAX_DESCRIPTION_LENGTH,
 		)
 		.required(productDescriptionValidationMessage.REQUIRED_DESCRIPTION),
-	gender: Yup.string().required(
+	gender: Yup.number().required(
 		productDescriptionValidationMessage.REQUIRED_GENDER,
 	),
 	material: Yup.number().required(

@@ -17,7 +17,7 @@ const productImageSchema = Yup.object({
 });
 
 const productImagesValidation = Yup.object().shape({
-	productImages: Yup.array()
+	images: Yup.array()
 		.of(productImageSchema)
 		.required()
 		.min(minNumberOfImages, productImageValidationMessage.MINIMUM_FOUR_IMAGES)

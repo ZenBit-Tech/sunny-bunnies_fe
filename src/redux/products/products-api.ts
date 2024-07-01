@@ -8,7 +8,7 @@ import {
 	type Size,
 } from "~/libs/types/products.ts";
 import {
-	AddProductRequestDto,
+	type AddProductRequestDto,
 	type CategoryWithTypes,
 } from "~/pages/add-products/types.ts";
 
@@ -80,10 +80,10 @@ export const productsApi = api.injectEndpoints({
 				url: productsApiPath.PRODUCT_DETAILS_MATERIAL,
 			}),
 		}),
-		getProductSizes: builder.query<Size[], undefined>({
-			query: () => ({
+		getProductSizesByCategory: builder.query<Size[], number | undefined>({
+			query: (categoryId: number) => ({
 				method: httpMethods.GET,
-				url: productsApiPath.PRODUCT_DETAILS_SIZES,
+				url: `${productsApiPath.PRODUCT_DETAILS_SIZES}/${categoryId}`,
 			}),
 		}),
 		getProductStyles: builder.query<ProductStyle[], undefined>({
@@ -161,7 +161,7 @@ export const {
 	useGetProductByIdQuery,
 	useGetProductColorsQuery,
 	useGetProductMaterialsQuery,
-	useGetProductSizesQuery,
+	useGetProductSizesByCategoryQuery,
 	useGetProductStylesQuery,
 	useGetProductsByNameQuery,
 	useGetProductsQuery,

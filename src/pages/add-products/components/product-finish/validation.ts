@@ -2,6 +2,8 @@ import * as Yup from "yup";
 
 import { categoryTypeStyleValidation } from "../product-category-and-type/validation.ts";
 import { productDescriptionValidation } from "../product-description-form/validation.ts";
+import { productImagesValidation } from "../product-images/validation.ts";
+import { productVariantsValidation } from "../product-variants/validation.ts";
 
 const productDetailsValidationMessage = {
 	INVALID_FORMAT: "Price must be in the format 'min-max', e.g., '100-200'",
@@ -35,6 +37,8 @@ const productPriceValidation = Yup.string()
 const finalProductValidation = Yup.object().shape({
 	...categoryTypeStyleValidation.fields,
 	...productDescriptionValidation.fields,
+	...productImagesValidation.fields,
+	...productVariantsValidation.fields,
 	price: productPriceValidation.required(
 		productDetailsValidationMessage.REQUIRED_PRICE,
 	),
