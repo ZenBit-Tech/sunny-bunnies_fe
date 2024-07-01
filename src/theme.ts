@@ -13,6 +13,7 @@ declare module "@mui/material/styles" {
 		tablet: true;
 	}
 	interface Palette {
+		blueBlack: string;
 		borderGray: string;
 		darkGrey: string;
 		fontGray: string;
@@ -21,11 +22,13 @@ declare module "@mui/material/styles" {
 		lightGrayWithOpacity: string;
 		lightGreen: string;
 		pastelGray: string;
+		placeholderGray: string;
 		shadowGrey: string;
 		transparent: string;
 		white: string;
 	}
 	interface PaletteOptions {
+		blueBlack: string;
 		borderGray: string;
 		darkGrey: string;
 		fontGray: string;
@@ -34,6 +37,7 @@ declare module "@mui/material/styles" {
 		lightGrayWithOpacity: string;
 		lightGreen: string;
 		pastelGray: string;
+		placeholderGray: string;
 		shadowGrey: string;
 		transparent: string;
 		white: string;
@@ -210,6 +214,7 @@ const theme = createTheme({
 		semiBold: fontWeight.semiBold,
 	},
 	palette: {
+		blueBlack: colors.blueBlack,
 		borderGray: colors.borderGray,
 		darkGrey: colors.darkGrey,
 		fontGray: colors.gray,
@@ -218,6 +223,7 @@ const theme = createTheme({
 		lightGrayWithOpacity: colors.lightGrayWithOpacity,
 		lightGreen: colors.lightGreen,
 		pastelGray: colors.pastelGray,
+		placeholderGray: colors.placeholderGray,
 		primary: {
 			dark: colors.hoverBlack,
 			main: colors.black,
