@@ -1,9 +1,10 @@
 import * as Yup from "yup";
 
-import {
-	minNumberOfImages,
-	productImageValidationMessage,
-} from "./constants.ts";
+const productImageValidationMessage = {
+	FILE_IS_REQUIRED: "You need to provide a file",
+	FILE_TOO_LARGE: "The file is too large",
+	INVALID_FORMAT: "Please select an image in JPG, HEIC, or PNG format",
+};
 
 const productImageUploadValidation = Yup.object().shape({
 	productImage: Yup.lazy((value) => {
@@ -36,21 +37,4 @@ const productImageUploadValidation = Yup.object().shape({
 	}),
 });
 
-const productImageSchema = Yup.object({
-	isPrimary: Yup.boolean().required(
-		productImageValidationMessage.REQUIRED_PRODUCT_PRIMARY_FLAG,
-	),
-	productImage: Yup.string().required(
-		productImageValidationMessage.REQUIRED_PRODUCT_IMAGE_URL,
-	),
-});
-
-const productImagesValidation = Yup.object().shape({
-	productImages: Yup.array()
-		.of(productImageSchema)
-		.required()
-		.min(minNumberOfImages, productImageValidationMessage.MINIMUM_FOUR_IMAGES)
-		.max(minNumberOfImages, productImageValidationMessage.MINIMUM_FOUR_IMAGES),
-});
-
-export { productImageUploadValidation, productImagesValidation };
+export { productImageUploadValidation };

@@ -1,6 +1,6 @@
 import { Box, IconButton, styled } from "@mui/material";
 
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
+const StyledIconButton = styled(IconButton)(() => ({
 	"& .MuiTouchRipple-root": {
 		display: "none",
 	},
@@ -28,7 +28,7 @@ const StyledStarIconContainer = styled(Box)(() => ({
 	width: "16px",
 }));
 
-const StyledIconsButtonsContainer = styled(Box)(({ theme }) => ({
+const StyledIconsButtonsContainer = styled(Box)(() => ({
 	display: "flex",
 	gap: "8px",
 	padding: 0,

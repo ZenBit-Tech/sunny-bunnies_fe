@@ -1,6 +1,10 @@
 const productsApiPath = {
-	PRODUCT_DETAILS_CATEGORIES: "/product-detail/categories",
-	PRODUCT_DETAILS_STYLES: "/product-detail/styles",
+	PRODUCT_DETAILS_BRANDS: "/product-details/brands",
+	PRODUCT_DETAILS_CATEGORIES: "/product-details/categories",
+	PRODUCT_DETAILS_COLORS: "/product-details/colors",
+	PRODUCT_DETAILS_MATERIAL: "/product-details/materials",
+	PRODUCT_DETAILS_SIZES: "/product-details/sizes",
+	PRODUCT_DETAILS_STYLES: "/product-details/styles",
 	ROOT: "/products",
 	UPLOAD_IMAGE: "upload/product-image",
 } as const;

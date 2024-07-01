@@ -1,26 +1,33 @@
-import { Button, FormControl, FormHelperText, Typography } from "@mui/material";
+import { Button, FormHelperText, Typography } from "@mui/material";
 import { type FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { UploadImage } from "~/assets/images/add-product/index.ts";
 import { useAppForm } from "~/libs/hooks/use-app-form.hook.ts";
-import { AddProductImage, ProductImageDto } from "~/libs/types/products.ts";
-import { productImageUploadValidation } from "~/pages/add-products/validation/images-validation.ts";
+import {
+	AddProductImage,
+	ProductImageDto,
+} from "~/pages/add-products/types.ts";
 import { VisuallyHiddenInput } from "~/pages/profile-board/components/styles.ts";
 import {
 	useDeleteProductImageMutation,
 	useUploadProductImageMutation,
 } from "~/redux/products/products-api.ts";
-import theme from "~/theme.ts";
 
 import { ProductImagePreview } from "../image-preview/index.tsx";
-import { StyledAddImageContainer } from "./styles.ts";
+import {
+	StyledAddImageContainer,
+	StyledFormController,
+	StyledHintTextOnAddImageCard,
+} from "./styles.ts";
+import { productImageUploadValidation } from "./validation.ts";
 
 const indexZero = 0;
 
 type AddProductImageProperties = {
 	index: number;
+	initialImage: ProductImageDto;
 	isPrimary: boolean;
 	onDeleteImage: (index: number) => void;
 	onImageChange: (index: number, image: ProductImageDto) => void;
@@ -29,6 +36,7 @@ type AddProductImageProperties = {
 
 const AddImageCard: React.FC<AddProductImageProperties> = ({
 	index,
+	initialImage,
 	isPrimary,
 	onDeleteImage,
 	onImageChange,
@@ -38,11 +46,15 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 	const [uploadProductImage] = useUploadProductImageMutation();
 	const [deleteProductImage] = useDeleteProductImageMutation();
 
-	const [selectedFile, setSelectedFile] = useState<File | null | string>(null);
-	const [imagePreview, setImagePreview] = useState<null | string>(null);
+	const [selectedFile, setSelectedFile] = useState<File | null | string>(
+		initialImage.url ?? null,
+	);
+	const [imagePreview, setImagePreview] = useState<null | string>(
+		initialImage.url ?? null,
+	);
 	const [isImagePrimary, setIsImagePrimary] = useState(false);
-	const [serverError, setServerError] = useState("");
 	const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+	const [serverError, setServerError] = useState("");
 
 	const { errors, setValue } = useAppForm<AddProductImage>({
 		defaultValues: {
@@ -67,7 +79,7 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 
 						const productImage = {
 							isPrimary,
-							productImage: url,
+							url,
 						};
 						setServerError("");
 						setUploadedImageUrl(url);
@@ -104,8 +116,7 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 		setSelectedFile(null);
 		setImagePreview(null);
 		handleDeleteImage();
-		onDeleteImage(index);
-	}, [index, handleDeleteImage, onDeleteImage]);
+	}, [handleDeleteImage]);
 
 	const handleStarClick = useCallback(() => {
 		setIsImagePrimary(!isImagePrimary);
@@ -116,24 +127,13 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 		<StyledAddImageContainer
 			sx={{
 				backgroundImage: imagePreview ? `url(${imagePreview})` : "none",
-				backgroundPosition: "center",
-				backgroundSize: "cover",
-				position: imagePreview && "relative",
+				position: imagePreview ? "relative" : "static",
 			}}
 		>
 			{!selectedFile && (
-				<FormControl
-					component="fieldset"
-					error={Boolean(errors.productImage)}
-					sx={{
-						alignItems: "center",
-						display: "flex",
-						flexDirection: "column",
-						gap: "6px",
-						height: "100%",
-						justifyContent: "center",
-						width: "100%",
-					}}
+				<StyledFormController
+					as="fieldset"
+					{...(errors.productImage ? { error: true } : null)}
 				>
 					<Button component="label" role={undefined} sx={{ padding: 0 }}>
 						<UploadImage />
@@ -141,7 +141,7 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 					</Button>
 					<Button
 						component="label"
-						role={undefined}
+						role="button"
 						sx={{
 							alignItems: "center",
 							border: "solid",
@@ -159,29 +159,23 @@ const AddImageCard: React.FC<AddProductImageProperties> = ({
 						</Typography>
 						<VisuallyHiddenInput onChange={handleFileChange} type="file" />
 					</Button>
-					<Typography
-						color={theme.palette.pastelGray}
-						fontSize={theme.fontSizes.xs}
-						lineHeight="16px"
-						textAlign="center"
-						variant="dmSans"
-					>
+					<StyledHintTextOnAddImageCard>
 						{t("AddVendorProduct.orDropImageToUpload")}
-					</Typography>
-					{errors.productImage && (
-						<FormHelperText sx={{ marginLeft: 0 }}>
-							{errors.productImage.message as string}
-						</FormHelperText>
-					)}
-				</FormControl>
+					</StyledHintTextOnAddImageCard>
+				</StyledFormController>
 			)}
 			{selectedFile && (
 				<ProductImagePreview
-					isImagePrimary={isPrimary}
+					isImagePrimary={initialImage.isPrimary}
 					onDeleteClick={handleDeleteImage}
 					onEditClick={handleEditImage}
 					onStarClick={handleStarClick}
 				/>
+			)}
+			{errors.productImage && (
+				<FormHelperText sx={{ marginLeft: 0 }}>
+					{errors.productImage.message as string}
+				</FormHelperText>
 			)}
 			{serverError && (
 				<Typography color="error" variant="body2">

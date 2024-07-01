@@ -1,48 +1,56 @@
 import { Box, SelectChangeEvent } from "@mui/material";
-import { type FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
+import { Loader } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
-import { type ProductCategoryTypeStyle } from "~/libs/types/products.ts";
+import {
+	type OptionType,
+	type ProductCategoryTypeStyle,
+} from "~/pages/add-products/types.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
-import { useAppDispatch } from "~/redux/hooks.ts";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
+import { updateProductCategoryTypeStyle } from "~/redux/products/product-form-slice.ts";
 import {
 	useGetCategoriesWithTypesQuery,
 	useGetProductStylesQuery,
 } from "~/redux/products/products-api.ts";
+import { type RootState } from "~/redux/store.ts";
 
-import { categoryTypeStyleValidation } from "../../validation/index.ts";
+import { SelectField } from "../select-field.tsx";
 import {
+	StyledButtonsContainer,
 	StyledFormContainer,
 	StyledFormDescription,
 	StyledFormGroup,
 	StyledFormTitle,
 	StyledTextGroup,
 } from "../styles.ts";
+import { categoryTypeStyleValidation } from "./validation.ts";
 
-type ProductCategoryAndTypeProperties = {
-	onCategoryTypeStyleChange: (data: ProductCategoryTypeStyle) => void;
-};
-
-const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
-	onCategoryTypeStyleChange,
-}) => {
+const ProductCategoryAndType: React.FC = () => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
+	const { category, style, type } = useAppSelector(
+		(state: RootState) => state.productForm.productCategory,
+	);
+
 	const { data: categoriesWithTypes } =
 		useGetCategoriesWithTypesQuery(undefined);
 	const { data: styles } = useGetProductStylesQuery(undefined);
 
-	const [selectedCategory, setSelectedCategory] = useState<number>();
-	const [selectedType, setSelectedType] = useState<number>();
-	const [selectedStyle, setSelectedStyle] = useState<number>();
-	const [serverError, setServerError] = useState("");
+	const [selectedCategory, setSelectedCategory] = useState<null | number>(
+		category,
+	);
+	const [selectedType, setSelectedType] = useState<null | number>(type);
+	const [selectedStyle, setSelectedStyle] = useState<null | number>(style);
 
-	const { control, errors, handleSubmit, setValue } =
+	const [types, setTypes] = useState<OptionType[]>([]);
+
+	const { errors, handleSubmit, setValue } =
 		useAppForm<ProductCategoryTypeStyle>({
 			defaultValues: {
 				category: null,
@@ -52,19 +60,34 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 			validationSchema: categoryTypeStyleValidation,
 		});
 
+	useEffect(() => {
+		setValue("category", category);
+		setValue("style", style);
+		setValue("type", type);
+	}, [category, style, type, setValue]);
+
+	useEffect(() => {
+		if (categoriesWithTypes && selectedCategory) {
+			const category = categoriesWithTypes.find(
+				(category) => category.id === selectedCategory,
+			);
+
+			if (category) {
+				const typesOptions: OptionType[] = category.types.map((type) => ({
+					label: type.name,
+					value: type.id,
+				}));
+				setTypes(typesOptions);
+			}
+		}
+	}, [categoriesWithTypes, selectedCategory]);
+
 	const handleInputChange = useCallback(
 		async (formData: ProductCategoryTypeStyle): Promise<void> => {
-			try {
-				onCategoryTypeStyleChange(formData);
-				navigate(AppRoute.PRODUCT_DESCRIPTION);
-			} catch (error) {
-				const loadError = (error as FetchBaseQueryError).data
-					? ((error as FetchBaseQueryError).data as Error)
-					: { message: t("Error.unknowError") };
-				setServerError(loadError.message);
-			}
+			dispatch(updateProductCategoryTypeStyle(formData));
+			navigate(AppRoute.PRODUCT_DESCRIPTION);
 		},
-		[onCategoryTypeStyleChange, navigate, t],
+		[dispatch, navigate],
 	);
 
 	const handleCategoryChange = useCallback(
@@ -102,6 +125,28 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 		[handleSubmit, handleInputChange],
 	);
 
+	const categoryOptions: OptionType[] = categoriesWithTypes
+		? categoriesWithTypes.map((category) => ({
+				label: category.name,
+				value: category.id,
+		  }))
+		: [];
+
+	const styleOptions: OptionType[] = styles
+		? styles.map((style) => ({
+				label: style.name,
+				value: style.id,
+		  }))
+		: [];
+
+	if (!categoriesWithTypes || !styles || !types) {
+		return (
+			<Box height="100%">
+				<Loader />
+			</Box>
+		);
+	}
+
 	return (
 		<StyledFormContainer component="form" onSubmit={handleFormSubmit}>
 			<StyledFormGroup>
@@ -111,14 +156,14 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 						{t("AddVendorProduct.categoryDescription")}
 					</StyledFormDescription>
 				</StyledTextGroup>
-				{/* <Box display="flex" gap="26px" width="100%"> */}
-				{/* <SelectField
+				<Box display="flex" gap="26px" width="100%">
+					<SelectField
 						error={Boolean(errors.category)}
 						helperText={errors.category?.message as string}
-						items={categoriesWithTypes}
+						items={categoryOptions}
 						label={t("AddVendorProduct.categories")}
 						onChange={handleCategoryChange}
-						value={selectedCategory}
+						value={selectedCategory || undefined}
 					/>
 				</Box>
 			</StyledFormGroup>
@@ -137,9 +182,9 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 						items={types}
 						label={t("AddVendorProduct.types")}
 						onChange={handleTypeChange}
-						value={selectedType}
+						value={selectedType || undefined}
 					/>
-				</Box> */}
+				</Box>
 			</StyledFormGroup>
 
 			<StyledFormGroup>
@@ -149,31 +194,21 @@ const ProductCategoryAndType: React.FC<ProductCategoryAndTypeProperties> = ({
 						{t("AddVendorProduct.styleDescription")}
 					</StyledFormDescription>
 				</StyledTextGroup>
-				{/* <Box display="flex" gap="26px" width="100%">
+				<Box display="flex" gap="26px" width="100%">
 					<SelectField
 						error={Boolean(errors.style)}
 						helperText={errors.style?.message as string}
-						items={styles}
+						items={styleOptions}
 						label={t("AddVendorProduct.styles")}
 						onChange={handleStyleChange}
-						value={selectedStyle}
+						value={selectedStyle || undefined}
 					/>
-				</Box> */}
+				</Box>
 			</StyledFormGroup>
 
-			<Box
-				alignSelf="flex-end"
-				display="flex"
-				gap="10px"
-				justifyContent="flex-end"
-				marginTop="10%"
-				padding="15px 24px"
-			>
-				<FormButtons
-					isStart={false}
-					redirectTo={AppRoute.PRODUCT_DESCRIPTION}
-				/>
-			</Box>
+			<StyledButtonsContainer>
+				<FormButtons isStart={false} redirectTo={AppRoute.PRODUCT_PHOTOS} />
+			</StyledButtonsContainer>
 		</StyledFormContainer>
 	);
 };

@@ -1,4 +1,10 @@
-import { Box, FormLabel, Typography, styled } from "@mui/material";
+import {
+	Box,
+	FormHelperText,
+	FormLabel,
+	Typography,
+	styled,
+} from "@mui/material";
 
 const StyledFormContainer = styled(Box)`
 	align-items: flex-start;
@@ -20,7 +26,7 @@ const StyledFormGroup = styled(Box)(() => ({
 const StyledTextGroup = styled(Box)(() => ({
 	display: "flex",
 	flexDirection: "column",
-	width: "150px",
+	width: "20%",
 }));
 
 const StyledFormTitle = styled(Typography)(({ theme }) => ({
@@ -42,10 +48,27 @@ const StyledFormLabel = styled(FormLabel)(({ theme }) => ({
 	marginBottom: "8px",
 }));
 
+const StyledFormHelperText = styled(FormHelperText)(({ theme }) => ({
+	color: theme.palette.error.main,
+	marginLeft: 0,
+	paddingLeft: "24px",
+}));
+
+const StyledButtonsContainer = styled(Box)(() => ({
+	alignSelf: "flex-end",
+	display: "flex",
+	gap: "10px",
+	justifyContent: "flex-end",
+	marginTop: "10%",
+	padding: "15px 24px",
+}));
+
 export {
+	StyledButtonsContainer,
 	StyledFormContainer,
 	StyledFormDescription,
 	StyledFormGroup,
+	StyledFormHelperText,
 	StyledFormLabel,
 	StyledFormTitle,
 	StyledTextGroup,

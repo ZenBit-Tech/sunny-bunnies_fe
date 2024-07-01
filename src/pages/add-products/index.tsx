@@ -1,19 +1,19 @@
 import { Tab, Tabs, Typography } from "@mui/material";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import {
-	type ProductCategoryTypeStyle,
-	type ProductImageDto,
-	type ProductVariant,
-} from "~/libs/types/products.ts";
 import theme from "~/theme.ts";
 
 import { TabsBoard } from "../profile-board/components/tabs-board.tsx";
-import { ProductCategoryAndType, ProductImages } from "./components/index.ts";
+import {
+	ProductCategoryAndType,
+	ProductDescriptionForm,
+	ProductFinish,
+	ProductImages,
+	ProductVariantsForm,
+} from "./components/index.ts";
 import { addProductTabRoutes } from "./constants.ts";
 import {
 	StyledAddProductContainer,
@@ -26,49 +26,11 @@ const AddProducts: React.FC = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
-	const [productImages, setProductImages] = useState<ProductImageDto[] | null>(
-		null,
-	);
-	const [category, setCategory] = useState<null | number>(null);
-	const [type, setType] = useState<null | number>(null);
-	const [style, setStyle] = useState<null | number>(null);
-	const [variants, setVariants] = useState<ProductVariant[] | null>(null);
-	const [serverError, setServerError] = useState("");
-
-	const handleInputChange = useCallback(async (): Promise<void> => {
-		try {
-			const product = {
-				category,
-				images: productImages,
-				type,
-				variants,
-			};
-		} catch (error) {
-			const loadError = (error as FetchBaseQueryError).data
-				? ((error as FetchBaseQueryError).data as Error)
-				: { message: t("Error.technicalError") };
-			setServerError(loadError.message);
-		}
-	}, [category, navigate, productImages, t, type, variants]);
-
 	const handleTabChange = useCallback(
 		(_event: React.SyntheticEvent, newValue: string): void => {
 			navigate(newValue);
 		},
-		[],
-	);
-
-	const handleSetImages = useCallback((images: ProductImageDto[]): void => {
-		setProductImages(images);
-	}, []);
-
-	const handleCategoryChange = useCallback(
-		(data: ProductCategoryTypeStyle): void => {
-			setCategory(data.category);
-			setType(data.type);
-			setStyle(data.style);
-		},
-		[],
+		[navigate],
 	);
 
 	return (
@@ -108,14 +70,13 @@ const AddProducts: React.FC = () => {
 					))}
 				</Tabs>
 				<StyledAddProductForms>
-					{pathname === AppRoute.PRODUCT_PHOTOS && (
-						<ProductImages onChangeImages={handleSetImages} />
+					{pathname === AppRoute.PRODUCT_PHOTOS && <ProductImages />}
+					{pathname === AppRoute.PRODUCT_CATEGORY && <ProductCategoryAndType />}
+					{pathname === AppRoute.PRODUCT_DESCRIPTION && (
+						<ProductDescriptionForm />
 					)}
-					{pathname === AppRoute.PRODUCT_CATEGORY && (
-						<ProductCategoryAndType
-							onCategoryTypeStyleChange={handleCategoryChange}
-						/>
-					)}
+					{pathname === AppRoute.PRODUCT_VARIANTS && <ProductVariantsForm />}
+					{pathname === AppRoute.PRODUCT_FINISH && <ProductFinish />}
 				</StyledAddProductForms>
 			</StyledAddProductSteps>
 		</StyledAddProductContainer>

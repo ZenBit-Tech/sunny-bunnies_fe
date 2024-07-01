@@ -19,8 +19,13 @@ const addProductTabRoutes = [
 		route: AppRoute.PRODUCT_DESCRIPTION,
 	},
 	{
-		label: t("AddVendorProduct.finishAndPublish"),
+		label: t("AddVendorProduct.productVariants"),
 		number: 4,
+		route: AppRoute.PRODUCT_VARIANTS,
+	},
+	{
+		label: t("AddVendorProduct.finishAndPublish"),
+		number: 5,
 		route: AppRoute.PRODUCT_FINISH,
 	},
 ];
