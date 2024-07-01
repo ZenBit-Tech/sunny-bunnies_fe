@@ -1,11 +1,12 @@
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, DialogActions, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
+import CloseIcon from "@mui/icons-material/Close";
+import { Box, DialogActions, Typography } from "@mui/material";
+
 import VendorPreviewIcon from "~/assets/icons/vendor-preview-icon.svg?react";
 import { BaseButton } from "~/components/index.ts";
-import { colors, fontSizes } from "~/libs/constants/index.ts";
+import theme from "~/theme.ts";
 
 import {
 	StyledCrossIconButton,
@@ -41,13 +42,13 @@ const VendorPreviewModeModal: React.FC<VendorPreviewModeModalProperties> = ({
 						<VendorPreviewIcon />
 					</StyledVendorPreviewIcon>
 					<Typography
-						sx={{ fontSize: fontSizes.extraLarge, textAlign: "center" }}
+						sx={{ fontSize: theme.fontSizes.extraLarge, textAlign: "center" }}
 						variant="playfairDisplayBold"
 					>
 						{t("ProductPage.youAreInPreviewMode")}
 					</Typography>
 					<Typography
-						sx={{ color: colors.secondaryTextGray, textAlign: "center" }}
+						sx={{ color: theme.palette.secondaryTextGray, textAlign: "center" }}
 						variant="dmSans"
 					>
 						{t("ProductPage.onThisPageYouCanSee")}

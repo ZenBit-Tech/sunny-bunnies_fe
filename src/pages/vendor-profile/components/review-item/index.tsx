@@ -1,7 +1,8 @@
-import { Avatar, Box, Typography } from "@mui/material";
-import { format } from "date-fns";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Avatar, Box, Typography } from "@mui/material";
+import { format } from "date-fns";
 
 import StarRatingIcon from "~/assets/icons/star-rating-icon.svg?react";
 import { colors, dateFormat, fontSizes } from "~/libs/constants/index.ts";

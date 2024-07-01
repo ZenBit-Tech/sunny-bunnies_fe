@@ -136,14 +136,14 @@
 		"emailExample": "your_email@gmail.com",
 		"passwordPlaceholder": "Min. 8 characters"
 	},
-	"AdminPage":{
+	"AdminPage": {
 		"admin": "Admin",
 		"logout": "Logout",
-		"products":"Products",
+		"products": "Products",
 		"users": "Users",
 		"chats": "Chats",
 		"userList": "User List",
-		"request" :"Request",
+		"request": "Request",
 		"productList": "Product List"
 	},
 	"SignInComponent": {
@@ -306,5 +306,26 @@
 		"price": "price",
 		"applyFilters": "Apply filters",
 		"clearFilters": "Clear filters"
+	},
+	"Profile": {
+		"myProfile": "My profile",
+		"personalInformation": "personal information",
+		"generalInformation": "General Information",
+		"orders": "Orders",
+		"wishlist": "Wishlist",
+		"settings": "settings",
+		"support": "support",
+		"logout": "log out",
+		"address": "Address",
+		"noAddress": "Please provide an adress",
+		"paymentMethod": "Payment Method",
+		"profilePhotoTitle": "Avatar",
+		"profilePhotoText": "Only *.png, *.jpg and *.jpeg image files are accepted",
+		"formName": "Name",
+		"formEmail": "Email",
+		"enterYourName": "Enter your name",
+		"emailExample": "your_email@gmail.com",
+		"submitForm": "Save Changes",
+		"cancelForm": "Cancel"
 	}
 }

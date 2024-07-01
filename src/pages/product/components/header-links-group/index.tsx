@@ -1,6 +1,7 @@
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
 

@@ -1,6 +1,7 @@
-import { Radio } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { Radio } from "@mui/material";
 
 import { RadioLabel } from "../radio-label/index.tsx";
 import {
@@ -11,6 +12,7 @@ import {
 
 type ProductStatusRadioProperties = {
 	image: string;
+	isPreviewMode: boolean;
 	name: string;
 	price: number;
 	status: string;
@@ -18,6 +20,7 @@ type ProductStatusRadioProperties = {
 
 const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 	image,
+	isPreviewMode,
 	name,
 	price,
 	status,
@@ -41,7 +44,7 @@ const ProductStatusRadio: React.FC<ProductStatusRadioProperties> = ({
 							status={status}
 						/>
 					}
-					sx={{ pointerEvents: "none" }}
+					sx={{ cursor: isPreviewMode ? "none" : "pointer" }}
 					value={status}
 				/>
 			</StyledRadioGroup>

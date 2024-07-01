@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+
 import {
 	ReadonlySignal,
 	Signal,
@@ -5,7 +7,6 @@ import {
 	useSignal,
 	useSignalEffect,
 } from "@preact/signals-react";
-import { useCallback } from "react";
 
 type Options = {
 	min: number;

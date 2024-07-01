@@ -1,5 +1,6 @@
-import { Paper } from "@mui/material";
 import React, { useCallback } from "react";
+
+import { Paper } from "@mui/material";
 
 import { type ProductImage } from "~/libs/types/products.ts";
 

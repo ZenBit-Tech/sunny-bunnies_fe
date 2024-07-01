@@ -1,8 +1,9 @@
-import { Box, Typography } from "@mui/material";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+
+import { Box, Typography } from "@mui/material";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { Loader } from "~/components/index.ts";
 import { sortSizesByAscOrder } from "~/helpers/sort-sizes-by-asc-order.ts";
@@ -10,6 +11,7 @@ import { userRole } from "~/libs/constants/user-role.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { useGetProductByIdQuery } from "~/redux/products/products-api.ts";
 import { type RootState } from "~/redux/store.ts";
+import theme from "~/theme.ts";
 
 import {
 	ImagesSlider,
@@ -129,7 +131,10 @@ const ProductPage: React.FC = () => {
 								minPrice={minPrice}
 								name={name}
 							/>
-							<Typography color="primary" variant="playfairDisplay">
+							<Typography
+								color={theme.palette.primary.main}
+								variant="playfairDisplay"
+							>
 								{t("ProductPage.chooseSize")}
 							</Typography>
 							{variants && (
@@ -137,6 +142,7 @@ const ProductPage: React.FC = () => {
 									<SizesDropdown disabled={isPreviewMode} variants={variants} />
 									<ProductStatusRadio
 										image={images[defaultProductDataIndex].url}
+										isPreviewMode={isPreviewMode}
 										name={name}
 										price={minPrice}
 										status={status}

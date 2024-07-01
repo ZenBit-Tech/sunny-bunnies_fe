@@ -1,7 +1,5 @@
 import { Box, Dialog, DialogContent, IconButton, styled } from "@mui/material";
 
-import { colors } from "~/libs/constants/index.ts";
-
 const VendorDialog = styled(Dialog)(({ theme }) => ({
 	"& .MuiDialogContent-root": {
 		overflowY: "initial",
@@ -24,24 +22,24 @@ const VendorDialog = styled(Dialog)(({ theme }) => ({
 	flexDirection: "column",
 }));
 
-const StyledCrossIconButton = styled(IconButton)(() => ({
+const StyledCrossIconButton = styled(IconButton)(({ theme }) => ({
 	"& .MuiTouchRipple-root": {
 		display: "none",
 	},
 	"&:active": {
-		background: "transparent",
-		backgroundColor: "transparent",
+		background: `${theme.palette.transparent}`,
+		backgroundColor: `${theme.palette.transparent}`,
 	},
 	"&:hover, &:focus": {
-		background: "transparent",
-		backgroundColor: "transparent",
+		background: `${theme.palette.transparent}`,
+		backgroundColor: `${theme.palette.transparent}`,
 		boxShadow: "none",
 	},
-	color: colors.black,
+	color: theme.palette.primary.main,
 }));
 
-const StyledVendorPreviewIcon = styled(Box)(() => ({
-	color: colors.black,
+const StyledVendorPreviewIcon = styled(Box)(({ theme }) => ({
+	color: theme.palette.primary.main,
 	height: "94px",
 	width: "94px",
 }));

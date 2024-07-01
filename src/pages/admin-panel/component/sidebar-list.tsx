@@ -1,7 +1,8 @@
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { Box, Collapse, List, ListItemIcon, Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { Box, Collapse, List, ListItemIcon, Typography } from "@mui/material";
 
 import { ChatIcon as CustomChatIcon } from "~/assets/icons/chat-icon.tsx";
 import { ProductsIcon } from "~/assets/icons/product-icon.tsx";

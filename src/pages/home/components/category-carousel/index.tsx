@@ -1,7 +1,8 @@
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { Box, IconButton, Typography } from "@mui/material";
 
 import { fontSizes } from "~/libs/constants/index.ts";
 import { useCategoryCarousel } from "~/pages/home/hooks/index.ts";

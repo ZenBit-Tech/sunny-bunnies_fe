@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { Typography } from "@mui/material";
 
 import { type Product } from "~/libs/types/products.ts";
 import theme from "~/theme.ts";
