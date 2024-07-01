@@ -204,17 +204,17 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 					role={role}
 					users={fetchedUsers}
 				/>
-				<CustomPagination
-					count={totalPages}
-					onChange={handlePageChange}
-					page={page}
-				/>
 				{isLoading && <Loader />}
 				{isError && (
 					<CustomError
 						errorMessage={t("AdminUserManagementPage.errorLoadingProfile")}
 					/>
 				)}
+				<CustomPagination
+					count={totalPages}
+					onChange={handlePageChange}
+					page={page}
+				/>
 			</StyledWrapperContainer>
 		</StyledContainer>
 	);
