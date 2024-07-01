@@ -1,5 +1,5 @@
 import { httpMethods } from "~/libs/constants/http-methods.ts";
-import { User } from "~/libs/types/user.ts";
+import { User, UsersRequestDto, UsersResponseDto } from "~/libs/types/user.ts";
 
 import { api } from "../services.ts";
 import { adminApiPath } from "./constants.ts";
@@ -18,22 +18,18 @@ export const adminApi = api.injectEndpoints({
 				url: `${adminApiPath.GET_USER}/${id}`,
 			}),
 		}),
-		getUsersByOptions: build.query<
-			User[],
-			{
-				order: "ASC" | "DESC";
-				role: string;
-				searchQuery: string;
-				sortField: string;
-			}
-		>({
-			query: ({ order, role, searchQuery, sortField }) => ({
+		getUsersByOptions: build.query<UsersResponseDto, UsersRequestDto>({
+			query: ({ limit, order, page, role, searchQuery, sortField }) => ({
 				method: httpMethods.GET,
-				url: `${
-					adminApiPath.GET_BY_OPTIONS
-				}?order=${order}&sortField=${sortField}&role=${role}&searchQuery=${encodeURIComponent(
-					searchQuery || "",
-				)}`,
+				params: {
+					limit,
+					order,
+					page,
+					role,
+					searchQuery: searchQuery || "",
+					sortField,
+				},
+				url: adminApiPath.GET_BY_OPTIONS,
 			}),
 		}),
 		updateUserStatus: build.mutation<void, { id: string; status: string }>({
