@@ -47,6 +47,7 @@ const VendorProfile: React.FC = () => {
 					alignItems="center"
 					display="flex"
 					justifyContent="center"
+					margin="auto"
 					width="100%"
 				>
 					<Typography textAlign="center" variant="playfairDisplayBold">
