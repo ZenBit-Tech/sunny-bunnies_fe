@@ -7,12 +7,12 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { AppRoute } from "~/libs/constants/index.ts";
 import { type UserSignInRequestDto } from "~/libs/types/user.ts";
+import { userSignInValidation } from "~/pages/auth/validation/sign-in-schema.ts";
 import { useLoginMutation } from "~/redux/auth/auth-api.ts";
 import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 
-import { exceptionMessage } from "../constants.ts";
-import { userSignInValidation } from "../validation/index.ts";
+import { exceptionMessage } from "../../constants.ts";
 
 type SignInFormResult = {
 	control: Control<UserSignInRequestDto>;

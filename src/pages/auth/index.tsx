@@ -1,6 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { matchPath, useLocation } from "react-router-dom";
+import {
+	Navigate,
+	matchPath,
+	useLocation,
+	useSearchParams,
+} from "react-router-dom";
 
 import { Box, Grid } from "@mui/material";
 
@@ -8,9 +13,10 @@ import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
-import { VerifyEmailForm } from "~/pages/auth/components/verify-email-form.tsx";
+import ResetPasswordForm from "~/pages/auth/components/reset-password-form/index.tsx";
+import { RestorePasswordForm } from "~/pages/auth/components/restore-password-form/index.tsx";
 
-import { SignInForm, SignUpForm } from "./components/index.ts";
+import { SignInForm, SignUpForm, VerifyEmailForm } from "./components/index.ts";
 
 import styles from "./styles.module.css";
 
@@ -18,6 +24,7 @@ const NoLogoRoutes = [AppRoute.VERIFY_EMAIL];
 
 const Auth: React.FC = () => {
 	const { pathname } = useLocation();
+	const [searchParams] = useSearchParams();
 	const { t } = useTranslation();
 
 	const getScreen = (screen: string): React.ReactNode => {
@@ -30,6 +37,16 @@ const Auth: React.FC = () => {
 			}
 			case AppRoute.VERIFY_EMAIL: {
 				return <VerifyEmailForm />;
+			}
+			case AppRoute.RESTORE_PASSWORD: {
+				return <RestorePasswordForm />;
+			}
+			case AppRoute.RESET_PASSWORD: {
+				const token = searchParams.get("token");
+
+				if (!token) return <Navigate to={AppRoute.HOME} />;
+
+				return <ResetPasswordForm token={token} />;
 			}
 			default: {
 				return <SignUpForm />;
@@ -45,6 +62,12 @@ const Auth: React.FC = () => {
 				return authImages.SignUpImage;
 			case AppRoute.VERIFY_EMAIL:
 				return authImages.VerifyEmailImage;
+			case AppRoute.RESTORE_PASSWORD: {
+				return authImages.RestorePasswordImage;
+			}
+			case AppRoute.RESET_PASSWORD: {
+				return authImages.ResetPasswordImage;
+			}
 			default:
 				return authImages.SignUpImage;
 		}

@@ -11,7 +11,7 @@ const ForgotPasswordLink: React.FC = () => {
 
 	return (
 		<Box mt={5}>
-			<Link to={AppRoute.FORGOT_PASSWORD}>
+			<Link to={AppRoute.RESTORE_PASSWORD}>
 				<Typography color="primary.main" variant="playfairDisplay">
 					{t("SignInComponent.forgotPassword")}
 				</Typography>

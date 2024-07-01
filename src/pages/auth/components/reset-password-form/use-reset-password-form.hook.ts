@@ -6,15 +6,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { AppRoute } from "~/libs/constants/index.ts";
-import { type UserSignUpFormData } from "~/libs/types/user.ts";
-import { useRegisterMutation } from "~/redux/auth/auth-api.ts";
-import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
-import { useAppDispatch } from "~/redux/hooks.ts";
+import {
+	type UserResetPasswordRequestDto,
+	type UserRestorePasswordForm,
+} from "~/libs/types/user.ts";
+import { useResetPasswordMutation } from "~/redux/auth/auth-api.ts";
 
-import { userSignUpValidation } from "../validation/sign-up-schema.ts";
+import { userResetPassword } from "./reset-password-schema.ts";
 
-type SignUpFormResult = {
-	control: Control<UserSignUpFormData>;
+type ResetPasswordFormResult = {
+	control: Control<UserRestorePasswordForm>;
 	errors: {
 		email?: FieldError;
 		name?: FieldError;
@@ -27,53 +28,48 @@ type SignUpFormResult = {
 	setServerError: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const useSignUpForm = (): SignUpFormResult => {
+const useResetPasswordForm = ({
+	token,
+}: {
+	token: string;
+}): ResetPasswordFormResult => {
 	const navigate = useNavigate();
-
 	const [serverError, setServerError] = useState("");
-	const [register, { data, error, isLoading, isSuccess }] =
-		useRegisterMutation();
+
+	const [requestReset, { error, isLoading, isSuccess }] =
+		useResetPasswordMutation();
 
 	const {
 		control,
 		formState: { errors },
 		handleSubmit,
 		reset,
-	} = useForm<UserSignUpFormData>({
+	} = useForm<UserRestorePasswordForm>({
 		defaultValues: {
-			email: "",
-			name: "",
 			password: "",
 			repeatPassword: "",
 		},
-		resolver: yupResolver(userSignUpValidation),
+		resolver: yupResolver(userResetPassword),
 	});
-	const dispatch = useAppDispatch();
-	const onSubmit = (
-		formData: Omit<UserSignUpFormData, "repeatPassword">,
-	): void => {
-		register(formData);
+
+	const onSubmit = (formData: UserResetPasswordRequestDto): void => {
+		requestReset(formData);
 	};
 
 	const handleFormSubmit = (event: React.FormEvent): void => {
 		event.preventDefault();
-		handleSubmit((data: UserSignUpFormData) => {
-			const { repeatPassword, ...formData } = data;
-			onSubmit(formData);
+		handleSubmit((data: UserRestorePasswordForm) => {
+			onSubmit({
+				password: data.password,
+				token,
+			});
 		})();
 	};
 
 	useEffect(() => {
-		if (data) {
-			dispatch(setUser(data.user));
-			dispatch(setTokens(data));
-		}
-	}, [data, dispatch]);
-
-	useEffect(() => {
 		if (isSuccess) {
 			reset();
-			navigate(AppRoute.VERIFY_EMAIL);
+			navigate(AppRoute.SIGN_IN);
 		} else if (error) {
 			const err = (error as FetchBaseQueryError).data as Error;
 			setServerError(err.message);
@@ -90,4 +86,4 @@ const useSignUpForm = (): SignUpFormResult => {
 	};
 };
 
-export { useSignUpForm };
+export { useResetPasswordForm };
