@@ -1,14 +1,15 @@
 import React, { useCallback, useState } from "react";
 
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Typography } from "@mui/material";
 
+import { LikeIcon } from "~/assets/icons/like-icon.tsx";
 import ShopCart from "~/assets/icons/shop-cart.svg?react";
 import { colors, fontSizes, fontWeight } from "~/libs/constants/index.ts";
 import { Product } from "~/libs/types/products.ts";
 
 import {
+	ImageSlider,
+	SliderDot,
 	StyledLikeIconButton,
 	StyledProductCardContainer,
 	StyledProductCardDataContainer,
@@ -19,6 +20,7 @@ import {
 } from "./styles.ts";
 
 const defaultImageIndex = 0;
+const minImagesForSlider = 1;
 
 type ProductCardProperties = {
 	product: Product;
@@ -30,6 +32,18 @@ const ProductCard: React.FC<ProductCardProperties> = ({
 	vendorName,
 }) => {
 	const [isLikeClicked, setIsLikeClicked] = useState(false);
+	const [currentImageIndex, setCurrentImageIndex] = useState(defaultImageIndex);
+
+	const handleImageChange = useCallback((index: number): void => {
+		setCurrentImageIndex(index);
+	}, []);
+
+	const handleSlideClickWithIndex = useCallback(
+		(index: number) => (): void => {
+			handleImageChange(index);
+		},
+		[handleImageChange],
+	);
 
 	const handleLikeClick = useCallback((): void => {
 		setIsLikeClicked(!isLikeClicked);
@@ -39,12 +53,28 @@ const ProductCard: React.FC<ProductCardProperties> = ({
 		<StyledProductCardContainer>
 			<StyledProductCardImageContainer>
 				<StyledProductCardImage
-					alt={product.images[defaultImageIndex].description}
-					src={product.images[defaultImageIndex].url}
+					alt={product.images[currentImageIndex].description}
+					src={product.images[currentImageIndex].url}
 				/>
 				<StyledLikeIconButton onClick={handleLikeClick}>
-					{isLikeClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+					{isLikeClicked ? (
+						<LikeIcon sx={{ color: colors.likeIconColor }} />
+					) : (
+						<LikeIcon sx={{ color: colors.white }} />
+					)}
 				</StyledLikeIconButton>
+				_
+				{product.images.length > minImagesForSlider && (
+					<ImageSlider>
+						{product.images.map((_, index) => (
+							<SliderDot
+								active={index === currentImageIndex}
+								key={index}
+								onClick={handleSlideClickWithIndex(index)}
+							/>
+						))}
+					</ImageSlider>
+				)}
 			</StyledProductCardImageContainer>
 			<StyledProductCardDataContainer>
 				<StyledProductCardDataContent>

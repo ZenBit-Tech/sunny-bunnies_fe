@@ -10,9 +10,8 @@ const StyledProductsSection = styled(Box)`
 const StyledProductsContent = styled(Box)`
 	align-item: flex-start;
 	display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
-	gap: 24px;
+	gap: 32px;
 `;
 
 export { StyledProductsContent, StyledProductsSection };

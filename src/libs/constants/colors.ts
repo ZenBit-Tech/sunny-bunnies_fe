@@ -10,6 +10,7 @@ const colors = {
 	hoverBlack: "black",
 	lightGray: "#EDEAE9",
 	lightGreen: "#E3EEE2",
+	likeIconColor: "#1C274C",
 	pastelGreen: "#E3EEE2",
 	secondaryTextGray: "#A0A8B0",
 	shadowColor: "#2F2F2F",
