@@ -1,5 +1,6 @@
-import "@mui/material/Button";
 import React from "react";
+
+import "@mui/material/Button";
 
 declare module "@mui/material/Button" {
 	interface ButtonPropsVariantOverrides {

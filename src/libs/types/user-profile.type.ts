@@ -34,6 +34,12 @@ type ProfilePhoto = {
 
 type Profile = Address & CreditCard & GeneralInformation & Role & Size;
 
+type UserAndProfile = {
+	email: string;
+	name: string;
+	profile: Partial<Profile>;
+};
+
 export {
 	type Address,
 	type CreditCard,
@@ -43,4 +49,5 @@ export {
 	type ProfilePhoto,
 	type Role,
 	type Size,
+	type UserAndProfile,
 };

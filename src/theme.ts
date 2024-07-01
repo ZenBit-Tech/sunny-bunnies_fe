@@ -13,6 +13,7 @@ declare module "@mui/material/styles" {
 		tablet: true;
 	}
 	interface Palette {
+		black: string;
 		blueBlack: string;
 		borderGray: string;
 		darkGrey: string;
@@ -23,11 +24,14 @@ declare module "@mui/material/styles" {
 		lightGreen: string;
 		pastelGray: string;
 		placeholderGray: string;
+		secondaryTextGray: string;
+		shadowColor: string;
 		shadowGrey: string;
 		transparent: string;
 		white: string;
 	}
 	interface PaletteOptions {
+		black: string;
 		blueBlack: string;
 		borderGray: string;
 		darkGrey: string;
@@ -38,12 +42,15 @@ declare module "@mui/material/styles" {
 		lightGreen: string;
 		pastelGray: string;
 		placeholderGray: string;
+		secondaryTextGray: string;
+		shadowColor: string;
 		shadowGrey: string;
 		transparent: string;
 		white: string;
 	}
 	interface Theme {
 		fontSizes: {
+			extraLarge: string;
 			extraSmall: string;
 			large: string;
 			lg: string;
@@ -64,6 +71,7 @@ declare module "@mui/material/styles" {
 	}
 	interface ThemeOptions {
 		fontSizes: {
+			extraLarge: string;
 			extraSmall: string;
 			large: string;
 			lg: string;
@@ -196,6 +204,7 @@ const theme = createTheme({
 		},
 	},
 	fontSizes: {
+		extraLarge: fontSizes.extraLarge,
 		extraSmall: fontSizes.extraSmall,
 		large: fontSizes.large,
 		lg: fontSizes.lg,
@@ -214,6 +223,7 @@ const theme = createTheme({
 		semiBold: fontWeight.semiBold,
 	},
 	palette: {
+		black: colors.black,
 		blueBlack: colors.blueBlack,
 		borderGray: colors.borderGray,
 		darkGrey: colors.darkGrey,
@@ -231,6 +241,8 @@ const theme = createTheme({
 		secondary: {
 			main: colors.gray,
 		},
+		secondaryTextGray: colors.secondaryTextGray,
+		shadowColor: colors.shadowColor,
 		shadowGrey: colors.shadowGrey,
 		transparent: colors.transparent,
 		white: colors.white,

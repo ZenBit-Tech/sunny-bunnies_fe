@@ -1,6 +1,7 @@
-import { Box, IconButton, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Box, IconButton, Typography } from "@mui/material";
 
 import Pen from "~/assets/images/add-product/pen.svg?react";
 import TrashBin from "~/assets/images/add-product/trash-bin.svg?react";

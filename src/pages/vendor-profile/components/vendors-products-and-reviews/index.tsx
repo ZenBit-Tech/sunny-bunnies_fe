@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
 import React, { useCallback, useState } from "react";
+
+import { Box } from "@mui/material";
 
 import { Product } from "~/libs/types/products.ts";
 import { Review } from "~/libs/types/vendor.ts";

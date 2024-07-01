@@ -1,8 +1,9 @@
-import AddIcon from "@mui/icons-material/Add";
-import { Box, SelectChangeEvent } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { FieldErrors } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+
+import AddIcon from "@mui/icons-material/Add";
+import { Box, SelectChangeEvent } from "@mui/material";
 
 import { BaseButton, NumberInput } from "~/components/index.ts";
 import {

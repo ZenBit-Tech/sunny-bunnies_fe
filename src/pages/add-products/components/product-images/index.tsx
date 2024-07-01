@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
 import React, { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+import { Box } from "@mui/material";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";

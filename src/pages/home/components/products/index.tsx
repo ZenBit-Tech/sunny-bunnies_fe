@@ -1,6 +1,7 @@
-import { Box, Drawer, Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Box, Drawer, Typography } from "@mui/material";
 
 import { BaseButton, FilterButton } from "~/components/index.ts";
 import { Filters } from "~/libs/types/filters.ts";

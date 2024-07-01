@@ -1,7 +1,8 @@
-import { Box, SelectChangeEvent } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+import { Box, SelectChangeEvent } from "@mui/material";
 
 import { Loader } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";

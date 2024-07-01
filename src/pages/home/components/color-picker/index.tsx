@@ -1,5 +1,6 @@
-import { Box, FormControlLabel, Radio, Typography } from "@mui/material";
 import React from "react";
+
+import { Box, FormControlLabel, Radio, Typography } from "@mui/material";
 
 import { FilterItem } from "~/libs/types/filters.ts";
 

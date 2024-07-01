@@ -1,5 +1,6 @@
-import { Typography } from "@mui/material";
 import React, { useCallback } from "react";
+
+import { Typography } from "@mui/material";
 
 import { colors, fontSizes } from "~/libs/constants/index.ts";
 import { type Category } from "~/pages/home/types/index.ts";

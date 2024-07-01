@@ -1,7 +1,8 @@
-import { Box, Button, Typography } from "@mui/material";
-import { type SelectChangeEvent } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Box, Button, Typography } from "@mui/material";
+import { type SelectChangeEvent } from "@mui/material";
 
 import {
 	CustomRadioButtonGroup,

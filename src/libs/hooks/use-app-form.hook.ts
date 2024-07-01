@@ -1,4 +1,3 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
 	type Control,
 	type DefaultValues,
@@ -16,6 +15,8 @@ import {
 	type ValidationMode,
 	useForm,
 } from "react-hook-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
 import { AnyObjectSchema } from "yup";
 
 type Parameters<T extends FieldValues = FieldValues> = {

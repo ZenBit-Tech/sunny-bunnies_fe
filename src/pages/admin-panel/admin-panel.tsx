@@ -1,3 +1,7 @@
+import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+
 import {
 	AppBar,
 	Avatar,
@@ -9,9 +13,6 @@ import {
 	Toolbar,
 	Typography,
 } from "@mui/material";
-import React, { useCallback, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 
 import { ArrowDownIcon } from "~/assets/icons/arrow-down-icon.tsx";
 import { AppRoute } from "~/libs/constants/index.ts";

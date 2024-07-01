@@ -1,8 +1,9 @@
+import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import React, { useCallback, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import { BaseButton } from "~/components/index.ts";
 import { fontSizes } from "~/libs/constants/index.ts";

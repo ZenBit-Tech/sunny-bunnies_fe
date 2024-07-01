@@ -1,6 +1,7 @@
-import { Link as MuiLink, LinkProps as MuiLinkProps } from "@mui/material";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
+
+import { Link as MuiLink, LinkProps as MuiLinkProps } from "@mui/material";
 
 type RouterLinkProps = {
 	to: string;

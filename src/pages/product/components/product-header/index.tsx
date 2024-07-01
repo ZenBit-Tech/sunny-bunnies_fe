@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+
+import { Box, Typography } from "@mui/material";
 
 import { fontSizes } from "~/libs/constants/index.ts";
 
@@ -37,7 +38,7 @@ const ProductHeader: React.FC<ProductHeaderProperties> = ({
 					shortDescriptionEndIndex,
 				) + "..."}
 			</StyledProductShortDescription>
-			<Box display="flex" gap="12px">
+			<Box display="flex" gap="12px" paddingTop="10px">
 				<Typography fontSize={fontSizes.l} variant="dmSansBold">
 					{minPrice}
 				</Typography>

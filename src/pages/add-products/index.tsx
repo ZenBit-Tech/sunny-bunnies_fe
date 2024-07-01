@@ -1,7 +1,8 @@
-import { Tab, Tabs, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { Tab, Tabs, Typography } from "@mui/material";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import theme from "~/theme.ts";

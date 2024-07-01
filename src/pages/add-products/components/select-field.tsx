@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
 	FormControl,
 	FormHelperText,
@@ -7,7 +9,6 @@ import {
 	Select,
 	SelectChangeEvent,
 } from "@mui/material";
-import React from "react";
 
 import theme from "~/theme.ts";
 
