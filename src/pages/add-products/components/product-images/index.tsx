@@ -40,14 +40,14 @@ const ProductImages: React.FC = () => {
 	);
 
 	const { errors, handleSubmit, setValue } = useAppForm<{
-		productImages: ProductImageDto[];
+		images: ProductImageDto[];
 	}>({
-		defaultValues: { productImages },
+		defaultValues: { images: productImages },
 		validationSchema: productImagesValidation,
 	});
 
 	useEffect(() => {
-		setValue("productImages", productImages);
+		setValue("images", productImages);
 	}, [productImages, setValue]);
 
 	const handleFormSubmit = useCallback(
@@ -141,9 +141,9 @@ const ProductImages: React.FC = () => {
 					))}
 				</Box>
 			</StyledFormGroup>
-			{errors.productImages && (
+			{errors.images && (
 				<StyledFormHelperText>
-					{errors.productImages.message as string}
+					{errors.images.message as string}
 				</StyledFormHelperText>
 			)}
 			<StyledButtonsContainer>
