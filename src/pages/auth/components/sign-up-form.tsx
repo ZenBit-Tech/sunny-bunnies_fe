@@ -21,9 +21,14 @@ const SignUpForm: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const { t } = useTranslation();
-	const { control, errors, handleFormSubmit, isLoading, serverError } =
-		useSignUpForm();
-	const { setServerError } = useSignUpForm();
+	const {
+		control,
+		errors,
+		handleFormSubmit,
+		isLoading,
+		serverError,
+		setServerError,
+	} = useSignUpForm();
 
 	const [
 		addUser,
@@ -56,12 +61,19 @@ const SignUpForm: React.FC = () => {
 		navigate,
 		setServerError,
 		t,
+		serverError,
 	]);
 
 	const onSuccess = useCallback(
 		async (credentialResponse: CredentialResponse) => {
 			try {
 				await addUser(credentialResponse);
+				if (isSignUpError) {
+					const loadError = (signUpError as FetchBaseQueryError).data
+						? ((signUpError as FetchBaseQueryError).data as Error)
+						: { message: t("Error.unknowError") };
+					setServerError(loadError.message);
+				}
 			} catch (error) {
 				const loadError = (error as FetchBaseQueryError).data
 					? ((error as FetchBaseQueryError).data as Error)
@@ -69,7 +81,7 @@ const SignUpForm: React.FC = () => {
 				setServerError(loadError.message);
 			}
 		},
-		[addUser, setServerError, t],
+		[addUser, isSignUpError, setServerError, signUpError, t],
 	);
 
 	return (

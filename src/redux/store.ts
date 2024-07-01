@@ -4,6 +4,8 @@ import { combineReducers } from "redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import { adminApi } from "./admin/admin-api.ts";
+import { adminReducer } from "./admin/admin-slice.ts";
 import { authApi } from "./auth/auth-api.ts";
 import { authReducer } from "./auth/auth-slice.ts";
 import { filtersReducer } from "./filters/filters.slice.ts";
@@ -15,6 +17,8 @@ import { userApi } from "./user/user-api.ts";
 import { userReducer } from "./user/user-slice.ts";
 
 const rootReducer = combineReducers({
+	admin: adminReducer,
+	adminApiSlice: adminApi.reducer,
 	auth: authReducer,
 	[authApi.reducerPath]: authApi.reducer,
 	filters: filtersReducer,

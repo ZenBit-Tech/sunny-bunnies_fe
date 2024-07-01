@@ -37,7 +37,7 @@ const AdminLogin: React.FC = () => {
 				const signInData = await adminLogin(formData).unwrap();
 				dispatch(setUser(signInData.user));
 				dispatch(setTokens(signInData));
-				navigate(AppRoute.USER_MANAGEMENT);
+				navigate(AppRoute.MANAGEMENT_BUYERS);
 			} catch (error) {
 				const loadError = (error as FetchBaseQueryError).data
 					? ((error as FetchBaseQueryError).data as Error)

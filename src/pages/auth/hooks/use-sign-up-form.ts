@@ -33,7 +33,6 @@ const useSignUpForm = (): SignUpFormResult => {
 	const [serverError, setServerError] = useState("");
 	const [register, { data, error, isLoading, isSuccess }] =
 		useRegisterMutation();
-
 	const {
 		control,
 		formState: { errors },

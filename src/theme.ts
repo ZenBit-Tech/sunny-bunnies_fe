@@ -8,78 +8,6 @@ import {
 	fontWeight,
 } from "./libs/constants/index.ts";
 
-declare module "@mui/material/styles" {
-	interface BreakpointOverrides {
-		tablet: true;
-	}
-	interface Palette {
-		black: string;
-		borderGray: string;
-		darkGrey: string;
-		fontGray: string;
-		gray: string;
-		lightGray: string;
-		lightGreen: string;
-		secondaryTextGray: string;
-		shadowColor: string;
-		transparent: string;
-		white: string;
-	}
-	interface PaletteOptions {
-		black: string;
-		borderGray: string;
-		darkGrey: string;
-		fontGray: string;
-		gray: string;
-		lightGray: string;
-		lightGreen: string;
-		secondaryTextGray: string;
-		shadowColor: string;
-		transparent: string;
-		white: string;
-	}
-	interface Theme {
-		fontSizes: {
-			extraLarge: string;
-			large: string;
-			lg: string;
-			medium: string;
-			mediumLarge: string;
-			small: string;
-			title: string;
-			xl: string;
-			xs: string;
-			xxl: string;
-		};
-		fontWeight: {
-			bold: number;
-			medium: number;
-			regular: number;
-			semiBold: number;
-		};
-	}
-	interface ThemeOptions {
-		fontSizes: {
-			extraLarge: string;
-			large: string;
-			lg: string;
-			medium: string;
-			mediumLarge: string;
-			small: string;
-			title: string;
-			xl: string;
-			xs: string;
-			xxl: string;
-		};
-		fontWeight: {
-			bold: number;
-			medium: number;
-			regular: number;
-			semiBold: number;
-		};
-	}
-}
-
 const xl = 1920;
 const lg = 1280;
 const tablet = 1024;
@@ -150,6 +78,19 @@ const theme = createTheme({
 					},
 				},
 				{
+					props: { variant: "primary_outlined" },
+					style: {
+						backgroundColor: colors.transparent,
+						border: `1px solid ${colors.black}`,
+						borderRadius: "12px",
+						fontFamily: fontFamily.dmSans,
+						fontSize: fontSizes.small,
+						fontWeight: fontWeight.semiBold,
+						padding: "16px 24px",
+						textTransform: "none",
+					},
+				},
+				{
 					props: { variant: "text" },
 					style: {
 						"& .MuiTouchRipple-root": {
@@ -191,6 +132,10 @@ const theme = createTheme({
 			],
 		},
 	},
+	fontFamily: {
+		dmSans: fontFamily.dmSans,
+		playfairDisplay: fontFamily.piayfairDisplay,
+	},
 	fontSizes: {
 		extraLarge: fontSizes.extraLarge,
 		large: fontSizes.large,
@@ -212,15 +157,20 @@ const theme = createTheme({
 	palette: {
 		black: colors.black,
 		borderGray: colors.borderGray,
+		contentBlack: colors.contentBlack,
 		darkGrey: colors.darkGrey,
+		errorBoxColor: colors.errorBoxColor,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
 		lightGray: colors.lightGray,
 		lightGreen: colors.lightGreen,
+		lightRed: colors.lightRed,
+		pink: colors.pink,
 		primary: {
 			dark: colors.hoverBlack,
 			main: colors.black,
 		},
+		red: colors.red,
 		secondary: {
 			main: colors.gray,
 		},
