@@ -32,7 +32,7 @@ import {
 } from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";
-import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
+import { TermsConditions } from "./pages/terms-conditions/index.tsx";
 import { persistor, store } from "./redux/store.ts";
 import theme from "./theme.ts";
 

@@ -12,6 +12,21 @@ type User = {
 
 type UserStatus = "active" | "inactive";
 
+type UsersResponseDto = {
+	totalCount: number;
+	totalPages: number;
+	users: User[];
+};
+
+type UsersRequestDto = {
+	limit: number;
+	order: "ASC" | "DESC";
+	page: number;
+	role: string;
+	searchQuery: string;
+	sortField: string;
+};
+
 type UserSignUpResponseDto = {
 	accessToken: string;
 	refreshToken: string;
@@ -61,4 +76,6 @@ export {
 	type UserStatus,
 	type UserVerifyEmailRequestDto,
 	type UserVerifyOtpReuestDto,
+	type UsersRequestDto,
+	type UsersResponseDto,
 };

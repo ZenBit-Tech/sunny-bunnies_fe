@@ -1,4 +1,4 @@
-import { Box, Button, styled } from "@mui/material";
+import { Box, Button, Typography, styled } from "@mui/material";
 
 import theme from "~/theme.ts";
 
@@ -23,4 +23,21 @@ const StyledSortButton = styled(Button)(({ theme }) => ({
 	padding: "6px 16px",
 }));
 
-export { StyledPaper, StyledSortButton, StylesSearchBox };
+const StyledUserCount = styled("span")(({ theme }) => ({
+	...theme.typography.dmSans,
+	fontSize: theme.fontSizes.large,
+	fontWeight: theme.fontWeight.semiBold,
+}));
+
+const StyledHeaderTypography = styled(Typography)(({ theme }) => ({
+	...theme.typography.playfairDisplayBold,
+	fontSize: theme.fontSizes.large,
+}));
+
+export {
+	StyledHeaderTypography,
+	StyledPaper,
+	StyledSortButton,
+	StyledUserCount,
+	StylesSearchBox,
+};

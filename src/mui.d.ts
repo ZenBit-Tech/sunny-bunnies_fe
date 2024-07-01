@@ -70,6 +70,10 @@ declare module "@mui/material/styles" {
 		white: string;
 	}
 	interface Theme {
+		fontFamily: {
+			dmSans: string;
+			playfairDisplay: string;
+		};
 		fontSizes: {
 			extraLarge: string;
 			large: string;
@@ -90,6 +94,10 @@ declare module "@mui/material/styles" {
 		};
 	}
 	interface ThemeOptions {
+		fontFamily: {
+			dmSans: string;
+			playfairDisplay: string;
+		};
 		fontSizes: {
 			extraLarge: string;
 			large: string;

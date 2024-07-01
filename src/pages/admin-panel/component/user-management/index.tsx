@@ -12,7 +12,9 @@ import {
 } from "@mui/material";
 import { t } from "i18next";
 
-import { CustomError, Loader } from "~/components/index.ts";
+import { CustomError, CustomPagination, Loader } from "~/components/index.ts";
+import { pagination } from "~/libs/constants/pagination.ts";
+import { usePagination } from "~/libs/hooks/index.ts";
 import {
 	sortFieldNames,
 	sortOption,
@@ -28,7 +30,12 @@ import {
 	StyledWrapperHeader,
 } from "../styles.ts";
 import { UserTable } from "../user-table/index.tsx";
-import { StyledPaper, StylesSearchBox } from "./styles.ts";
+import {
+	StyledHeaderTypography,
+	StyledPaper,
+	StyledUserCount,
+	StylesSearchBox,
+} from "./styles.ts";
 
 type Properties = {
 	role: string;
@@ -39,18 +46,32 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 	const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 	const [sortOrder, setSortOrder] = useState<"ASC" | "DESC">("ASC");
 	const [sortField, setSortField] = useState("name");
+	const { handlePageChange, limit, page, totalPages, updateTotalPages } =
+		usePagination();
 
+	useEffect(() => {
+		handlePageChange({} as React.ChangeEvent<unknown>, pagination.DEFAULT_PAGE);
+	}, [role, handlePageChange]);
 	const {
-		data: fetchedUsers = [],
+		data: fetchedData,
 		isError,
 		isLoading,
 		refetch,
 	} = useGetUsersByOptionsQuery({
+		limit,
 		order: sortOrder,
+		page,
 		role,
 		searchQuery,
 		sortField,
 	});
+
+	const {
+		totalCount,
+		totalPages: fetchedTotalPages,
+		users: fetchedUsers,
+	} = fetchedData || { totalCount: 0, totalPages: 0, users: [] };
+
 	const handleSearch = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			const { value } = event.target;
@@ -90,6 +111,10 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location.pathname, refetch]);
 
+	useEffect(() => {
+		updateTotalPages(fetchedTotalPages || pagination.DEFAULT_PAGE);
+	}, [fetchedTotalPages, updateTotalPages]);
+
 	return (
 		<StyledContainer>
 			<Typography
@@ -105,11 +130,18 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 				<StyledWrapperHeader>
 					<Box sx={{ alignItems: "center", display: "flex" }}>
 						<BoldDivider />
-						<Typography
-							sx={{ fontFamily: theme.typography.playfairDisplayBold }}
-						>
-							{t("AdminPage.userList")}
-						</Typography>
+						<StyledHeaderTypography>
+							{t("AdminPage.userList")}:
+							<StyledUserCount
+								sx={{
+									fontFamily: theme.typography.dmSans,
+									fontSize: theme.fontSizes.large,
+									fontWeight: theme.fontWeight.semiBold,
+								}}
+							>
+								{` ${totalCount}`}
+							</StyledUserCount>
+						</StyledHeaderTypography>
 					</Box>
 					<Box>
 						<Box sx={{ display: "flex", gap: "10px" }}>
@@ -178,6 +210,11 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 						errorMessage={t("AdminUserManagementPage.errorLoadingProfile")}
 					/>
 				)}
+				<CustomPagination
+					count={totalPages}
+					onChange={handlePageChange}
+					page={page}
+				/>
 			</StyledWrapperContainer>
 		</StyledContainer>
 	);

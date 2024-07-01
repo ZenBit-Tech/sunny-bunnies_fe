@@ -132,6 +132,10 @@ const theme = createTheme({
 			],
 		},
 	},
+	fontFamily: {
+		dmSans: fontFamily.dmSans,
+		playfairDisplay: fontFamily.piayfairDisplay,
+	},
 	fontSizes: {
 		extraLarge: fontSizes.extraLarge,
 		large: fontSizes.large,
