@@ -71,6 +71,7 @@ const CustomFormGroup = <T extends FieldValues>({
 						</InputAdornment>
 					),
 				}}
+				data-testid={`${name}-input`}
 				error={!!error}
 				fullWidth
 				onChange={handleChange ? handleChange : field.onChange}
@@ -90,7 +91,15 @@ const CustomFormGroup = <T extends FieldValues>({
 				variant="outlined"
 			/>
 		),
-		[handleChange, error, placeholder, setShowPassword, showPassword, type],
+		[
+			type,
+			setShowPassword,
+			showPassword,
+			name,
+			error,
+			handleChange,
+			placeholder,
+		],
 	);
 
 	return (

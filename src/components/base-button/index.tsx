@@ -48,6 +48,7 @@ const BaseButton: React.FC<BaseButtonProperties> = ({
 		</Link>
 	) : (
 		<Button
+			data-testid="submit-button"
 			onClick={onClick}
 			startIcon={
 				startIcon

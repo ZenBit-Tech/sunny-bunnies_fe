@@ -31,7 +31,7 @@ const ResetPasswordForm: React.FC<Properties> = ({ token }: Properties) => {
 					color={theme.palette.primary.main}
 					variant="playfairDisplayTitle"
 				>
-					{t("Enter new password")}
+					{t("SignUpComponent.enterNewPassword")}
 				</Typography>
 			</Stack>
 			<CustomFormGroup
@@ -57,11 +57,11 @@ const ResetPasswordForm: React.FC<Properties> = ({ token }: Properties) => {
 					</Typography>
 				)}
 				<BaseButton fullWidth type="submit" variant="primary_black_bold">
-					{t("Save & Login")}
+					{t("SignUpComponent.saveAndLogin")}
 				</BaseButton>
 			</Box>
 		</StyledFormContainer>
 	);
 };
 
-export default ResetPasswordForm;
+export { ResetPasswordForm };

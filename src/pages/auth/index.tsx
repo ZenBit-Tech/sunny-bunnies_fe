@@ -13,7 +13,7 @@ import { authImages } from "~/assets/images/auth/index.ts";
 import Logo from "~/assets/images/logo/big.png";
 import { Link } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
-import ResetPasswordForm from "~/pages/auth/components/reset-password-form/index.tsx";
+import { ResetPasswordForm } from "~/pages/auth/components/reset-password-form/index.tsx";
 import { RestorePasswordForm } from "~/pages/auth/components/restore-password-form/index.tsx";
 
 import { SignInForm, SignUpForm, VerifyEmailForm } from "./components/index.ts";
