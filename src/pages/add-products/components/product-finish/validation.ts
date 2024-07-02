@@ -1,47 +1,60 @@
+import { TFunction } from "i18next";
 import * as Yup from "yup";
 
-import { categoryTypeStyleValidation } from "../product-category-and-type/validation.ts";
-import { productDescriptionValidation } from "../product-description-form/validation.ts";
-import { productImagesValidation } from "../product-images/validation.ts";
-import { productVariantsValidation } from "../product-variants/validation.ts";
+import { getCategoryTypeStyleValidation } from "../product-category-and-type/validation.ts";
+import { getProductDescriptionValidation } from "../product-description-form/validation.ts";
+import { getProductImagesValidation } from "../product-images/validation.ts";
+import { getProductVariantValidation } from "../product-variants/validation.ts";
 
-const productDetailsValidationMessage = {
-	INVALID_FORMAT: "Price must be in the format 'min-max', e.g., '100-200'",
-	INVALID_RANGE: "Invalid price range. Minimum must be less than maximum",
-	REQUIRED_PRICE: "Price is required",
+const getProductPriceValidation = (
+	t: TFunction,
+): Yup.StringSchema<string | undefined, Record<string, unknown>> => {
+	const productDetailsValidationMessage = {
+		INVALID_FORMAT: t("AddProductValidationMessages.incorrectPriceFormat"),
+		INVALID_RANGE: t("AddProductValidationMessages.invalidPriceRange"),
+		REQUIRED_PRICE: t("AddProductValidationMessages.priceIsRequired"),
+	};
+
+	return Yup.string()
+		.test(
+			"price-range",
+			productDetailsValidationMessage.INVALID_FORMAT,
+			(value) => {
+				if (!value) return false;
+				const regex = /^\d+-\d+$/;
+
+				return regex.test(value);
+			},
+		)
+		.test(
+			"price-values",
+			productDetailsValidationMessage.INVALID_RANGE,
+			(value) => {
+				if (!value) return false;
+
+				const [minPrice, maxPrice] = value.split("-").map(Number);
+
+				return minPrice <= maxPrice;
+			},
+		);
 };
 
-const productPriceValidation = Yup.string()
-	.test(
-		"price-range",
-		productDetailsValidationMessage.INVALID_FORMAT,
-		(value) => {
-			if (!value) return false;
-			const regex = /^\d+-\d+$/;
+const getFinalProductValidation = (
+	t: TFunction,
+): Yup.ObjectSchema<Record<string, unknown>> => {
+	const productDetailsValidationMessage = {
+		REQUIRED_PRICE: t("AddProductValidationMessages.priceIsRequired"),
+	};
 
-			return regex.test(value);
-		},
-	)
-	.test(
-		"price-values",
-		productDetailsValidationMessage.INVALID_RANGE,
-		(value) => {
-			if (!value) return false;
+	return Yup.object().shape({
+		...getCategoryTypeStyleValidation(t).fields,
+		...getProductDescriptionValidation(t).fields,
+		...getProductImagesValidation(t).fields,
+		...getProductVariantValidation(t).fields,
+		price: getProductPriceValidation(t).required(
+			productDetailsValidationMessage.REQUIRED_PRICE,
+		),
+	});
+};
 
-			const [minPrice, maxPrice] = value.split("-").map(Number);
-
-			return minPrice <= maxPrice;
-		},
-	);
-
-const finalProductValidation = Yup.object().shape({
-	...categoryTypeStyleValidation.fields,
-	...productDescriptionValidation.fields,
-	...productImagesValidation.fields,
-	...productVariantsValidation.fields,
-	price: productPriceValidation.required(
-		productDetailsValidationMessage.REQUIRED_PRICE,
-	),
-});
-
-export { finalProductValidation };
+export { getFinalProductValidation };

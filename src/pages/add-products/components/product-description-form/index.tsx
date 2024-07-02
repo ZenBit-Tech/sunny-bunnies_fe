@@ -1,24 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
-import { Box, SelectChangeEvent, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 
 import { CustomFormGroup } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
-import { useAppForm } from "~/libs/hooks/index.ts";
-import {
-	type OptionType,
-	type ProductDescription,
-} from "~/pages/add-products/types.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
-import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
-import { updateProductDescription } from "~/redux/products/product-form-slice.ts";
-import {
-	useGetProductBrandsQuery,
-	useGetProductMaterialsQuery,
-} from "~/redux/products/products-api.ts";
-import { type RootState } from "~/redux/store.ts";
 import theme from "~/theme.ts";
 
 import { SelectField } from "../select-field.tsx";
@@ -31,114 +18,30 @@ import {
 	StyledTextGroup,
 } from "../styles.ts";
 import { gendersOptions } from "./constants.ts";
-import { productDescriptionValidation } from "./validation.ts";
+import { useProductDescriptionForm } from "./use-product-description-form.hook.ts";
 
 const ProductDescriptionForm: React.FC = () => {
 	const { t } = useTranslation();
-	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
 
-	const { brand, description, gender, material, name } = useAppSelector(
-		(state: RootState) => state.productForm.productDescription,
-	);
-	const { data: brands } = useGetProductBrandsQuery(undefined);
-	const { data: materials } = useGetProductMaterialsQuery(undefined);
-
-	const [productDescription, setProductDescription] = useState(description);
-	const [selectedBrand, setSelectedBrand] = useState<null | number>(brand);
-	const [selectedMaterial, setSelectedMaterial] = useState<null | number>(
-		material,
-	);
-	const [selectedGender, setSelectedGender] = useState<null | number>(gender);
-
-	const { control, errors, handleSubmit, setValue } =
-		useAppForm<ProductDescription>({
-			defaultValues: {
-				brand,
-				description,
-				gender,
-				material,
-				name,
-			},
-			validationSchema: productDescriptionValidation,
-		});
-
-	const handleInputChange = useCallback(
-		async (formData: ProductDescription): Promise<void> => {
-			dispatch(updateProductDescription(formData));
-			navigate(AppRoute.PRODUCT_VARIANTS);
-		},
-		[dispatch, navigate],
-	);
-
-	const handleBrandChange = useCallback(
-		(event: SelectChangeEvent<number>) => {
-			const brandId = +event.target.value;
-			setSelectedBrand(brandId);
-			setValue("brand", brandId);
-		},
-		[setValue],
-	);
-
-	const handleMaterialChange = useCallback(
-		(event: SelectChangeEvent<number>) => {
-			const materialId = +event.target.value;
-			setSelectedMaterial(materialId);
-			setValue("material", +event.target.value);
-		},
-		[setValue],
-	);
-
-	const handleGenderChange = useCallback(
-		(event: SelectChangeEvent<number>) => {
-			const gender = +event.target.value;
-			setSelectedGender(gender);
-			setValue("gender", gender);
-		},
-		[setValue],
-	);
-
-	const handleChangeName = useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>) => {
-			const name = event.target.value;
-			setValue("name", name);
-		},
-		[setValue],
-	);
-
-	const handleChangeDescription = useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>) => {
-			const description = event.target.value;
-			setProductDescription(description);
-			setValue("description", description);
-		},
-		[setValue],
-	);
-
-	const handleFormSubmit = useCallback(
-		(event_: React.BaseSyntheticEvent): void => {
-			event_.preventDefault();
-			void handleSubmit(handleInputChange)(event_);
-		},
-		[handleSubmit, handleInputChange],
-	);
-
-	const brandsOptions: OptionType[] = brands
-		? brands.map((brand) => ({
-				label: brand.name,
-				value: brand.id,
-		  }))
-		: [];
-
-	const materialsOptions: OptionType[] = materials
-		? materials.map((material) => ({
-				label: material.name,
-				value: material.id,
-		  }))
-		: [];
+	const {
+		brandOptions: brandsOptions,
+		control,
+		errors,
+		handleBrandChange,
+		handleChangeDescription,
+		handleChangeName,
+		handleGenderChange,
+		handleMaterialChange,
+		handleSubmit,
+		materialOptions,
+		productDescription,
+		selectedBrand,
+		selectedGender,
+		selectedMaterial,
+	} = useProductDescriptionForm();
 
 	return (
-		<StyledFormContainer component="form" onSubmit={handleFormSubmit}>
+		<StyledFormContainer component="form" onSubmit={handleSubmit}>
 			<StyledFormGroup>
 				<StyledTextGroup>
 					<StyledFormTitle>{t("AddVendorProduct.productName")}</StyledFormTitle>
@@ -224,7 +127,7 @@ const ProductDescriptionForm: React.FC = () => {
 					<SelectField
 						error={Boolean(errors.material)}
 						helperText={errors.material?.message as string}
-						items={materialsOptions}
+						items={materialOptions}
 						label={t("AddVendorProduct.selectMaterial")}
 						onChange={handleMaterialChange}
 						showLabel={false}

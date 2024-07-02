@@ -40,176 +40,176 @@ import theme from "./theme.ts";
 import "./styles.css";
 
 createRoot(document.getElementById("root")!).render(
-	<React.StrictMode>
-		<GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
-			<StoreProvider store={store}>
-				<PersistGate loading={null} persistor={persistor}>
-					<ThemeProvider theme={theme}>
-						<RouterProvider
-							routes={[
-								{
-									children: [
-										{
-											children: [
-												{
-													children: [
-														{
-															children: [
-																{
-																	element: <Auth />,
-																	path: AppRoute.ROOT,
-																},
-																{
-																	element: <Auth />,
-																	path: AppRoute.SIGN_UP,
-																},
-																{
-																	element: <Auth />,
-																	path: AppRoute.SIGN_IN,
-																},
-																{
-																	element: <AdminLogin />,
-																	path: AppRoute.ADMIN_SIGN_IN,
-																},
-															],
-															element: <AuthRoute />,
-															path: AppRoute.ROOT,
-														},
-														{
-															children: [
-																{
-																	element: <AdminPanel />,
-																	path: AppRoute.PRODUCT_MANAGEMENT,
-																},
-																{
-																	element: <AdminPanel />,
-																	path: AppRoute.USER_MANAGEMENT,
-																},
-															],
-															element: <AdminRoute />,
-															path: AppRoute.ROOT,
-														},
-														{
-															children: [
-																{
-																	element: <Home />,
-																	path: AppRoute.HOME,
-																},
-																{
-																	element: <ProductPage />,
-																	path: AppRoute.PRODUCT,
-																},
-																{
-																	element: <PrivacyPolicy />,
-																	path: AppRoute.PRIVACY_POLICY,
-																},
-																{
-																	element: <TermsConditions />,
-																	path: AppRoute.TERMS_OF_USE,
-																},
-																{
-																	element: <SizeGuide />,
-																	path: AppRoute.SIZE_GUIDE,
-																},
-															],
-															element: <PublicRoute />,
-															path: AppRoute.ROOT,
-														},
-														{
-															children: [
-																{
-																	element: <Auth />,
-																	path: AppRoute.VERIFY_EMAIL,
-																},
-																{
-																	element: <Profile />,
-																	path: AppRoute.PROFILE,
-																},
-																{
-																	element: <Profile />,
-																	path: AppRoute.PROFILE_ORDERS,
-																},
-																{
-																	element: <Profile />,
-																	path: AppRoute.PROFILE_WISHLIST,
-																},
-																{
-																	element: <Profile />,
-																	path: AppRoute.PROFILE_SETTINGS,
-																},
-																{
-																	element: <Profile />,
-																	path: AppRoute.PROFILE_SUPPORT,
-																},
-																{
-																	element: <ProfileBoard />,
-																	path: AppRoute.ROLE,
-																},
-																{
-																	element: <ProfileBoard />,
-																	path: AppRoute.GENERAL_INFORMATION,
-																},
-																{
-																	element: <ProfileBoard />,
-																	path: AppRoute.ADDRESS,
-																},
-																{
-																	element: <ProfileBoard />,
-																	path: AppRoute.CREDIT_CARD,
-																},
-																{
-																	element: <ProfileBoard />,
-																	path: AppRoute.SIZE,
-																},
-																{
-																	element: <VendorProfile />,
-																	path: AppRoute.VENDORS_PROFILE,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_PHOTOS,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_CATEGORY,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_DESCRIPTION,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_VARIANTS,
-																},
-																{
-																	element: <AddProducts />,
-																	path: AppRoute.PRODUCT_FINISH,
-																},
-															],
-															element: <PrivateRoute />,
-															path: AppRoute.ROOT,
-														},
-													],
-													element: <FooterWrapper />,
-													path: AppRoute.ROOT,
-												},
-											],
-											element: <HeaderWrapper />,
-											path: AppRoute.ROOT,
-										},
-									],
-									element: <App />,
-									path: AppRoute.ROOT,
-								},
-								{
-									element: <NotFound />,
-									path: AppRoute.ANY,
-								},
-							]}
-						/>
-					</ThemeProvider>
-				</PersistGate>
-			</StoreProvider>
-		</GoogleOAuthProvider>
-	</React.StrictMode>,
+	// <React.StrictMode>
+	<GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
+		<StoreProvider store={store}>
+			<PersistGate loading={null} persistor={persistor}>
+				<ThemeProvider theme={theme}>
+					<RouterProvider
+						routes={[
+							{
+								children: [
+									{
+										children: [
+											{
+												children: [
+													{
+														children: [
+															{
+																element: <Auth />,
+																path: AppRoute.ROOT,
+															},
+															{
+																element: <Auth />,
+																path: AppRoute.SIGN_UP,
+															},
+															{
+																element: <Auth />,
+																path: AppRoute.SIGN_IN,
+															},
+															{
+																element: <AdminLogin />,
+																path: AppRoute.ADMIN_SIGN_IN,
+															},
+														],
+														element: <AuthRoute />,
+														path: AppRoute.ROOT,
+													},
+													{
+														children: [
+															{
+																element: <AdminPanel />,
+																path: AppRoute.PRODUCT_MANAGEMENT,
+															},
+															{
+																element: <AdminPanel />,
+																path: AppRoute.USER_MANAGEMENT,
+															},
+														],
+														element: <AdminRoute />,
+														path: AppRoute.ROOT,
+													},
+													{
+														children: [
+															{
+																element: <Home />,
+																path: AppRoute.HOME,
+															},
+															{
+																element: <ProductPage />,
+																path: AppRoute.PRODUCT,
+															},
+															{
+																element: <PrivacyPolicy />,
+																path: AppRoute.PRIVACY_POLICY,
+															},
+															{
+																element: <TermsConditions />,
+																path: AppRoute.TERMS_OF_USE,
+															},
+															{
+																element: <SizeGuide />,
+																path: AppRoute.SIZE_GUIDE,
+															},
+														],
+														element: <PublicRoute />,
+														path: AppRoute.ROOT,
+													},
+													{
+														children: [
+															{
+																element: <Auth />,
+																path: AppRoute.VERIFY_EMAIL,
+															},
+															{
+																element: <Profile />,
+																path: AppRoute.PROFILE,
+															},
+															{
+																element: <Profile />,
+																path: AppRoute.PROFILE_ORDERS,
+															},
+															{
+																element: <Profile />,
+																path: AppRoute.PROFILE_WISHLIST,
+															},
+															{
+																element: <Profile />,
+																path: AppRoute.PROFILE_SETTINGS,
+															},
+															{
+																element: <Profile />,
+																path: AppRoute.PROFILE_SUPPORT,
+															},
+															{
+																element: <ProfileBoard />,
+																path: AppRoute.ROLE,
+															},
+															{
+																element: <ProfileBoard />,
+																path: AppRoute.GENERAL_INFORMATION,
+															},
+															{
+																element: <ProfileBoard />,
+																path: AppRoute.ADDRESS,
+															},
+															{
+																element: <ProfileBoard />,
+																path: AppRoute.CREDIT_CARD,
+															},
+															{
+																element: <ProfileBoard />,
+																path: AppRoute.SIZE,
+															},
+															{
+																element: <VendorProfile />,
+																path: AppRoute.VENDORS_PROFILE,
+															},
+															{
+																element: <AddProducts />,
+																path: AppRoute.PRODUCT_PHOTOS,
+															},
+															{
+																element: <AddProducts />,
+																path: AppRoute.PRODUCT_CATEGORY,
+															},
+															{
+																element: <AddProducts />,
+																path: AppRoute.PRODUCT_DESCRIPTION,
+															},
+															{
+																element: <AddProducts />,
+																path: AppRoute.PRODUCT_VARIANTS,
+															},
+															{
+																element: <AddProducts />,
+																path: AppRoute.PRODUCT_FINISH,
+															},
+														],
+														element: <PrivateRoute />,
+														path: AppRoute.ROOT,
+													},
+												],
+												element: <FooterWrapper />,
+												path: AppRoute.ROOT,
+											},
+										],
+										element: <HeaderWrapper />,
+										path: AppRoute.ROOT,
+									},
+								],
+								element: <App />,
+								path: AppRoute.ROOT,
+							},
+							{
+								element: <NotFound />,
+								path: AppRoute.ANY,
+							},
+						]}
+					/>
+				</ThemeProvider>
+			</PersistGate>
+		</StoreProvider>
+	</GoogleOAuthProvider>,
+	// {/* </React.StrictMode>, */}
 );

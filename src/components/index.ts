@@ -14,6 +14,7 @@ export { FilterButton } from "./filter-button/index.tsx";
 export { IconWrapper } from "./icon-wrapper/index.tsx";
 export { ImagePreview } from "./image-preview/image-preview.tsx";
 export { Loader } from "./loader/index.tsx";
+export { LoaderWrapper } from "./loader-wrapper/index.tsx";
 export { Newsletter } from "./newsletter/index.tsx";
 export { NumberInput } from "./number-input/index.tsx";
 export { PrivateRoute } from "./private-route/index.tsx";
