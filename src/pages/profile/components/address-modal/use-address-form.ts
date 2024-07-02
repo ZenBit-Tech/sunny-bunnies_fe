@@ -1,4 +1,10 @@
-import { BaseSyntheticEvent, useCallback, useEffect, useState } from "react";
+import {
+	BaseSyntheticEvent,
+	ChangeEvent,
+	useCallback,
+	useEffect,
+	useState,
+} from "react";
 import { Control, FieldErrors } from "react-hook-form";
 
 import { SelectChangeEvent } from "@mui/material";
@@ -25,6 +31,7 @@ type UseAddressFormReturn = {
 	control: Control<Address>;
 	errors: FieldErrors<Address>;
 	filteredCountries: ICountry[];
+	handleAddressChange: (event: ChangeEvent<HTMLInputElement>) => void;
 	handleCityChange: (event: SelectChangeEvent<string>) => void;
 	handleCountryChange: (event: SelectChangeEvent<string>) => void;
 	handleFormSubmit: (event: BaseSyntheticEvent) => void;
@@ -46,10 +53,11 @@ const useAddressForm = (
 	const [selectedState, setSelectedState] = useState<IState | null>(null);
 	const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
 	const [serverError, setServerError] = useState("");
-	const { control, errors, handleSubmit, setValue } = useAppForm<Address>({
-		defaultValues: initialValues,
-		validationSchema: addressValidation,
-	});
+	const { control, errors, formState, handleSubmit, setValue } =
+		useAppForm<Address>({
+			defaultValues: initialValues,
+			validationSchema: addressValidation,
+		});
 
 	const [update] = useUpdateMutation();
 
@@ -58,6 +66,10 @@ const useAddressForm = (
 	);
 
 	useEffect(() => {
+		if (initialValues.addressLineOne) {
+			setValue("addressLineOne", initialValues.addressLineOne);
+		}
+
 		const initCountry =
 			filteredCountries.find((c) => c.name === initialValues.country) || null;
 		setSelectedCountry(initCountry);
@@ -83,6 +95,13 @@ const useAddressForm = (
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const handleAddressChange = useCallback(
+		(event: ChangeEvent<HTMLInputElement>) => {
+			setValue("addressLineOne", event.target.value);
+		},
+		[setValue],
+	);
 
 	const handleCountryChange = useCallback(
 		(event: SelectChangeEvent<string>) => {
@@ -153,18 +172,23 @@ const useAddressForm = (
 	const handleFormSubmit = useCallback(
 		async (event: BaseSyntheticEvent): Promise<void> => {
 			event.preventDefault();
-			const isSuccess = void handleSubmit(handleInputChange)(event);
-			if (isSuccess) {
-				toggleModal();
-			}
+
+			void handleSubmit(async (data) => {
+				handleInputChange(data);
+
+				if (formState.isSubmitted) {
+					toggleModal();
+				}
+			})(event);
 		},
-		[handleSubmit, handleInputChange, toggleModal],
+		[handleSubmit, handleInputChange, formState, toggleModal],
 	);
 
 	return {
 		control,
 		errors,
 		filteredCountries,
+		handleAddressChange,
 		handleCityChange,
 		handleCountryChange,
 		handleFormSubmit,

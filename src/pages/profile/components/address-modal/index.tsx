@@ -39,6 +39,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
 		control,
 		errors,
 		filteredCountries,
+		handleAddressChange,
 		handleCityChange,
 		handleCountryChange,
 		handleFormSubmit,
