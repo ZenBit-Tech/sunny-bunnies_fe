@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { I18nextProvider } from "react-i18next";
 import { Provider as StoreProvider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -6,6 +7,7 @@ import { ThemeProvider } from "@mui/material";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { PersistGate } from "redux-persist/integration/react";
 
+import i18n from "~/libs/locales/i18n.ts";
 import { persistor, store } from "~/redux/store.ts";
 import theme from "~/theme.ts";
 
@@ -19,7 +21,9 @@ const Providers: React.FC<ProvidersProps> = ({ children }) => {
 			<StoreProvider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<ThemeProvider theme={theme}>
-						<Router>{children}</Router>
+						<I18nextProvider i18n={i18n}>
+							<Router>{children}</Router>
+						</I18nextProvider>
 					</ThemeProvider>
 				</PersistGate>
 			</StoreProvider>

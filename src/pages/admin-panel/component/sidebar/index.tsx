@@ -14,6 +14,7 @@ const Sidebar: React.FC = () => {
 
 	return (
 		<Drawer
+			data-testid="sidebar"
 			sx={{
 				[`& .MuiDrawer-paper`]: { boxSizing: "border-box", width: "20%" },
 				flexShrink: 0,

@@ -116,7 +116,7 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 	}, [fetchedTotalPages, updateTotalPages]);
 
 	return (
-		<StyledContainer>
+		<StyledContainer data-testid="user-management">
 			<Typography
 				sx={{
 					fontFamily: theme.typography.playfairDisplayBold,

@@ -15,7 +15,7 @@ import { t } from "i18next";
 
 import { ChatIcon } from "~/assets/icons/chat-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";
-import { configureString } from "~/helpers/configure-string.helper.ts";
+import { configureString } from "~/helpers/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { userRole } from "~/libs/constants/index.ts";
 import { User } from "~/libs/types/user.ts";
