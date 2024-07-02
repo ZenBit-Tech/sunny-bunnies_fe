@@ -1,4 +1,3 @@
-// src/test/mocks/all-filters.ts
 export const allFilters = {
 	brands: [
 		{ id: 1, name: "H&M" },
