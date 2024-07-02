@@ -1,10 +1,4 @@
-import {
-	BaseSyntheticEvent,
-	ChangeEvent,
-	useCallback,
-	useEffect,
-	useState,
-} from "react";
+import { BaseSyntheticEvent, useCallback, useEffect, useState } from "react";
 import { Control, FieldErrors } from "react-hook-form";
 
 import { SelectChangeEvent } from "@mui/material";
@@ -27,11 +21,10 @@ import { useUpdateMutation } from "~/redux/user/user-api.ts";
 
 import { addressValidation } from "./address-schema.ts";
 
-type UseAddressFormReturn = {
+type UseAddressModalReturn = {
 	control: Control<Address>;
 	errors: FieldErrors<Address>;
 	filteredCountries: ICountry[];
-	handleAddressChange: (event: ChangeEvent<HTMLInputElement>) => void;
 	handleCityChange: (event: SelectChangeEvent<string>) => void;
 	handleCountryChange: (event: SelectChangeEvent<string>) => void;
 	handleFormSubmit: (event: BaseSyntheticEvent) => void;
@@ -44,10 +37,10 @@ type UseAddressFormReturn = {
 
 const allowedCountries = ["CA"];
 
-const useAddressForm = (
+const useAddressModal = (
 	initialValues: Address,
 	toggleModal: () => void,
-): UseAddressFormReturn => {
+): UseAddressModalReturn => {
 	const dispatch = useAppDispatch();
 	const [selectedCountry, setSelectedCountry] = useState<ICountry | null>(null);
 	const [selectedState, setSelectedState] = useState<IState | null>(null);
@@ -66,10 +59,6 @@ const useAddressForm = (
 	);
 
 	useEffect(() => {
-		if (initialValues.addressLineOne) {
-			setValue("addressLineOne", initialValues.addressLineOne);
-		}
-
 		const initCountry =
 			filteredCountries.find((c) => c.name === initialValues.country) || null;
 		setSelectedCountry(initCountry);
@@ -95,13 +84,6 @@ const useAddressForm = (
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
-	const handleAddressChange = useCallback(
-		(event: ChangeEvent<HTMLInputElement>) => {
-			setValue("addressLineOne", event.target.value);
-		},
-		[setValue],
-	);
 
 	const handleCountryChange = useCallback(
 		(event: SelectChangeEvent<string>) => {
@@ -188,7 +170,6 @@ const useAddressForm = (
 		control,
 		errors,
 		filteredCountries,
-		handleAddressChange,
 		handleCityChange,
 		handleCountryChange,
 		handleFormSubmit,
@@ -200,4 +181,4 @@ const useAddressForm = (
 	};
 };
 
-export { useAddressForm };
+export { useAddressModal };
