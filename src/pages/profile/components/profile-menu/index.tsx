@@ -40,13 +40,13 @@ const ProfileMenu: React.FC = () => {
 			</Typography>
 			<StyledButtonsContainer>
 				{buttonsConfig.map((button) => {
-					const isActive = location.pathname === button.to;
+					const checked = location.pathname === button.to;
 
 					return (
 						<StyledButtonContainer key={button.text}>
 							<StyledMenuButton
-								customColor={button.color}
-								isActive={isActive}
+								bgcolor={button.color}
+								checked={checked}
 								startIcon={button.startIcon}
 								to={button.to}
 							>

@@ -21,7 +21,7 @@ import { useUpdateMutation } from "~/redux/user/user-api.ts";
 
 import { addressValidation } from "./address-schema.ts";
 
-type UseAddressFormReturn = {
+type UseAddressModalReturn = {
 	control: Control<Address>;
 	errors: FieldErrors<Address>;
 	filteredCountries: ICountry[];
@@ -37,19 +37,20 @@ type UseAddressFormReturn = {
 
 const allowedCountries = ["CA"];
 
-const useAddressForm = (
+const useAddressModal = (
 	initialValues: Address,
 	toggleModal: () => void,
-): UseAddressFormReturn => {
+): UseAddressModalReturn => {
 	const dispatch = useAppDispatch();
 	const [selectedCountry, setSelectedCountry] = useState<ICountry | null>(null);
 	const [selectedState, setSelectedState] = useState<IState | null>(null);
 	const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
 	const [serverError, setServerError] = useState("");
-	const { control, errors, handleSubmit, setValue } = useAppForm<Address>({
-		defaultValues: initialValues,
-		validationSchema: addressValidation,
-	});
+	const { control, errors, formState, handleSubmit, setValue } =
+		useAppForm<Address>({
+			defaultValues: initialValues,
+			validationSchema: addressValidation,
+		});
 
 	const [update] = useUpdateMutation();
 
@@ -153,12 +154,16 @@ const useAddressForm = (
 	const handleFormSubmit = useCallback(
 		async (event: BaseSyntheticEvent): Promise<void> => {
 			event.preventDefault();
-			const isSuccess = void handleSubmit(handleInputChange)(event);
-			if (isSuccess) {
-				toggleModal();
-			}
+
+			void handleSubmit(async (data) => {
+				handleInputChange(data);
+
+				if (formState.isSubmitted) {
+					toggleModal();
+				}
+			})(event);
 		},
-		[handleSubmit, handleInputChange, toggleModal],
+		[handleSubmit, handleInputChange, formState, toggleModal],
 	);
 
 	return {
@@ -176,4 +181,4 @@ const useAddressForm = (
 	};
 };
 
-export { useAddressForm };
+export { useAddressModal };
