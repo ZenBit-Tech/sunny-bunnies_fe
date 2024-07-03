@@ -20,7 +20,7 @@ import {
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
 import { AdminPanel } from "./pages/admin-panel/admin-panel.tsx";
-import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
+import { AdminLogin } from "./pages/auth/components/admin-login/index.tsx";
 import {
 	Auth,
 	Home,
@@ -65,6 +65,14 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <Auth />,
 																	path: AppRoute.SIGN_IN,
+																},
+																{
+																	element: <Auth />,
+																	path: AppRoute.RESTORE_PASSWORD,
+																},
+																{
+																	element: <Auth />,
+																	path: AppRoute.RESET_PASSWORD,
 																},
 																{
 																	element: <AdminLogin />,

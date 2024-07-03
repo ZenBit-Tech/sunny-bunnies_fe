@@ -13,9 +13,9 @@ import { setTokens, setUser } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
 
-import { useSignInForm } from "../hooks/index.ts";
-import { AuthLinks, ForgotPasswordLink, SignUpLink } from "./index.ts";
-import { StyledFormContainer } from "./styles.ts";
+import { AuthLinks, ForgotPasswordLink, SignUpLink } from "../index.ts";
+import { StyledFormContainer } from "../styles.ts";
+import { useSignInForm } from "./use-sign-in-form.ts";
 
 const SignInForm: React.FC = () => {
 	const dispatch = useAppDispatch();

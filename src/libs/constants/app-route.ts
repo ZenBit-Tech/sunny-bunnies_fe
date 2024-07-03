@@ -16,6 +16,8 @@ const AppRoute = {
 	PROFILE_SETTINGS: "/profile/settings",
 	PROFILE_SUPPORT: "/profile/support",
 	PROFILE_WISHLIST: "/profile/wishlist",
+	RESET_PASSWORD: "/reset-password",
+	RESTORE_PASSWORD: "/restore-password",
 	ROLE: "/profile-role",
 	ROOT: "/",
 	SIGN_IN: "/sign-in",

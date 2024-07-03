@@ -126,7 +126,9 @@
 		"email": "Email*",
 		"enterYourName": "Enter your name",
 		"emailExample": "your_email@gmail.com",
-		"passwordPlaceholder": "Min. 8 characters"
+		"passwordPlaceholder": "Min. 8 characters",
+		"enterNewPassword": "Enter new password",
+		"saveAndLogin":"Save & Login"
 	},
 	"AdminLogin": {
 		"signIn": "Sign in",
