@@ -46,11 +46,10 @@ const useAddressModal = (
 	const [selectedState, setSelectedState] = useState<IState | null>(null);
 	const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
 	const [serverError, setServerError] = useState("");
-	const { control, errors, formState, handleSubmit, setValue } =
-		useAppForm<Address>({
-			defaultValues: initialValues,
-			validationSchema: addressValidation,
-		});
+	const { control, errors, handleSubmit, setValue } = useAppForm<Address>({
+		defaultValues: initialValues,
+		validationSchema: addressValidation,
+	});
 
 	const [update] = useUpdateMutation();
 
@@ -155,15 +154,19 @@ const useAddressModal = (
 		async (event: BaseSyntheticEvent): Promise<void> => {
 			event.preventDefault();
 
-			void handleSubmit(async (data) => {
-				handleInputChange(data);
+			try {
+				await handleSubmit(async (data) => {
+					const isSuccess = await handleInputChange(data);
 
-				if (formState.isSubmitted) {
-					toggleModal();
-				}
-			})(event);
+					if (isSuccess) {
+						toggleModal();
+					}
+				})(event);
+			} catch (error) {
+				setServerError(t("Error.unknowError"));
+			}
 		},
-		[handleSubmit, handleInputChange, formState, toggleModal],
+		[handleSubmit, handleInputChange, toggleModal],
 	);
 
 	return {
