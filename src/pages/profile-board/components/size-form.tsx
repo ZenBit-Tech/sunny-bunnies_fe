@@ -34,10 +34,10 @@ const SizeForm: React.FC = () => {
 		null | string
 	>(user?.profile.clothesSize ?? "");
 	const [selectedShoeSize, setSelectedShoeSize] = useState<null | string>(
-		user?.profile.jeansSize ?? "",
+		user?.profile.shoeSize ?? "",
 	);
 	const [selectedJeansSize, setSelectedJeansSize] = useState<null | string>(
-		user?.profile.shoeSize ?? "",
+		user?.profile.jeansSize ?? "",
 	);
 	const [serverError, setServerError] = useState("");
 	const { errors, handleSubmit, setValue } = useAppForm<Size>({
@@ -194,12 +194,12 @@ const SizeForm: React.FC = () => {
 						>
 							{t("Form.jeansTitle")}
 						</FormLabel>
-						{!selectedShoeSize && (
+						{!selectedJeansSize && (
 							<InputLabel shrink={false}>{t("Form.selectSize")}</InputLabel>
 						)}
 						<MuiSelect
-							onChange={handleShoeSizeChange}
-							value={selectedShoeSize || ""}
+							onChange={handleJeansSizeChange}
+							value={selectedJeansSize || ""}
 						>
 							<MenuItem value="">{t("Form.selectSize")}</MenuItem>
 							{jeansSizes.map((size) => (
@@ -244,12 +244,12 @@ const SizeForm: React.FC = () => {
 						>
 							{t("Form.shoesTitle")}
 						</FormLabel>
-						{!selectedJeansSize && (
+						{!selectedShoeSize && (
 							<InputLabel shrink={false}>{t("Form.selectSize")}</InputLabel>
 						)}
 						<MuiSelect
-							onChange={handleJeansSizeChange}
-							value={selectedJeansSize || ""}
+							onChange={handleShoeSizeChange}
+							value={selectedShoeSize || ""}
 						>
 							<MenuItem value="">{t("Form.selectSize")}</MenuItem>
 							{shoeSizes.map((size) => (
