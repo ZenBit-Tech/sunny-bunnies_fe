@@ -41,6 +41,10 @@ const config = ({ mode }: ConfigEnv): ReturnType<typeof defineConfig> => {
 			port: Number(VITE_APP_DEVELOPMENT_PORT),
 		},
 		test: {
+			coverage: {
+				exclude: ["src/test/**/*.{ts,tsx}"],
+				provider: "istanbul",
+			},
 			environment: "jsdom",
 			globals: true,
 			setupFiles: ["./vitest.setup.ts"],

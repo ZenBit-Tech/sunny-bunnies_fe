@@ -5,9 +5,9 @@ import { describe, expect, test, vi } from "vitest";
 import { Address } from "~/libs/types/user-profile.type.ts";
 import { Providers } from "~/test/providers.tsx";
 
-import { useAddressForm } from "./use-address-form.ts";
+import { useAddressModal } from "./use-address-modal.ts";
 
-describe("useAddressForm", () => {
+describe("useAddressModal", () => {
 	const initialValues: Address = {
 		addressLineOne: "123 Street",
 		addressLineTwo: "",
@@ -20,7 +20,7 @@ describe("useAddressForm", () => {
 
 	test("should initialize with correct values", () => {
 		const { result } = renderHook(
-			() => useAddressForm(initialValues, toggleModal),
+			() => useAddressModal(initialValues, toggleModal),
 			{
 				wrapper: Providers,
 			},
@@ -39,7 +39,7 @@ describe("useAddressForm", () => {
 
 	test("should handle country change", () => {
 		const { result } = renderHook(
-			() => useAddressForm(initialValues, toggleModal),
+			() => useAddressModal(initialValues, toggleModal),
 			{
 				wrapper: Providers,
 			},
@@ -60,7 +60,7 @@ describe("useAddressForm", () => {
 
 	test("should handle state change", () => {
 		const { result } = renderHook(
-			() => useAddressForm(initialValues, toggleModal),
+			() => useAddressModal(initialValues, toggleModal),
 			{
 				wrapper: Providers,
 			},
@@ -80,7 +80,7 @@ describe("useAddressForm", () => {
 
 	test("should handle city change", () => {
 		const { result } = renderHook(
-			() => useAddressForm(initialValues, toggleModal),
+			() => useAddressModal(initialValues, toggleModal),
 			{
 				wrapper: Providers,
 			},

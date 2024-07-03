@@ -58,3 +58,5 @@ To test functionality you need
 1. To create a file with such extension: "some-component.test.tsx" or "some-hook.test.ts".
 
 2. Run command for testing: `npm run test`
+
+Use `npm run test:coverage` to view the test coverage report.
