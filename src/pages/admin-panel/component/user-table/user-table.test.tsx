@@ -1,5 +1,4 @@
-import React from "react";
-/* eslint-disable */
+/*eslint-disable*/
 import { fireEvent, screen } from "@testing-library/react";
 import { expect, test, vi } from "vitest";
 

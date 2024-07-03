@@ -1,5 +1,4 @@
-import React from "react";
-
+/*eslint-disable*/
 import { screen } from "@testing-library/react";
 import { t } from "i18next";
 import { describe, expect, it } from "vitest";
