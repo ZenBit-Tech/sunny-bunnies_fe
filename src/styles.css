@@ -1,3 +1,13 @@
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-gutter: stable;
+}
+
 * {
   padding: 0px;
   margin: 0px;

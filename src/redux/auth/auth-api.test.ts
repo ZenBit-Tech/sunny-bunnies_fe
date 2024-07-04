@@ -4,7 +4,10 @@ import { expect, test } from "vitest";
 
 import { Providers } from "~/test/providers.tsx";
 
-import { useResetPasswordMutation, useRestorePasswordMutation } from "./auth-api.ts";
+import {
+	useResetPasswordMutation,
+	useRestorePasswordMutation,
+} from "./auth-api.ts";
 
 test("restorePassword sends the correct request and receives a success response", async () => {
 	const { result } = renderHook(() => useRestorePasswordMutation(), {
