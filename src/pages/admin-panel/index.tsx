@@ -50,6 +50,19 @@ const AdminPanel: React.FC = () => {
 	}, [dispatch, handleMenuClose]);
 
 	const { id } = useParams<{ id: string }>();
+
+	const getRoleFromScreen = (screen: string): string => {
+		if (screen.includes(AppRoute.MANAGEMENT_BUYERS)) {
+			return userRole.BUYER;
+		} else if (screen.includes(AppRoute.MANAGEMENT_VENDORS)) {
+			return userRole.VENDOR;
+		} else if (screen.includes(AppRoute.MANAGEMENT_NO_ROLE)) {
+			return userRole.NO_ROLE;
+		} else {
+			return userRole.BUYER;
+		}
+	};
+
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
 			case AppRoute.MANAGEMENT_BUYERS: {
@@ -61,17 +74,13 @@ const AdminPanel: React.FC = () => {
 			case AppRoute.PRODUCT_MANAGEMENT: {
 				return <UserManagement role={userRole.BUYER} />;
 			}
+			case AppRoute.MANAGEMENT_NO_ROLE: {
+				// eslint-disable-next-line jsx-a11y/aria-role
+				return <UserManagement role={userRole.NO_ROLE} />;
+			}
 			default: {
 				if (id !== undefined && id !== "") {
-					return (
-						<UserProfile
-							role={
-								screen.includes(AppRoute.MANAGEMENT_BUYERS)
-									? userRole.BUYER
-									: userRole.VENDOR
-							}
-						/>
-					);
+					return <UserProfile role={getRoleFromScreen(screen)} />;
 				}
 
 				return <UserManagement role={userRole.BUYER} />;

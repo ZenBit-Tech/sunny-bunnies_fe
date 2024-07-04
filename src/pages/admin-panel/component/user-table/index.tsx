@@ -17,7 +17,7 @@ import { ChatIcon } from "~/assets/icons/chat-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";
 import { configureString } from "~/helpers/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import { userRole } from "~/libs/constants/index.ts";
+import { dateFormat, userRole } from "~/libs/constants/index.ts";
 import { User } from "~/libs/types/user.ts";
 import theme from "~/theme.ts";
 
@@ -34,10 +34,19 @@ const UserTable: React.FC<Properties> = ({
 	role,
 	users,
 }) => {
-	const currentLink =
-		role === userRole.BUYER
-			? AppRoute.MANAGEMENT_BUYER_$ID
-			: AppRoute.MANAGEMENT_VENDOR_$ID;
+	let currentLink: string;
+
+	switch (role) {
+		case userRole.BUYER:
+			currentLink = AppRoute.MANAGEMENT_BUYER_$ID;
+			break;
+		case userRole.VENDOR:
+			currentLink = AppRoute.MANAGEMENT_VENDOR_$ID;
+			break;
+		default:
+			currentLink = AppRoute.MANAGEMENT_NO_ROLE_$ID;
+			break;
+	}
 
 	return (
 		<TableContainer component={Paper}>
@@ -73,10 +82,10 @@ const UserTable: React.FC<Properties> = ({
 							<CustomTableCell>{user.name}</CustomTableCell>
 							<CustomTableCell>{user.email}</CustomTableCell>
 							<CustomTableCell>
-								{user.profile.addressLineOne || "-"}
+								{user.profile?.addressLineOne || "-"}
 							</CustomTableCell>
 							<CustomTableCell>
-								{format(new Date(user.createdAt), "MMMM dd, yyyy")}
+								{format(new Date(user.createdAt), dateFormat)}
 							</CustomTableCell>
 							<CustomTableCell>
 								<IconButton

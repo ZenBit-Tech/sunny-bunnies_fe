@@ -52,6 +52,7 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 	useEffect(() => {
 		handlePageChange({} as React.ChangeEvent<unknown>, pagination.DEFAULT_PAGE);
 	}, [role, handlePageChange]);
+
 	const {
 		data: fetchedData,
 		isError,
@@ -71,6 +72,15 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 		totalPages: fetchedTotalPages,
 		users: fetchedUsers,
 	} = fetchedData || { totalCount: 0, totalPages: 0, users: [] };
+
+	useEffect(() => {
+		refetch();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [location.pathname, refetch]);
+
+	useEffect(() => {
+		updateTotalPages(fetchedTotalPages || pagination.DEFAULT_PAGE);
+	}, [fetchedTotalPages, updateTotalPages]);
 
 	const handleSearch = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,15 +115,6 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 		setSortOrder((prevSortOrder) => (prevSortOrder === "ASC" ? "DESC" : "ASC"));
 		refetch();
 	}, [refetch]);
-
-	useEffect(() => {
-		refetch();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [location.pathname, refetch]);
-
-	useEffect(() => {
-		updateTotalPages(fetchedTotalPages || pagination.DEFAULT_PAGE);
-	}, [fetchedTotalPages, updateTotalPages]);
 
 	return (
 		<StyledContainer data-testid="user-management">

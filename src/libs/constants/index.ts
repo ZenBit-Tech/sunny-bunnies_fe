@@ -1,5 +1,6 @@
 export { AppRoute } from "./app-route.ts";
 export { colors } from "./colors.ts";
+export { dateFormat } from "./date-format.ts";
 export { fontFamily, fontSizes, fontWeight } from "./fonts.ts";
 export { gender } from "./gender.ts";
 export { headerLogOutLinks, headerLoginLinks } from "./header-links.ts";

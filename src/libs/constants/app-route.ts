@@ -9,6 +9,8 @@ const AppRoute = {
 	HOME: "/home",
 	MANAGEMENT_BUYER_$ID: "/user-management/buyers/:id",
 	MANAGEMENT_BUYERS: "/user-management/buyers",
+	MANAGEMENT_NO_ROLE: "/user-management/no-roles",
+	MANAGEMENT_NO_ROLE_$ID: "/user-management/no-role/:id",
 	MANAGEMENT_VENDOR_$ID: "/user-management/vendors/:id",
 	MANAGEMENT_VENDORS: "/user-management/vendors",
 	PRIVACY_POLICY: "/privacy-policy",

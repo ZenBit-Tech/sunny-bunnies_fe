@@ -140,29 +140,40 @@ const UserProfile: React.FC<Properties> = ({ role }) => {
 		[handleSubmit, handleInputChange],
 	);
 
+	const getManagementLinkText = (role: string): string => {
+		switch (role) {
+			case userRole.BUYER:
+				return t("AdminUserManagementPage.buyers");
+			case userRole.VENDOR:
+				return t("AdminUserManagementPage.vendors");
+			case userRole.NO_ROLE:
+				return t("AdminUserManagementPage.noRole");
+			default:
+				return t("AdminUserManagementPage.buyers");
+		}
+	};
+
+	const getManagementRoute = (role: string): string => {
+		switch (role) {
+			case userRole.BUYER:
+				return AppRoute.MANAGEMENT_BUYERS;
+			case userRole.VENDOR:
+				return AppRoute.MANAGEMENT_VENDORS;
+			case userRole.NO_ROLE:
+				return AppRoute.MANAGEMENT_NO_ROLE;
+			default:
+				return AppRoute.MANAGEMENT_BUYERS;
+		}
+	};
+
 	return (
 		<StyledContainer>
 			<Box alignItems="center" display="flex" mb={1}>
-				<IconButton
-					component={Link}
-					to={
-						role === userRole.BUYER
-							? AppRoute.MANAGEMENT_BUYERS
-							: AppRoute.MANAGEMENT_VENDORS
-					}
-				>
+				<IconButton component={Link} to={getManagementRoute(role)}>
 					<ArrowLeftIcon />
 				</IconButton>
-				<StyledLink
-					to={
-						role === userRole.BUYER
-							? AppRoute.MANAGEMENT_BUYERS
-							: AppRoute.MANAGEMENT_VENDORS
-					}
-				>
-					{role === userRole.BUYER
-						? t("AdminUserManagementPage.buyers")
-						: t("AdminUserManagementPage.vendors")}
+				<StyledLink to={getManagementRoute(role)}>
+					{getManagementLinkText(role)}
 				</StyledLink>
 			</Box>
 			<StyledWrapperContainer>
@@ -198,7 +209,7 @@ const UserProfile: React.FC<Properties> = ({ role }) => {
 									{t("AdminUserManagementPage.phoneNumber")}
 								</StyledTitle>
 								<StyledTitleDmSans>
-									{user.profile.phoneNumber || "-"}
+									{user.profile?.phoneNumber || "-"}
 								</StyledTitleDmSans>
 							</StyledUserBox>
 							<StyledUserBox>
@@ -234,7 +245,7 @@ const UserProfile: React.FC<Properties> = ({ role }) => {
 									{t("AdminUserManagementPage.addressLineOne")}
 								</StyledTitle>
 								<StyledTitleDmSans>
-									{user.profile.addressLineOne || "-"}
+									{user.profile?.addressLineOne || "-"}
 								</StyledTitleDmSans>
 							</StyledUserBox>
 						</StyledUserBox>

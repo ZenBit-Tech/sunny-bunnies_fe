@@ -67,6 +67,14 @@ const SidebarList: React.FC = () => {
 						>
 							<StyledTab>{t("AdminPage.vendors")}</StyledTab>
 						</StyledLink>
+						<StyledLink
+							className={
+								useIsRouteActive(AppRoute.MANAGEMENT_NO_ROLE) ? "active" : ""
+							}
+							to={AppRoute.MANAGEMENT_NO_ROLE}
+						>
+							<StyledTab>{t("AdminPage.noRole")}</StyledTab>
+						</StyledLink>
 					</Box>
 				</List>
 			</Collapse>
