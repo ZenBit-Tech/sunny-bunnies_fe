@@ -5,10 +5,13 @@ import SortIcon from "@mui/icons-material/Sort";
 import { Box, IconButton, InputBase, Typography } from "@mui/material";
 import { t } from "i18next";
 
+import { CustomPagination } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
+import { usePagination } from "~/libs/hooks/index.ts";
 import theme from "~/theme.ts";
 
 import { useIsRouteActive } from "../../hooks/use-is-route-active.ts";
+import { ProductsTable } from "../products-table/index.tsx";
 import {
 	BoldDivider,
 	StyledContainer,
@@ -25,6 +28,8 @@ import {
 
 const ProductManagement: React.FC = () => {
 	const [sortOrder, setSortOrder] = useState<"Newest" | "Oldest">("Newest");
+	const { handlePageChange, limit, page, totalPages, updateTotalPages } =
+		usePagination();
 
 	return (
 		<StyledContainer>
@@ -82,6 +87,12 @@ const ProductManagement: React.FC = () => {
 						<InputBase placeholder={t("AdminProductManagement.search")} />
 					</StyledPaper>
 				</StyledSearchBox>
+				<ProductsTable />
+				<CustomPagination
+					count={totalPages}
+					onChange={handlePageChange}
+					page={page}
+				/>
 			</StyledWrapperContainer>
 		</StyledContainer>
 	);
