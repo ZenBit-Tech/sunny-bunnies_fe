@@ -202,6 +202,7 @@ const UserManagement: React.FC<Properties> = ({ role }) => {
 				</StylesSearchBox>
 				<UserTable
 					createSortHandler={createSortHandler}
+					order={sortOrder}
 					role={role}
 					users={fetchedUsers}
 				/>

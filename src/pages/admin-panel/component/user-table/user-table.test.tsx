@@ -66,6 +66,7 @@ test("renders UserTable component", () => {
 			createSortHandler={() => vi.fn()}
 			role="buyer"
 			users={mockUsers}
+			order="ASC"
 		/>,
 	);
 
@@ -88,6 +89,7 @@ test("sorts table by name when header is clicked", () => {
 			createSortHandler={mockSortHandler}
 			role="buyer"
 			users={mockUsers}
+			order="ASC"
 		/>,
 	);
 

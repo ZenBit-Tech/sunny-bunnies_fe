@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
 	IconButton,
 	Paper,
@@ -21,20 +23,28 @@ import { dateFormat, userRole } from "~/libs/constants/index.ts";
 import { User } from "~/libs/types/user.ts";
 import theme from "~/theme.ts";
 
-import { CustomTableCell, CustomUpperCaseTableCell } from "./styles.ts";
+import { sortOrder } from "../../constants/index.ts";
+import {
+	CustomIconButton,
+	CustomTableCell,
+	CustomUpperCaseTableCell,
+} from "./styles.ts";
 
 type Properties = {
 	createSortHandler: (field: string) => () => void;
+	order: string;
 	role: string;
 	users: User[];
 };
 
 const UserTable: React.FC<Properties> = ({
 	createSortHandler,
+	order,
 	role,
 	users,
 }) => {
 	let currentLink: string;
+	const isAscending = order === sortOrder.ASC;
 
 	switch (role) {
 		case userRole.BUYER:
@@ -59,17 +69,29 @@ const UserTable: React.FC<Properties> = ({
 					>
 						<CustomUpperCaseTableCell onClick={createSortHandler("name")}>
 							{t("AdminUserManagementPage.name")}
+							<CustomIconButton>
+								{isAscending ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+							</CustomIconButton>
 						</CustomUpperCaseTableCell>
 						<CustomUpperCaseTableCell onClick={createSortHandler("email")}>
 							{t("AdminUserManagementPage.email")}
+							<CustomIconButton>
+								{isAscending ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+							</CustomIconButton>
 						</CustomUpperCaseTableCell>
 						<CustomUpperCaseTableCell
 							onClick={createSortHandler("addressLineOne")}
 						>
 							{t("AdminUserManagementPage.address")}
+							<CustomIconButton>
+								{isAscending ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+							</CustomIconButton>
 						</CustomUpperCaseTableCell>
 						<CustomUpperCaseTableCell onClick={createSortHandler("createdAt")}>
 							{t("AdminUserManagementPage.date")}
+							<CustomIconButton>
+								{isAscending ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+							</CustomIconButton>
 						</CustomUpperCaseTableCell>
 						<CustomUpperCaseTableCell>
 							{t("AdminUserManagementPage.action")}
