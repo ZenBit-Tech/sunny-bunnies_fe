@@ -21,9 +21,9 @@ import { configureString } from "~/helpers/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { dateFormat, userRole } from "~/libs/constants/index.ts";
 import { User } from "~/libs/types/user.ts";
+import { sortOrder } from "~/pages/admin-panel/constants/index.ts";
 import theme from "~/theme.ts";
 
-import { sortOrder } from "../../constants/index.ts";
 import {
 	CustomIconButton,
 	CustomTableCell,
