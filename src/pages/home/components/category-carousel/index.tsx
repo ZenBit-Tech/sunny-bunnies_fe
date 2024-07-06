@@ -19,7 +19,7 @@ type CategoryCarouselProperties = {
 	onChooseCategory: (category: string) => void;
 };
 
-const CategoryCarousel: React.FC<CategoryCarouselProperties> = ({
+const CategoryCarousel: React.FC<CategoryCarouselProperties> = React.memo(({
 	onChooseCategory,
 }) => {
 	const { t } = useTranslation();
@@ -31,22 +31,25 @@ const CategoryCarousel: React.FC<CategoryCarouselProperties> = ({
 		showNextButton,
 		showPrevButton,
 		startIndex,
+		animationClass,
 	} = useCategoryCarousel(categories);
 
 	return (
 		<StyledCategoryCarouselContainer>
-			<Box sx={{ height: "38px" }}>
+			<Box sx={{ height: "38px", m: "17px 0 17px 0" }}>
 				<Typography sx={{ fontSize: fontSizes.xxl }} variant="playfairDisplay">
 					{t("HomePage.categories")}
 				</Typography>
 			</Box>
 			<StyledCategoriesContainer>
 				{showPrevButton && (
-					<IconButton onClick={handlePrev}>
-						<ArrowBackIos sx={{ height: "82px", width: "82px" }} />
-					</IconButton>
+					<Box>
+						<IconButton onClick={handlePrev} disableRipple disableFocusRipple>
+							<ArrowBackIos sx={{ height: "70px", width: "70px" }} />
+						</IconButton>
+					</Box>
 				)}
-				<StyledCategoriesItems>
+				<StyledCategoriesItems className={animationClass}>
 					{categories &&
 						categories
 							.slice(startIndex, startIndex + itemsPerPage)
@@ -59,15 +62,13 @@ const CategoryCarousel: React.FC<CategoryCarouselProperties> = ({
 							))}
 				</StyledCategoriesItems>
 				{showNextButton && (
-					<Box alignItems="center" display="flex">
-						<IconButton onClick={handleNext} sx={{ paddingBottom: "44px" }}>
-							<ArrowForwardIos sx={{ height: "82px", width: "82px" }} />
-						</IconButton>
-					</Box>
+					<IconButton onClick={handleNext} disableRipple disableFocusRipple>
+						<ArrowForwardIos sx={{ height: "70px", width: "70px" }} />
+					</IconButton>
 				)}
 			</StyledCategoriesContainer>
 		</StyledCategoryCarouselContainer>
 	);
-};
+});
 
 export { CategoryCarousel };

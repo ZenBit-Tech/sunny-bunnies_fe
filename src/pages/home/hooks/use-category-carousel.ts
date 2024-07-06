@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-
 import { type Category } from "~/pages/home/types/index.ts";
 
 const breakpoints = [
@@ -21,11 +20,13 @@ type CategoryCarouselState = {
 	showNextButton: boolean;
 	showPrevButton: boolean;
 	startIndex: number;
+	animationClass: string;
 };
 
 const useCategoryCarousel = (categories: Category[]): CategoryCarouselState => {
 	const [itemsPerPage, setItemsPerPage] = useState(initialItemPerPage);
 	const [startIndex, setStartIndex] = useState(initialStartIndex);
+	const [animationClass, setAnimationClass] = useState('');
 
 	const handleResize = useCallback((): void => {
 		const screenWidth = window.innerWidth;
@@ -44,16 +45,27 @@ const useCategoryCarousel = (categories: Category[]): CategoryCarouselState => {
 	}, [handleResize]);
 
 	const handleNext = useCallback((): void => {
-		const nextIndex = Math.min(
-			startIndex + itemsPerPage,
-			categories.length - defaultStep,
-		);
-		setStartIndex(nextIndex);
+		if (startIndex + itemsPerPage < categories.length) {
+			requestAnimationFrame(() => {
+				setAnimationClass('category-slide-out-left');
+				requestAnimationFrame(() => {
+					setStartIndex(Math.min(startIndex + itemsPerPage, categories.length - defaultStep));
+					setAnimationClass('category-slide-in-right');
+				});
+			});
+		}
 	}, [categories.length, itemsPerPage, startIndex]);
 
 	const handlePrev = useCallback((): void => {
-		const prevIndex = Math.max(startIndex - itemsPerPage, initialStartIndex);
-		setStartIndex(prevIndex);
+		if (startIndex > 0) {
+			requestAnimationFrame(() => {
+				setAnimationClass('category-slide-out-right');
+				requestAnimationFrame(() => {
+					setStartIndex(Math.max(startIndex - itemsPerPage, initialStartIndex));
+					setAnimationClass('category-slide-in-left');
+				});
+			});
+		}
 	}, [itemsPerPage, startIndex]);
 
 	const showPrevButton = startIndex > initialStartIndex;
@@ -66,6 +78,7 @@ const useCategoryCarousel = (categories: Category[]): CategoryCarouselState => {
 		showNextButton,
 		showPrevButton,
 		startIndex,
+		animationClass,
 	};
 };
 
