@@ -19,13 +19,11 @@ export const HeaderContainer = styled(Box)`
 	height: 68px;
 	background-color: ${colors.WHITE};
 	border: 1px solid ${colors.WHITE};
-	padding-inline: 38px;
-`;
-export const StyledContainer = styled(Box)`
-	padding-top: 19px;
 	display: flex;
 	justify-content: space-between;
+	padding-inline: 38px;
 `;
+
 export const NavHeaderBox = styled(Box)`
 	display: flex;
 	gap: 40px;
