@@ -1,81 +1,77 @@
-import styled from "@emotion/styled";
-import { Badge, Button, SvgIcon, styled as muiStyled } from "@mui/material";
+import { Badge, Button, SvgIcon, styled } from "@mui/material";
 import { Box } from "@mui/system";
 
-import { colors } from "~/libs/constants/color.ts";
-import { fontFamily, fontSizes, fontWeights } from "~/libs/constants/font.ts";
+const IconsSection = styled("div")({
+	alignItems: "center",
+	display: "flex",
+	gap: "20px",
+});
 
-export const IconsSection = styled.div`
-	display: flex;
-	gap: 20px;
-	align-items: center;
-`;
-export const ButtonsContainer = styled.div`
-	display: flex;
-	gap: 9px;
-	align-items: center;
-`;
-export const HeaderContainer = styled(Box)`
-	height: 68px;
-	background-color: ${colors.WHITE};
-	border: 1px solid ${colors.WHITE};
-	display: flex;
-	justify-content: space-between;
-	padding-inline: 38px;
-`;
+const ButtonsContainer = styled("div")({
+	alignItems: "center",
+	display: "flex",
+	gap: "9px",
+});
 
-export const NavHeaderBox = styled(Box)`
-	display: flex;
-	gap: 40px;
-`;
-export const StyledSvgIcon = styled(SvgIcon)`
-	cursor: pointer;
-`;
+const NavHeaderBox = styled(Box)({
+	display: "flex",
+	gap: "40px",
+});
 
-export const StyledButtonSignUp = styled(Button)`
-	border-radius: 12px;
-	background-color: ${colors.WHITE};
-	color: ${colors.BLACK};
-	font-size: ${fontSizes.small};
-	font-weight: ${fontWeights.medium};
-	font-family: ${fontFamily.DM_SANS};
-	width: 77px;
-	height: 34px;
-	border: 1px solid ${colors.BLACK};
-	text-transform: none;
-	transition:
-		background-color 0.3s,
-		color 0.3s;
-	&:hover {
-		background-color: ${colors.BLACK};
-		color: ${colors.WHITE};
-	}
-`;
-export const StyledButtonLogIn = styled(Button)`
-	border-radius: 12px;
-	background-color: ${colors.BLACK};
-	color: ${colors.WHITE};
-	font-size: ${fontSizes.small};
-	font-weight: ${fontWeights.medium};
-	font-family: ${fontFamily.DM_SANS};
-	width: 77px;
-	height: 34px;
-	border: 1px solid ${colors.BLACK};
-	text-transform: none;
-	transition:
-		background-color 0.3s,
-		color 0.3s;
-	&:hover {
-		background-color: ${colors.WHITE};
-		color: ${colors.BLACK};
-	}
-`;
-export const HeaderLogOutNav = styled(Box)`
-	padding-left: 68px;
-	display: flex;
-`;
+const StyledSvgIcon = styled(SvgIcon)({
+	cursor: "pointer",
+});
 
-export const StyledBadge = muiStyled(Badge)(({ theme }) => ({
+const HeaderLogOutNav = styled(Box)({
+	display: "flex",
+	paddingLeft: "68px",
+});
+const HeaderContainer = styled(Box)(({ theme }) => ({
+	backgroundColor: theme.palette.white,
+	border: `1px solid ${theme.palette.white}`,
+	display: "flex",
+	height: "68px",
+	justifyContent: "space-between",
+	paddingInline: "38px",
+}));
+
+const StyledButtonSignUp = styled(Button)(({ theme }) => ({
+	"&:hover": {
+		backgroundColor: theme.palette.black,
+		color: theme.palette.white,
+	},
+	backgroundColor: theme.palette.white,
+	border: `1px solid ${theme.palette.black}`,
+	borderRadius: "12px",
+	color: theme.palette.black,
+	...theme.typography.dmSans,
+	fontSize: theme.fontSizes.small,
+	fontWeight: theme.fontWeight.medium,
+	height: "34px",
+	textTransform: "none",
+	transition: "background-color 0.3s, color 0.3s",
+	width: "77px",
+}));
+
+const StyledButtonLogIn = styled(Button)(({ theme }) => ({
+	"&:hover": {
+		backgroundColor: theme.palette.white,
+		color: theme.palette.black,
+	},
+	backgroundColor: theme.palette.black,
+	border: `1px solid ${theme.palette.black}`,
+	borderRadius: "12px",
+	color: theme.palette.white,
+	...theme.typography.dmSans,
+	fontSize: theme.fontSizes.small,
+	fontWeight: theme.fontWeight.medium,
+	height: "34px",
+	textTransform: "none",
+	transition: "background-color 0.3s, color 0.3s",
+	width: "77px",
+}));
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {
 		backgroundColor: theme.palette.black,
 		right: 10,
@@ -83,3 +79,15 @@ export const StyledBadge = muiStyled(Badge)(({ theme }) => ({
 	},
 	color: theme.palette.white,
 }));
+
+export {
+	ButtonsContainer,
+	HeaderContainer,
+	HeaderLogOutNav,
+	IconsSection,
+	NavHeaderBox,
+	StyledBadge,
+	StyledButtonLogIn,
+	StyledButtonSignUp,
+	StyledSvgIcon,
+};
