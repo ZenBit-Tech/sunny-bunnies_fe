@@ -7,7 +7,7 @@ import { HeaderContainer } from "~/components/Header/styles.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
-import { AuthUserContnet } from "./auth-user-content/index.tsx";
+import { AuthUserContent } from "./auth-user-content/index.tsx";
 import { GuestUserContent } from "./guest-user-content/index.tsx";
 
 export const Header: React.FC = () => {
@@ -23,7 +23,7 @@ export const Header: React.FC = () => {
 				<MainLogo />
 			</Box>
 			{isLoggedIn ? (
-				<AuthUserContnet role={user?.profile.role as string} />
+				<AuthUserContent role={user?.profile.role as string} />
 			) : (
 				<GuestUserContent />
 			)}

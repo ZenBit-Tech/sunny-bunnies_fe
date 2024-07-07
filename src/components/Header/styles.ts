@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, SvgIcon } from "@mui/material";
+import { Badge, Button, SvgIcon, styled as muiStyled } from "@mui/material";
 import { Box } from "@mui/system";
 
 import { colors } from "~/libs/constants/color.ts";
@@ -74,3 +74,12 @@ export const HeaderLogOutNav = styled(Box)`
 	padding-left: 68px;
 	display: flex;
 `;
+
+export const StyledBadge = muiStyled(Badge)(({ theme }) => ({
+	"& .MuiBadge-badge": {
+		backgroundColor: theme.palette.black,
+		right: 10,
+		top: 10,
+	},
+	color: theme.palette.white,
+}));
