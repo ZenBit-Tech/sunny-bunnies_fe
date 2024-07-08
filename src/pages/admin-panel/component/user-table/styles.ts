@@ -1,4 +1,4 @@
-import { TableCell, styled } from "@mui/material";
+import { Icon, TableCell, styled } from "@mui/material";
 
 const CustomTableCell = styled(TableCell)(({ theme }) => ({
 	...theme.typography.dmSans,
@@ -11,6 +11,12 @@ const CustomUpperCaseTableCell = styled(TableCell)(({ theme }) => ({
 	cursor: "pointer",
 	fontSize: theme.fontSizes.small,
 	textTransform: "uppercase",
+	verticalAlign: "middle",
 }));
 
-export { CustomTableCell, CustomUpperCaseTableCell };
+const CustomIconButton = styled(Icon)({
+	padding: "6px 8px",
+	width: "auto",
+});
+
+export { CustomIconButton, CustomTableCell, CustomUpperCaseTableCell };
