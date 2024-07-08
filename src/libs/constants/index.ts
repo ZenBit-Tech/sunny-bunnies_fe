@@ -9,5 +9,6 @@ export { httpStatusCode } from "./http-status-code.ts";
 export { pagination } from "./pagination.ts";
 export { productSizesSortOrder } from "./product-sizes-sort-order.ts";
 export { productStatus } from "./product-status.ts";
+export { registerRoute } from "./register-route.ts";
 export { clothesSizes, shoeSizes, trouserSizes } from "./sizes.ts";
 export { userRole } from "./user-role.ts";

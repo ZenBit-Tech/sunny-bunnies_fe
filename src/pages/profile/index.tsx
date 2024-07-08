@@ -37,6 +37,9 @@ const Profile: React.FC = () => {
 			case AppRoute.PROFILE_SUPPORT: {
 				return <ProfileSupport />;
 			}
+			case AppRoute.PROFILE_PRODUCTS: {
+				return <ProfileSupport />;
+			}
 			default: {
 				return <ProfileForm />;
 			}

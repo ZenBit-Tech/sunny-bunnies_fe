@@ -27,6 +27,7 @@ const GetStartedHeaderRoutes = [
 	AppRoute.PROFILE_WISHLIST,
 	AppRoute.PROFILE_SETTINGS,
 	AppRoute.PROFILE_SUPPORT,
+	AppRoute.PROFILE_PRODUCTS,
 ];
 
 const HeaderWrapper: React.FC = () => {
