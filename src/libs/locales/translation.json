@@ -146,7 +146,7 @@
 		"users": "Users",
 		"chats": "Chats",
 		"userList": "User List",
-		"request": "Request",
+		"requests": "Requests",
 		"productList": "Product List",
 		"vendors": "Vendors",
 		"buyers": "Buyers",
@@ -185,7 +185,8 @@
 		"status": "Status",
 		"quantity": "q-ty",
 		"price": "price",
-		"action": "action"
+		"action": "action",
+		"errorLoadingProducts": "Error loading products"
 	},
 	"SignInComponent": {
 		"signIn": "Sign In",

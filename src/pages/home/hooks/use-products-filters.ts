@@ -11,7 +11,6 @@ const allCategories = "All";
 
 type UseProductFiltersResult = {
 	additionalFilters: Record<string, number | undefined>;
-	data: Product[] | undefined;
 	filterCategory: string | undefined;
 	handleChooseCategory: (category: string) => void;
 	handleFilterChange: (newFilters: Record<string, number | undefined>) => void;
@@ -22,6 +21,7 @@ type UseProductFiltersResult = {
 	isFetching: boolean;
 	isLoading: boolean;
 	offset: number;
+	products: Product[] | undefined;
 };
 
 const useProductFilters = (): UseProductFiltersResult => {
@@ -39,6 +39,8 @@ const useProductFilters = (): UseProductFiltersResult => {
 		offset,
 		...additionalFilters,
 	});
+
+	const products = data?.products;
 
 	const handleChooseCategory = useCallback((category: string) => {
 		setFilterCategory(category === allCategories ? undefined : category);
@@ -60,7 +62,7 @@ const useProductFilters = (): UseProductFiltersResult => {
 		}
 	}, [isFetching]);
 
-	const hasMore = !isLoading && data?.length === productsLoadLimit;
+	const hasMore = !isLoading && products?.length === productsLoadLimit;
 
 	const hasAdditionalFilters = Object.keys(additionalFilters).some(
 		(key) => additionalFilters[key] !== undefined,
@@ -68,7 +70,6 @@ const useProductFilters = (): UseProductFiltersResult => {
 
 	return {
 		additionalFilters,
-		data,
 		filterCategory,
 		handleChooseCategory,
 		handleFilterChange,
@@ -79,6 +80,7 @@ const useProductFilters = (): UseProductFiltersResult => {
 		isFetching,
 		isLoading,
 		offset,
+		products,
 	};
 };
 

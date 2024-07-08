@@ -112,7 +112,7 @@ const SidebarList: React.FC = () => {
 							}
 							to={AppRoute.MANAGEMENT_PRODUCTS_REQUESTS}
 						>
-							<StyledTab>{t("AdminPage.request")}</StyledTab>
+							<StyledTab>{t("AdminPage.requests")}</StyledTab>
 						</StyledLink>
 						<StyledLink to={AppRoute.MANAGEMENT_PRODUCTS_LIST}>
 							<StyledTab>{t("AdminPage.productList")}</StyledTab>

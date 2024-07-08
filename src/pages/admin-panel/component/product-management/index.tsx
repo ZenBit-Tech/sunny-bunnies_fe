@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import { Box, IconButton, InputBase, Typography } from "@mui/material";
 import { t } from "i18next";
 
-import { CustomPagination } from "~/components/index.ts";
+import { CustomError, CustomPagination, Loader } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
+import { pagination } from "~/libs/constants/pagination.ts";
 import { usePagination } from "~/libs/hooks/index.ts";
+import { useGetProductsQuery } from "~/redux/products/products-api.ts";
 import theme from "~/theme.ts";
 
 import { useIsRouteActive } from "../../hooks/use-is-route-active.ts";
@@ -27,9 +29,44 @@ import {
 } from "./styles.ts";
 
 const ProductManagement: React.FC = () => {
-	const [sortOrder, setSortOrder] = useState<"Newest" | "Oldest">("Newest");
+	const [searchQuery, setSearchQuery] = useState("");
+	const [order, setOrder] = useState<"ASC" | "DESC">("ASC");
 	const { handlePageChange, limit, page, totalPages, updateTotalPages } =
 		usePagination();
+
+	const { data, isError, isLoading, refetch } = useGetProductsQuery({
+		activityStatuses: ["inactive"],
+		limit,
+		order,
+		page,
+		searchQuery,
+	});
+
+	const {
+		products: fetchedProducts,
+		totalCount,
+		totalPages: fetchedTotalPages,
+	} = data || { products: [], totalCount: 0, totalPages: 0 };
+
+	useEffect(() => {
+		updateTotalPages(fetchedTotalPages || pagination.DEFAULT_PAGE);
+	}, [fetchedTotalPages, updateTotalPages]);
+
+	useEffect(() => {
+		refetch();
+	}, [searchQuery, refetch]);
+
+	const handleSearch = useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>) => {
+			setSearchQuery(event.target.value);
+		},
+		[],
+	);
+
+	const handleChangeSort = useCallback(() => {
+		setOrder((prevOrder) => (prevOrder === "ASC" ? "DESC" : "ASC"));
+		refetch();
+	}, [refetch]);
 
 	return (
 		<StyledContainer>
@@ -51,9 +88,9 @@ const ProductManagement: React.FC = () => {
 						</StyledHeaderTypography>
 					</Box>
 					<Box sx={{ display: "flex", gap: "10px" }}>
-						<StyledSortButton>
+						<StyledSortButton onClick={handleChangeSort}>
 							<SortIcon />
-							{sortOrder}
+							{order}
 						</StyledSortButton>
 					</Box>
 				</StyledWrapperHeader>
@@ -66,7 +103,7 @@ const ProductManagement: React.FC = () => {
 						}
 						to={AppRoute.MANAGEMENT_PRODUCTS_REQUESTS}
 					>
-						Requests
+						{t("AdminPage.requests")} {`(${totalCount})`}
 					</StyledLink>
 					<StyledLink
 						className={
@@ -84,10 +121,21 @@ const ProductManagement: React.FC = () => {
 						<IconButton aria-label="search" sx={{ p: "10px" }} type="submit">
 							<SearchIcon />
 						</IconButton>
-						<InputBase placeholder={t("AdminProductManagement.search")} />
+						<InputBase
+							onChange={handleSearch}
+							placeholder={t("AdminProductManagement.search")}
+							sx={{ width: "100%" }}
+							value={searchQuery}
+						/>
 					</StyledPaper>
 				</StyledSearchBox>
-				<ProductsTable />
+				<ProductsTable products={fetchedProducts} />
+				{isLoading && <Loader />}
+				{isError && (
+					<CustomError
+						errorMessage={t("AdminProductManagement.errorLoadingProducts")}
+					/>
+				)}
 				<CustomPagination
 					count={totalPages}
 					onChange={handlePageChange}

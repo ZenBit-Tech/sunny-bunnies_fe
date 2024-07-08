@@ -39,7 +39,7 @@ const useProductSearch = (
 
 	useEffect(() => {
 		if (productSuggestions) {
-			setOptions(productSuggestions);
+			setOptions(productSuggestions.products);
 		}
 	}, [productSuggestions]);
 

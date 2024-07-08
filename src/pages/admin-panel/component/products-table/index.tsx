@@ -15,18 +15,27 @@ import { t } from "i18next";
 import { ConfirmIcon } from "~/assets/icons/confirm-icon.tsx";
 import { DeclineIcon } from "~/assets/icons/decline-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";
+import { Product } from "~/libs/types/products.ts";
 import theme from "~/theme.ts";
 
 import { ProductStatus } from "../product-status/index.tsx";
 import {
 	StyledActionTableCell,
 	StyledButtonsContainer,
+	StyledProductContainer,
+	StyledProductImage,
 	StyledStatusTableCell,
 	StyledTableCell,
 	StyledUpperCaseTableCell,
 } from "./styles.ts";
 
-const ProductsTable: React.FC = () => {
+type ProductsTableSort = {
+	products: Product[];
+};
+
+const zero = 0;
+
+const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 	return (
 		<TableContainer component={Paper}>
 			<Table>
@@ -57,39 +66,43 @@ const ProductsTable: React.FC = () => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					<TableRow>
-						<StyledTableCell width="30%">
-							{t("AdminProductManagement.product")}
-						</StyledTableCell>
-						<StyledTableCell width="20%">
-							{t("AdminProductManagement.category")}
-						</StyledTableCell>
-						<StyledStatusTableCell width="10%">
-							<ProductStatus status="rejected" />
-						</StyledStatusTableCell>
-						<StyledTableCell width="10%">
-							{t("AdminProductManagement.quantity")}
-						</StyledTableCell>
-						<StyledTableCell width="10%">
-							{t("AdminProductManagement.price")}
-						</StyledTableCell>
-						<StyledTableCell width="20%">
-							<StyledButtonsContainer>
-								<IconButton>
-									<ConfirmIcon />
-								</IconButton>
-								<IconButton>
-									<DeclineIcon />
-								</IconButton>
-								<IconButton
-									component={Link}
-									to="/product-management/products-requests"
-								>
-									<ViewIcon />
-								</IconButton>
-							</StyledButtonsContainer>
-						</StyledTableCell>
-					</TableRow>
+					{products.map((product) => {
+						return (
+							<TableRow key={product.id}>
+								<StyledTableCell width="30%">
+									<StyledProductContainer>
+										<StyledProductImage src={product.images[zero].url} />
+										{product.name}
+									</StyledProductContainer>
+								</StyledTableCell>
+								<StyledTableCell width="20%">
+									{product.category.name}
+								</StyledTableCell>
+								<StyledStatusTableCell width="10%">
+									<ProductStatus status={product.activityStatus} />
+								</StyledStatusTableCell>
+								<StyledTableCell width="10%">
+									{t("AdminProductManagement.quantity")}
+								</StyledTableCell>
+								<StyledTableCell width="10%">
+									{product.minPrice}
+								</StyledTableCell>
+								<StyledTableCell width="20%">
+									<StyledButtonsContainer>
+										<IconButton>
+											<ConfirmIcon />
+										</IconButton>
+										<IconButton>
+											<DeclineIcon />
+										</IconButton>
+										<IconButton component={Link} to={`/product/${product.id}`}>
+											<ViewIcon />
+										</IconButton>
+									</StyledButtonsContainer>
+								</StyledTableCell>
+							</TableRow>
+						);
+					})}
 				</TableBody>
 			</Table>
 		</TableContainer>

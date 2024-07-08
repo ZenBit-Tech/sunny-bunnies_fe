@@ -13,6 +13,11 @@ type ProductImage = {
 	url: string;
 };
 
+type Category = {
+	id: number;
+	name: string;
+};
+
 type Color = {
 	id: number;
 	name: string;
@@ -31,8 +36,9 @@ type ProductVariant = {
 };
 
 type Product = {
+	activityStatus: "active" | "inactive" | "rejected";
 	brand: string;
-	category: string;
+	category: Category;
 	createdAt: Date;
 	description: string;
 	gender: typeof gender;
@@ -50,9 +56,16 @@ type Product = {
 	variants: ProductVariant[];
 };
 
+type Products = {
+	products: Product[];
+	totalCount: number;
+	totalPages: number;
+};
+
 export {
 	type Product,
 	type ProductImage,
 	type ProductSize,
 	type ProductVariant,
+	type Products,
 };

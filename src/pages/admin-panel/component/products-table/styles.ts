@@ -27,9 +27,24 @@ const StyledButtonsContainer = styled(Box)(() => ({
 	justifyContent: "center",
 }));
 
+const StyledProductContainer = styled(Box)(() => ({
+	alignItems: "center",
+	display: "flex",
+	gap: "20px",
+}));
+
+const StyledProductImage = styled("img")(({ theme }) => ({
+	border: `14px solid ${theme.palette.gray}`,
+	borderRadius: "4px",
+	height: "92px",
+	width: "80px",
+}));
+
 export {
 	StyledActionTableCell,
 	StyledButtonsContainer,
+	StyledProductContainer,
+	StyledProductImage,
 	StyledStatusTableCell,
 	StyledTableCell,
 	StyledUpperCaseTableCell,

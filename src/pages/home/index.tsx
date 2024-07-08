@@ -16,13 +16,13 @@ const Home: React.FC = () => {
 
 	const {
 		additionalFilters,
-		data,
 		handleChooseCategory,
 		handleFilterChange,
 		handleLoadMore,
 		hasAdditionalFilters,
 		hasMore,
 		isError,
+		products,
 	} = useProductFilters();
 
 	return (
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
 			<TopInfoSection />
 			<CategoryCarousel onChooseCategory={handleChooseCategory} />
 			<InfiniteScroll
-				dataLength={data?.length || minDataLength}
+				dataLength={products?.length || minDataLength}
 				hasMore={hasMore}
 				loader={<Loader />}
 				next={handleLoadMore}
@@ -48,12 +48,12 @@ const Home: React.FC = () => {
 					overflow: "inherit",
 				}}
 			>
-				{data && (
+				{products && (
 					<Products
 						additionalFilters={additionalFilters}
 						handleFilterChange={handleFilterChange}
 						hasAdditionalFilters={hasAdditionalFilters}
-						products={data}
+						products={products}
 					/>
 				)}
 				{isError && <Box>{t("HomePage.errorLoadingProducts")}</Box>}
