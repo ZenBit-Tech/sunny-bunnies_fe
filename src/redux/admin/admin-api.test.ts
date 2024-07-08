@@ -95,9 +95,6 @@ test("getProductsByOptions query", async () => {
 		},
 	);
 
-	await waitFor(() => {
-		console.log("Result:", result.current); // Add logging
-		return expect(result.current.isSuccess).toBe(true);
-	});
+	await waitFor(() => expect(result.current.isSuccess).toBe(true));
 	expect(result.current.data).toEqual(products);
 });
