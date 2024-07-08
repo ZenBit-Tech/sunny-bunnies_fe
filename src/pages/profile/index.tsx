@@ -5,10 +5,10 @@ import { useLocation } from "react-router-dom";
 import { Typography } from "@mui/material";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
+import { ProfileMenu } from "~/components";
 
 import {
 	ProfileForm,
-	ProfileMenu,
 	ProfileOrders,
 	ProfileSettings,
 	ProfileSupport,

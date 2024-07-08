@@ -1,5 +1,6 @@
 export { Footer } from "./Footer/Footer.tsx";
 export { Header } from "./Header/Header.tsx";
+export { TabsBoard } from "./tabs-board/index.tsx";
 export { Link } from "./Header/Link.tsx";
 export { AdminRoute } from "./admin-route/admin-route.tsx";
 export { BaseButton } from "./base-button/index.tsx";
@@ -19,4 +20,5 @@ export { PrivateRoute } from "./private-route/index.tsx";
 export { PublicRoute } from "./public-route/index.tsx";
 export { RouterProvider } from "./router-provider/index.tsx";
 export { TopInfoSection } from "./top-info-section/index.tsx";
+export { ProfileMenu } from "./profile-menu/index.tsx";
 export { Provider as StoreProvider } from "react-redux";

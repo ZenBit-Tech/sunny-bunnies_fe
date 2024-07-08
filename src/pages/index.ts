@@ -5,3 +5,4 @@ export { ProductPage } from "./product/index.tsx";
 export { Profile } from "./profile/index.tsx";
 export { SizeGuide } from "./size-guide/index.tsx";
 export { VendorProfile } from "./vendor-profile/index.tsx";
+export { AddProducts } from "./add-product/index.tsx";

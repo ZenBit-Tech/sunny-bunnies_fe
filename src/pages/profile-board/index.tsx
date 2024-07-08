@@ -7,6 +7,7 @@ import { AppRoute } from "~/libs/constants/index.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 import theme from "~/theme.ts";
+import { TabsBoard } from "~/components/index.ts";
 
 import {
 	AddressForm,
@@ -14,7 +15,6 @@ import {
 	GeneralInformationForm,
 	RoleForm,
 	SizeForm,
-	TabsBoard,
 } from "./components/index.ts";
 import { tabRoutes } from "./constants.ts/index.ts";
 

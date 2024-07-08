@@ -29,6 +29,7 @@ import {
 	Profile,
 	SizeGuide,
 	VendorProfile,
+	AddProducts,
 } from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";
@@ -147,6 +148,26 @@ createRoot(document.getElementById("root")!).render(
 																{
 																	element: <Profile />,
 																	path: AppRoute.PROFILE_SUPPORT,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_PHOTOS,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_CATEGORY,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_DESCRIPTION,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_VARIANTS,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_PUBLISH,
 																},
 																{
 																	element: <ProfileBoard />,
