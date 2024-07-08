@@ -22,7 +22,7 @@ type Properties = {
 const AuthUserContent: React.FC<Properties> = ({ role }) => {
 	return (
 		<>
-			<NavHeader links={headerLoginLinks} />
+			{role === userRole.BUYER && <NavHeader links={headerLoginLinks} />}
 			<IconsSection>
 				<Box>
 					<IconButton component={Link} to={AppRoute.PROFILE}>

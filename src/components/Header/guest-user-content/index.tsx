@@ -5,14 +5,16 @@ import { IconButton } from "@mui/material";
 import { t } from "i18next";
 
 import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";
-import { AppRoute } from "~/libs/constants/index.ts";
+import { AppRoute, headerLoginLinks } from "~/libs/constants/index.ts";
 
+import { NavHeader } from "../nav-header/index.tsx";
 import { ButtonsContainer, IconsSection, StyledBadge } from "../styles.ts";
 import { StyledButtonLogIn, StyledButtonSignUp } from "./styles.ts";
 
 const GuestUserContent: React.FC = () => {
 	return (
 		<>
+			<NavHeader links={headerLoginLinks} />
 			<IconsSection>
 				<ButtonsContainer>
 					<StyledButtonLogIn href={AppRoute.SIGN_IN}>
