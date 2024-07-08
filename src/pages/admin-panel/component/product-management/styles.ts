@@ -1,15 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { Box, Button, Typography, styled } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 
 import theme from "~/theme.ts";
-
-const StyledSortButton = styled(Button)(({ theme }) => ({
-	backgroundColor: theme.palette.gray,
-	display: "flex",
-	gap: "10px",
-	padding: "6px 16px",
-}));
 
 const StyledHeaderTypography = styled(Typography)(({ theme }) => ({
 	...theme.typography.playfairDisplayBold,
@@ -50,10 +43,4 @@ const StyledPaper = styled(Box)({
 	width: "100%",
 });
 
-export {
-	StyledHeaderTypography,
-	StyledLink,
-	StyledPaper,
-	StyledSearchBox,
-	StyledSortButton,
-};
+export { StyledHeaderTypography, StyledLink, StyledPaper, StyledSearchBox };

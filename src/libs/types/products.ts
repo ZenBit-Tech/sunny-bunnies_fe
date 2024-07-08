@@ -62,9 +62,18 @@ type Products = {
 	totalPages: number;
 };
 
+type ProductRequestDto = {
+	activityStatuses: string[];
+	limit: number;
+	order: "ASC" | "DESC";
+	page: number;
+	searchQuery: string;
+};
+
 export {
 	type Product,
 	type ProductImage,
+	type ProductRequestDto,
 	type ProductSize,
 	type ProductVariant,
 	type Products,

@@ -9,7 +9,7 @@ import { CustomError, CustomPagination, Loader } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { pagination } from "~/libs/constants/pagination.ts";
 import { usePagination } from "~/libs/hooks/index.ts";
-import { useGetProductsQuery } from "~/redux/products/products-api.ts";
+import { useGetProductsByOptionsQuery } from "~/redux/admin/admin-api.ts";
 import theme from "~/theme.ts";
 
 import { useIsRouteActive } from "../../hooks/use-is-route-active.ts";
@@ -17,6 +17,7 @@ import { ProductsTable } from "../products-table/index.tsx";
 import {
 	BoldDivider,
 	StyledContainer,
+	StyledSortButton,
 	StyledWrapperContainer,
 	StyledWrapperHeader,
 } from "../styles.ts";
@@ -25,16 +26,18 @@ import {
 	StyledLink,
 	StyledPaper,
 	StyledSearchBox,
-	StyledSortButton,
 } from "./styles.ts";
+
+const initialPage = 1;
+const productsPerPage = 5;
 
 const ProductManagement: React.FC = () => {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [order, setOrder] = useState<"ASC" | "DESC">("ASC");
+	const [order, setOrder] = useState<"ASC" | "DESC">("DESC");
 	const { handlePageChange, limit, page, totalPages, updateTotalPages } =
-		usePagination();
+		usePagination(initialPage, productsPerPage);
 
-	const { data, isError, isLoading, refetch } = useGetProductsQuery({
+	const { data, isError, isLoading, refetch } = useGetProductsByOptionsQuery({
 		activityStatuses: ["inactive"],
 		limit,
 		order,
@@ -49,12 +52,12 @@ const ProductManagement: React.FC = () => {
 	} = data || { products: [], totalCount: 0, totalPages: 0 };
 
 	useEffect(() => {
-		updateTotalPages(fetchedTotalPages || pagination.DEFAULT_PAGE);
-	}, [fetchedTotalPages, updateTotalPages]);
-
-	useEffect(() => {
 		refetch();
 	}, [searchQuery, refetch]);
+
+	useEffect(() => {
+		updateTotalPages(fetchedTotalPages || pagination.DEFAULT_PAGE);
+	}, [fetchedTotalPages, updateTotalPages]);
 
 	const handleSearch = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +70,12 @@ const ProductManagement: React.FC = () => {
 		setOrder((prevOrder) => (prevOrder === "ASC" ? "DESC" : "ASC"));
 		refetch();
 	}, [refetch]);
+
+	const getOrderDisplayText = (order: "ASC" | "DESC"): string => {
+		return order === "DESC"
+			? t("AdminProductManagement.newest")
+			: t("AdminProductManagement.oldest");
+	};
 
 	return (
 		<StyledContainer>
@@ -90,7 +99,7 @@ const ProductManagement: React.FC = () => {
 					<Box sx={{ display: "flex", gap: "10px" }}>
 						<StyledSortButton onClick={handleChangeSort}>
 							<SortIcon />
-							{order}
+							{getOrderDisplayText(order)}
 						</StyledSortButton>
 					</Box>
 				</StyledWrapperHeader>

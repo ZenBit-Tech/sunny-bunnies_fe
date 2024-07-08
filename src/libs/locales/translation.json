@@ -186,7 +186,9 @@
 		"quantity": "q-ty",
 		"price": "price",
 		"action": "action",
-		"errorLoadingProducts": "Error loading products"
+		"errorLoadingProducts": "Error loading products",
+		"newest": "Newest",
+		"oldest": "Oldest"
 	},
 	"SignInComponent": {
 		"signIn": "Sign In",

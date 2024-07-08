@@ -71,7 +71,10 @@ const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 							<TableRow key={product.id}>
 								<StyledTableCell width="30%">
 									<StyledProductContainer>
-										<StyledProductImage src={product.images[zero].url} />
+										<StyledProductImage
+											alt={product.name}
+											src={product.images[zero].url}
+										/>
 										{product.name}
 									</StyledProductContainer>
 								</StyledTableCell>
