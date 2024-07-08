@@ -1,5 +1,4 @@
-export { Footer } from "./Footer/Footer.tsx";
-export { Link } from "./Header/Link.tsx";
+export { Footer } from "./Footer/index.tsx";
 export { Header } from "./Header/index.tsx";
 export { AdminRoute } from "./admin-route/admin-route.tsx";
 export { BaseButton } from "./base-button/index.tsx";
@@ -14,6 +13,7 @@ export { CustomSlider } from "./custom-slider/index.tsx";
 export { FilterButton } from "./filter-button/index.tsx";
 export { IconWrapper } from "./icon-wrapper/index.tsx";
 export { ImagePreview } from "./image-preview/image-preview.tsx";
+export { Link } from "./link/index.tsx";
 export { Loader } from "./loader/index.tsx";
 export { Newsletter } from "./newsletter/index.tsx";
 export { CustomPagination } from "./pagination/index.tsx";

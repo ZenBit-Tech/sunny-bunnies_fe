@@ -1,82 +1,100 @@
-import styled from "@emotion/styled";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Divider, Typography, styled } from "@mui/material";
 import { Container } from "@mui/system";
 
-import { fontFamily, fontSizes, fontWeights } from "~/libs/constants/font.ts";
+const StyledTypography = styled(Typography)(({ theme }) => ({
+	fontSize: theme.fontSizes.large,
+	fontWeight: theme.fontWeight.semiBold,
+	letterSpacing: "-0.01em",
+	lineHeight: "37px",
+	textAlign: "center",
+}));
 
-export const StyledTypography = styled(Typography)`
-	font-family: ${fontFamily.PlAYFAIR_DISPLAY};
-	font-size: ${fontSizes.large};
-	font-weight: ${fontWeights.semiBold};
-	line-height: 37px;
-	letter-spacing: -0.01em;
-	text-align: center;
-`;
+const LogoContainer = styled("div")({
+	alignItems: "center",
+	display: "flex",
+	gap: "9.5px",
+});
 
-export const LogoContainer = styled.div`
-	display: flex;
-	gap: 9.5px;
-	align-items: center;
-`;
+const StyledFooterText = styled(Typography)(({ theme }) => ({
+	fontFamily: theme.typography.dmSans.fontFamily,
+	fontSize: theme.fontSizes.medium,
+	fontWeight: theme.fontWeight.regular,
+	lineHeight: "26px",
+	textAlign: "left",
+	width: "310px",
+}));
 
-export const StyledFooterText = styled(Typography)`
-	font-family: ${fontFamily.DM_SANS};
-	font-size: ${fontSizes.medium};
-	font-weight: ${fontWeights.regular};
-	line-height: 26px;
-	text-align: left;
-	width: 310px;
-`;
+const SocialIconsContainer = styled("div")({
+	marginBottom: "76px",
+});
 
-export const SocialIconsContainer = styled.div`
-	margin-bottom: 76px;
-`;
-export const StyledFooterTextContainer = styled.div`
-	margin-bottom: 24px;
-`;
-export const StyledFooterCopyrightText = styled(Typography)`
-	font-family: ${fontFamily.DM_SANS};
-	font-size: ${fontSizes.small};
-	font-weight: ${fontWeights.regular};
-	line-height: 22px;
-`;
-export const SocialIconsBox = styled(Box)`
-	display: flex;
-	gap: 16px;
-`;
+const StyledFooterTextContainer = styled("div")({
+	marginBottom: "24px",
+});
 
-export const NavTitle = styled(Typography)`
-	margin-bottom: 16px;
-	font-family: ${fontFamily.DM_SANS};
-	font-size: ${fontSizes.small};
-	font-weight: ${fontWeights.bold};
-	line-height: 24px;
-`;
-export const FooterContainer = styled(Container)`
-	padding: 72px 87px 0 87px;
-	display: flex;
-	justify-content: space-evenly;
-	margin-bottom: 72px;
-	height: 232px;
-`;
+const StyledFooterCopyrightText = styled(Typography)(({ theme }) => ({
+	fontFamily: theme.typography.dmSans.fontFamily,
+	fontSize: theme.fontSizes.small,
+	fontWeight: theme.fontWeight.regular,
+	lineHeight: "22px",
+}));
 
-export const NavBox = styled(Box)`
-	display: flex;
-	gap: 12px;
-	flex-direction: column;
-	padding: 0;
-`;
+const SocialIconsBox = styled(Box)({
+	display: "flex",
+	gap: "16px",
+});
 
-export const StyledCircularElement = styled(Box)`
-	border-radius: 50%;
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;
-export const StyledDivider = styled(Divider)`
-	margin-bottom: 24px;
-`;
-export const FooterBottomContainer = styled(Container)`
-	padding-inline: 52px;
-`;
+const NavTitle = styled(Typography)(({ theme }) => ({
+	fontFamily: theme.typography.dmSansBold.fontFamily,
+	fontSize: theme.fontSizes.small,
+	fontWeight: theme.fontWeight.bold,
+	lineHeight: "24px",
+	marginBottom: "16px",
+}));
+
+const FooterContainer = styled(Container)({
+	display: "flex",
+	height: "232px",
+	justifyContent: "space-evenly",
+	marginBottom: "72px",
+	padding: "72px 87px 0 87px",
+});
+
+const NavBox = styled(Box)({
+	display: "flex",
+	flexDirection: "column",
+	gap: "12px",
+	padding: "0",
+});
+
+const StyledCircularElement = styled(Box)({
+	alignItems: "center",
+	borderRadius: "50%",
+	display: "flex",
+	justifyContent: "center",
+	position: "relative",
+});
+
+const StyledDivider = styled(Divider)({
+	marginBottom: "24px",
+});
+
+const FooterBottomContainer = styled(Container)({
+	paddingInline: "52px",
+});
+
+export {
+	FooterBottomContainer,
+	FooterContainer,
+	LogoContainer,
+	NavBox,
+	NavTitle,
+	SocialIconsBox,
+	SocialIconsContainer,
+	StyledCircularElement,
+	StyledDivider,
+	StyledFooterCopyrightText,
+	StyledFooterText,
+	StyledFooterTextContainer,
+	StyledTypography,
+};

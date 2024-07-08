@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { Box, Container } from "@mui/material";
 
-import { FooterNav } from "~/components/Footer/Nav.tsx";
-import { SocialIcons } from "~/components/Footer/social-icons.tsx";
+import { NavFooter } from "~/components/Footer/nav-footer/index.tsx";
+import { SocialIcons } from "~/components/Footer/social-icons/index.ts";
 import {
 	FooterBottomContainer,
 	FooterContainer,
@@ -14,7 +14,7 @@ import {
 	StyledFooterText,
 	StyledFooterTextContainer,
 } from "~/components/Footer/styles.ts";
-import { MainLogo } from "~/components/Header/main-logo.tsx";
+import { MainLogo } from "~/components/Header/main-logo/index.tsx";
 import { colors } from "~/libs/constants/color.ts";
 import { footerColumnsLogIn } from "~/libs/constants/footer-links.ts";
 import {
@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
 				</Container>
 
 				<Container>
-					<FooterNav columns={footerColumnsLogIn} />
+					<NavFooter columns={footerColumnsLogIn} />
 				</Container>
 			</FooterContainer>
 

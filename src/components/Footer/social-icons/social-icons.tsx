@@ -2,7 +2,7 @@ import React from "react";
 
 import { SvgIconProps } from "@mui/material";
 
-import { SocialIcon } from "~/components/Footer/social-icon.tsx";
+import { SocialIcon } from "~/components/Footer/social-icons/index.ts";
 import { SocialIconsBox } from "~/components/Footer/styles.ts";
 
 type SocialMediaData = {
@@ -16,7 +16,7 @@ type SocialIconsProps = {
 	socialMediaData: SocialMediaData[];
 };
 
-export const SocialIcons: React.FC<SocialIconsProps> = ({
+const SocialIcons: React.FC<SocialIconsProps> = ({
 	socialMediaData,
 }: SocialIconsProps) => {
 	return (
@@ -33,3 +33,5 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
 		</SocialIconsBox>
 	);
 };
+
+export { SocialIcons };

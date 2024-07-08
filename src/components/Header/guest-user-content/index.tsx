@@ -7,13 +7,8 @@ import { t } from "i18next";
 import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";
 import { AppRoute } from "~/libs/constants/index.ts";
 
-import {
-	ButtonsContainer,
-	IconsSection,
-	StyledBadge,
-	StyledButtonLogIn,
-	StyledButtonSignUp,
-} from "../styles.ts";
+import { ButtonsContainer, IconsSection, StyledBadge } from "../styles.ts";
+import { StyledButtonLogIn, StyledButtonSignUp } from "./styles.ts";
 
 const GuestUserContent: React.FC = () => {
 	return (
@@ -30,12 +25,6 @@ const GuestUserContent: React.FC = () => {
 				<StyledBadge
 					// Pass here you product request count or order count
 					badgeContent={2}
-					sx={{
-						"& .MuiBadge-badge": {
-							right: 10,
-							top: 10,
-						},
-					}}
 				>
 					<IconButton component={Link} to={AppRoute.HOME}>
 						<ShopIcon />

@@ -13,7 +13,7 @@ import {
 	userRole,
 } from "~/libs/constants/index.ts";
 
-import { NavHeader } from "../nav-header.tsx";
+import { NavHeader } from "../nav-header/index.tsx";
 import { IconsSection, StyledBadge } from "../styles.ts";
 
 type Properties = {

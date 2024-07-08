@@ -4,23 +4,23 @@ import { useTranslation } from "react-i18next";
 import { Box, BoxProps } from "@mui/material";
 
 import { NavBox, NavTitle } from "~/components/Footer/styles.ts";
-import { Link } from "~/components/Header/Link.tsx";
+import { Link } from "~/components/link/index.tsx";
 import { colors } from "~/libs/constants/color.ts";
 import { fontFamily, fontSizes, fontWeights } from "~/libs/constants/font.ts";
 
-type FooterNavColumn = {
+type NavFooterColumn = {
 	links: { href: string; label: string }[];
 	title: string;
 };
 
-interface FooterNavProps extends BoxProps {
-	columns: FooterNavColumn[];
-}
+type NavFooterProps = {
+	columns: NavFooterColumn[];
+} & BoxProps;
 
-export const FooterNav: React.FC<FooterNavProps> = ({
+const NavFooter: React.FC<NavFooterProps> = ({
 	columns,
 	...props
-}: FooterNavProps) => {
+}: NavFooterProps) => {
 	const { t } = useTranslation();
 
 	return (
@@ -62,3 +62,5 @@ export const FooterNav: React.FC<FooterNavProps> = ({
 		</Box>
 	);
 };
+
+export { NavFooter };
