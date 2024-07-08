@@ -4,10 +4,10 @@ import { Theme } from "@mui/material/styles";
 
 import HeartIcon from "~/assets/icons/heart-icon.svg";
 import { LogoutIcon } from "~/assets/icons/logout-icon.tsx";
-import {OrdersIcon} from "~/assets/icons/orders-icon.tsx";
-import {SettingsIcon} from "~/assets/icons/settings-icon.tsx";
+import { OrdersIcon } from "~/assets/icons/orders-icon.tsx";
+import { SettingsIcon } from "~/assets/icons/settings-icon.tsx";
 import { SupportIcon } from "~/assets/icons/support-icon.tsx";
-import {UserIcon} from "~/assets/icons/user-icon.tsx";
+import { UserIcon } from "~/assets/icons/user-icon.tsx";
 import { IconWrapper } from "~/components";
 import { AppRoute, userRole } from "~/libs/constants";
 

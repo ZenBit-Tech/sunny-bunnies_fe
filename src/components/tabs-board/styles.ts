@@ -1,0 +1,33 @@
+import { styled } from "@mui/material/styles";
+import { Box, Typography } from "@mui/material";
+
+export const StyledTabLabel = styled(Box)({
+	alignItems: "center",
+	display: "flex",
+	height: "100%",
+	padding: "16px 24px",
+	width: "100%",
+});
+
+export const StyledNumberCircle = styled(Box)(({ theme, isBeforeActive }) => ({
+	alignItems: "center",
+	border: `2px solid ${
+		isBeforeActive ? theme.palette.primary.dark : theme.palette.darkGrey
+	}`,
+	borderRadius: "50%",
+	color: theme.palette.primary.dark,
+	display: "flex",
+	height: "3em",
+	justifyContent: "center",
+	marginRight: theme.spacing(1),
+	sx: {
+		display: { tablet: "flex", xs: "none" },
+	},
+	width: "3em",
+}));
+
+export const StyledLabelText = styled(Typography)(({ theme }) => ({
+	color: theme.palette.primary.main,
+	fontSize: theme.typography.dmSansBold,
+	fontWeight: "bold",
+}));

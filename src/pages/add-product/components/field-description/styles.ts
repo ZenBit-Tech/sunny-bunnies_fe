@@ -1,21 +1,19 @@
-import styled from "@emotion/styled";
-import { Box, Typography } from '@mui/material';
-
-import theme from '~/theme';
+import { styled } from "@mui/material/styles";
+import { Box, Typography } from "@mui/material";
 
 const StyledDescriptionBox = styled(Box)`
-    width: 15%;
+	width: 15%;
 `;
 
-const TitleTypography = styled(Typography)`
-  color: ${theme.palette.primary.main};
-  margin-bottom: 8px;
-  font-size: ${theme.typography.playfairDisplayBold};
-`;
+const TitleTypography = styled(Typography)(({ theme }) => ({
+	color: theme.palette.primary.main,
+	marginBottom: "8px",
+	fontSize: theme.typography.playfairDisplayBold,
+}));
 
-const DescriptionTypography = styled(Typography)`
-  color: ${theme.palette.fontGray};
-  font-size: ${theme.typography.dmSans};
-`;
+const DescriptionTypography = styled(Typography)(({ theme }) => ({
+	color: theme.palette.fontGray,
+	fontSize: theme.typography.dmSans,
+}));
 
 export { StyledDescriptionBox, TitleTypography, DescriptionTypography };

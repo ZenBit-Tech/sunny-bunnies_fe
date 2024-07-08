@@ -23,7 +23,7 @@ const colors = {
 	textBlack: "#121212",
 	transparent: "transparent",
 	white: "#ffffff",
-	red: "#FF0000"
+	red: "#FF0000",
 };
 
 export { colors };

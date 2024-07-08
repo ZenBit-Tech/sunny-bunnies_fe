@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
 const StyledFormContainer = styled(Box)`
@@ -11,10 +11,10 @@ const StyledFormContainer = styled(Box)`
 `;
 
 const StyledBox = styled(Box)`
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  padding: 1rem;
+	width: 100%;
+	display: flex;
+	justify-content: end;
+	padding: 1rem;
 `;
 
 export { StyledFormContainer, StyledBox };
