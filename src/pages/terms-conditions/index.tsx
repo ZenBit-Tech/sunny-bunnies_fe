@@ -22,7 +22,6 @@ export const TermsConditions: React.FC = () => {
 			<PrivacyBox>
 				<PrivacyTitle>{t("Terms&Conditions.title")}</PrivacyTitle>
 			</PrivacyBox>
-
 			<ArticleContainer>
 				{articlesTermsConditions.map((article, index) => (
 					<Box key={index}>

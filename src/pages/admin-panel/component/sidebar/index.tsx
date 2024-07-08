@@ -7,13 +7,14 @@ import { Box, Drawer } from "@mui/material";
 import Logo from "~/assets/images/logo/big.png";
 import { AppRoute } from "~/libs/constants/index.ts";
 
-import { SidebarList } from "./sidebar-list.tsx";
+import { SidebarList } from "./sidebar-list/index.tsx";
 
 const Sidebar: React.FC = () => {
 	const { t } = useTranslation();
 
 	return (
 		<Drawer
+			data-testid="sidebar"
 			sx={{
 				[`& .MuiDrawer-paper`]: { boxSizing: "border-box", width: "20%" },
 				flexShrink: 0,
