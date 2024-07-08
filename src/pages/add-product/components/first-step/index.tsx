@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 
-import { FieldDescription } from "../field-description";
+import { FieldDescription } from "../field-description/index.tsx";
 import { ImageList } from "../image-list";
-import { ImageUploader } from "../image-uploader";
+import { ImageUploader } from "../image-uploader/index.tsx";
 import { StyledBox, StyledFormContainer } from "./styles.ts";
 import { useImageUpload } from "../../hooks/useImageUpload.ts";
 import { imagesValidation } from "~/pages/add-product/validation/add-images";
@@ -17,6 +17,10 @@ type Image = {
 	primary: boolean;
 	selected: boolean;
 };
+
+type FormData = {
+	images: Image[];
+}
 const ImageUpload: React.FC = () => {
 	const { t } = useTranslation();
 	const {
@@ -44,8 +48,9 @@ const ImageUpload: React.FC = () => {
 		setValue("images", images);
 	}, [images, setValue]);
 
-	const onSubmit = (data: Image) => {};
-
+	const onSubmit: SubmitHandler<FormData> = (data) => {
+		console.log(data.images);
+	};
 	return (
 		<>
 			<StyledFormContainer>

@@ -1,20 +1,16 @@
 import React from "react";
-
-import {
-	StyledDescriptionBox,
-	TitleTypography,
-	DescriptionTypography,
-} from "./styles.ts";
+import { StyledDescriptionBox, TitleTypography, DescriptionTypography } from "./styles.ts";
 
 type Props = {
 	title: string;
 	description: string;
 };
-const FieldDescription: React.FC = (data: Props) => {
+
+const FieldDescription: React.FC<Props> = ({ title, description }) => {
 	return (
 		<StyledDescriptionBox>
-			<TitleTypography> {data.title} </TitleTypography>
-			<DescriptionTypography> {data.description} </DescriptionTypography>
+			<TitleTypography>{title}</TitleTypography>
+			<DescriptionTypography>{description}</DescriptionTypography>
 		</StyledDescriptionBox>
 	);
 };

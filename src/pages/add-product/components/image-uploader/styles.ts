@@ -24,7 +24,7 @@ const ErrorSpan = styled('div')(({ theme }) => ({
 
 const DescriptionTypography = styled(Typography)(({ theme }) => ({
     color: theme.palette.fontGray,
-    fontSize: theme.typography.dmSans,
+    fontSize: theme.typography.dmSans.fontSize,
 }));
 
 export { UploadContainer, Input, ErrorSpan, DescriptionTypography };

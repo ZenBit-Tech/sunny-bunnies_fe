@@ -24,7 +24,7 @@ const StyledMainGrid = styled(Grid)(({ theme }) => ({
 	width: "100%",
 }));
 
-const StyledTabsBox = styled(Box)(({ theme }) => ({
+const StyledTabsBox = styled(Box)(() => ({
 	width: "100%",
 	marginTop: "2rem",
 }));

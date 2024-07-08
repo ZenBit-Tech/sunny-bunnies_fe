@@ -8,9 +8,9 @@ type Image = {
 	selected: boolean;
 };
 
-const DEFAULT_PRIMARY_STATUS = false;
-const DEFAULT_SELECTED_STATUS = false;
-const FIRST_FILE_INDEX = 0;
+const defaultPrimaryStatus = false;
+const defaultSelectedStatus = false;
+const firstFileIndex = 0;
 
 const useImageUpload = () => {
 	const [images, setImages] = useState<Image[]>([]);
@@ -22,8 +22,8 @@ const useImageUpload = () => {
 				return {
 					id,
 					src: URL.createObjectURL(file),
-					primary: DEFAULT_PRIMARY_STATUS,
-					selected: DEFAULT_SELECTED_STATUS,
+					primary: defaultPrimaryStatus,
+					selected: defaultSelectedStatus,
 				};
 			});
 			setImages((prevImages) => [...prevImages, ...fileArray]);
@@ -34,8 +34,8 @@ const useImageUpload = () => {
 		event: React.ChangeEvent<HTMLInputElement>,
 		id: string,
 	) => {
-		if (event.target.files && event.target.files[FIRST_FILE_INDEX]) {
-			const newImage = URL.createObjectURL(event.target.files[FIRST_FILE_INDEX]);
+		if (event.target.files && event.target.files[firstFileIndex]) {
+			const newImage = URL.createObjectURL(event.target.files[firstFileIndex]);
 			setImages((prevImages) =>
 				prevImages.map((image) =>
 					image.id === id ? { ...image, src: newImage } : image,

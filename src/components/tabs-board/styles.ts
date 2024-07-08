@@ -1,5 +1,9 @@
 import { styled } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
+import {Box, BoxProps, Typography} from "@mui/material";
+
+interface StyledNumberCircleProps extends BoxProps {
+	isBeforeActive?: boolean;
+}
 
 export const StyledTabLabel = styled(Box)({
 	alignItems: "center",
@@ -9,7 +13,7 @@ export const StyledTabLabel = styled(Box)({
 	width: "100%",
 });
 
-export const StyledNumberCircle = styled(Box)(({ theme, isBeforeActive }) => ({
+export const StyledNumberCircle = styled(Box)<StyledNumberCircleProps>(({ theme, isBeforeActive }) => ({
 	alignItems: "center",
 	border: `2px solid ${
 		isBeforeActive ? theme.palette.primary.dark : theme.palette.darkGrey
@@ -28,6 +32,6 @@ export const StyledNumberCircle = styled(Box)(({ theme, isBeforeActive }) => ({
 
 export const StyledLabelText = styled(Typography)(({ theme }) => ({
 	color: theme.palette.primary.main,
-	fontSize: theme.typography.dmSansBold,
+	fontSize: theme.typography.dmSansBold.fontSize,
 	fontWeight: "bold",
 }));

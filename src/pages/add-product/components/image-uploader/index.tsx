@@ -12,7 +12,7 @@ import {
 } from "./styles.ts";
 
 type ImageUploaderProps = {
-	error: string;
+	error: string | undefined;
 	handleImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 

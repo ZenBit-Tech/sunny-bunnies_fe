@@ -33,8 +33,6 @@ const TabsBoard: React.FC<TabLabelProps> = ({
 		>
 			<StyledNumberCircle
 				bgcolor={isCompleted ? theme.palette.primary.dark : "transparent"}
-				isBeforeActive={isBeforeActive}
-				isCompleted={isCompleted}
 			>
 				{isCompleted ? <CheckIcon /> : `0${number}`}
 			</StyledNumberCircle>
