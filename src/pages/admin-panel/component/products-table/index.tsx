@@ -35,6 +35,13 @@ type ProductsTableSort = {
 
 const firstElementArray = 0;
 
+const countAllQuantities = (product: Product): number => {
+	return product.variants.reduce(
+		(total, variant) => total + variant.quantity,
+		firstElementArray,
+	);
+};
+
 const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 	return (
 		<TableContainer component={Paper}>
@@ -85,7 +92,7 @@ const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 									<ProductStatus status={product.activityStatus} />
 								</StyledStatusTableCell>
 								<StyledTableCell width="10%">
-									{t("AdminProductManagement.quantity")}
+									{countAllQuantities(product)}
 								</StyledTableCell>
 								<StyledTableCell width="10%">
 									{product.minPrice}
