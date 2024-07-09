@@ -145,10 +145,16 @@ const useProfileForm = (): UseProfileFormReturnType => {
 				if (formData.profile.profilePhoto instanceof File) {
 					const formDataToSend = new FormData();
 					formDataToSend.append("file", formData.profile.profilePhoto);
-					await upload(formDataToSend).unwrap();
+					const uploadResult = await upload(formDataToSend).unwrap();
+					formData.profile.profilePhoto = uploadResult.profile.profilePhoto;
 				}
+
 				const formDataCopy = { ...formData };
-				delete formDataCopy.profile.profilePhoto;
+
+				if (typeof formDataCopy.profile.profilePhoto !== "string") {
+					delete formDataCopy.profile.profilePhoto;
+				}
+
 				const updatedUser = await updateUserAndProfile(formDataCopy).unwrap();
 
 				dispatch(setUser(updatedUser));

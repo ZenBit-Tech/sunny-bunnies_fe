@@ -1,3 +1,1 @@
-const dateFormat = "MMM d, yyyy";
-
-export { dateFormat };
+export const dateFormat = "MMMM dd, yyyy";

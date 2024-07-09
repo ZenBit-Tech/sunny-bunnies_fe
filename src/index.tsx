@@ -19,8 +19,8 @@ import {
 } from "./components/index.ts";
 import { AppRoute } from "./libs/constants/index.ts";
 import "./libs/locales/i18n.ts";
-import { AdminPanel } from "./pages/admin-panel/admin-panel.tsx";
-import { AdminLogin } from "./pages/auth/components/admin-login.tsx";
+import { AdminPanel } from "./pages/admin-panel/index.tsx";
+import { AdminLogin } from "./pages/auth/components/admin-login/index.tsx";
 import {
 	Auth,
 	Home,
@@ -32,7 +32,7 @@ import {
 } from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";
-import { TermsConditions } from "./pages/terms-conditions/terms-and-conditions.tsx";
+import { TermsConditions } from "./pages/terms-conditions/index.tsx";
 import { persistor, store } from "./redux/store.ts";
 import theme from "./theme.ts";
 
@@ -67,6 +67,14 @@ createRoot(document.getElementById("root")!).render(
 																	path: AppRoute.SIGN_IN,
 																},
 																{
+																	element: <Auth />,
+																	path: AppRoute.RESTORE_PASSWORD,
+																},
+																{
+																	element: <Auth />,
+																	path: AppRoute.RESET_PASSWORD,
+																},
+																{
 																	element: <AdminLogin />,
 																	path: AppRoute.ADMIN_SIGN_IN,
 																},
@@ -82,7 +90,31 @@ createRoot(document.getElementById("root")!).render(
 																},
 																{
 																	element: <AdminPanel />,
-																	path: AppRoute.USER_MANAGEMENT,
+																	path: AppRoute.MANAGEMENT_NO_ROLE,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_NO_ROLE_$ID,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_BUYERS,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_VENDOR_$ID,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_VENDOR_$ID,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_VENDORS,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_BUYER_$ID,
 																},
 															],
 															element: <AdminRoute />,

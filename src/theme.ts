@@ -152,6 +152,19 @@ const theme = createTheme({
 					},
 				},
 				{
+					props: { variant: "primary_outlined" },
+					style: {
+						backgroundColor: colors.transparent,
+						border: `1px solid ${colors.black}`,
+						borderRadius: "12px",
+						fontFamily: fontFamily.dmSans,
+						fontSize: fontSizes.small,
+						fontWeight: fontWeight.semiBold,
+						padding: "16px 24px",
+						textTransform: "none",
+					},
+				},
+				{
 					props: { variant: "text" },
 					style: {
 						"& .MuiTouchRipple-root": {
@@ -193,6 +206,10 @@ const theme = createTheme({
 			],
 		},
 	},
+	fontFamily: {
+		dmSans: fontFamily.dmSans,
+		playfairDisplay: fontFamily.piayfairDisplay,
+	},
 	fontSizes: {
 		extraLarge: fontSizes.extraLarge,
 		large: fontSizes.large,
@@ -214,16 +231,21 @@ const theme = createTheme({
 	palette: {
 		black: colors.black,
 		borderGray: colors.borderGray,
+		contentBlack: colors.contentBlack,
 		darkGrey: colors.darkGrey,
+		errorBoxColor: colors.errorBoxColor,
 		fontGray: colors.gray,
 		gray: colors.grayishRed,
 		graylishRed: colors.grayishRed,
 		lightGray: colors.lightGray,
 		lightGreen: colors.lightGreen,
+		lightRed: colors.lightRed,
+		pink: colors.pink,
 		primary: {
 			dark: colors.hoverBlack,
 			main: colors.black,
 		},
+		red: colors.red,
 		secondary: {
 			main: colors.gray,
 		},

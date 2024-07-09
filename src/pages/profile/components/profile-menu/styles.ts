@@ -3,7 +3,7 @@ import { Box, ButtonProps, styled } from "@mui/material";
 import { BaseButton } from "~/components/index.ts";
 import { colors, fontSizes } from "~/libs/constants/index.ts";
 
-type MenuButtonProps = { customColor: string; isActive: boolean } & ButtonProps;
+type MenuButtonProps = { bgcolor: string; checked: boolean } & ButtonProps;
 
 const StyledMenuContainer = styled(Box)`
 	display: flex;
@@ -28,16 +28,16 @@ const StyledButtonContainer = styled(Box)`
 `;
 
 const StyledMenuButton = styled(BaseButton)<MenuButtonProps>(
-	({ customColor, isActive, theme }) => ({
+	({ bgcolor, checked, theme }) => ({
 		...theme.typography.playfairDisplay,
 		"&:focus": {
-			backgroundColor: isActive ? customColor : colors.transparent,
+			backgroundColor: checked ? bgcolor : colors.transparent,
 		},
 		"&:hover": {
-			backgroundColor: customColor,
+			backgroundColor: bgcolor,
 		},
 		alignItems: "center",
-		backgroundColor: isActive ? customColor : colors.transparent,
+		backgroundColor: checked ? bgcolor : colors.transparent,
 		display: "flex",
 		fontSize: fontSizes.medium,
 		justifyContent: "flex-start",

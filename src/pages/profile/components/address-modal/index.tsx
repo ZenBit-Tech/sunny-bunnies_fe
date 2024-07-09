@@ -16,7 +16,7 @@ import { t } from "i18next";
 import { CustomFormGroup } from "~/components/index.ts";
 
 import { StyledForm, StyledFormLabel, StyledModalContainer } from "./styles.ts";
-import { useAddressForm } from "./use-address-form.ts";
+import { useAddressModal } from "./use-address-modal.ts";
 
 type AddressModalProps = {
 	addressLine: string;
@@ -47,7 +47,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
 		selectedCountry,
 		selectedState,
 		serverError,
-	} = useAddressForm(
+	} = useAddressModal(
 		{
 			addressLineOne: addressLine,
 			addressLineTwo: "",
