@@ -6,6 +6,7 @@ import { LikeIcon } from "~/assets/icons/like-icon.tsx";
 import ShopCart from "~/assets/icons/shop-cart.svg?react";
 import { colors, fontSizes, fontWeight } from "~/libs/constants/index.ts";
 import { Product } from "~/libs/types/products.ts";
+import theme from "~/theme.ts";
 
 import {
 	ImageSlider,
@@ -58,9 +59,9 @@ const ProductCard: React.FC<ProductCardProperties> = ({
 				/>
 				<StyledLikeIconButton onClick={handleLikeClick}>
 					{isLikeClicked ? (
-						<LikeIcon sx={{ color: colors.likeIconColor }} />
+						<LikeIcon sx={{ color: theme.palette.likeIconColor }} />
 					) : (
-						<LikeIcon sx={{ color: colors.white }} />
+						<LikeIcon sx={{ color: theme.palette.white }} />
 					)}
 				</StyledLikeIconButton>
 				_

@@ -34,6 +34,7 @@ declare module "@mui/material/styles" {
 	interface Palette {
 		black: string;
 		borderGray: string;
+		cardBoxShadow: string;
 		contentBlack: string;
 		darkGrey: string;
 		errorBoxColor: string;
@@ -42,6 +43,7 @@ declare module "@mui/material/styles" {
 		lightGray: string;
 		lightGreen: string;
 		lightRed: string;
+		likeIconColor: string;
 		pink: string;
 		red: string;
 		secondaryTextGray: string;
@@ -53,6 +55,7 @@ declare module "@mui/material/styles" {
 	interface PaletteOptions {
 		black: string;
 		borderGray: string;
+		cardBoxShadow: string;
 		contentBlack: string;
 		darkGrey: string;
 		errorBoxColor: string;
@@ -61,6 +64,7 @@ declare module "@mui/material/styles" {
 		lightGray: string;
 		lightGreen: string;
 		lightRed: string;
+		likeIconColor: string;
 		pink: string;
 		red: string;
 		secondaryTextGray: string;

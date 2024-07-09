@@ -231,6 +231,7 @@ const theme = createTheme({
 	palette: {
 		black: colors.black,
 		borderGray: colors.borderGray,
+		cardBoxShadow: colors.cardBoxShadow,
 		contentBlack: colors.contentBlack,
 		darkGrey: colors.darkGrey,
 		errorBoxColor: colors.errorBoxColor,
@@ -240,6 +241,7 @@ const theme = createTheme({
 		lightGray: colors.lightGray,
 		lightGreen: colors.lightGreen,
 		lightRed: colors.lightRed,
+		likeIconColor: colors.likeIconColor,
 		pink: colors.pink,
 		primary: {
 			dark: colors.hoverBlack,

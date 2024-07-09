@@ -6,24 +6,23 @@ type SliderDotProps = {
 	active: boolean;
 };
 
-const StyledProductCardContainer = styled(Box)`
-	align-item: flex-start;
-	border-radius: 12px;
-	box-shadow: 4px 4px 24px 0px ${colors.cardBoxShadow};
-	display: flex;
-	flex-direction: column;
-	cursor: pointer;
-	width: 200px;
-`;
+const StyledProductCardContainer = styled(Box)(({ theme }) => ({
+	"borderRadius": "12px",
+	"boxShadow": `4px 4px 24px 0px ${theme.palette.cardBoxShadow}`,
+	"cursor": "pointer",
+	"display": "flex",
+	"flexDirection": "column",
+	"width": "200px",
+}));
 
-const StyledProductCardImageContainer = styled(Box)`
-	border: 1px solid ${colors.lightGray};
-	border-radius: 12px 12px 0 0;
-	height: 183px;
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-`;
+const StyledProductCardImageContainer = styled(Box)(({ theme }) => ({
+	"border": `1px solid ${theme.palette.lightGray}`,
+	"borderRadius": "12px 12px 0 0",
+	"height": "183px",
+	"overflow": "hidden",
+	"position": "relative",
+	"width": "100%",
+}));
 
 const ImageSlider = styled(Box)(() => ({
 	bottom: "10px",
