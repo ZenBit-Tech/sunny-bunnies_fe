@@ -33,7 +33,7 @@ type ProductsTableSort = {
 	products: Product[];
 };
 
-const zero = 0;
+const firstElementArray = 0;
 
 const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 	return (
@@ -73,7 +73,7 @@ const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 									<StyledProductContainer>
 										<StyledProductImage
 											alt={product.name}
-											src={product.images[zero].url}
+											src={product.images[firstElementArray].url}
 										/>
 										{product.name}
 									</StyledProductContainer>
