@@ -22,6 +22,7 @@ import "./libs/locales/i18n.ts";
 import { AdminPanel } from "./pages/admin-panel/index.tsx";
 import { AdminLogin } from "./pages/auth/components/admin-login/index.tsx";
 import {
+	AddProducts,
 	Auth,
 	Home,
 	NotFound,
@@ -29,7 +30,6 @@ import {
 	Profile,
 	SizeGuide,
 	VendorProfile,
-	AddProducts,
 } from "./pages/index.ts";
 import { PrivacyPolicy } from "./pages/privacy-policy/privacy-policy-page.tsx";
 import { ProfileBoard } from "./pages/profile-board/index.tsx";

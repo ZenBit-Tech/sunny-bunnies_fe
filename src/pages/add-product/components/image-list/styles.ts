@@ -1,30 +1,30 @@
-import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const StyledImageContainer = styled(Box)({
-	display: "flex",
 	alignItems: "flex-start",
+	display: "flex",
 	gap: "1rem",
 });
 
 const ImageBox = styled(Box, {
 	shouldForwardProp: (prop) => prop !== "selected",
 })<{ selected: boolean }>(({ selected, theme }) => ({
-	position: "relative",
 	"& img": {
+		border: selected ? `2px solid ${theme.palette.primary.main}` : "none",
 		height: "12rem",
 		width: "10rem",
-		border: selected ? `2px solid ${theme.palette.primary.main}` : "none",
 	},
+	position: "relative",
 }));
 
 const ImageOverlay = styled(Box)({
-	position: "absolute",
-	top: 0,
-	right: 0,
 	display: "flex",
 	flexDirection: "row",
 	justifyContent: "space-between",
+	position: "absolute",
+	right: 0,
+	top: 0,
 	width: "100%",
 });
 
@@ -32,4 +32,4 @@ const HiddenInput = styled("input")({
 	display: "none",
 });
 
-export { HiddenInput, ImageOverlay, ImageBox, StyledImageContainer };
+export { HiddenInput, ImageBox, ImageOverlay, StyledImageContainer };

@@ -1,47 +1,49 @@
 import React, { useEffect } from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { imagesValidation } from "~/pages/add-product/validation/add-images.ts";
+import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
+
+import { useImageUpload } from "../../hooks/useImageUpload.ts";
 import { FieldDescription } from "../field-description/index.tsx";
-import { ImageList } from "../image-list";
+import { ImageList } from "../image-list/index.tsx";
 import { ImageUploader } from "../image-uploader/index.tsx";
 import { StyledBox, StyledFormContainer } from "./styles.ts";
-import { useImageUpload } from "../../hooks/useImageUpload.ts";
-import { imagesValidation } from "~/pages/add-product/validation/add-images";
-import { FormButtons } from "~/pages/profile-board/components/buttons";
 
 type Image = {
 	id: string;
-	src: string;
 	primary: boolean;
 	selected: boolean;
+	src: string;
 };
 
 type FormData = {
 	images: Image[];
-}
+};
 const ImageUpload: React.FC = () => {
 	const { t } = useTranslation();
 	const {
-		images,
 		handleImageUpload,
 		handleReplaceImage,
+		images,
+		removeImage,
 		setPrimaryImage,
 		setSelectedImage,
-		removeImage,
 	} = useImageUpload();
 
 	const {
 		control,
+		formState: { errors },
 		handleSubmit,
 		setValue,
-		formState: { errors },
 	} = useForm({
-		resolver: yupResolver(imagesValidation),
 		defaultValues: {
 			images: [],
 		},
+		resolver: yupResolver(imagesValidation),
 	});
 
 	useEffect(() => {
@@ -49,26 +51,27 @@ const ImageUpload: React.FC = () => {
 	}, [images, setValue]);
 
 	const onSubmit: SubmitHandler<FormData> = (data) => {
-		console.log(data.images);
+		console.log(data);
 	};
+
 	return (
 		<>
 			<StyledFormContainer>
 				<FieldDescription
-					title={t("AddVendorProduct.photoProduct")}
 					description={t("AddVendorProduct.recommendedMinWidth")}
+					title={t("AddVendorProduct.photoProduct")}
 				/>
 
 				<Controller
-					name="images"
 					control={control}
+					name="images"
 					render={({ field }) => (
 						<ImageList
+							handleReplaceImage={handleReplaceImage}
 							images={field.value}
+							removeImage={removeImage}
 							setPrimaryImage={setPrimaryImage}
 							setSelectedImage={setSelectedImage}
-							handleReplaceImage={handleReplaceImage}
-							removeImage={removeImage}
 						/>
 					)}
 				/>

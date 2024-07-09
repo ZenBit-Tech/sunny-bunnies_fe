@@ -1,75 +1,93 @@
 import React from "react";
+
 import { IconButton } from "@mui/material";
 
+import { PenIcon } from "~/assets/icons/pen-icon.tsx";
 import { StarCircleIcon } from "~/assets/icons/star-circle-icon.tsx";
 import { StarCirclePrimaryIcon } from "~/assets/icons/star-circle-primary-icon.tsx";
-import { PenIcon } from "~/assets/icons/pen-icon.tsx";
 import { TrashIcon } from "~/assets/icons/trash-icon.tsx";
 
 import {
-	StyledImageContainer,
+	HiddenInput,
 	ImageBox,
 	ImageOverlay,
-	HiddenInput,
+	StyledImageContainer,
 } from "./styles.ts";
 
 type Image = {
 	id: string;
-	src: string;
 	primary: boolean;
 	selected: boolean;
+	src: string;
 };
 
 type Props = {
-	images: Image[];
-	setPrimaryImage: (id: string) => void;
-	setSelectedImage: (id: string) => void;
 	handleReplaceImage: (
 		event: React.ChangeEvent<HTMLInputElement>,
 		id: string,
 	) => void;
+	images: Image[];
 	removeImage: (id: string) => void;
+	setPrimaryImage: (id: string) => void;
+	setSelectedImage: (id: string) => void;
 };
 
 const ImageList: React.FC<Props> = ({
+	handleReplaceImage,
 	images,
+	removeImage,
 	setPrimaryImage,
 	setSelectedImage,
-	handleReplaceImage,
-	removeImage,
 }) => {
+	const handleSetPrimaryImage = (id: string): (() => void) => {
+		return () => setPrimaryImage(id);
+	};
+
+	const handleSetSelectedImage = (id: string): (() => void) => {
+		return () => setSelectedImage(id);
+	};
+
+	const handleRemoveImage = (id: string): (() => void) => {
+		return () => removeImage(id);
+	};
+
+	const handlePenClick = (id: string): (() => void) => {
+		return () => document.getElementById(`replace-image-${id}`)?.click();
+	};
+
+	const handleReplaceImageWrapper = (
+		id: string,
+	): ((event: React.ChangeEvent<HTMLInputElement>) => void) => {
+		return (event: React.ChangeEvent<HTMLInputElement>) =>
+			handleReplaceImage(event, id);
+	};
+
 	return (
 		<StyledImageContainer>
 			{images.map((image) => (
 				<ImageBox
 					key={image.id}
+					onClick={handleSetSelectedImage(image.id)}
 					selected={image.selected}
-					onClick={() => setSelectedImage(image.id)}
 				>
-					<img src={image.src} alt="Uploaded" />
+					<img alt="Uploaded" src={image.src} />
 					<ImageOverlay>
-						<IconButton onClick={() => setPrimaryImage(image.id)}>
+						<IconButton onClick={handleSetPrimaryImage(image.id)}>
 							{image.primary ? <StarCirclePrimaryIcon /> : <StarCircleIcon />}
 						</IconButton>
 						<div>
 							{image.selected && (
 								<>
 									<HiddenInput
-										type="file"
 										accept=".png, .jpg, .jpeg"
-										onChange={(event) => handleReplaceImage(event, image.id)}
 										id={`replace-image-${image.id}`}
+										onChange={handleReplaceImageWrapper(image.id)}
+										type="file"
 									/>
-									<IconButton
-										onClick={() =>
-											document
-												.getElementById(`replace-image-${image.id}`)
-												?.click()
-										}
-									>
+									<IconButton onClick={handlePenClick(image.id)}>
 										<PenIcon />
 									</IconButton>
-									<IconButton onClick={() => removeImage(image.id)}>
+									<IconButton onClick={handleRemoveImage(image.id)}>
 										<TrashIcon />
 									</IconButton>
 								</>

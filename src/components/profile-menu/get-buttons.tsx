@@ -8,8 +8,8 @@ import { OrdersIcon } from "~/assets/icons/orders-icon.tsx";
 import { SettingsIcon } from "~/assets/icons/settings-icon.tsx";
 import { SupportIcon } from "~/assets/icons/support-icon.tsx";
 import { UserIcon } from "~/assets/icons/user-icon.tsx";
-import { IconWrapper } from "~/components";
-import { AppRoute, userRole } from "~/libs/constants";
+import { IconWrapper } from "~/components/icon-wrapper/index.tsx";
+import { AppRoute, userRole } from "~/libs/constants/index.ts";
 
 type ButtonConfig = {
 	color: string;

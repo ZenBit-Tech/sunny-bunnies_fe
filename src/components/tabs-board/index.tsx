@@ -2,9 +2,13 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 import { CheckIcon } from "~/assets/icons/check-icon.tsx";
-import theme from "~/theme";
+import theme from "~/theme.ts";
 
-import { StyledTabLabel, StyledNumberCircle, StyledLabelText } from "./styles";
+import {
+	StyledLabelText,
+	StyledNumberCircle,
+	StyledTabLabel,
+} from "./styles.ts";
 
 type TabLabelProps = {
 	label: string;

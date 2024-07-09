@@ -1,5 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const StyledFormContainer = styled(Box)`
 	align-items: flex-start;
@@ -17,4 +17,4 @@ const StyledBox = styled(Box)`
 	padding: 1rem;
 `;
 
-export { StyledFormContainer, StyledBox };
+export { StyledBox, StyledFormContainer };

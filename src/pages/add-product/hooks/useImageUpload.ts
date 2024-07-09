@@ -1,29 +1,45 @@
 import React, { useState } from "react";
+
 import { v4 as uuidv4 } from "uuid";
 
 type Image = {
 	id: string;
-	src: string;
 	primary: boolean;
 	selected: boolean;
+	src: string;
 };
 
 const defaultPrimaryStatus = false;
 const defaultSelectedStatus = false;
 const firstFileIndex = 0;
 
-const useImageUpload = () => {
+type UseImageUploadReturn = {
+	handleImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	handleReplaceImage: (
+		event: React.ChangeEvent<HTMLInputElement>,
+		id: string,
+	) => void;
+	images: Image[];
+	removeImage: (id: string) => void;
+	setPrimaryImage: (id: string) => void;
+	setSelectedImage: (id: string) => void;
+};
+
+const useImageUpload = (): UseImageUploadReturn => {
 	const [images, setImages] = useState<Image[]>([]);
 
-	const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleImageUpload = (
+		event: React.ChangeEvent<HTMLInputElement>,
+	): void => {
 		if (event.target.files) {
 			const fileArray = Array.from(event.target.files).map((file) => {
 				const id = uuidv4();
+
 				return {
 					id,
-					src: URL.createObjectURL(file),
 					primary: defaultPrimaryStatus,
 					selected: defaultSelectedStatus,
+					src: URL.createObjectURL(file),
 				};
 			});
 			setImages((prevImages) => [...prevImages, ...fileArray]);
@@ -33,7 +49,7 @@ const useImageUpload = () => {
 	const handleReplaceImage = (
 		event: React.ChangeEvent<HTMLInputElement>,
 		id: string,
-	) => {
+	): void => {
 		if (event.target.files && event.target.files[firstFileIndex]) {
 			const newImage = URL.createObjectURL(event.target.files[firstFileIndex]);
 			setImages((prevImages) =>
@@ -44,7 +60,7 @@ const useImageUpload = () => {
 		}
 	};
 
-	const setPrimaryImage = (id: string) => {
+	const setPrimaryImage = (id: string): void => {
 		setImages((prevImages) =>
 			prevImages.map((image) => ({
 				...image,
@@ -53,7 +69,7 @@ const useImageUpload = () => {
 		);
 	};
 
-	const setSelectedImage = (id: string) => {
+	const setSelectedImage = (id: string): void => {
 		setImages((prevImages) =>
 			prevImages.map((image) => ({
 				...image,
@@ -62,17 +78,17 @@ const useImageUpload = () => {
 		);
 	};
 
-	const removeImage = (id: string) => {
+	const removeImage = (id: string): void => {
 		setImages((prevImages) => prevImages.filter((image) => image.id !== id));
 	};
 
 	return {
-		images,
 		handleImageUpload,
 		handleReplaceImage,
+		images,
+		removeImage,
 		setPrimaryImage,
 		setSelectedImage,
-		removeImage,
 	};
 };
 

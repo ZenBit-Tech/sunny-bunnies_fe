@@ -1,14 +1,15 @@
 import React from "react";
-
-import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
+import { Button } from "@mui/material";
+
 import { UploadSimpleIcon } from "~/assets/icons/upload-simple.tsx";
+
 import {
+	DescriptionTypography,
+	ErrorSpan,
 	Input,
 	UploadContainer,
-	ErrorSpan,
-	DescriptionTypography,
 } from "./styles.ts";
 
 type ImageUploaderProps = {
@@ -17,8 +18,8 @@ type ImageUploaderProps = {
 };
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({
-	handleImageUpload,
 	error,
+	handleImageUpload,
 }) => {
 	const { t } = useTranslation();
 
@@ -28,13 +29,13 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
 				<label htmlFor="image-upload">
 					<UploadSimpleIcon />
 					<Input
-						id="image-upload"
-						type="file"
 						accept=".png, .jpg, .jpeg"
-						onChange={handleImageUpload}
+						id="image-upload"
 						multiple
+						onChange={handleImageUpload}
+						type="file"
 					/>
-					<Button variant="contained" component="span">
+					<Button component="span" variant="contained">
 						{t("AddVendorProduct.addImage")}
 					</Button>
 				</label>

@@ -25,8 +25,8 @@ const StyledMainGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const StyledTabsBox = styled(Box)(() => ({
-	width: "100%",
 	marginTop: "2rem",
+	width: "100%",
 }));
 
 const StyledContentBox = styled(Box)(({ theme }) => ({
@@ -35,10 +35,10 @@ const StyledContentBox = styled(Box)(({ theme }) => ({
 }));
 
 export {
-	StyledTabsBox,
-	StyledMainGrid,
 	StyledContainer,
-	StyledGrid,
-	StyledProfileContainer,
 	StyledContentBox,
+	StyledGrid,
+	StyledMainGrid,
+	StyledProfileContainer,
+	StyledTabsBox,
 };

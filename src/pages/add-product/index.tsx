@@ -1,22 +1,22 @@
 import React, { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { Tab, Tabs, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
 
+import { ProfileMenu, TabsBoard } from "~/components/index.ts";
+import { AppRoute } from "~/libs/constants/app-route.ts";
 import theme from "~/theme.ts";
-import { TabsBoard, ProfileMenu } from "~/components";
-import { AppRoute } from "~/libs/constants";
 
+import { ImageUpload } from "./components/first-step/index.tsx";
 import { addProductTabRoutes } from "./constants/routes.ts";
-import { ImageUpload } from "./components/first-step";
 import {
 	StyledContainer,
-	StyledGrid,
-	StyledProfileContainer,
 	StyledContentBox,
-	StyledTabsBox,
+	StyledGrid,
 	StyledMainGrid,
+	StyledProfileContainer,
+	StyledTabsBox,
 } from "./styles.ts";
 
 const AddProducts: React.FC = () => {
@@ -29,15 +29,15 @@ const AddProducts: React.FC = () => {
 			case AppRoute.PRODUCT_PHOTOS:
 				return <ImageUpload />;
 			case AppRoute.PRODUCT_CATEGORY:
-				return <div></div>;
+				return <div />;
 			case AppRoute.PRODUCT_DESCRIPTION:
-				return <div></div>;
+				return <div />;
 			case AppRoute.PRODUCT_VARIANTS:
-				return <div></div>;
+				return <div />;
 			case AppRoute.PRODUCT_PUBLISH:
-				return <div></div>;
+				return <div />;
 			default:
-				return <div></div>;
+				return <div />;
 		}
 	};
 

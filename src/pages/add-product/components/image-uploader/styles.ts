@@ -1,30 +1,31 @@
-import { styled } from '@mui/material/styles';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const UploadContainer = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    textAlign: 'center',
-    alignItems: 'center',
-    border: `3px dashed ${theme.palette.darkGrey}`,
-    padding: '20px',
-    marginBottom: '20px',
-    height: '12rem',
-    width: '10rem',
+	alignItems: "center",
+	border: `3px dashed ${theme.palette.darkGrey}`,
+	display: "flex",
+	flexDirection: "column",
+	height: "12rem",
+	justifyContent: "center",
+	marginBottom: "20px",
+	padding: "20px",
+	textAlign: "center",
+	width: "10rem",
 }));
 
-const Input = styled('input')({
-    display: 'none',
+const Input = styled("input")({
+	display: "none",
 });
 
-const ErrorSpan = styled('div')(({ theme }) => ({
-    color: theme.palette.red,
+const ErrorSpan = styled("div")(({ theme }) => ({
+	color: theme.palette.red,
 }));
 
 const DescriptionTypography = styled(Typography)(({ theme }) => ({
-    color: theme.palette.fontGray,
-    fontSize: theme.typography.dmSans.fontSize,
+	color: theme.palette.fontGray,
+	...theme.typography.dmSans,
+	marginTop: "0.5rem",
 }));
 
-export { UploadContainer, Input, ErrorSpan, DescriptionTypography };
+export { DescriptionTypography, ErrorSpan, Input, UploadContainer };
