@@ -24,10 +24,7 @@ const GuestUserContent: React.FC = () => {
 						{t("header.buttons.SignUp")}
 					</StyledButtonSignUp>
 				</ButtonsContainer>
-				<StyledBadge
-					// Pass here you product request count or order count
-					badgeContent={2}
-				>
+				<StyledBadge badgeContent={2}>
 					<IconButton component={Link} to={AppRoute.HOME}>
 						<ShopIcon />
 					</IconButton>

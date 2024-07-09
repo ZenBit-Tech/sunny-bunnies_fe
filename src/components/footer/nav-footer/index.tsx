@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { Box, BoxProps } from "@mui/material";
 
+import { NavBox, NavTitle } from "~/components/footer/styles.ts";
 import { Link } from "~/components/link/index.tsx";
-import { NavBox, NavTitle } from "~/components/temporary/footer/styles.ts";
 import { colors } from "~/libs/constants/color.ts";
 import { fontFamily, fontSizes, fontWeights } from "~/libs/constants/font.ts";
 
