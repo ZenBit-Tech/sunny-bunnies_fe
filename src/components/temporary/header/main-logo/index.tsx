@@ -1,12 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { LogoContainer, StyledTypography } from "~/components/Footer/styles.ts";
 import { CircularElement } from "~/components/circular/index.tsx";
+import {
+	LogoContainer,
+	StyledTypography,
+} from "~/components/temporary/footer/styles.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import theme from "~/theme.ts";
 
-import { Link } from "../../link/index.tsx";
+import { Link } from "../../../link/index.tsx";
 
 const MainLogo: React.FC = () => {
 	const { t } = useTranslation();

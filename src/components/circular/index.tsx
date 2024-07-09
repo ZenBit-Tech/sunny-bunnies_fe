@@ -2,7 +2,7 @@ import React from "react";
 
 import { BoxProps } from "@mui/material";
 
-import { StyledCircularElement } from "~/components/Footer/styles.ts";
+import { StyledCircularElement } from "~/components/temporary/footer/styles.ts";
 
 type CircularElementProps = {
 	backgroundColor?: string;

@@ -2,8 +2,8 @@ import React from "react";
 
 import { Box } from "@mui/material";
 
-import { MainLogo } from "~/components/Header/main-logo/index.tsx";
-import { HeaderContainer } from "~/components/Header/styles.ts";
+import { MainLogo } from "~/components/temporary/header/main-logo/index.tsx";
+import { HeaderContainer } from "~/components/temporary/header/styles.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
