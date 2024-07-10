@@ -4,6 +4,10 @@ import { Control, FieldError, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
+import {
+	NotificationMessage,
+	notification,
+} from "~/libs/notification/index.ts";
 import { type UserRestorePasswordRequestDto } from "~/libs/types/user.ts";
 import { useRestorePasswordMutation } from "~/redux/auth/auth-api.ts";
 
@@ -62,13 +66,14 @@ const useRestorePasswordForm = (): RestorePasswordFormResult => {
 	useEffect(() => {
 		if (error) {
 			const err = (error as FetchBaseQueryError).data as Error;
-
+			notification.error(NotificationMessage.RESTORE_LETTER_ERROR);
 			setServerError(err.message);
 		}
 	}, [error]);
 
 	useEffect(() => {
 		if (isSuccess) {
+			notification.success(NotificationMessage.RESTORE_LETTER_SENDED);
 			reset();
 		}
 	}, [isSuccess, error, reset]);

@@ -3,8 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Box, Container } from "@mui/material";
 
-import { FooterNav } from "~/components/Footer/Nav.tsx";
-import { SocialIcons } from "~/components/Footer/social-icons.tsx";
+import { NavFooter } from "~/components/footer/nav-footer/index.tsx";
 import {
 	FooterBottomContainer,
 	FooterContainer,
@@ -13,8 +12,8 @@ import {
 	StyledFooterCopyrightText,
 	StyledFooterText,
 	StyledFooterTextContainer,
-} from "~/components/Footer/styles.ts";
-import { MainLogo } from "~/components/Header/main-logo.tsx";
+} from "~/components/footer/styles.ts";
+import { MainLogo } from "~/components/header/main-logo/index.tsx";
 import { colors } from "~/libs/constants/color.ts";
 import { footerColumnsLogIn } from "~/libs/constants/footer-links.ts";
 import {
@@ -23,6 +22,8 @@ import {
 } from "~/libs/constants/social-media-icons.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { RootState } from "~/redux/store.ts";
+
+import { SocialIcons } from "./social-icons/index.tsx";
 
 export const Footer: React.FC = () => {
 	const { t } = useTranslation();
@@ -65,7 +66,7 @@ export const Footer: React.FC = () => {
 				</Container>
 
 				<Container>
-					<FooterNav columns={footerColumnsLogIn} />
+					<NavFooter columns={footerColumnsLogIn} />
 				</Container>
 			</FooterContainer>
 

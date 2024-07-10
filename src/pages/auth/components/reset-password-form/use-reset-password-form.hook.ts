@@ -7,6 +7,10 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { AppRoute } from "~/libs/constants/index.ts";
 import {
+	NotificationMessage,
+	notification,
+} from "~/libs/notification/index.ts";
+import {
 	type UserResetPasswordRequestDto,
 	type UserRestorePasswordForm,
 } from "~/libs/types/user.ts";
@@ -70,8 +74,10 @@ const useResetPasswordForm = ({
 		if (isSuccess) {
 			reset();
 			navigate(AppRoute.SIGN_IN);
+			notification.success(NotificationMessage.SUCCESS_UPDATE_PASSWORD);
 		} else if (error) {
 			const err = (error as FetchBaseQueryError).data as Error;
+			notification.error(NotificationMessage.FAILED_UPDATE_PASSWORD);
 			setServerError(err.message);
 		}
 	}, [isSuccess, navigate, error, reset]);
