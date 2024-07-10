@@ -70,12 +70,9 @@ const RecommendedProducts: React.FC = () => {
 				</Box>
 			</StyledRecommendedProductsHeader>
 			<StyledRecommendedProductsSlider>
-				{data &&
-					data.products
-						.slice(currentIndex, currentIndex + productsPerPage)
-						.map((product) => (
-							<ProductCard key={product.id} product={product} />
-						))}
+				{data?.products
+					.slice(currentIndex, currentIndex + productsPerPage)
+					.map((product) => <ProductCard key={product.id} product={product} />)}
 			</StyledRecommendedProductsSlider>
 		</StyledRecommendedProductsContainer>
 	);
