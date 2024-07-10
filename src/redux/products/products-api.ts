@@ -1,5 +1,5 @@
 import { httpMethods } from "~/libs/constants/http-methods.ts";
-import { type Product } from "~/libs/types/products.ts";
+import { type Product, Products } from "~/libs/types/products.ts";
 
 import { api } from "../services.ts";
 import {
@@ -9,6 +9,7 @@ import {
 } from "./constants.ts";
 
 type GetProductsRequestQuery = {
+	activityStatuses?: string[];
 	brand?: string;
 	category?: string;
 	color?: string;
@@ -19,6 +20,9 @@ type GetProductsRequestQuery = {
 	maxPrice?: number;
 	minPrice?: number;
 	offset?: number;
+	order?: string;
+	page?: number;
+	searchQuery?: string;
 	size?: string;
 	style?: string;
 };
@@ -31,7 +35,7 @@ export const productsApi = api.injectEndpoints({
 				url: productsApiPath.ROOT + `/${id}`,
 			}),
 		}),
-		getProducts: builder.query<Product[], GetProductsRequestQuery>({
+		getProducts: builder.query<Products, GetProductsRequestQuery>({
 			forceRefetch({ currentArg, previousArg }) {
 				return (
 					currentArg?.category !== previousArg?.category ||
@@ -53,7 +57,12 @@ export const productsApi = api.injectEndpoints({
 					return newItems;
 				}
 
-				return [...currentCache, ...newItems];
+				return {
+					...currentCache,
+					products: [...currentCache.products, ...newItems.products],
+					totalCount: newItems.totalCount,
+					totalPages: newItems.totalPages,
+				};
 			},
 			query: (filters = {}) => {
 				const defaultFilters = {
@@ -62,17 +71,26 @@ export const productsApi = api.injectEndpoints({
 				};
 				const finalFilters = { ...defaultFilters, ...filters };
 
+				const queryParams = new URLSearchParams();
+				Object.keys(finalFilters).forEach((key) => {
+					const value = finalFilters[key as keyof GetProductsRequestQuery];
+					if (Array.isArray(value)) {
+						value.forEach((item) => queryParams.append(key, item));
+					} else if (value !== undefined) {
+						queryParams.append(key, value.toString());
+					}
+				});
+
 				return {
 					method: httpMethods.GET,
-					params: finalFilters,
-					url: productsApiPath.ROOT,
+					url: `${productsApiPath.ROOT}?${queryParams.toString()}`,
 				};
 			},
 			serializeQueryArgs: ({ endpointName }) => {
 				return endpointName;
 			},
 		}),
-		getProductsByName: builder.query<Product[], { name: string }>({
+		getProductsByName: builder.query<Products, { name: string }>({
 			forceRefetch({ currentArg, previousArg }) {
 				return currentArg?.name !== previousArg?.name;
 			},

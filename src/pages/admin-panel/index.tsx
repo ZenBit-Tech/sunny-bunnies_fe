@@ -20,7 +20,11 @@ import { logout } from "~/redux/auth/auth-slice.ts";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import theme from "~/theme.ts";
 
-import { Sidebar, UserManagement } from "./component/index.ts";
+import {
+	ProductManagement,
+	Sidebar,
+	UserManagement,
+} from "./component/index.ts";
 import { UserProfile } from "./component/user-profile/index.tsx";
 import { VerticalDivider } from "./styles.ts";
 
@@ -71,8 +75,8 @@ const AdminPanel: React.FC = () => {
 			case AppRoute.MANAGEMENT_VENDORS: {
 				return <UserManagement role={userRole.VENDOR} />;
 			}
-			case AppRoute.PRODUCT_MANAGEMENT: {
-				return <UserManagement role={userRole.BUYER} />;
+			case AppRoute.MANAGEMENT_PRODUCTS_REQUESTS: {
+				return <ProductManagement />;
 			}
 			case AppRoute.MANAGEMENT_NO_ROLE: {
 				// eslint-disable-next-line jsx-a11y/aria-role

@@ -8,9 +8,10 @@ import {
 	useDeleteUserMutation,
 	useGetUserByIdQuery,
 	useGetUsersByOptionsQuery,
+	useGetProductsByOptionsQuery,
 	useUpdateUserStatusMutation,
 } from "./admin-api";
-import { user, users } from "~/test/mocks";
+import { products, user, users } from "~/test/mocks";
 
 test("deleteUser mutation", async () => {
 	const { result } = renderHook(() => useDeleteUserMutation(), {
@@ -77,4 +78,23 @@ test("getUsersByOptions query", async () => {
 
 	await waitFor(() => expect(result.current.isSuccess).toBe(true));
 	expect(result.current.data).toEqual(users);
+});
+
+test("getProductsByOptions query", async () => {
+	const { result } = renderHook(
+		() =>
+			useGetProductsByOptionsQuery({
+				activityStatuses: ["active"],
+				limit: 10,
+				order: "ASC",
+				page: 1,
+				searchQuery: "",
+			}),
+		{
+			wrapper: Providers,
+		},
+	);
+
+	await waitFor(() => expect(result.current.isSuccess).toBe(true));
+	expect(result.current.data).toEqual(products);
 });

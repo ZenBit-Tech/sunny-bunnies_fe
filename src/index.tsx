@@ -90,7 +90,11 @@ createRoot(document.getElementById("root")!).render(
 															children: [
 																{
 																	element: <AdminPanel />,
-																	path: AppRoute.PRODUCT_MANAGEMENT,
+																	path: AppRoute.MANAGEMENT_PRODUCTS_REQUESTS,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_PRODUCTS_LIST,
 																},
 																{
 																	element: <AdminPanel />,
@@ -246,5 +250,6 @@ createRoot(document.getElementById("root")!).render(
 				</PersistGate>
 			</StoreProvider>
 		</GoogleOAuthProvider>
+		,
 	</React.StrictMode>,
 );

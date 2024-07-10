@@ -104,10 +104,17 @@ const SidebarList: React.FC = () => {
 				>
 					<VerticalDivider />
 					<Box display="flex" flexDirection="column" gap="12px" width="100%">
-						<StyledLink to={AppRoute.PRODUCT_LIST}>
-							<StyledTab>{t("AdminPage.request")}</StyledTab>
+						<StyledLink
+							className={
+								useIsRouteActive(AppRoute.MANAGEMENT_PRODUCTS_REQUESTS)
+									? "active"
+									: ""
+							}
+							to={AppRoute.MANAGEMENT_PRODUCTS_REQUESTS}
+						>
+							<StyledTab>{t("AdminPage.requests")}</StyledTab>
 						</StyledLink>
-						<StyledLink to={AppRoute.PRODUCT_LIST}>
+						<StyledLink to={AppRoute.MANAGEMENT_PRODUCTS_LIST}>
 							<StyledTab>{t("AdminPage.productList")}</StyledTab>
 						</StyledLink>
 					</Box>

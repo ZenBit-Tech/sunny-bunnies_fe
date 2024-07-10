@@ -11,6 +11,8 @@ const AppRoute = {
 	MANAGEMENT_BUYERS: "/user-management/buyers",
 	MANAGEMENT_NO_ROLE: "/user-management/no-roles",
 	MANAGEMENT_NO_ROLE_$ID: "/user-management/no-role/:id",
+	MANAGEMENT_PRODUCTS_LIST: "/product-management/products-list",
+	MANAGEMENT_PRODUCTS_REQUESTS: "/product-management/products-requests",
 	MANAGEMENT_VENDOR_$ID: "/user-management/vendors/:id",
 	MANAGEMENT_VENDORS: "/user-management/vendors",
 	PRIVACY_POLICY: "/privacy-policy",

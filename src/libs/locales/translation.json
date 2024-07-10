@@ -142,7 +142,7 @@
 		"emailExample": "your_email@gmail.com",
 		"passwordPlaceholder": "Min. 8 characters",
 		"enterNewPassword": "Enter new password",
-		"saveAndLogin":"Save & Login"
+		"saveAndLogin": "Save & Login"
 	},
 	"AdminLogin": {
 		"signIn": "Sign in",
@@ -159,16 +159,16 @@
 		"users": "Users",
 		"chats": "Chats",
 		"userList": "User List",
-		"request" :"Request",
+		"requests": "Requests",
 		"productList": "Product List",
 		"vendors": "Vendors",
-		"buyers":"Buyers",
+		"buyers": "Buyers",
 		"noRole": "No role"
 	},
-	"AdminUserManagementPage":{
+	"AdminUserManagementPage": {
 		"noRole": "No role",
 		"name": "Name",
-		"email":"Email",
+		"email": "Email",
 		"address": "Address",
 		"date": "Date",
 		"action": "Action",
@@ -184,12 +184,24 @@
 		"vendors": "Vendors",
 		"status": "Status",
 		"save": "Save",
-		"errorLoadingProfile":"Error loading user profile",
-		"errorLoadingUsers" :"Error loading users",
-		"cancel" :"Cancel",
-		"delete" :"Delete",
-		"attention" :"Deleted user will lose the ability to use the application",
-		"question" :"Are you sure want to delete user’s profile"
+		"errorLoadingProfile": "Error loading user profile",
+		"errorLoadingUsers": "Error loading users",
+		"cancel": "Cancel",
+		"delete": "Delete",
+		"attention": "Deleted user will lose the ability to use the application",
+		"question": "Are you sure want to delete user’s profile"
+	},
+	"AdminProductManagement": {
+		"search": "Search",
+		"product": "Product",
+		"category": "Category",
+		"status": "Status",
+		"quantity": "q-ty",
+		"price": "price",
+		"action": "action",
+		"errorLoadingProducts": "Error loading products",
+		"newest": "Newest",
+		"oldest": "Oldest"
 	},
 	"SignInComponent": {
 		"signIn": "Sign In",
