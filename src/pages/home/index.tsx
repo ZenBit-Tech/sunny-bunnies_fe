@@ -25,6 +25,8 @@ const Home: React.FC = () => {
 		products,
 	} = useProductFilters();
 
+	console.log(products);
+
 	return (
 		<Box
 			sx={{
