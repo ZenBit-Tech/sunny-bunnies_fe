@@ -16,6 +16,10 @@ const profileValidation = Yup.object().shape({
 			profileValidationRules.NAME_MIN_LENGTH,
 			profileValidationMessages.NAME_MIN_LENGTH,
 		)
+		.max(
+			profileValidationRules.NAME_MAX_LENGTH,
+			profileValidationMessages.NAME_MAX_LENGTH,
+		)
 		.required(profileValidationMessages.NAME_REQUIRED),
 	profile: Yup.object().shape({
 		clothesSize: Yup.string().required(

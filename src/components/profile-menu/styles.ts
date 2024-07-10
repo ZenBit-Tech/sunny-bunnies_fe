@@ -1,6 +1,6 @@
 import { Box, ButtonProps, styled } from "@mui/material";
 
-import { BaseButton } from "~/components/index.ts";
+import { BaseButton } from "~/components/base-button/index.tsx";
 import { colors, fontSizes } from "~/libs/constants/index.ts";
 
 type MenuButtonProps = { bgcolor: string; checked: boolean } & ButtonProps;

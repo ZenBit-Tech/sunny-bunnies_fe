@@ -4,11 +4,11 @@ import { useLocation } from "react-router-dom";
 
 import { Typography } from "@mui/material";
 
+import { ProfileMenu } from "~/components/profile-menu/index.tsx";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 
 import {
 	ProfileForm,
-	ProfileMenu,
 	ProfileOrders,
 	ProfileSettings,
 	ProfileSupport,

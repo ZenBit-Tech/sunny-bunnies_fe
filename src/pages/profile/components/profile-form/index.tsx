@@ -70,29 +70,31 @@ const ProfileForm: React.FC = () => {
 				{t("Profile.generalInformation")}
 			</Typography>
 			<StyledForm autoComplete="off" onSubmit={handleFormSubmit}>
-				<Box alignItems="center" display="flex">
-					<Box width="30%">
-						<Typography
-							color="primary"
-							sx={{ fontSize: theme.typography.playfairDisplayBold }}
-						>
-							{t("Profile.profilePhotoTitle")}
-						</Typography>
-						<Typography
-							sx={{
-								color: theme.palette.fontGray,
-							}}
-							variant="body1"
-						>
-							{t("Profile.profilePhotoText")}
-						</Typography>
-					</Box>
+				<Box alignItems="center" display="flex" gap="40px">
+					<Typography
+						color="primary"
+						sx={{ fontSize: theme.typography.playfairDisplayBold }}
+					>
+						{t("Profile.profilePhotoTitle")}
+					</Typography>
+
 					<StyledFormControl error={Boolean(errors.profile?.profilePhoto)}>
 						<ImagePreview file={selectedFile} />
-						<StyledImageLabel role={undefined} tabIndex={-1}>
-							{t("Form.uploadButtonText")}
-							<VisuallyHiddenInput onChange={handleFileChange} type="file" />
-						</StyledImageLabel>
+						<Box width="15%">
+							<StyledImageLabel role={undefined} tabIndex={-1}>
+								{t("Form.uploadButtonText")}
+								<VisuallyHiddenInput onChange={handleFileChange} type="file" />
+							</StyledImageLabel>
+							<Typography
+								sx={{
+									color: theme.palette.fontGray,
+									textWrap: "nowrap",
+								}}
+								variant="body1"
+							>
+								{t("Profile.profilePhotoText")}
+							</Typography>
+						</Box>
 						{errors.profile?.profilePhoto && (
 							<FormHelperText sx={{ marginLeft: 0 }}>
 								{errors.profile.profilePhoto.message as string}

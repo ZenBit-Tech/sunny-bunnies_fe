@@ -4,7 +4,7 @@ import { adminApiPath } from "~/redux/admin/constants.ts";
 import { authApiPath } from "~/redux/auth/constants.ts";
 import { filtersApiPath } from "~/redux/filters/constants.ts";
 
-import { allFilters, user, users } from "./mocks/index.ts";
+import { allFilters, products, user, users } from "./mocks/index.ts";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
@@ -37,6 +37,9 @@ const handlers = [
 	}),
 	http.get(`${apiUrl}${adminApiPath.GET_BY_OPTIONS}`, () => {
 		return HttpResponse.json(users);
+	}),
+	http.get(`${apiUrl}${adminApiPath.GET_PRODUCTS_BY_OPTIONS}`, () => {
+		return HttpResponse.json(products);
 	}),
 ];
 

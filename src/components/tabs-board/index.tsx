@@ -1,10 +1,14 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import { Box, Typography } from "@mui/material";
-
 import { CheckIcon } from "~/assets/icons/check-icon.tsx";
 import theme from "~/theme.ts";
+
+import {
+	StyledLabelText,
+	StyledNumberCircle,
+	StyledTabLabel,
+} from "./styles.ts";
 
 type TabLabelProps = {
 	label: string;
@@ -28,39 +32,16 @@ const TabsBoard: React.FC<TabLabelProps> = ({
 		tabRoutes.findIndex((tab) => tab.route === pathname) >= number;
 
 	return (
-		<Box
-			alignItems="center"
+		<StyledTabLabel
 			bgcolor={isBeforeActive ? theme.palette.lightGreen : theme.palette.white}
-			display="flex"
-			height="100%"
-			padding="16px 24px"
-			width="100%"
 		>
-			<Box
-				alignItems="center"
+			<StyledNumberCircle
 				bgcolor={isCompleted ? theme.palette.primary.dark : "transparent"}
-				border={`2px solid ${
-					isBeforeActive ? theme.palette.primary.dark : theme.palette.darkGrey
-				}`}
-				borderRadius="50%"
-				color={theme.palette.primary.dark}
-				display="flex"
-				height="3em"
-				justifyContent="center"
-				marginRight={1}
-				sx={{ display: { tablet: "flex", xs: "none" } }}
-				width="3em"
 			>
 				{isCompleted ? <CheckIcon /> : `0${number}`}
-			</Box>
-			<Typography
-				color="primary"
-				sx={{ fontSize: theme.typography.dmSansBold, fontWeight: "bold" }}
-				variant="body1"
-			>
-				{label}
-			</Typography>
-		</Box>
+			</StyledNumberCircle>
+			<StyledLabelText variant="body1">{label}</StyledLabelText>
+		</StyledTabLabel>
 	);
 };
 
