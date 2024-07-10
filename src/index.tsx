@@ -12,6 +12,7 @@ import {
 	AdminRoute,
 	FooterWrapper,
 	HeaderWrapper,
+	Notification,
 	PrivateRoute,
 	PublicRoute,
 	RouterProvider,
@@ -22,6 +23,7 @@ import "./libs/locales/i18n.ts";
 import { AdminPanel } from "./pages/admin-panel/index.tsx";
 import { AdminLogin } from "./pages/auth/components/admin-login/index.tsx";
 import {
+	AddProducts,
 	Auth,
 	Home,
 	NotFound,
@@ -37,6 +39,7 @@ import { persistor, store } from "./redux/store.ts";
 import theme from "./theme.ts";
 
 import "./styles.css";
+import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -44,6 +47,7 @@ createRoot(document.getElementById("root")!).render(
 			<StoreProvider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<ThemeProvider theme={theme}>
+						<Notification />
 						<RouterProvider
 							routes={[
 								{
@@ -86,7 +90,11 @@ createRoot(document.getElementById("root")!).render(
 															children: [
 																{
 																	element: <AdminPanel />,
-																	path: AppRoute.PRODUCT_MANAGEMENT,
+																	path: AppRoute.MANAGEMENT_PRODUCTS_REQUESTS,
+																},
+																{
+																	element: <AdminPanel />,
+																	path: AppRoute.MANAGEMENT_PRODUCTS_LIST,
 																},
 																{
 																	element: <AdminPanel />,
@@ -173,6 +181,26 @@ createRoot(document.getElementById("root")!).render(
 																	path: AppRoute.PROFILE_SUPPORT,
 																},
 																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_PHOTOS,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_CATEGORY,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_DESCRIPTION,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_VARIANTS,
+																},
+																{
+																	element: <AddProducts />,
+																	path: AppRoute.PRODUCT_PUBLISH,
+																},
+																{
 																	element: <ProfileBoard />,
 																	path: AppRoute.ROLE,
 																},
@@ -222,5 +250,6 @@ createRoot(document.getElementById("root")!).render(
 				</PersistGate>
 			</StoreProvider>
 		</GoogleOAuthProvider>
+		,
 	</React.StrictMode>,
 );

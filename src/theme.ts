@@ -8,80 +8,6 @@ import {
 	fontWeight,
 } from "./libs/constants/index.ts";
 
-declare module "@mui/material/styles" {
-	interface BreakpointOverrides {
-		tablet: true;
-	}
-	interface Palette {
-		black: string;
-		borderGray: string;
-		darkGrey: string;
-		fontGray: string;
-		gray: string;
-		graylishRed: string;
-		lightGray: string;
-		lightGreen: string;
-		secondaryTextGray: string;
-		shadowColor: string;
-		transparent: string;
-		white: string;
-	}
-	interface PaletteOptions {
-		black: string;
-		borderGray: string;
-		darkGrey: string;
-		fontGray: string;
-		gray: string;
-		graylishRed: string;
-		lightGray: string;
-		lightGreen: string;
-		secondaryTextGray: string;
-		shadowColor: string;
-		transparent: string;
-		white: string;
-	}
-	interface Theme {
-		fontSizes: {
-			extraLarge: string;
-			large: string;
-			lg: string;
-			medium: string;
-			mediumLarge: string;
-			small: string;
-			title: string;
-			xl: string;
-			xs: string;
-			xxl: string;
-		};
-		fontWeight: {
-			bold: number;
-			medium: number;
-			regular: number;
-			semiBold: number;
-		};
-	}
-	interface ThemeOptions {
-		fontSizes: {
-			extraLarge: string;
-			large: string;
-			lg: string;
-			medium: string;
-			mediumLarge: string;
-			small: string;
-			title: string;
-			xl: string;
-			xs: string;
-			xxl: string;
-		};
-		fontWeight: {
-			bold: number;
-			medium: number;
-			regular: number;
-			semiBold: number;
-		};
-	}
-}
-
 const xl = 1920;
 const lg = 1280;
 const tablet = 1024;
@@ -235,12 +161,16 @@ const theme = createTheme({
 		contentBlack: colors.contentBlack,
 		darkGrey: colors.darkGrey,
 		errorBoxColor: colors.errorBoxColor,
+		errorRed: colors.errorRed,
 		fontGray: colors.gray,
+		gold: colors.gold,
 		gray: colors.grayishRed,
 		graylishRed: colors.grayishRed,
+		greenSuccess: colors.greenSuccess,
 		lightGray: colors.lightGray,
 		lightGreen: colors.lightGreen,
 		lightRed: colors.lightRed,
+		lightYellow: colors.lightYellow,
 		likeIconColor: colors.likeIconColor,
 		pink: colors.pink,
 		primary: {
@@ -251,6 +181,8 @@ const theme = createTheme({
 		secondary: {
 			main: colors.gray,
 		},
+		secondaryLightGreen: colors.secondaryLightGreen,
+		secondaryLightRed: colors.secondaryLightRed,
 		secondaryTextGray: colors.secondaryTextGray,
 		shadowColor: colors.shadowColor,
 		transparent: colors.transparent,
