@@ -17,6 +17,10 @@ import { SelectChangeEvent } from "@mui/material";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { useAppForm } from "~/libs/hooks/index.ts";
+import {
+	NotificationMessage,
+	notification,
+} from "~/libs/notification/index.ts";
 import { User } from "~/libs/types/user.ts";
 import { type UserAndProfile } from "~/libs/types/user-profile.type.ts";
 import { setUser } from "~/redux/auth/auth-slice.ts";
@@ -156,12 +160,13 @@ const useProfileForm = (): UseProfileFormReturnType => {
 				}
 
 				const updatedUser = await updateUserAndProfile(formDataCopy).unwrap();
-
+				notification.success(NotificationMessage.UPDATE_PROFILE_SUCCESS);
 				dispatch(setUser(updatedUser));
 			} catch (error) {
 				const loadError = (error as FetchBaseQueryError).data
 					? ((error as FetchBaseQueryError).data as Error)
 					: { message: t("Error.unknowError") };
+				notification.error(NotificationMessage.UPDATE_PROFILE_FAILED);
 				setServerError(loadError.message);
 			}
 		},

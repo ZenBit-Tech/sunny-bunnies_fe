@@ -12,6 +12,7 @@ import {
 	AdminRoute,
 	FooterWrapper,
 	HeaderWrapper,
+	Notification,
 	PrivateRoute,
 	PublicRoute,
 	RouterProvider,
@@ -37,6 +38,7 @@ import { persistor, store } from "./redux/store.ts";
 import theme from "./theme.ts";
 
 import "./styles.css";
+import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -44,6 +46,7 @@ createRoot(document.getElementById("root")!).render(
 			<StoreProvider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<ThemeProvider theme={theme}>
+						<Notification />
 						<RouterProvider
 							routes={[
 								{
