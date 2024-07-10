@@ -15,7 +15,7 @@ const colors = {
 	lightRed: "#FFDFE6",
 	pastelGreen: "#E3EEE2",
 	pink: "#F5B4C2",
-	red: "#DE506F",
+	red: "#FF0000",
 	secondaryTextGray: "#A0A8B0",
 	shadowColor: "#2F2F2F",
 	smallTextGray: "#807E7E",
