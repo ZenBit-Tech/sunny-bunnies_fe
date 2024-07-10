@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { Outlet, matchPath, useLocation } from "react-router-dom";
 
-import { Header } from "~/components/Header/Header.tsx";
+import { Header } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 
 const NoHeaderRoutes = [

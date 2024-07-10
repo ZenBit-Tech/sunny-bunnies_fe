@@ -2,8 +2,8 @@ import React from "react";
 
 import { SvgIconProps } from "@mui/material";
 
-import { SocialIcon } from "~/components/Footer/social-icon.tsx";
-import { SocialIconsBox } from "~/components/Footer/styles.ts";
+import { SocialIcon } from "~/components/footer/social-icons/social-icon.tsx";
+import { SocialIconsBox } from "~/components/footer/styles.ts";
 
 type SocialMediaData = {
 	IconComponent: React.ComponentType<SvgIconProps>;
@@ -16,7 +16,7 @@ type SocialIconsProps = {
 	socialMediaData: SocialMediaData[];
 };
 
-export const SocialIcons: React.FC<SocialIconsProps> = ({
+const SocialIcons: React.FC<SocialIconsProps> = ({
 	socialMediaData,
 }: SocialIconsProps) => {
 	return (
@@ -33,3 +33,5 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
 		</SocialIconsBox>
 	);
 };
+
+export { SocialIcons };

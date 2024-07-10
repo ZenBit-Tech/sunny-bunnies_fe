@@ -2,14 +2,14 @@ import React from "react";
 
 import { BoxProps } from "@mui/material";
 
-import { StyledCircularElement } from "~/components/Footer/styles.ts";
+import { StyledCircularElement } from "~/components/footer/styles.ts";
 
-interface CircularElementProps extends BoxProps {
+type CircularElementProps = {
 	backgroundColor?: string;
 	children?: React.ReactNode;
-}
+} & BoxProps;
 
-export const CircularElement: React.FC<CircularElementProps> = ({
+const CircularElement: React.FC<CircularElementProps> = ({
 	backgroundColor,
 	children,
 	...props
@@ -20,7 +20,6 @@ export const CircularElement: React.FC<CircularElementProps> = ({
 				backgroundColor: backgroundColor,
 				height: props.height,
 				width: props.width,
-
 				...props.sx,
 			}}
 			{...props}
@@ -29,3 +28,5 @@ export const CircularElement: React.FC<CircularElementProps> = ({
 		</StyledCircularElement>
 	);
 };
+
+export { CircularElement };
