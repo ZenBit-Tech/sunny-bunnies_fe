@@ -9,7 +9,7 @@ type RouterLinkProps = {
 
 type CustomLinkProps = MuiLinkProps & RouterLinkProps;
 
-export const Link: React.FC<CustomLinkProps> = ({
+const Link: React.FC<CustomLinkProps> = ({
 	children,
 	sx,
 	to,
@@ -21,3 +21,5 @@ export const Link: React.FC<CustomLinkProps> = ({
 		</MuiLink>
 	);
 };
+
+export { Link };

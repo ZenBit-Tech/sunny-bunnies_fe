@@ -2,8 +2,8 @@ import React from "react";
 
 import { SvgIconProps } from "@mui/material";
 
-import { CircularElement } from "~/components/Footer/Circular.tsx";
-import { Link } from "~/components/Header/Link.tsx";
+import { CircularElement } from "~/components/circular/index.tsx";
+import { Link } from "~/components/link/index.tsx";
 
 type SocialIconProps = {
 	IconComponent: React.ComponentType<SvgIconProps>;
@@ -12,7 +12,7 @@ type SocialIconProps = {
 	iconColor: string;
 };
 
-export const SocialIcon: React.FC<SocialIconProps> = ({
+const SocialIcon: React.FC<SocialIconProps> = ({
 	IconComponent,
 	backgroundColor,
 	href,
@@ -36,3 +36,5 @@ export const SocialIcon: React.FC<SocialIconProps> = ({
 		</Link>
 	);
 };
+
+export { SocialIcon };
