@@ -4,6 +4,7 @@ const profileValidationMessages = {
 	FILE_IS_REQUIRED: "You need to provide a file",
 	FILE_TOO_LARGE: "The file is too large",
 	INVALID_FORMAT: "Please select an image in JPG, HEIC, or PNG format",
+	NAME_MAX_LENGTH: "Name should have no more than 100 characters",
 	NAME_MIN_LENGTH: "Name should have at least 2 characters",
 	NAME_REQUIRED: "Name is required",
 	PHONE_NUMBER_INVALID: "Invalid phone number",
@@ -16,6 +17,7 @@ const profileValidationMessages = {
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const profileValidationRules = {
+	NAME_MAX_LENGTH: 100,
 	NAME_MIN_LENGTH: 2,
 };
 

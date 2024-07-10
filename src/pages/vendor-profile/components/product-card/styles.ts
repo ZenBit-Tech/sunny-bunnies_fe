@@ -2,21 +2,44 @@ import { Box, IconButton, styled } from "@mui/material";
 
 import { colors } from "~/libs/constants/index.ts";
 
-const StyledProductCardContainer = styled(Box)`
-	align-item: flex-start;
-	box-shadow: 4px 4px 24px 0px #0000000a;
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-	width: 200px;
-`;
+type SliderDotProps = {
+	active: boolean;
+};
 
-const StyledProductCardImageContainer = styled(Box)`
-	border: 1px solid ${colors.lightGray};
-	height: 183px;
-	position: relative;
-	width: 100%;
-`;
+const StyledProductCardContainer = styled(Box)(({ theme }) => ({
+	"borderRadius": "12px",
+	"boxShadow": `4px 4px 24px 0px ${theme.palette.cardBoxShadow}`,
+	"cursor": "pointer",
+	"display": "flex",
+	"flexDirection": "column",
+	"width": "200px",
+}));
+
+const StyledProductCardImageContainer = styled(Box)(({ theme }) => ({
+	"border": `1px solid ${theme.palette.lightGray}`,
+	"borderRadius": "12px 12px 0 0",
+	"height": "183px",
+	"overflow": "hidden",
+	"position": "relative",
+	"width": "100%",
+}));
+
+const ImageSlider = styled(Box)(() => ({
+	bottom: "10px",
+	display: "flex",
+	gap: "5px",
+	left: "50%",
+	position: "absolute",
+	transform: "translateX(-50%)",
+}));
+
+const SliderDot = styled(Box)<SliderDotProps>(({ active, theme }) => ({
+	backgroundColor: active ? theme.palette.primary.main : theme.palette.darkGrey,
+	borderRadius: "2px",
+	cursor: "pointer",
+	height: "3.87px",
+	width: active ? "18px" : "9px",
+}));
 
 const StyledProductCardDataContainer = styled(Box)`
 	display: flex;
@@ -25,12 +48,15 @@ const StyledProductCardDataContainer = styled(Box)`
 `;
 
 const StyledProductCardDataContent = styled(Box)`
+	border-radius: 0 0 12px 12px;
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+	padding: 8px;
 `;
 
 const StyledProductCardImage = styled("img")`
+	border-radius: 12px 12px 0 0;
 	height: 100%;
 	width: 100%;
 `;
@@ -62,6 +88,8 @@ const StyledShopIconButton = styled(IconButton)`
 `;
 
 export {
+	ImageSlider,
+	SliderDot,
 	StyledLikeIconButton,
 	StyledProductCardContainer,
 	StyledProductCardDataContainer,

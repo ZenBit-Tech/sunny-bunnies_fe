@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 import { Loader } from "~/components/index.ts";
-import { sortByAscOrder } from "~/helpers/sort-sizes.ts";
+import { sortSizesByAscOrder } from "~/helpers/sort-sizes-by-asc-order.ts";
 import { userRole } from "~/libs/constants/user-role.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { useGetProductByIdQuery } from "~/redux/products/products-api.ts";
@@ -105,7 +105,7 @@ const ProductPage: React.FC = () => {
 
 	const colors = [...new Set(variants.map((variant) => variant.color.name))];
 	const sizes = [...new Set(variants?.map((variant) => variant.size.name))];
-	const sortedSizes = sortByAscOrder(sizes);
+	const sortedSizes = sortSizesByAscOrder(sizes);
 
 	return (
 		<>

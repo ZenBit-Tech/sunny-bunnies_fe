@@ -17,6 +17,7 @@ const colors = {
 	lightGreen: "#E3EEE2",
 	lightRed: "#FFDFE6",
 	lightYellow: "#f8f6ca",
+	likeIconColor: "#1C274C",
 	pastelGreen: "#E3EEE2",
 	pink: "#F5B4C2",
 	red: "#DE506F",
