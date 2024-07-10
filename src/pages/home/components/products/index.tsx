@@ -4,17 +4,13 @@ import { useTranslation } from "react-i18next";
 import { Box, Drawer, Typography } from "@mui/material";
 
 import { BaseButton, FilterButton } from "~/components/index.ts";
+import { ProductCard } from "~/components/product-card/index.tsx";
 import { Filters } from "~/libs/types/filters.ts";
 import { Product } from "~/libs/types/products.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 
-import {
-	FilterTags,
-	ProductCard,
-	ProductFilters,
-	ProductSearch,
-} from "../index.ts";
+import { FilterTags, ProductFilters, ProductSearch } from "../index.ts";
 import { StyledProductsContainer } from "./styles.ts";
 
 const minNumberOfProducts = 1;
@@ -154,7 +150,7 @@ const Products: React.FC<ProductsProperties> = ({
 			)}
 			<StyledProductsContainer>
 				{products?.map((product, index) => (
-					<ProductCard key={index} product={product} />
+					<ProductCard item={product} key={index} />
 				))}
 				{(!products || products.length < minNumberOfProducts) && (
 					<Typography textAlign="center" variant="playfairDisplay" width="100%">
