@@ -5,13 +5,26 @@
 		"submit": "Submit",
 		"thisFieldRequired": "This field is required"
 	},
-
 	"FormTabs": {
 		"role": "User Role",
 		"general": "General Information",
 		"addresss": "Your Address",
 		"card": "Credit Card",
 		"size": "Size"
+	},
+	"Notifications": {
+		"failedUpdatePassword": "Failed update password",
+		"restoreLetterError": "Failed to send restore link",
+		"restoreLetterSended": "We send you restore link",
+		"successUpdatePassword": "Password updated successfully",
+		"updateProfileFailed": "Failed update profile",
+		"updateProfileSuccess": "Profile updated successfully",
+		"userDeleteFailed": "Failed to delete user",
+		"userDeleteSuccess": "User deleted",
+		"userUpdateFailed": "Failed to update user",
+		"userUpdateSuccess": "User updated",
+		"verificationSendError": "Failed to send verification email",
+		"verificationSendSuccess": "Verification email sent successfully"
 	},
 	"Form": {
 		"role": "Role",

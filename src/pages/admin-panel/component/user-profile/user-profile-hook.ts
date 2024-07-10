@@ -8,6 +8,10 @@ import { t } from "i18next";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useAppForm } from "~/libs/hooks/index.ts";
 import {
+	NotificationMessage,
+	notification,
+} from "~/libs/notification/index.ts";
+import {
 	useDeleteUserMutation,
 	useUpdateUserStatusMutation,
 } from "~/redux/admin/admin-api.ts";
@@ -63,10 +67,12 @@ const useUserProfileForm = ({
 		try {
 			if (id && status) {
 				await updateUserStatus({ id, status }).unwrap();
+				notification.error(NotificationMessage.USER_UPDATE_SUCCESS);
 				setIsEditing(false);
 				setServerError("");
 			}
 		} catch (error) {
+			notification.error(NotificationMessage.USER_UPDATE_FAILED);
 			const loadError = (error as FetchBaseQueryError).data
 				? ((error as FetchBaseQueryError).data as Error)
 				: { message: t("Error.unknownError") };
@@ -98,11 +104,13 @@ const useUserProfileForm = ({
 		if (id) {
 			try {
 				await deleteUser(id).unwrap();
+				notification.error(NotificationMessage.USER_DELETE_SUCCESS);
 				navigate(`${AppRoute.USER_MANAGEMENT}/${role}s`);
 			} catch (error) {
 				const loadError = (error as FetchBaseQueryError).data
 					? ((error as FetchBaseQueryError).data as Error)
 					: { message: t("Error.unknownError") };
+				notification.error(NotificationMessage.USER_DELETE_FAILED);
 				setServerError(loadError.message);
 			} finally {
 				setIsModalOpen(false);
