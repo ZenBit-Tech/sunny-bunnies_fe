@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SelectChangeEvent } from "@mui/material";
@@ -22,6 +23,7 @@ type FormData = {
 
 const SecondStepForm: React.FC = () => {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
 
 	const [selectedCategory, setSelectedCategory] = useState<Category | null>(
 		null,
@@ -80,24 +82,6 @@ const SecondStepForm: React.FC = () => {
 		[selectedCategory, setValue],
 	);
 
-	useEffect(() => {
-		if (selectedCategory && getValues("category") !== selectedCategory.name) {
-			setValue("category", selectedCategory?.name);
-			setValue("categoryType", "");
-			setValue("style", "");
-		}
-		if (selectedType && getValues("categoryType") !== selectedType.name) {
-			setValue("categoryType", selectedType?.name);
-		}
-		if (selectedStyle && getValues("style") !== selectedStyle.name) {
-			setValue("style", selectedStyle?.name);
-		}
-	}, [selectedCategory, selectedType, selectedStyle, setValue, getValues]);
-
-	const onSubmit = (data: FormData): void => {
-		console.log(data);
-	};
-
 	const getCategoryValueId = useCallback(
 		(category: Category): string => category.id.toString(),
 		[],
@@ -122,6 +106,25 @@ const SecondStepForm: React.FC = () => {
 		(style: Style): string => style.name,
 		[],
 	);
+
+	useEffect(() => {
+		if (selectedCategory && getValues("category") !== selectedCategory.name) {
+			setValue("category", selectedCategory?.name);
+			setValue("categoryType", "");
+			setValue("style", "");
+		}
+		if (selectedType && getValues("categoryType") !== selectedType.name) {
+			setValue("categoryType", selectedType?.name);
+		}
+		if (selectedStyle && getValues("style") !== selectedStyle.name) {
+			setValue("style", selectedStyle?.name);
+		}
+	}, [selectedCategory, selectedType, selectedStyle, setValue, getValues]);
+
+	const onSubmit = (data: FormData): void => {
+		alert(data);
+		navigate(AppRoute.PRODUCT_DESCRIPTION);
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>

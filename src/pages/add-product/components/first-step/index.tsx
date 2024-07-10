@@ -61,7 +61,7 @@ const ImageUpload: React.FC = () => {
 	}, [images, setValue]);
 
 	const onSubmit: SubmitHandler<FormData> = (data) => {
-		console.log(data);
+		alert(data);
 		navigate(AppRoute.PRODUCT_CATEGORY);
 	};
 

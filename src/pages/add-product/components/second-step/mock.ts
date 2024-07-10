@@ -3,7 +3,6 @@ TO DO this data will be fetched from backend
 I use this data only for correct work of components
 */
 
-
 type Category = {
 	id: number;
 	name: string;

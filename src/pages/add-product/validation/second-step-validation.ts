@@ -1,21 +1,22 @@
+import { t } from "i18next";
 import * as yup from "yup";
 
 const secondStepValidation = yup.object().shape({
 	category: yup
 		.string()
-		.required("Category is required")
+		.required(t("AddVendorProduct.productCategoryIsRequired"))
 		.nullable()
-		.required("Category is required"),
+		.required(t("AddVendorProduct.productCategoryIsRequired")),
 	categoryType: yup
 		.string()
-		.required("Type is required")
+		.required(t("AddVendorProduct.productTypeIsRequired"))
 		.nullable()
-		.required("Type is required"),
+		.required(t("AddVendorProduct.productTypeIsRequired")),
 	style: yup
 		.string()
-		.required("Style is required")
+		.required(t("AddVendorProduct.productStyleIsRequired"))
 		.nullable()
-		.required("Style is required"),
+		.required(t("AddVendorProduct.productStyleIsRequired")),
 });
 
 export { secondStepValidation };

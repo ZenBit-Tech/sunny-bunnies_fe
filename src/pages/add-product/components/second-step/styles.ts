@@ -14,7 +14,7 @@ const StyledFormContainer = styled(Box)`
 const StyledBox = styled(Box)`
 	width: 100%;
 	display: flex;
-    gap: 1rem;
+	gap: 1rem;
 	justify-content: end;
 	padding: 1rem;
 `;
