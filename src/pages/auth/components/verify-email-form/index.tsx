@@ -9,6 +9,10 @@ import { ArrowLeftIcon } from "~/assets/icons/arrow-left-icon.tsx";
 import { BaseButton } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
 import { useTimer } from "~/libs/hooks/index.ts";
+import {
+	NotificationMessage,
+	notification,
+} from "~/libs/notification/index.ts";
 import { User } from "~/libs/types/user.ts";
 import { StyledFormContainer } from "~/pages/auth/components/styles.ts";
 import { useVerifyEmailMutation } from "~/redux/auth/auth-api.ts";
@@ -32,8 +36,13 @@ const VerifyEmailForm: React.FC = () => {
 		sec: 0,
 	});
 
-	const [verifyEmail, { isSuccess: isVerifyEmailRequestSuccess }] =
-		useVerifyEmailMutation();
+	const [
+		verifyEmail,
+		{
+			isError: isVerifyEmailRequestError,
+			isSuccess: isVerifyEmailRequestSuccess,
+		},
+	] = useVerifyEmailMutation();
 
 	const {
 		isOtpCodeFilled,
@@ -64,8 +73,14 @@ const VerifyEmailForm: React.FC = () => {
 	}, [user.email, verifyEmail]);
 
 	useEffect(() => {
-		if (isVerifyEmailRequestSuccess) void startTimer();
-	}, [isVerifyEmailRequestSuccess, startTimer]);
+		if (isVerifyEmailRequestSuccess) {
+			notification.success(NotificationMessage.VERIFICATION_SEND_SUCCESS);
+			void startTimer();
+		}
+		if (isVerifyEmailRequestError) {
+			notification.error(NotificationMessage.VERIFICATION_SEND_ERROR);
+		}
+	}, [isVerifyEmailRequestSuccess, isVerifyEmailRequestError, startTimer, t]);
 
 	return (
 		<StyledFormContainer width="60%">
