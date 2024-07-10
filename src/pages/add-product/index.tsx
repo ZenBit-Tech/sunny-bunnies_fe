@@ -6,6 +6,7 @@ import { Tab, Tabs, Typography } from "@mui/material";
 
 import { ProfileMenu, TabsBoard } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
+import { SecondStepForm } from "~/pages/add-product/components/second-step/index.tsx";
 import theme from "~/theme.ts";
 
 import { ImageUpload } from "./components/first-step/index.tsx";
@@ -29,7 +30,7 @@ const AddProducts: React.FC = () => {
 			case AppRoute.PRODUCT_PHOTOS:
 				return <ImageUpload />;
 			case AppRoute.PRODUCT_CATEGORY:
-				return <div />;
+				return <SecondStepForm />;
 			case AppRoute.PRODUCT_DESCRIPTION:
 				return <div />;
 			case AppRoute.PRODUCT_VARIANTS:
