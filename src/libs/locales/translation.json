@@ -458,6 +458,9 @@
 		"enterYourName": "Enter your name",
 		"emailExample": "your_email@gmail.com",
 		"submitForm": "Save Changes",
-		"cancelForm": "Cancel"
+		"cancelForm": "Cancel",
+		"dashboard": "Dashboard",
+		"products" :"Products",
+		"chat": "Chat"
 	}
 }

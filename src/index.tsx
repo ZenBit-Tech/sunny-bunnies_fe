@@ -224,6 +224,10 @@ createRoot(document.getElementById("root")!).render(
 																	element: <VendorProfile />,
 																	path: AppRoute.VENDORS_PROFILE,
 																},
+																{
+																	element: <Profile />,
+																	path: AppRoute.PROFILE_PRODUCTS,
+																},
 															],
 															element: <PrivateRoute />,
 															path: AppRoute.ROOT,
