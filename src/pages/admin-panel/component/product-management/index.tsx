@@ -178,7 +178,7 @@ const ProductManagement: React.FC = () => {
 				)}
 				{serverError && (
 					<Typography
-						color="error"
+						color={`${theme.palette.error}`}
 						sx={{ marginBottom: "8px" }}
 						variant="body2"
 					>

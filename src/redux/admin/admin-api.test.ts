@@ -5,6 +5,7 @@ import { expect, test } from "vitest";
 import { Providers } from "~/test/providers.tsx";
 
 import {
+	useDeleteProductMutation,
 	useDeleteUserMutation,
 	useGetUserByIdQuery,
 	useGetUsersByOptionsQuery,
@@ -12,6 +13,25 @@ import {
 	useUpdateUserStatusMutation,
 } from "./admin-api";
 import { products, user, users } from "~/test/mocks";
+
+test("deleteProduct mutation", async () => {
+	const { result } = renderHook(() => useDeleteProductMutation(), {
+		wrapper: Providers,
+	});
+
+	const [deleteProduct] = result.current;
+
+	await act(async () => {
+		await deleteProduct("1");
+	});
+
+	await waitFor(() => {
+		const { isError, isLoading, isSuccess } = result.current[1];
+		expect(isLoading).toBe(false);
+		expect(isError).toBe(false);
+		expect(isSuccess).toBe(true);
+	});
+});
 
 test("deleteUser mutation", async () => {
 	const { result } = renderHook(() => useDeleteUserMutation(), {
