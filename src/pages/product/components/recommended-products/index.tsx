@@ -26,17 +26,15 @@ const RecommendedProducts: React.FC = () => {
 	const productsPerPage = productPerPage;
 	const [currentIndex, setCurrentIndex] = useState(minProductIndex);
 
-	const {
-		data: products,
-		isError,
-		isLoading,
-	} = useGetProductsQuery({ limit: recommendedProductLimit });
+	const { data, isError, isLoading } = useGetProductsQuery({
+		limit: recommendedProductLimit,
+	});
 
 	const handleNext = useCallback(() => {
-		if (products && currentIndex < products.length - productsPerPage) {
+		if (data && currentIndex < data.products.length - productsPerPage) {
 			setCurrentIndex(currentIndex + indexOne);
 		}
-	}, [currentIndex, products, productsPerPage, setCurrentIndex]);
+	}, [currentIndex, data, productsPerPage]);
 
 	const handlePrev = useCallback(() => {
 		if (currentIndex > minProductIndex) {
@@ -63,7 +61,7 @@ const RecommendedProducts: React.FC = () => {
 					/>
 					<BaseButton
 						disabled={
-							products && currentIndex >= products.length - productsPerPage
+							data && currentIndex >= data.products.length - productsPerPage
 						}
 						onClick={handleNext}
 						startIcon={<ArrowForwardIcon fontSize="small" />}
@@ -72,12 +70,9 @@ const RecommendedProducts: React.FC = () => {
 				</Box>
 			</StyledRecommendedProductsHeader>
 			<StyledRecommendedProductsSlider>
-				{products &&
-					products
-						.slice(currentIndex, currentIndex + productsPerPage)
-						.map((product) => (
-							<ProductCard key={product.id} product={product} />
-						))}
+				{data?.products
+					.slice(currentIndex, currentIndex + productsPerPage)
+					.map((product) => <ProductCard key={product.id} product={product} />)}
 			</StyledRecommendedProductsSlider>
 		</StyledRecommendedProductsContainer>
 	);
