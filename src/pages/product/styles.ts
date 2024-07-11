@@ -7,7 +7,6 @@ const StyledProductPageWrapper = styled(Box)`
 `;
 
 const StyledProductPageContainer = styled(Box)`
-	align-item: center;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -16,14 +15,12 @@ const StyledProductPageContainer = styled(Box)`
 `;
 
 const StyledProductDetailsContainer = styled(Box)`
-	align-item: center;
 	display: flex;
 	gap: 130px;
 	max-width: 1298px;
 `;
 
 const StyledProductDetailsContent = styled(Box)`
-	align-item: center;
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
