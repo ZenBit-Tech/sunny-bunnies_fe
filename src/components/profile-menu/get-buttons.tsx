@@ -4,7 +4,7 @@ import { Theme } from "@mui/material/styles";
 
 import { BoxIcon } from "~/assets/icons/box-icon.tsx";
 import { Dashboard } from "~/assets/icons/dashbord-icon.tsx";
-import { HeartIcon } from "~/assets/icons/heart-icon.tsxgit ";
+import { HeartIcon } from "~/assets/icons/heart-icon.tsx";
 import { LetterIcon } from "~/assets/icons/letter-icon.tsx";
 import { LogoutIcon } from "~/assets/icons/logout-icon.tsx";
 import { OrdersIcon } from "~/assets/icons/orders-icon.tsx";
