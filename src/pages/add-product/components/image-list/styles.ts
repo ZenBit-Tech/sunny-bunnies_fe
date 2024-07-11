@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 
 const StyledImageContainer = styled(Box)({
 	alignItems: "flex-start",
+	cursor: "pointer",
 	display: "flex",
 	gap: "1rem",
 });

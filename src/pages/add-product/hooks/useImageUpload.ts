@@ -21,6 +21,7 @@ type UseImageUploadReturn = {
 	) => void;
 	images: Image[];
 	removeImage: (id: string) => void;
+	setImagesDefault: (images: Image[]) => void;
 	setPrimaryImage: (id: string) => void;
 	setSelectedImage: (id: string) => void;
 };
@@ -82,11 +83,16 @@ const useImageUpload = (): UseImageUploadReturn => {
 		setImages((prevImages) => prevImages.filter((image) => image.id !== id));
 	};
 
+	const setImagesDefault = (images: Image[]): void => {
+		setImages(images);
+	};
+
 	return {
 		handleImageUpload,
 		handleReplaceImage,
 		images,
 		removeImage,
+		setImagesDefault,
 		setPrimaryImage,
 		setSelectedImage,
 	};

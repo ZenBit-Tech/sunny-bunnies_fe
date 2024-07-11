@@ -7,16 +7,16 @@ const secondStepValidation = yup.object().shape({
 		.required(t("AddVendorProduct.productCategoryIsRequired"))
 		.nullable()
 		.required(t("AddVendorProduct.productCategoryIsRequired")),
-	categoryType: yup
-		.string()
-		.required(t("AddVendorProduct.productTypeIsRequired"))
-		.nullable()
-		.required(t("AddVendorProduct.productTypeIsRequired")),
 	style: yup
 		.string()
 		.required(t("AddVendorProduct.productStyleIsRequired"))
 		.nullable()
 		.required(t("AddVendorProduct.productStyleIsRequired")),
+	type: yup
+		.string()
+		.required(t("AddVendorProduct.productTypeIsRequired"))
+		.nullable()
+		.required(t("AddVendorProduct.productTypeIsRequired")),
 });
 
 export { secondStepValidation };

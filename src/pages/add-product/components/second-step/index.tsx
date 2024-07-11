@@ -8,40 +8,45 @@ import { SelectChangeEvent } from "@mui/material";
 
 import { findItemByKey } from "~/helpers/find-item-by-key.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
+import { Category, Style, Type } from "~/libs/types/categories.ts";
 import { SelectionField } from "~/pages/add-product/components/form-selection-field/index.tsx";
+import {
+	SecondStepDefaultValues,
+	SecondStepFormData,
+} from "~/pages/add-product/types.ts";
 import { secondStepValidation } from "~/pages/add-product/validation/second-step-validation.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
 
-import { Category, CategoryType, Style, categories } from "./mock.ts";
 import { StyledBox, StyledFormContainer } from "./styles.ts";
 
-type FormData = {
-	category: string;
-	categoryType: string;
-	style: string;
-};
-
-const SecondStepForm: React.FC = () => {
+const SecondStepForm: React.FC<SecondStepDefaultValues> = ({
+	categories,
+	category,
+	setSecondStepData,
+	style,
+	type,
+}: SecondStepDefaultValues) => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 
 	const [selectedCategory, setSelectedCategory] = useState<Category | null>(
-		null,
+		category,
 	);
-	const [selectedType, setSelectedType] = useState<CategoryType | null>(null);
-	const [selectedStyle, setSelectedStyle] = useState<Style | null>(null);
+	const [selectedType, setSelectedType] = useState<Type | null>(type);
+	const [selectedStyle, setSelectedStyle] = useState<Style | null>(style);
 
 	const {
+		clearErrors,
 		control,
 		formState: { errors },
 		getValues,
 		handleSubmit,
 		setValue,
-	} = useForm<FormData>({
+	} = useForm<SecondStepFormData>({
 		defaultValues: {
 			category: "",
-			categoryType: "",
 			style: "",
+			type: "",
 		},
 		resolver: yupResolver(secondStepValidation),
 	});
@@ -49,13 +54,20 @@ const SecondStepForm: React.FC = () => {
 	const handleChangeCategory = useCallback(
 		(event: SelectChangeEvent<string>): void => {
 			const categoryName = event.target.value;
-			const category = findItemByKey(categories, categoryName, "name");
-			if (category) setValue("category", category.name);
-			setSelectedCategory(category);
-			setSelectedType(null);
-			setSelectedStyle(null);
+			if (categories) {
+				const category = findItemByKey(categories, categoryName, "name");
+				if (category) {
+					setValue("category", category.name);
+					clearErrors("category");
+				} else {
+					setValue("category", "");
+				}
+				setSelectedCategory(category);
+				setSelectedType(null);
+				setSelectedStyle(null);
+			}
 		},
-		[setValue],
+		[setValue, categories, clearErrors],
 	);
 
 	const handleChangeType = useCallback(
@@ -63,11 +75,16 @@ const SecondStepForm: React.FC = () => {
 			if (selectedCategory) {
 				const typeName = event.target.value;
 				const type = findItemByKey(selectedCategory.types, typeName, "name");
-				if (type) setValue("categoryType", type.name);
+				if (type) {
+					setValue("type", type.name);
+					clearErrors("type");
+				} else {
+					setValue("type", "");
+				}
 				setSelectedType(type);
 			}
 		},
-		[selectedCategory, setValue],
+		[selectedCategory, setValue, clearErrors],
 	);
 
 	const handleChangeStyle = useCallback(
@@ -75,11 +92,16 @@ const SecondStepForm: React.FC = () => {
 			if (selectedCategory) {
 				const styleName = event.target.value;
 				const style = findItemByKey(selectedCategory.styles, styleName, "name");
-				if (style) setValue("style", style?.name);
+				if (style) {
+					setValue("style", style.name);
+					clearErrors("style");
+				} else {
+					setValue("style", "");
+				}
 				setSelectedStyle(style);
 			}
 		},
-		[selectedCategory, setValue],
+		[selectedCategory, setValue, clearErrors],
 	);
 
 	const getCategoryValueId = useCallback(
@@ -91,13 +113,10 @@ const SecondStepForm: React.FC = () => {
 		[],
 	);
 	const getTypeValueId = useCallback(
-		(categoryType: CategoryType): string => categoryType.id.toString(),
+		(type: Type): string => type.id.toString(),
 		[],
 	);
-	const getTypeValueName = useCallback(
-		(type: CategoryType): string => type.name,
-		[],
-	);
+	const getTypeValueName = useCallback((type: Type): string => type.name, []);
 	const getStyleValueId = useCallback(
 		(style: Style): string => style.id.toString(),
 		[],
@@ -110,21 +129,23 @@ const SecondStepForm: React.FC = () => {
 	useEffect(() => {
 		if (selectedCategory && getValues("category") !== selectedCategory.name) {
 			setValue("category", selectedCategory?.name);
-			setValue("categoryType", "");
+			setValue("type", "");
 			setValue("style", "");
 		}
-		if (selectedType && getValues("categoryType") !== selectedType.name) {
-			setValue("categoryType", selectedType?.name);
+		if (selectedType && getValues("type") !== selectedType.name) {
+			setValue("type", selectedType?.name);
 		}
 		if (selectedStyle && getValues("style") !== selectedStyle.name) {
 			setValue("style", selectedStyle?.name);
 		}
 	}, [selectedCategory, selectedType, selectedStyle, setValue, getValues]);
 
-	const onSubmit = (data: FormData): void => {
-		alert(data);
+	const onSubmit = (data: SecondStepFormData): void => {
+		if (categories) setSecondStepData(data, categories);
 		navigate(AppRoute.PRODUCT_DESCRIPTION);
 	};
+
+	if (!categories) return <div>Loading</div>;
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -147,11 +168,11 @@ const SecondStepForm: React.FC = () => {
 					control={control}
 					description={t("AddVendorProduct.typeDescription")}
 					disabled={!selectedCategory}
-					error={errors?.categoryType?.message}
+					error={errors?.type?.message}
 					getValueId={getTypeValueId}
 					getValueName={getTypeValueName}
 					handleChangeValue={handleChangeType}
-					name="categoryType"
+					name="type"
 					selectedValue={selectedType}
 					title={t("AddVendorProduct.type")}
 					values={selectedCategory ? selectedCategory.types : []}

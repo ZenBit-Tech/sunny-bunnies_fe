@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import { imagesValidation } from "~/pages/add-product/validation/add-images.ts";
+import { FirstStepFormData, Image } from "~/pages/add-product/types.ts";
+import { firstStepValidation } from "~/pages/add-product/validation/first-step-validation.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
 
 import { useImageUpload } from "../../hooks/useImageUpload.ts";
@@ -20,53 +21,63 @@ import { ImageList } from "../image-list/index.tsx";
 import { ImageUploader } from "../image-uploader/index.tsx";
 import { StyledBox, StyledFormContainer } from "./styles.ts";
 
-type Image = {
-	id: string;
-	primary: boolean;
-	selected: boolean;
-	src: string;
-};
-
-type FormData = {
-	images: Image[];
-};
-
-const ImageUpload: React.FC = () => {
+interface ImageUploadProps {
+	defaultImages: Image[];
+	setFirstStepData: (formData: FirstStepFormData) => void;
+}
+const ImageUpload: React.FC<ImageUploadProps> = ({
+	defaultImages,
+	setFirstStepData,
+}: ImageUploadProps) => {
 	const { t } = useTranslation();
 	const {
 		handleImageUpload,
 		handleReplaceImage,
 		images,
 		removeImage,
+		setImagesDefault,
 		setPrimaryImage,
 		setSelectedImage,
 	} = useImageUpload();
 
 	const navigate = useNavigate();
+	const checkImagesLength = 4;
 
 	const {
+		clearErrors,
 		control,
 		formState: { errors },
 		handleSubmit,
 		setValue,
-	} = useForm<FormData>({
+	} = useForm<FirstStepFormData>({
 		defaultValues: {
 			images: [],
 		},
-		resolver: yupResolver(imagesValidation),
+		resolver: yupResolver(firstStepValidation),
 	});
 
 	useEffect(() => {
-		setValue("images", images);
-	}, [images, setValue]);
+		setImagesDefault(defaultImages);
+	}, [defaultImages]);
 
-	const onSubmit: SubmitHandler<FormData> = (data) => {
-		alert(data);
+	useEffect(() => {
+		setValue("images", images);
+		if (images.length >= checkImagesLength) {
+			clearErrors("images");
+		}
+	}, [images, setValue, clearErrors]);
+
+	const onSubmit: SubmitHandler<FirstStepFormData> = (data) => {
+		setFirstStepData(data);
 		navigate(AppRoute.PRODUCT_CATEGORY);
 	};
 
 	const renderImageList = useCallback(
-		({ field }: { field: ControllerRenderProps<FormData, "images"> }) => (
+		({
+			field,
+		}: {
+			field: ControllerRenderProps<FirstStepFormData, "images">;
+		}) => (
 			<ImageList
 				handleReplaceImage={handleReplaceImage}
 				images={field.value}

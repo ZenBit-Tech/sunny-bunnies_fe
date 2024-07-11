@@ -2,21 +2,25 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Tab, Tabs, Typography } from "@mui/material";
+import { Tabs, Typography } from "@mui/material";
 
 import { ProfileMenu, TabsBoard } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import { SecondStepForm } from "~/pages/add-product/components/second-step/index.tsx";
+import { useGetCategoriesQuery } from "~/redux/categories/categories-api.ts";
 import theme from "~/theme.ts";
 
 import { ImageUpload } from "./components/first-step/index.tsx";
+import { SecondStepForm } from "./components/second-step/index.tsx";
+import { ThirdStepForm } from "./components/third-step/index.tsx";
 import { addProductTabRoutes } from "./constants/routes.ts";
+import { useProductData } from "./hooks/useProductData.ts";
 import {
 	StyledContainer,
 	StyledContentBox,
 	StyledGrid,
 	StyledMainGrid,
 	StyledProfileContainer,
+	StyledTab,
 	StyledTabsBox,
 } from "./styles.ts";
 
@@ -25,14 +29,41 @@ const AddProducts: React.FC = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
+	const { product, setFirstStepData, setSecondStepData, setThirdStepData } =
+		useProductData();
+
+	const { data } = useGetCategoriesQuery(undefined);
+
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
 			case AppRoute.PRODUCT_PHOTOS:
-				return <ImageUpload />;
+				return (
+					<ImageUpload
+						defaultImages={product.images}
+						setFirstStepData={setFirstStepData}
+					/>
+				);
 			case AppRoute.PRODUCT_CATEGORY:
-				return <SecondStepForm />;
+				return (
+					<SecondStepForm
+						categories={data}
+						category={product.category}
+						setSecondStepData={setSecondStepData}
+						style={product.style}
+						type={product.type}
+					/>
+				);
 			case AppRoute.PRODUCT_DESCRIPTION:
-				return <div />;
+				return (
+					<ThirdStepForm
+						brand={product.brand}
+						category={product!.category}
+						description={product.description}
+						material={product.material}
+						name={product.name}
+						setThirdStepData={setThirdStepData}
+					/>
+				);
 			case AppRoute.PRODUCT_VARIANTS:
 				return <div />;
 			case AppRoute.PRODUCT_PUBLISH:
@@ -67,8 +98,7 @@ const AddProducts: React.FC = () => {
 								variant="scrollable"
 							>
 								{addProductTabRoutes.map((tab) => (
-									<Tab
-										disabled
+									<StyledTab
 										key={tab.route}
 										label={
 											<TabsBoard
@@ -78,12 +108,6 @@ const AddProducts: React.FC = () => {
 												tabRoutes={addProductTabRoutes}
 											/>
 										}
-										sx={{
-											maxWidth: "none",
-											padding: "0px",
-											textTransform: "none",
-											width: "20%",
-										}}
 										value={tab.route}
 									/>
 								))}
