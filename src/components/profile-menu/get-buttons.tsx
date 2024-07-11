@@ -4,14 +4,14 @@ import { Theme } from "@mui/material/styles";
 
 import { BoxIcon } from "~/assets/icons/box-icon.tsx";
 import { Dashboard } from "~/assets/icons/dashbord-icon.tsx";
-import HeartIcon from "~/assets/icons/heart-icon.svg?react";
+import { HeartIcon } from "~/assets/icons/heart-icon.tsxgit ";
 import { LetterIcon } from "~/assets/icons/letter-icon.tsx";
 import { LogoutIcon } from "~/assets/icons/logout-icon.tsx";
 import { OrdersIcon } from "~/assets/icons/orders-icon.tsx";
 import { ProductsIcon } from "~/assets/icons/product-icon.tsx";
 import { SettingsIcon } from "~/assets/icons/settings-icon.tsx";
 import { SupportIcon } from "~/assets/icons/support-icon.tsx";
-import UserIcon from "~/assets/icons/user-icon.svg?react";
+import { UserIcon } from "~/assets/icons/user-icon.tsx";
 import { IconWrapper } from "~/components/index.ts";
 import { AppRoute, userRole } from "~/libs/constants/index.ts";
 
