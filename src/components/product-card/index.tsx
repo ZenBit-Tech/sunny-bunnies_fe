@@ -2,7 +2,7 @@ import React from "react";
 
 import { Box, Typography } from "@mui/material";
 
-import { HeartIcon } from "~/assets/icons/heart-icon.tsx";
+import { FilledHeartIcon } from "~/assets/icons/filled-heart-icon.tsx";
 import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";
 import { configureString } from "~/helpers/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
@@ -51,7 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 					</StyledImageWrapper>
 				)}
 				<CustomHeartIcon>
-					<HeartIcon />
+					<FilledHeartIcon />
 				</CustomHeartIcon>
 				<StyledProductInfoWrapper>
 					<Box width="100%">
