@@ -1,9 +1,16 @@
-import React, { useEffect } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import React, { useCallback, useEffect } from "react";
+import {
+	Controller,
+	ControllerRenderProps,
+	SubmitHandler,
+	useForm,
+} from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { AppRoute } from "~/libs/constants/app-route.ts";
 import { imagesValidation } from "~/pages/add-product/validation/add-images.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
 
@@ -23,6 +30,7 @@ type Image = {
 type FormData = {
 	images: Image[];
 };
+
 const ImageUpload: React.FC = () => {
 	const { t } = useTranslation();
 	const {
@@ -34,12 +42,14 @@ const ImageUpload: React.FC = () => {
 		setSelectedImage,
 	} = useImageUpload();
 
+	const navigate = useNavigate();
+
 	const {
 		control,
 		formState: { errors },
 		handleSubmit,
 		setValue,
-	} = useForm({
+	} = useForm<FormData>({
 		defaultValues: {
 			images: [],
 		},
@@ -51,8 +61,22 @@ const ImageUpload: React.FC = () => {
 	}, [images, setValue]);
 
 	const onSubmit: SubmitHandler<FormData> = (data) => {
-		console.log(data);
+		alert(data);
+		navigate(AppRoute.PRODUCT_CATEGORY);
 	};
+
+	const renderImageList = useCallback(
+		({ field }: { field: ControllerRenderProps<FormData, "images"> }) => (
+			<ImageList
+				handleReplaceImage={handleReplaceImage}
+				images={field.value}
+				removeImage={removeImage}
+				setPrimaryImage={setPrimaryImage}
+				setSelectedImage={setSelectedImage}
+			/>
+		),
+		[handleReplaceImage, removeImage, setPrimaryImage, setSelectedImage],
+	);
 
 	return (
 		<>
@@ -62,19 +86,7 @@ const ImageUpload: React.FC = () => {
 					title={t("AddVendorProduct.photoProduct")}
 				/>
 
-				<Controller
-					control={control}
-					name="images"
-					render={({ field }) => (
-						<ImageList
-							handleReplaceImage={handleReplaceImage}
-							images={field.value}
-							removeImage={removeImage}
-							setPrimaryImage={setPrimaryImage}
-							setSelectedImage={setSelectedImage}
-						/>
-					)}
-				/>
+				<Controller control={control} name="images" render={renderImageList} />
 
 				<ImageUploader
 					error={errors.images?.message}
