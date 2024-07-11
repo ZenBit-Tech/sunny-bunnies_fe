@@ -2,9 +2,13 @@ import React from "react";
 
 import { Theme } from "@mui/material/styles";
 
-import HeartIcon from "~/assets/icons/heart-icon.svg";
+import { BoxIcon } from "~/assets/icons/box-icon.tsx";
+import { Dashboard } from "~/assets/icons/dashbord-icon.tsx";
+import { HeartIcon } from "~/assets/icons/heart-icon.tsx";
+import { LetterIcon } from "~/assets/icons/letter-icon.tsx";
 import { LogoutIcon } from "~/assets/icons/logout-icon.tsx";
 import { OrdersIcon } from "~/assets/icons/orders-icon.tsx";
+import { ProductsIcon } from "~/assets/icons/product-icon.tsx";
 import { SettingsIcon } from "~/assets/icons/settings-icon.tsx";
 import { SupportIcon } from "~/assets/icons/support-icon.tsx";
 import { UserIcon } from "~/assets/icons/user-icon.tsx";
@@ -13,17 +17,26 @@ import { AppRoute, userRole } from "~/libs/constants/index.ts";
 
 type ButtonConfig = {
 	color: string;
+	onClick?: () => void;
 	startIcon: React.ReactNode;
 	text: string;
-	to: string;
+	to?: string;
 };
 
-const getButtonsConfig = (
-	t: (key: string) => string,
-	theme: Theme,
-	role?: string,
-): ButtonConfig[] => {
-	const buttons = [
+type ButtonsConfigParams = {
+	handleLogout?: () => void;
+	role?: string;
+	t: (key: string) => string;
+	theme: Theme;
+};
+
+const getButtonsConfig = ({
+	handleLogout,
+	role,
+	t,
+	theme,
+}: ButtonsConfigParams): ButtonConfig[] => {
+	const buttons: ButtonConfig[] = [
 		{
 			color: theme.palette.lightGreen,
 			startIcon: (
@@ -55,6 +68,46 @@ const getButtonsConfig = (
 		);
 	}
 
+	if (role === userRole.VENDOR) {
+		buttons.push(
+			{
+				color: theme.palette.lightGray,
+				startIcon: (
+					<IconWrapper color={theme.palette.lightGray} icon={<Dashboard />} />
+				),
+				text: t("Profile.dashboard"),
+				to: AppRoute.PROFILE_DASHBOARD,
+			},
+			{
+				color: theme.palette.lightGreen,
+				startIcon: (
+					<IconWrapper
+						color={theme.palette.lightGreen}
+						icon={<ProductsIcon />}
+					/>
+				),
+				text: t("Profile.orders"),
+				to: AppRoute.PROFILE_ORDERS,
+			},
+			{
+				color: theme.palette.lightGray,
+				startIcon: (
+					<IconWrapper color={theme.palette.lightGray} icon={<BoxIcon />} />
+				),
+				text: t("Profile.products"),
+				to: AppRoute.PROFILE_PRODUCTS,
+			},
+			{
+				color: theme.palette.lightGreen,
+				startIcon: (
+					<IconWrapper color={theme.palette.lightGreen} icon={<LetterIcon />} />
+				),
+				text: t("Profile.chat"),
+				to: AppRoute.PROFILE_CHAT,
+			},
+		);
+	}
+
 	buttons.push(
 		{
 			color: theme.palette.lightGray,
@@ -74,11 +127,11 @@ const getButtonsConfig = (
 		},
 		{
 			color: theme.palette.lightGray,
+			onClick: handleLogout,
 			startIcon: (
 				<IconWrapper color={theme.palette.lightGray} icon={<LogoutIcon />} />
 			),
 			text: t("Profile.logout"),
-			to: "/",
 		},
 	);
 

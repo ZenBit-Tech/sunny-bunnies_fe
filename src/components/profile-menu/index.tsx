@@ -1,10 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
 import { Avatar, Typography, useTheme } from "@mui/material";
 
-import { useAppSelector } from "~/redux/hooks.ts";
+import { logout } from "~/redux/auth/auth-slice.ts";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 
 import { getButtonsConfig } from "./get-buttons.tsx";
 import {
@@ -19,10 +20,21 @@ const ProfileMenu: React.FC = () => {
 	const user = useAppSelector((state) => state.auth.user);
 	const location = useLocation();
 	const theme = useTheme();
+	const dispatch = useAppDispatch();
+
+	const handleLogout = useCallback(() => {
+		dispatch(logout());
+	}, [dispatch]);
 
 	const buttonsConfig = useMemo(
-		() => getButtonsConfig(t, theme, user?.profile.role),
-		[t, theme, user?.profile.role],
+		() =>
+			getButtonsConfig({
+				handleLogout,
+				role: user?.profile.role,
+				t,
+				theme,
+			}),
+		[t, theme, user?.profile.role, handleLogout],
 	);
 
 	return (
@@ -47,6 +59,7 @@ const ProfileMenu: React.FC = () => {
 							<StyledMenuButton
 								bgcolor={button.color}
 								checked={checked}
+								onClick={button.onClick}
 								startIcon={button.startIcon}
 								to={button.to}
 							>

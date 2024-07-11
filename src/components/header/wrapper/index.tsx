@@ -32,6 +32,7 @@ const GetStartedHeaderRoutes = [
 	AppRoute.PRODUCT_DESCRIPTION,
 	AppRoute.PRODUCT_VARIANTS,
 	AppRoute.PRODUCT_PUBLISH,
+	AppRoute.PROFILE_PRODUCTS,
 ];
 
 const HeaderWrapper: React.FC = () => {
