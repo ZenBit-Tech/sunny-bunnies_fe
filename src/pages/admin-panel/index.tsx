@@ -78,6 +78,9 @@ const AdminPanel: React.FC = () => {
 			case AppRoute.MANAGEMENT_PRODUCTS_REQUESTS: {
 				return <ProductManagement />;
 			}
+			case AppRoute.MANAGEMENT_PRODUCTS_LIST: {
+				return <ProductManagement />;
+			}
 			case AppRoute.MANAGEMENT_NO_ROLE: {
 				// eslint-disable-next-line jsx-a11y/aria-role
 				return <UserManagement role={userRole.NO_ROLE} />;

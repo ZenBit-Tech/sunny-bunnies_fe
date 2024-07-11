@@ -15,16 +15,18 @@ import {
 	VendorDialog,
 } from "./styles.ts";
 
-type VendorPreviewModeModalProperties = {
+type ModalProperties = {
 	isLoading: boolean;
 	isModalOpen: boolean;
+	isProduct?: boolean;
 	onClose: () => void;
 	onConfirmDelete: () => void;
 };
 
-const Modal: React.FC<VendorPreviewModeModalProperties> = ({
+const Modal: React.FC<ModalProperties> = ({
 	isLoading,
 	isModalOpen,
+	isProduct = false,
 	onClose,
 	onConfirmDelete,
 }) => {
@@ -53,13 +55,17 @@ const Modal: React.FC<VendorPreviewModeModalProperties> = ({
 					sx={{ fontSize: theme.fontSizes.extraLarge, textAlign: "center" }}
 					variant="playfairDisplayBold"
 				>
-					{t("AdminUserManagementPage.question")}
+					{isProduct
+						? t("AdminProductManagement.question")
+						: t("AdminUserManagementPage.question")}
 				</Typography>
 				<Typography
 					sx={{ color: theme.palette.secondaryTextGray, textAlign: "center" }}
 					variant="dmSans"
 				>
-					{t("AdminUserManagementPage.attention")}
+					{isProduct
+						? t("AdminProductManagement.attention")
+						: t("AdminUserManagementPage.attention")}
 				</Typography>
 			</StyledDialogContent>
 			<DialogActions>

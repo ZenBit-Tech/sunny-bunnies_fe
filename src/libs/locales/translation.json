@@ -201,7 +201,9 @@
 		"action": "action",
 		"errorLoadingProducts": "Error loading products",
 		"newest": "Newest",
-		"oldest": "Oldest"
+		"oldest": "Oldest",
+		"question": "Are you sure want to delete this product?",
+		"attention": "Deleted product will not appear on the website"
 	},
 	"SignInComponent": {
 		"signIn": "Sign In",
@@ -429,13 +431,13 @@
 		"colorIsRequired": "Product color is required",
 		"quantityIsRequired": "Product quantity is required",
 		"sizeIsRequired": "Product size is required",
-		"fileIsRequired":"You need to provide a file",
+		"fileIsRequired": "You need to provide a file",
 		"fileIsTooLarge": "The file is too large",
 		"incorrectFileFormat": "Please select an image in JPG, HEIC, or PNG format",
 		"fourImagesAreRequired": "Four images are required and at least one image must be marked as primary",
 		"minFourImages": "Minimum 4 images are required",
 		"productImageUrlIsRequired": "Product image URL is required",
-		"incorrectPriceFormat":  "Price must be in the format 'min-max', e.g., '100-200'",
+		"incorrectPriceFormat": "Price must be in the format 'min-max', e.g., '100-200'",
 		"invalidPriceRange": "Invalid price range. Minimum must be less than maximum",
 		"priceIsRequired": "Price is required"
 	},
@@ -460,7 +462,7 @@
 		"submitForm": "Save Changes",
 		"cancelForm": "Cancel",
 		"dashboard": "Dashboard",
-		"products" :"Products",
+		"products": "Products",
 		"chat": "Chat"
 	}
 }

@@ -7,6 +7,12 @@ import { adminApiPath } from "./constants.ts";
 
 export const adminApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		deleteProduct: build.mutation<void, string>({
+			query: (id) => ({
+				method: httpMethods.DELETE,
+				url: `${adminApiPath.DELETE_PRODUCT}/${id}`,
+			}),
+		}),
 		deleteUser: build.mutation<void, string>({
 			query: (id) => ({
 				method: httpMethods.DELETE,
@@ -59,6 +65,7 @@ export const adminApi = api.injectEndpoints({
 });
 
 export const {
+	useDeleteProductMutation,
 	useDeleteUserMutation,
 	useGetProductsByOptionsQuery,
 	useGetUserByIdQuery,
