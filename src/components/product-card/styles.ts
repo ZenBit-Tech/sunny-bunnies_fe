@@ -117,11 +117,13 @@ const StyledSmallTypography = styled(Typography)(({ theme }) => ({
 const CustomHeartIcon = styled(Box)(({ theme }) => ({
 	"&:hover": {
 		color: theme.palette.red,
+		scale: "1.3",
 	},
 	color: theme.palette.fontGray,
 	cursor: "pointer",
 	position: "absolute",
 	right: "10px",
+	scale: "1.15",
 	top: "10px",
 	transition: "all 0.3s ease",
 }));

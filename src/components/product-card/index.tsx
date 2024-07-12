@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { Box, Typography } from "@mui/material";
 
@@ -8,6 +8,7 @@ import { configureString } from "~/helpers/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { Product } from "~/libs/types/products.ts";
 
+import { useAddToWishlist } from "./add-to-wish-list.hook.ts";
 import { defaultImageIndex, imageQuantity } from "./constats.ts";
 import { ProductSlider } from "./product-slider/index.tsx";
 import {
@@ -34,6 +35,11 @@ type ProductCardProps = {
 
 const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 	const { id, images, minPrice, name, user } = item;
+	const { handleAddToWishlist } = useAddToWishlist();
+
+	const onAddToWishlist = useCallback(() => {
+		handleAddToWishlist(item);
+	}, [handleAddToWishlist, item]);
 
 	return (
 		<StyledCard>
@@ -50,7 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 						/>
 					</StyledImageWrapper>
 				)}
-				<CustomHeartIcon>
+				<CustomHeartIcon onClick={onAddToWishlist}>
 					<FilledHeartIcon />
 				</CustomHeartIcon>
 				<StyledProductInfoWrapper>

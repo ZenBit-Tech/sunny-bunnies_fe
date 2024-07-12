@@ -13,6 +13,8 @@ const NotificationMessage = {
 	USER_UPDATE_SUCCESS: t("Notifications.userUpdateSuccess"),
 	VERIFICATION_SEND_ERROR: t("Notifications.verificationSendError"),
 	VERIFICATION_SEND_SUCCESS: t("Notifications.verificationSendSuccess"),
+	WISH_LIST_UPDATED: t("Notifications.wishListUpdated"),
+	WIST_LIST_UPDATE_ERROR: t("Notifications.wishListUpdateError"),
 } as const;
 
 export { NotificationMessage };
