@@ -13,7 +13,7 @@ import {
 	Image,
 	SecondStepFormData,
 	ThirdStepFormData,
-} from "../types.ts";
+} from "../../types.ts";
 
 type Product = {
 	brand: Brand | null;
@@ -63,9 +63,15 @@ const useProductData = (): UseProductDataReturnType => {
 		categories: Category[],
 	): void => {
 		const { category, style, type } = formData;
-		const categoryObject = categories.find((c) => c.name === category);
-		const typeObject = categoryObject?.types.find((t) => t.name === type);
-		const styleObject = categoryObject?.styles.find((s) => s.name === style);
+		const categoryObject = categories.find(
+			(categoryElement) => categoryElement.name === category,
+		);
+		const typeObject = categoryObject?.types.find(
+			(typeElement) => typeElement.name === type,
+		);
+		const styleObject = categoryObject?.styles.find(
+			(styleElement) => styleElement.name === style,
+		);
 		setProduct((prevProduct) => ({
 			...prevProduct,
 			category: categoryObject ? categoryObject : null,
@@ -79,8 +85,12 @@ const useProductData = (): UseProductDataReturnType => {
 		category: Category,
 	): void => {
 		const { brand, description, material, name } = formData;
-		const brandObject = category.brands.find((b) => b.name === brand);
-		const materialObject = category.materials.find((m) => m.name === material);
+		const brandObject = category.brands.find(
+			(brandElement) => brandElement.name === brand,
+		);
+		const materialObject = category.materials.find(
+			(materialElement) => materialElement.name === material,
+		);
 		setProduct((prevProduct) => ({
 			...prevProduct,
 			brand: brandObject ? brandObject : null,

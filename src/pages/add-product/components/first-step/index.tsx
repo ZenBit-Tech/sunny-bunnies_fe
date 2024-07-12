@@ -12,19 +12,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { FirstStepFormData, Image } from "~/pages/add-product/types.ts";
-import { firstStepValidation } from "~/pages/add-product/validation/first-step-validation.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
 
-import { useImageUpload } from "../../hooks/useImageUpload.ts";
 import { FieldDescription } from "../field-description/index.tsx";
+import { useImageUpload } from "../hooks/useImageUpload.ts";
 import { ImageList } from "../image-list/index.tsx";
 import { ImageUploader } from "../image-uploader/index.tsx";
+import { firstStepValidation } from "./first-step-validation.ts";
 import { StyledBox, StyledFormContainer } from "./styles.ts";
 
-interface ImageUploadProps {
+type ImageUploadProps = {
 	defaultImages: Image[];
 	setFirstStepData: (formData: FirstStepFormData) => void;
-}
+};
 const ImageUpload: React.FC<ImageUploadProps> = ({
 	defaultImages,
 	setFirstStepData,
@@ -57,8 +57,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 	});
 
 	useEffect(() => {
-		setImagesDefault(defaultImages);
-	}, [defaultImages]);
+		if (!images.length) {
+			setImagesDefault(defaultImages);
+		}
+	}, [defaultImages, setImagesDefault, images.length]);
 
 	useEffect(() => {
 		setValue("images", images);

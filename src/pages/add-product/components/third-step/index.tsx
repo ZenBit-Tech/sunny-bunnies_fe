@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SelectChangeEvent } from "@mui/material";
 
+import { Loader } from "~/components/index.ts";
 import { findItemByKey } from "~/helpers/find-item-by-key.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { Brand, Material } from "~/libs/types/categories.ts";
@@ -14,11 +15,11 @@ import {
 	ThirdStepDefaultValues,
 	ThirdStepFormData,
 } from "~/pages/add-product/types.ts";
-import { thirdStepValidation } from "~/pages/add-product/validation/third-step-validation.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
 
 import { InputField } from "../form-input-field/index.tsx";
 import { StyledBox, StyledFormContainer } from "./styles.ts";
+import { thirdStepValidation } from "./third-step-validation.ts";
 
 const ThirdStepForm: React.FC<ThirdStepDefaultValues> = ({
 	brand,
@@ -122,7 +123,7 @@ const ThirdStepForm: React.FC<ThirdStepDefaultValues> = ({
 		navigate(AppRoute.PRODUCT_VARIANTS);
 	};
 
-	if (!category) return <div>Loading</div>;
+	if (!category) return <Loader />;
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>

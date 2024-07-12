@@ -10,10 +10,10 @@ import { useGetCategoriesQuery } from "~/redux/categories/categories-api.ts";
 import theme from "~/theme.ts";
 
 import { ImageUpload } from "./components/first-step/index.tsx";
+import { useProductData } from "./components/hooks/useProductData.ts";
 import { SecondStepForm } from "./components/second-step/index.tsx";
 import { ThirdStepForm } from "./components/third-step/index.tsx";
 import { addProductTabRoutes } from "./constants/routes.ts";
-import { useProductData } from "./hooks/useProductData.ts";
 import {
 	StyledContainer,
 	StyledContentBox,

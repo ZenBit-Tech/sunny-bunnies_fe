@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SelectChangeEvent } from "@mui/material";
 
+import { Loader } from "~/components/index.ts";
 import { findItemByKey } from "~/helpers/find-item-by-key.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { Category, Style, Type } from "~/libs/types/categories.ts";
@@ -14,9 +15,9 @@ import {
 	SecondStepDefaultValues,
 	SecondStepFormData,
 } from "~/pages/add-product/types.ts";
-import { secondStepValidation } from "~/pages/add-product/validation/second-step-validation.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
 
+import { secondStepValidation } from "./second-step-validation.ts";
 import { StyledBox, StyledFormContainer } from "./styles.ts";
 
 const SecondStepForm: React.FC<SecondStepDefaultValues> = ({
@@ -145,7 +146,7 @@ const SecondStepForm: React.FC<SecondStepDefaultValues> = ({
 		navigate(AppRoute.PRODUCT_DESCRIPTION);
 	};
 
-	if (!categories) return <div>Loading</div>;
+	if (!categories) return <Loader />;
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
