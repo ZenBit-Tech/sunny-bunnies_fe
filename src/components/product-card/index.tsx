@@ -7,8 +7,8 @@ import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";
 import { configureString } from "~/helpers/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { Product } from "~/libs/types/products.ts";
+import { useAppSelector } from "~/redux/hooks.ts";
 
-import { useAddToWishlist } from "./add-to-wish-list.hook.ts";
 import { defaultImageIndex, imageQuantity } from "./constats.ts";
 import { ProductSlider } from "./product-slider/index.tsx";
 import {
@@ -25,9 +25,7 @@ import {
 	StyledSmallTypography,
 	StyledTypography,
 } from "./styles.ts";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useAddToWishlist } from "./use-add-to-wish-list.hook.ts";
 
 type ProductCardProps = {
 	item: Product;
@@ -36,6 +34,12 @@ type ProductCardProps = {
 const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 	const { id, images, minPrice, name, user } = item;
 	const { handleAddToWishlist } = useAddToWishlist();
+
+	const fullWishlist = useAppSelector((state) => state.wishlist.fullWishlist);
+
+	const isWishlistProduct = fullWishlist.some(
+		(wishlistItem) => wishlistItem.id === item.id,
+	);
 
 	const onAddToWishlist = useCallback(() => {
 		handleAddToWishlist(item);
@@ -56,7 +60,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 						/>
 					</StyledImageWrapper>
 				)}
-				<CustomHeartIcon onClick={onAddToWishlist}>
+				<CustomHeartIcon
+					isWishlistProduct={isWishlistProduct}
+					onClick={onAddToWishlist}
+				>
 					<FilledHeartIcon />
 				</CustomHeartIcon>
 				<StyledProductInfoWrapper>

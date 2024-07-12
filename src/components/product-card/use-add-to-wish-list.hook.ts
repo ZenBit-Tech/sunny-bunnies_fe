@@ -6,7 +6,10 @@ import {
 	notification,
 } from "~/libs/notification/index.ts";
 import { Product } from "~/libs/types/products.ts";
-import { useAddProductMutation } from "~/redux/wishlist/wishlist-api.ts";
+import {
+	useAddProductMutation,
+	useGetEntireWishlistQuery,
+} from "~/redux/wishlist/wishlist-api.ts";
 import { addProductToWishlist } from "~/redux/wishlist/wishlist-slice.ts";
 
 type UseAddToWishlistReturnType = {
@@ -16,18 +19,20 @@ type UseAddToWishlistReturnType = {
 const useAddToWishlist = (): UseAddToWishlistReturnType => {
 	const [addProduct] = useAddProductMutation();
 	const dispatch = useDispatch();
+	const { refetch } = useGetEntireWishlistQuery();
 
 	const handleAddToWishlist = useCallback(
 		async (item: Product) => {
 			try {
 				await addProduct({ productId: item.id }).unwrap();
 				dispatch(addProductToWishlist(item));
+				await refetch();
 				notification.success(NotificationMessage.WISH_LIST_UPDATED);
 			} catch (error) {
 				notification.error(NotificationMessage.WIST_LIST_UPDATE_ERROR);
 			}
 		},
-		[addProduct, dispatch],
+		[addProduct, dispatch, refetch],
 	);
 
 	return { handleAddToWishlist };

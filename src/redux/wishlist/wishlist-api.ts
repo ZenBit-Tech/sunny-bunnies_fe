@@ -13,6 +13,12 @@ export const wishlistApi = api.injectEndpoints({
 				url: `${wistlistApiPath.ADD}`,
 			}),
 		}),
+		getEntireWishlist: build.query<Product[], void>({
+			query: () => ({
+				method: httpMethods.GET,
+				url: `${wistlistApiPath.ENTIRE_WISHLIST}`,
+			}),
+		}),
 		getWishlist: build.query<
 			{ products: Product[]; totalCount: number; totalPages: number },
 			{ limit: number; page: number }
@@ -26,4 +32,8 @@ export const wishlistApi = api.injectEndpoints({
 	}),
 });
 
-export const { useAddProductMutation, useGetWishlistQuery } = wishlistApi;
+export const {
+	useAddProductMutation,
+	useGetEntireWishlistQuery,
+	useGetWishlistQuery,
+} = wishlistApi;

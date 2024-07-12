@@ -12,6 +12,10 @@ type CustomSliderDotProps = {
 	isActive: boolean;
 };
 
+type CustomHeartIconProps = {
+	isWishlistProduct: boolean;
+};
+
 const CustomSliderDot = styled(Box)<CustomSliderDotProps>(
 	({ backgroundColor, isActive }) => ({
 		backgroundColor: isActive
@@ -114,19 +118,21 @@ const StyledSmallTypography = styled(Typography)(({ theme }) => ({
 	lineHeight: "22px",
 }));
 
-const CustomHeartIcon = styled(Box)(({ theme }) => ({
-	"&:hover": {
-		color: theme.palette.red,
-		scale: "1.3",
-	},
-	color: theme.palette.fontGray,
-	cursor: "pointer",
-	position: "absolute",
-	right: "10px",
-	scale: "1.15",
-	top: "10px",
-	transition: "all 0.3s ease",
-}));
+const CustomHeartIcon = styled(Box)<CustomHeartIconProps>(
+	({ isWishlistProduct, theme }) => ({
+		"&:hover": {
+			color: isWishlistProduct ? theme.palette.fontGray : theme.palette.red,
+			transform: "scale(1.3)",
+		},
+		color: isWishlistProduct ? theme.palette.red : theme.palette.fontGray,
+		cursor: "pointer",
+		position: "absolute",
+		right: "10px",
+		top: "10px",
+		transform: "scale(1.15)",
+		transition: "all 0.3s ease",
+	}),
+);
 
 const CustomIcon = styled(IconButton)(({ theme }) => ({
 	"&:hover": {

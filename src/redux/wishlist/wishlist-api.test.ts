@@ -3,7 +3,11 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { expect, test } from "vitest";
 
 import { Providers } from "~/test/providers.tsx";
-import { useAddProductMutation, useGetWishlistQuery } from "./wishlist-api";
+import {
+	useAddProductMutation,
+	useGetEntireWishlistQuery,
+	useGetWishlistQuery,
+} from "./wishlist-api";
 
 test("addProduct sends the correct request and receives a success response", async () => {
 	const { result } = renderHook(() => useAddProductMutation(), {
@@ -38,5 +42,18 @@ test("getWishlist sends the correct request and receives a success response", as
 		expect(data).toHaveProperty("products");
 		expect(data).toHaveProperty("totalCount");
 		expect(data).toHaveProperty("totalPages");
+	});
+});
+
+test("getEntireWishlist sends the correct request and receives a success response", async () => {
+	const { result } = renderHook(() => useGetEntireWishlistQuery(), {
+		wrapper: Providers,
+	});
+
+	await waitFor(() => {
+		const { isError, isLoading, isSuccess } = result.current;
+		expect(isLoading).toBe(false);
+		expect(isError).toBe(false);
+		expect(isSuccess).toBe(true);
 	});
 });

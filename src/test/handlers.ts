@@ -50,6 +50,9 @@ const handlers = [
 	http.get(`${apiUrl}${wistlistApiPath.WISHLIST}`, () => {
 		return HttpResponse.json(products);
 	}),
+	http.get(`${apiUrl}${wistlistApiPath.ENTIRE_WISHLIST}`, () => {
+		return HttpResponse.json(products);
+	}),
 ];
 
 export { handlers };
