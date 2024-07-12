@@ -1,4 +1,4 @@
-import { Box, Grid, styled } from "@mui/material";
+import { Box, Grid, Tab, styled } from "@mui/material";
 
 const StyledProfileContainer = styled(Box)(({ theme }) => ({
 	backgroundColor: theme.palette.lightGray,
@@ -34,11 +34,20 @@ const StyledContentBox = styled(Box)(({ theme }) => ({
 	width: "100%",
 }));
 
+const StyledTab = styled(Tab)(() => ({
+	disabled: true,
+	maxWidth: "none",
+	padding: "0px",
+	textTransform: "none",
+	width: "20%",
+}));
+
 export {
 	StyledContainer,
 	StyledContentBox,
 	StyledGrid,
 	StyledMainGrid,
 	StyledProfileContainer,
+	StyledTab,
 	StyledTabsBox,
 };

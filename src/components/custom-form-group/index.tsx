@@ -31,6 +31,7 @@ type CustomFormGroupProps<T extends FieldValues> = {
 	label: string;
 	name: Path<T>;
 	placeholder?: string;
+	rows?: number;
 	rules?: object;
 	sx?: SxProps;
 	type: "date" | "email" | "number" | "password" | "text";
@@ -44,6 +45,7 @@ const CustomFormGroup = <T extends FieldValues>({
 	label,
 	name,
 	placeholder,
+	rows,
 	rules = {},
 	sx,
 	type,
@@ -74,8 +76,10 @@ const CustomFormGroup = <T extends FieldValues>({
 				data-testid={`${name}-input`}
 				error={!!error}
 				fullWidth
+				multiline
 				onChange={handleChange ? handleChange : field.onChange}
 				placeholder={placeholder}
+				rows={rows}
 				sx={{
 					"& input::placeholder": {
 						color: "secondary.main",
@@ -99,6 +103,7 @@ const CustomFormGroup = <T extends FieldValues>({
 			error,
 			handleChange,
 			placeholder,
+			rows,
 		],
 	);
 
