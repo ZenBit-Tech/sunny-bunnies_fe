@@ -118,21 +118,21 @@ const StyledSmallTypography = styled(Typography)(({ theme }) => ({
 	lineHeight: "22px",
 }));
 
-const CustomHeartIcon = styled(Box)<CustomHeartIconProps>(
-	({ isWishlistProduct, theme }) => ({
-		"&:hover": {
-			color: isWishlistProduct ? theme.palette.fontGray : theme.palette.red,
-			transform: "scale(1.3)",
-		},
-		color: isWishlistProduct ? theme.palette.red : theme.palette.fontGray,
-		cursor: "pointer",
-		position: "absolute",
-		right: "10px",
-		top: "10px",
-		transform: "scale(1.15)",
-		transition: "all 0.3s ease",
-	}),
-);
+const CustomHeartIcon = styled(Box, {
+	shouldForwardProp: (prop) => prop !== "isWishlistProduct",
+})<CustomHeartIconProps>(({ isWishlistProduct, theme }) => ({
+	"&:hover": {
+		color: isWishlistProduct ? theme.palette.fontGray : theme.palette.red,
+		transform: "scale(1.3)",
+	},
+	color: isWishlistProduct ? theme.palette.red : theme.palette.fontGray,
+	cursor: "pointer",
+	position: "absolute",
+	right: "10px",
+	top: "10px",
+	transform: "scale(1.15)",
+	transition: "all 0.3s ease",
+}));
 
 const CustomIcon = styled(IconButton)(({ theme }) => ({
 	"&:hover": {

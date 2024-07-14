@@ -7,6 +7,8 @@ import { CustomError, CustomPagination, Loader } from "~/components/index.ts";
 import { ProductCard } from "~/components/product-card/index.tsx";
 import { pagination } from "~/libs/constants/pagination.ts";
 import { usePagination } from "~/libs/hooks/index.ts";
+import { useWishlist } from "~/pages/home/hooks/use-get-entire-wish-list.ts";
+import { StyledTypography } from "~/pages/profile/styles.ts";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks.ts";
 import { type RootState } from "~/redux/store.ts";
 import { useGetWishlistQuery } from "~/redux/wishlist/wishlist-api.ts";
@@ -32,7 +34,7 @@ const ProfileWishlist: React.FC = () => {
 
 	useEffect(() => {
 		if (data) {
-			dispatch(setWishlist({ products: data.products }));
+			dispatch(setWishlist(data.products));
 			updateTotalPages(data.totalPages);
 		}
 	}, [data, dispatch, updateTotalPages]);
@@ -42,15 +44,14 @@ const ProfileWishlist: React.FC = () => {
 			setPage(page - pagination.DEFAULT_PAGE);
 		}
 		refetch();
-	}, [wishlist, refetch, page, setPage]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [wishlist, refetch, setPage]);
+
+	useWishlist();
 
 	return (
 		<Box sx={{ padding: "52px", width: "80%" }}>
-			{isLoading ? (
-				<Loader />
-			) : error ? (
-				<CustomError errorMessage={t("Profile.errorLoadingWishlist")} />
-			) : (
+			{wishlist.length > productLength ? (
 				<>
 					<StyledProductsContainer>
 						{wishlist.map((product, index) => (
@@ -63,6 +64,12 @@ const ProfileWishlist: React.FC = () => {
 						page={page}
 					/>
 				</>
+			) : (
+				<StyledTypography>{t("Profile.noProductsInWishlist")}</StyledTypography>
+			)}
+			{isLoading && <Loader />}
+			{error && (
+				<CustomError errorMessage={t("Profile.errorLoadingWishlist")} />
 			)}
 		</Box>
 	);

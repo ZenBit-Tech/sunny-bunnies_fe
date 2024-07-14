@@ -465,6 +465,7 @@
 		"settings": "Settings",
 		"support" : "Support",
 		"wishlist": "Wishlist",
-		"errorLoadingWishlist": "Error while loading your wishlist"
+		"errorLoadingWishlist": "Error while loading your wishlist",
+		"noProductsInWishlist":"You have not saved any products"
 	}
 }

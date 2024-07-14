@@ -4,4 +4,9 @@ const wistlistApiPath = {
 	WISHLIST: "/wishlist",
 } as const;
 
-export { wistlistApiPath };
+const arrayIndex = {
+	ONE: 1,
+	ZERO: 0,
+} as const;
+
+export { arrayIndex, wistlistApiPath };

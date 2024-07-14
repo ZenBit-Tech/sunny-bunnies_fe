@@ -1,4 +1,4 @@
-import { Box, Grid, styled } from "@mui/material";
+import { Box, Grid, Typography, styled } from "@mui/material";
 
 const StyledProfileContainer = styled(Box)(({ theme }) => ({
 	backgroundColor: theme.palette.lightGray,
@@ -11,4 +11,13 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 	marginTop: "24px",
 }));
 
-export { StyledGrid, StyledProfileContainer };
+const StyledTypography = styled(Typography)(({ theme }) => ({
+	...theme.typography.playfairDisplay,
+	fontSize: theme.fontSizes.large,
+	fontWeight: theme.fontWeight.semiBold,
+	letterSpacing: "-0.01em",
+	lineHeight: "37px",
+	textAlign: "center",
+}));
+
+export { StyledGrid, StyledProfileContainer, StyledTypography };

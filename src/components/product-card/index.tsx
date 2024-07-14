@@ -7,6 +7,7 @@ import { ShopIcon } from "~/assets/icons/shop-cart-icon.tsx";
 import { configureString } from "~/helpers/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { Product } from "~/libs/types/products.ts";
+import { useWishlist } from "~/pages/home/hooks/use-get-entire-wish-list.ts";
 import { useAppSelector } from "~/redux/hooks.ts";
 
 import { defaultImageIndex, imageQuantity } from "./constats.ts";
@@ -34,7 +35,7 @@ type ProductCardProps = {
 const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 	const { id, images, minPrice, name, user } = item;
 	const { handleAddToWishlist } = useAddToWishlist();
-
+	useWishlist();
 	const fullWishlist = useAppSelector((state) => state.wishlist.fullWishlist);
 
 	const isWishlistProduct = fullWishlist.some(
