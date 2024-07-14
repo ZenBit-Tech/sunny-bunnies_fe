@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useState } from "react";
 
 import { pagination } from "~/libs/constants/pagination.ts";
 
@@ -7,6 +7,7 @@ type PaginationHookReturnType = {
 	handlePageChange: (event: React.ChangeEvent<unknown>, value: number) => void;
 	limit: number;
 	page: number;
+	setPage: Dispatch<SetStateAction<number>>;
 	totalPages: number;
 	updateTotalPages: (pages: number) => void;
 };
@@ -48,6 +49,7 @@ const usePagination = (
 		handlePageChange,
 		limit,
 		page,
+		setPage,
 		totalPages,
 		updateTotalPages,
 	};

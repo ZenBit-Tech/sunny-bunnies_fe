@@ -8,6 +8,7 @@ import { Loader, Newsletter, TopInfoSection } from "~/components/index.ts";
 
 import { CategoryCarousel, Products } from "./components/index.ts";
 import { useProductFilters } from "./hooks/index.ts";
+import { useWishlist } from "./hooks/use-get-entire-wish-list.ts";
 
 const minDataLength = 0;
 
@@ -24,6 +25,8 @@ const Home: React.FC = () => {
 		isError,
 		products,
 	} = useProductFilters();
+
+	useWishlist();
 
 	return (
 		<Box

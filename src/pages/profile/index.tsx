@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { ProfileMenu } from "~/components/profile-menu/index.tsx";
 import { AppRoute } from "~/libs/constants/app-route.ts";
@@ -14,6 +14,7 @@ import {
 	ProfileSupport,
 	ProfileWishlist,
 } from "./components/index.ts";
+import { titles } from "./constats.ts";
 import { StyledGrid, StyledProfileContainer } from "./styles.ts";
 
 const Profile: React.FC = () => {
@@ -48,9 +49,11 @@ const Profile: React.FC = () => {
 
 	return (
 		<StyledProfileContainer>
-			<Typography variant="playfairDisplayTitle">
-				{t("Profile.myProfile")}
-			</Typography>
+			<Box sx={{ marginBottom: "32px", textAlign: "center", width: "100%" }}>
+				<Typography variant="playfairDisplayTitle">
+					{titles[pathname] || t("Profile.myProfile")}
+				</Typography>
+			</Box>
 			<StyledGrid container>
 				<ProfileMenu />
 				{getScreen(pathname)}

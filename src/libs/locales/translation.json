@@ -24,7 +24,9 @@
 		"userUpdateFailed": "Failed to update user",
 		"userUpdateSuccess": "User updated",
 		"verificationSendError": "Failed to send verification email",
-		"verificationSendSuccess": "Verification email sent successfully"
+		"verificationSendSuccess": "Verification email sent successfully",
+		"wishListUpdateError":"Error updating wishlist",
+		"wishListUpdated":"Wish list updated"
 	},
 	"Form": {
 		"role": "Role",
@@ -440,13 +442,9 @@
 		"priceIsRequired": "Price is required"
 	},
 	"Profile": {
-		"myProfile": "My profile",
+		"myProfile": "My Profile",
 		"personalInformation": "personal information",
 		"generalInformation": "General Information",
-		"orders": "Orders",
-		"wishlist": "Wishlist",
-		"settings": "settings",
-		"support": "support",
 		"logout": "log out",
 		"address": "Address",
 		"noAddress": "Please provide an adress",
@@ -461,6 +459,13 @@
 		"cancelForm": "Cancel",
 		"dashboard": "Dashboard",
 		"products" :"Products",
-		"chat": "Chat"
+		"chat": "Chat",
+		"orders": "Orders",
+		"myProducts": "My products",
+		"settings": "Settings",
+		"support" : "Support",
+		"wishlist": "Wishlist",
+		"errorLoadingWishlist": "Error while loading your wishlist",
+		"noProductsInWishlist":"You have not saved any products"
 	}
 }

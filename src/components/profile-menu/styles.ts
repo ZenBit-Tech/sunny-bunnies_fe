@@ -6,6 +6,7 @@ import { colors, fontSizes } from "~/libs/constants/index.ts";
 type MenuButtonProps = { bgcolor: string; checked: boolean } & ButtonProps;
 
 const StyledMenuContainer = styled(Box)`
+	width: 20%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -41,6 +42,7 @@ const StyledMenuButton = styled(BaseButton)<MenuButtonProps>(
 		display: "flex",
 		fontSize: fontSizes.medium,
 		justifyContent: "flex-start",
+		textAlign: "left",
 		textTransform: "capitalize",
 		width: "100%",
 	}),

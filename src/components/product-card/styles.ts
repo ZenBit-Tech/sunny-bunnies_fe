@@ -12,6 +12,10 @@ type CustomSliderDotProps = {
 	isActive: boolean;
 };
 
+type CustomHeartIconProps = {
+	isWishlistProduct: boolean;
+};
+
 const CustomSliderDot = styled(Box)<CustomSliderDotProps>(
 	({ backgroundColor, isActive }) => ({
 		backgroundColor: isActive
@@ -114,15 +118,19 @@ const StyledSmallTypography = styled(Typography)(({ theme }) => ({
 	lineHeight: "22px",
 }));
 
-const CustomHeartIcon = styled(Box)(({ theme }) => ({
+const CustomHeartIcon = styled(Box, {
+	shouldForwardProp: (prop) => prop !== "isWishlistProduct",
+})<CustomHeartIconProps>(({ isWishlistProduct, theme }) => ({
 	"&:hover": {
-		color: theme.palette.red,
+		color: isWishlistProduct ? theme.palette.fontGray : theme.palette.red,
+		transform: "scale(1.3)",
 	},
-	color: theme.palette.fontGray,
+	color: isWishlistProduct ? theme.palette.red : theme.palette.fontGray,
 	cursor: "pointer",
 	position: "absolute",
 	right: "10px",
 	top: "10px",
+	transform: "scale(1.15)",
 	transition: "all 0.3s ease",
 }));
 
