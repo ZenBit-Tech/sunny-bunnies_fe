@@ -65,7 +65,9 @@ const SecondStepForm: React.FC<SecondStepDefaultValues> = ({
 				}
 				setSelectedCategory(category);
 				setSelectedType(null);
+				setValue("type", "");
 				setSelectedStyle(null);
+				setValue("style", "");
 			}
 		},
 		[setValue, categories, clearErrors],

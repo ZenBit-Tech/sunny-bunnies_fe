@@ -6,11 +6,16 @@ import { BaseButton } from "~/components/index.ts";
 import theme from "~/theme.ts";
 
 type FormButtonsProps = {
+	handleNext?: () => void;
 	isStart: boolean;
 	redirectTo?: string;
 };
 
-const FormButtons: React.FC<FormButtonsProps> = ({ isStart, redirectTo }) => {
+const FormButtons: React.FC<FormButtonsProps> = ({
+	handleNext,
+	isStart,
+	redirectTo,
+}) => {
 	return (
 		<React.Fragment>
 			{!isStart && (
@@ -31,6 +36,7 @@ const FormButtons: React.FC<FormButtonsProps> = ({ isStart, redirectTo }) => {
 				</BaseButton>
 			)}
 			<BaseButton
+				onClick={handleNext}
 				sx={{
 					border: `1px solid ${theme.palette.transparent}`,
 					borderRadius: "8px",
@@ -40,7 +46,7 @@ const FormButtons: React.FC<FormButtonsProps> = ({ isStart, redirectTo }) => {
 					textTransform: "none",
 					width: "78px",
 				}}
-				type="submit"
+				type={handleNext ? "button" : "submit"}
 				variant="contained"
 			>
 				{t("Form.next")}

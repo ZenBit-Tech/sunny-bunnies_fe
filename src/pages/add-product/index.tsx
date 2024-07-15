@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, {useCallback, useEffect} from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -6,10 +6,12 @@ import { Tabs, Typography } from "@mui/material";
 
 import { ProfileMenu, TabsBoard } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
+import { FifthStepForm } from "~/pages/add-product/components/fifth-step/index.tsx";
 import { useGetCategoriesQuery } from "~/redux/categories/categories-api.ts";
 import theme from "~/theme.ts";
 
 import { ImageUpload } from "./components/first-step/index.tsx";
+import { FourthStepForm } from "./components/fourth-step/index.tsx";
 import { useProductData } from "./components/hooks/useProductData.ts";
 import { SecondStepForm } from "./components/second-step/index.tsx";
 import { ThirdStepForm } from "./components/third-step/index.tsx";
@@ -29,10 +31,18 @@ const AddProducts: React.FC = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
-	const { product, setFirstStepData, setSecondStepData, setThirdStepData } =
-		useProductData();
+	const {
+		product,
+		setFifthStepData,
+		setFirstStepData,
+		setFourthStepData,
+		setSecondStepData,
+		setThirdStepData,
+	} = useProductData();
 
 	const { data } = useGetCategoriesQuery(undefined);
+
+	const {price} = product;
 
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
@@ -65,14 +75,23 @@ const AddProducts: React.FC = () => {
 					/>
 				);
 			case AppRoute.PRODUCT_VARIANTS:
-				return <div />;
+				return (
+					<FourthStepForm
+						isDefaultSizeType={product.category?.name !== "Shoes"}
+						setFourthStepData={setFourthStepData}
+						variants={product.variants}
+					/>
+				);
 			case AppRoute.PRODUCT_PUBLISH:
-				return <div />;
+				return <FifthStepForm setFifthStepData={setFifthStepData} />;
 			default:
-				return <div />;
+				return <div/>;
 		}
 	};
 
+	useEffect(() => {
+		console.log("PRODUCT: ", product);
+	}, [price]);
 	const handleTabChange = useCallback(
 		(_event: React.SyntheticEvent, newValue: string): void => {
 			navigate(newValue);

@@ -10,9 +10,11 @@ import {
 
 import {
 	FirstStepFormData,
+	FourthStepFormData,
 	Image,
 	SecondStepFormData,
 	ThirdStepFormData,
+	VariantItem,
 } from "../../types.ts";
 
 type Product = {
@@ -22,8 +24,10 @@ type Product = {
 	images: Image[];
 	material: Material | null;
 	name: string;
+	price: string;
 	style: Style | null;
 	type: Type | null;
+	variants: VariantItem[];
 };
 
 const defaultValues: Product = {
@@ -33,13 +37,17 @@ const defaultValues: Product = {
 	images: [],
 	material: null,
 	name: "",
+	price: "",
 	style: null,
 	type: null,
+	variants: [],
 };
 
 type UseProductDataReturnType = {
 	product: Product;
+	setFifthStepData: (price: string) => void;
 	setFirstStepData: (formData: FirstStepFormData) => void;
+	setFourthStepData: (formData: FourthStepFormData) => void;
 	setSecondStepData: (
 		formData: SecondStepFormData,
 		categories: Category[],
@@ -77,6 +85,9 @@ const useProductData = (): UseProductDataReturnType => {
 			category: categoryObject ? categoryObject : null,
 			style: styleObject ? styleObject : null,
 			type: typeObject ? typeObject : null,
+			brand: null,
+			variants: [],
+			material: null,
 		}));
 	};
 
@@ -100,9 +111,26 @@ const useProductData = (): UseProductDataReturnType => {
 		}));
 	};
 
+	const setFourthStepData = (formData: FourthStepFormData): void => {
+		const { variants } = formData;
+		setProduct((prevProduct) => ({
+			...prevProduct,
+			variants: variants,
+		}));
+	};
+
+	const setFifthStepData = (price: string): void => {
+		setProduct((prevProduct) => ({
+			...prevProduct,
+			price: price,
+		}));
+	};
+
 	return {
 		product,
+		setFifthStepData,
 		setFirstStepData,
+		setFourthStepData,
 		setSecondStepData,
 		setThirdStepData,
 	};
