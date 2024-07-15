@@ -17,6 +17,8 @@ import { productsReducer } from "./products/products-slice.ts";
 import { api } from "./services.ts";
 import { userApi } from "./user/user-api.ts";
 import { userReducer } from "./user/user-slice.ts";
+import { vendorApi } from "./vendor/vendor-api.ts";
+import { vendorReducer } from "./vendor/vendor-slice.ts";
 
 const rootReducer = combineReducers({
 	admin: adminReducer,
@@ -31,6 +33,8 @@ const rootReducer = combineReducers({
 	productsApiSlice: productsApi.reducer,
 	user: userReducer,
 	userApiSlice: userApi.reducer,
+	vendor: vendorReducer,
+	vendorApiSlice: vendorApi.reducer,
 });
 
 const persistConfig = {

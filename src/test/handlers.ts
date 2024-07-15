@@ -3,6 +3,7 @@ import { HttpResponse, http } from "msw";
 import { adminApiPath } from "~/redux/admin/constants.ts";
 import { authApiPath } from "~/redux/auth/constants.ts";
 import { filtersApiPath } from "~/redux/filters/constants.ts";
+import { vendorApiPath } from "~/redux/vendor/constants.ts";
 
 import { allFilters, products, user, users } from "./mocks/index.ts";
 
@@ -39,6 +40,9 @@ const handlers = [
 		return HttpResponse.json(users);
 	}),
 	http.get(`${apiUrl}${adminApiPath.GET_PRODUCTS_BY_OPTIONS}`, () => {
+		return HttpResponse.json(products);
+	}),
+	http.get(`${apiUrl}${vendorApiPath.GET_PRODUCTS_BY_OPTIONS}`, () => {
 		return HttpResponse.json(products);
 	}),
 ];

@@ -321,7 +321,14 @@
 		"readMore": "Read more...",
 		"readLess": "Read less",
 		"error": "error",
-		"anErrorOccurred": "An error occurred"
+		"anErrorOccurred": "An error occurred",
+		"name": "Name",
+		"category":"Category",
+		"status" :"Status",
+		"price": "Price",
+		"filter" :"Filter",
+		"ascending":"Ascending",
+		"descending":"Descending"
 	},
 	"ProductPage": {
 		"home": "Home",

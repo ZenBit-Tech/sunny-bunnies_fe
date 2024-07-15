@@ -42,6 +42,7 @@ const AppRoute = {
 	SIZE_GUIDE: "/size-guide",
 	TERMS_OF_USE: "/terms-of-use",
 	USER_MANAGEMENT: "/user-management",
+	VENDOR_PRODUCT_$ID: "/vendor/product/:id",
 	VENDORS: "/vendors",
 	VENDORS_PROFILE: "/vendors/:id",
 	VERIFY_EMAIL: "/verify-email",
