@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
-import {BaseButton} from "~/components";
+
+import { BaseButton } from "~/components/index.ts";
 
 const StyledFormContainer = styled(Box)`
 	align-items: flex-start;
@@ -23,7 +24,7 @@ const VisuallyHiddenInput = styled("input")({
 	width: "1px",
 });
 
-const StyledButton = styled(BaseButton) ({
+const StyledButton = styled(BaseButton)({
 	border: "1px solid",
 	borderRadius: "8px",
 	gap: "8px",
@@ -33,4 +34,4 @@ const StyledButton = styled(BaseButton) ({
 	width: "78px",
 });
 
-export { StyledFormContainer, VisuallyHiddenInput, StyledButton };
+export { StyledButton, StyledFormContainer, VisuallyHiddenInput };

@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -28,7 +27,6 @@ const FifthStepForm: React.FC<FifthStepDefaultValues> = ({
 	setFifthStepData,
 }: FifthStepDefaultValues) => {
 	const { t } = useTranslation();
-	const navigate = useNavigate();
 
 	const {
 		control,

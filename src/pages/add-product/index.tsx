@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -42,8 +42,6 @@ const AddProducts: React.FC = () => {
 
 	const { data } = useGetCategoriesQuery(undefined);
 
-	const {price} = product;
-
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
 			case AppRoute.PRODUCT_PHOTOS:
@@ -85,13 +83,10 @@ const AddProducts: React.FC = () => {
 			case AppRoute.PRODUCT_PUBLISH:
 				return <FifthStepForm setFifthStepData={setFifthStepData} />;
 			default:
-				return <div/>;
+				return <div />;
 		}
 	};
 
-	useEffect(() => {
-		console.log("PRODUCT: ", product);
-	}, [price]);
 	const handleTabChange = useCallback(
 		(_event: React.SyntheticEvent, newValue: string): void => {
 			navigate(newValue);

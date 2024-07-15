@@ -82,12 +82,12 @@ const useProductData = (): UseProductDataReturnType => {
 		);
 		setProduct((prevProduct) => ({
 			...prevProduct,
+			brand: null,
 			category: categoryObject ? categoryObject : null,
+			material: null,
 			style: styleObject ? styleObject : null,
 			type: typeObject ? typeObject : null,
-			brand: null,
 			variants: [],
-			material: null,
 		}));
 	};
 

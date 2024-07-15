@@ -18,10 +18,7 @@ const FormButtons: React.FC<FormButtonsProps> = ({
 	return (
 		<React.Fragment>
 			{!isStart && (
-				<StyledButton
-					to={redirectTo}
-					variant="outlined"
-				>
+				<StyledButton to={redirectTo} variant="outlined">
 					{t("Form.prev")}
 				</StyledButton>
 			)}
