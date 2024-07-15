@@ -18,10 +18,10 @@ import { CustomError, CustomPagination, Loader } from "~/components/index.ts";
 import { pagination } from "~/libs/constants/pagination.ts";
 import { usePagination } from "~/libs/hooks/index.ts";
 import { sortOrder } from "~/pages/admin-panel/constants/sort-order.ts";
+import { StyledContainer } from "~/pages/profile/components/profile-form/styles.ts";
 import { useGetVendorProductsByOptionsQuery } from "~/redux/vendor/vendor-api.ts";
 import theme from "~/theme.ts";
 
-import { StyledContainer } from "../../profile-form/styles.ts";
 import { ProductsTable } from "../products-table/index.tsx";
 import {
 	BoldDivider,
