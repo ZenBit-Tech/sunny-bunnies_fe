@@ -64,6 +64,7 @@ type Products = {
 
 type ProductRequestDto = {
 	activityStatuses: string[];
+	filter?: string;
 	limit: number;
 	order: "ASC" | "DESC";
 	page: number;

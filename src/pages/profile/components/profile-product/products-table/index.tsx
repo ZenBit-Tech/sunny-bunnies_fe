@@ -12,10 +12,10 @@ import {
 } from "@mui/material";
 import { t } from "i18next";
 
-import { ConfirmIcon } from "~/assets/icons/confirm-icon.tsx";
-import { DeclineIcon } from "~/assets/icons/decline-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";
 import { ProductStatus } from "~/components/index.ts";
+import { configureString } from "~/helpers/index.ts";
+import { AppRoute } from "~/libs/constants/app-route.ts";
 import { Product } from "~/libs/types/products.ts";
 import theme from "~/theme.ts";
 
@@ -99,13 +99,12 @@ const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 								</StyledTableCell>
 								<StyledTableCell width="20%">
 									<StyledButtonsContainer>
-										<IconButton>
-											<ConfirmIcon />
-										</IconButton>
-										<IconButton>
-											<DeclineIcon />
-										</IconButton>
-										<IconButton component={Link} to={`/product/${product.id}`}>
+										<IconButton
+											component={Link}
+											to={configureString(AppRoute.VENDOR_PRODUCT_$ID, {
+												id: String(product.id),
+											})}
+										>
 											<ViewIcon />
 										</IconButton>
 									</StyledButtonsContainer>

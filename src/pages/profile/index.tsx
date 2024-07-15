@@ -14,6 +14,7 @@ import {
 	ProfileSupport,
 	ProfileWishlist,
 } from "./components/index.ts";
+import { ProfileProduct } from "./components/profile-product/index.tsx";
 import { StyledGrid, StyledProfileContainer } from "./styles.ts";
 
 const Profile: React.FC = () => {
@@ -38,7 +39,7 @@ const Profile: React.FC = () => {
 				return <ProfileSupport />;
 			}
 			case AppRoute.PROFILE_PRODUCTS: {
-				return <ProfileSupport />;
+				return <ProfileProduct />;
 			}
 			default: {
 				return <ProfileForm />;

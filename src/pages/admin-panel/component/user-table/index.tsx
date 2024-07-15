@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
 	IconButton,
 	Paper,
@@ -17,6 +15,7 @@ import { t } from "i18next";
 
 import { ChatIcon } from "~/assets/icons/chat-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";
+import { CustomArrowIcon } from "~/components/index.ts";
 import { configureString } from "~/helpers/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { dateFormat, userRole } from "~/libs/constants/index.ts";
@@ -24,11 +23,7 @@ import { User } from "~/libs/types/user.ts";
 import { sortOrder } from "~/pages/admin-panel/constants/index.ts";
 import theme from "~/theme.ts";
 
-import {
-	CustomIconButton,
-	CustomTableCell,
-	CustomUpperCaseTableCell,
-} from "./styles.ts";
+import { CustomTableCell, CustomUpperCaseTableCell } from "./styles.ts";
 
 type Properties = {
 	createSortHandler: (field: string) => () => void;
@@ -69,29 +64,21 @@ const UserTable: React.FC<Properties> = ({
 					>
 						<CustomUpperCaseTableCell onClick={createSortHandler("name")}>
 							{t("AdminUserManagementPage.name")}
-							<CustomIconButton>
-								{isAscending ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-							</CustomIconButton>
+							<CustomArrowIcon isAscending={isAscending} />
 						</CustomUpperCaseTableCell>
 						<CustomUpperCaseTableCell onClick={createSortHandler("email")}>
 							{t("AdminUserManagementPage.email")}
-							<CustomIconButton>
-								{isAscending ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-							</CustomIconButton>
+							<CustomArrowIcon isAscending={isAscending} />
 						</CustomUpperCaseTableCell>
 						<CustomUpperCaseTableCell
 							onClick={createSortHandler("addressLineOne")}
 						>
 							{t("AdminUserManagementPage.address")}
-							<CustomIconButton>
-								{isAscending ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-							</CustomIconButton>
+							<CustomArrowIcon isAscending={isAscending} />
 						</CustomUpperCaseTableCell>
 						<CustomUpperCaseTableCell onClick={createSortHandler("createdAt")}>
 							{t("AdminUserManagementPage.date")}
-							<CustomIconButton>
-								{isAscending ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-							</CustomIconButton>
+							<CustomArrowIcon isAscending={isAscending} />
 						</CustomUpperCaseTableCell>
 						<CustomUpperCaseTableCell>
 							{t("AdminUserManagementPage.action")}

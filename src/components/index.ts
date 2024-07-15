@@ -1,5 +1,6 @@
 export { AdminRoute } from "./admin-route/admin-route.tsx";
 export { BaseButton } from "./base-button/index.tsx";
+export { CustomArrowIcon } from "./custom-arrow-icon/index.tsx";
 export { CustomError } from "./custom-error/index.tsx";
 export { CustomFormGroup } from "./custom-form-group/index.tsx";
 export { CustomRadioButtonGroup } from "./custom-radio-button-group/index.tsx";
@@ -19,6 +20,7 @@ export { Newsletter } from "./newsletter/index.tsx";
 export { Notification } from "./notification/index.tsx";
 export { CustomPagination } from "./pagination/index.tsx";
 export { PrivateRoute } from "./private-route/index.tsx";
+export { ProductStatus } from "./product-status/index.tsx";
 export { ProfileMenu } from "./profile-menu/index.tsx";
 export { PublicRoute } from "./public-route/index.tsx";
 export { RouterProvider } from "./router-provider/index.tsx";
