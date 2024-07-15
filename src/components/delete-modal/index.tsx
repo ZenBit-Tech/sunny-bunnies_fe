@@ -15,20 +15,22 @@ import {
 	VendorDialog,
 } from "./styles.ts";
 
-type ModalProperties = {
+type DeleteModalProperties = {
+	attention: string;
 	isLoading: boolean;
 	isModalOpen: boolean;
-	isProduct?: boolean;
 	onClose: () => void;
 	onConfirmDelete: () => void;
+	question: string;
 };
 
-const Modal: React.FC<ModalProperties> = ({
+const DeleteModal: React.FC<DeleteModalProperties> = ({
+	attention,
 	isLoading,
 	isModalOpen,
-	isProduct = false,
 	onClose,
 	onConfirmDelete,
+	question,
 }) => {
 	const { t } = useTranslation();
 
@@ -55,17 +57,13 @@ const Modal: React.FC<ModalProperties> = ({
 					sx={{ fontSize: theme.fontSizes.extraLarge, textAlign: "center" }}
 					variant="playfairDisplayBold"
 				>
-					{isProduct
-						? t("AdminProductManagement.question")
-						: t("AdminUserManagementPage.question")}
+					{question}
 				</Typography>
 				<Typography
 					sx={{ color: theme.palette.secondaryTextGray, textAlign: "center" }}
 					variant="dmSans"
 				>
-					{isProduct
-						? t("AdminProductManagement.attention")
-						: t("AdminUserManagementPage.attention")}
+					{attention}
 				</Typography>
 			</StyledDialogContent>
 			<DialogActions>
@@ -96,4 +94,4 @@ const Modal: React.FC<ModalProperties> = ({
 	);
 };
 
-export { Modal };
+export { DeleteModal };

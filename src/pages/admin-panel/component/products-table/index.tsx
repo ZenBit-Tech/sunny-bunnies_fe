@@ -16,10 +16,10 @@ import { ConfirmIcon } from "~/assets/icons/confirm-icon.tsx";
 import { DeclineIcon } from "~/assets/icons/decline-icon.tsx";
 import { DeleteIcon } from "~/assets/icons/delete-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";
+import { DeleteModal } from "~/components/index.ts";
 import { Product } from "~/libs/types/products.ts";
 import theme from "~/theme.ts";
 
-import { Modal } from "../modal/index.tsx";
 import { ProductStatus } from "../product-status/index.tsx";
 import {
 	StyledActionTableCell,
@@ -160,12 +160,13 @@ const ProductsTable: React.FC<ProductsTableSort> = ({
 					})}
 				</TableBody>
 			</Table>
-			<Modal
+			<DeleteModal
+				attention={t("AdminProductManagement.attention")}
 				isLoading={isDeleting}
 				isModalOpen={isModalOpen}
-				isProduct
 				onClose={handleCloseModal}
 				onConfirmDelete={handleConfirmDelete}
+				question={t("AdminProductManagement.question")}
 			/>
 		</TableContainer>
 	);
