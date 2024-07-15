@@ -126,7 +126,6 @@ const ProductManagement: React.FC = () => {
 						</StyledSortButton>
 						<StyledSortSelect
 							displayEmpty
-							label="ФИЛЬТР"
 							onChange={handleFilterChange}
 							startAdornment={
 								<InputAdornment position="start">
