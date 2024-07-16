@@ -6,6 +6,7 @@ export { CustomRadioButtonGroup } from "./custom-radio-button-group/index.tsx";
 export { CustomRadioButtons } from "./custom-radio-buttons/index.tsx";
 export { CustomSelect } from "./custom-select/index.tsx";
 export { CustomSlider } from "./custom-slider/index.tsx";
+export { DeleteModal } from "./delete-modal/index.tsx";
 export { FilterButton } from "./filter-button/index.tsx";
 export { Footer } from "./footer/index.tsx";
 export { FooterWrapper } from "./footer/wrapper/index.tsx";

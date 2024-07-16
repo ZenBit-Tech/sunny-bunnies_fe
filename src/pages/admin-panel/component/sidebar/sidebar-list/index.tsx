@@ -114,7 +114,14 @@ const SidebarList: React.FC = () => {
 						>
 							<StyledTab>{t("AdminPage.requests")}</StyledTab>
 						</StyledLink>
-						<StyledLink to={AppRoute.MANAGEMENT_PRODUCTS_LIST}>
+						<StyledLink
+							className={
+								useIsRouteActive(AppRoute.MANAGEMENT_PRODUCTS_LIST)
+									? "active"
+									: ""
+							}
+							to={AppRoute.MANAGEMENT_PRODUCTS_LIST}
+						>
 							<StyledTab>{t("AdminPage.productList")}</StyledTab>
 						</StyledLink>
 					</Box>

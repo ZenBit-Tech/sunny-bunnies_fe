@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -14,7 +14,9 @@ import { t } from "i18next";
 
 import { ConfirmIcon } from "~/assets/icons/confirm-icon.tsx";
 import { DeclineIcon } from "~/assets/icons/decline-icon.tsx";
+import { DeleteIcon } from "~/assets/icons/delete-icon.tsx";
 import { ViewIcon } from "~/assets/icons/view-icon.tsx";
+import { DeleteModal } from "~/components/index.ts";
 import { Product } from "~/libs/types/products.ts";
 import theme from "~/theme.ts";
 
@@ -30,6 +32,9 @@ import {
 } from "./styles.ts";
 
 type ProductsTableSort = {
+	isDeleting: boolean;
+	isRequestsPage: boolean;
+	onDelete: (productId: string) => void;
 	products: Product[];
 };
 
@@ -42,7 +47,39 @@ const countAllQuantities = (product: Product): number => {
 	);
 };
 
-const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
+const ProductsTable: React.FC<ProductsTableSort> = ({
+	isDeleting,
+	isRequestsPage,
+	onDelete,
+	products,
+}) => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const [selectedProductId, setSelectedProductId] = useState<null | string>(
+		null,
+	);
+
+	const handleDeleteClick = useCallback((productId: string) => {
+		setSelectedProductId(productId);
+		setIsModalOpen(true);
+	}, []);
+
+	const handleCloseModal = useCallback(() => {
+		setIsModalOpen(false);
+		setSelectedProductId(null);
+	}, []);
+
+	const handleConfirmDelete = useCallback(() => {
+		if (selectedProductId) {
+			onDelete(selectedProductId);
+		}
+		setIsModalOpen(false);
+	}, [onDelete, selectedProductId]);
+
+	const createDeleteHandler = (productId: string) => {
+		return (): void => handleDeleteClick(productId);
+	};
+
 	return (
 		<TableContainer component={Paper}>
 			<Table>
@@ -99,12 +136,20 @@ const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 								</StyledTableCell>
 								<StyledTableCell width="20%">
 									<StyledButtonsContainer>
-										<IconButton>
-											<ConfirmIcon />
-										</IconButton>
-										<IconButton>
-											<DeclineIcon />
-										</IconButton>
+										{isRequestsPage ? (
+											<>
+												<IconButton>
+													<ConfirmIcon />
+												</IconButton>
+												<IconButton>
+													<DeclineIcon />
+												</IconButton>
+											</>
+										) : (
+											<IconButton onClick={createDeleteHandler(product.id)}>
+												<DeleteIcon />
+											</IconButton>
+										)}
 										<IconButton component={Link} to={`/product/${product.id}`}>
 											<ViewIcon />
 										</IconButton>
@@ -115,6 +160,14 @@ const ProductsTable: React.FC<ProductsTableSort> = ({ products }) => {
 					})}
 				</TableBody>
 			</Table>
+			<DeleteModal
+				attention={t("AdminProductManagement.attention")}
+				isLoading={isDeleting}
+				isModalOpen={isModalOpen}
+				onClose={handleCloseModal}
+				onConfirmDelete={handleConfirmDelete}
+				question={t("AdminProductManagement.question")}
+			/>
 		</TableContainer>
 	);
 };

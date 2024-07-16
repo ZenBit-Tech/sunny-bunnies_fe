@@ -12,6 +12,7 @@ import {
 	BaseButton,
 	CustomError,
 	CustomSelect,
+	DeleteModal,
 	Loader,
 } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/index.ts";
@@ -25,7 +26,6 @@ import {
 } from "~/redux/admin/admin-api.ts";
 import theme from "~/theme.ts";
 
-import { Modal } from "../modal/index.tsx";
 import {
 	BoldDivider,
 	StyledContainer,
@@ -285,11 +285,13 @@ const UserProfile: React.FC<Properties> = ({ role }) => {
 				)}
 			</StyledWrapperContainer>
 
-			<Modal
+			<DeleteModal
+				attention={t("AdminUserManagementPage.attention")}
 				isLoading={isDeleting}
 				isModalOpen={isModalOpen}
 				onClose={handleCloseModal}
 				onConfirmDelete={handleConfirmDelete}
+				question={t("AdminUserManagementPage.question")}
 			/>
 		</StyledContainer>
 	);

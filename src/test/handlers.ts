@@ -22,6 +22,11 @@ const handlers = [
 			status: 200,
 		});
 	}),
+	http.delete(`${apiUrl}${adminApiPath.DELETE_PRODUCT}/:id`, () => {
+		return HttpResponse.json({
+			status: 200,
+		});
+	}),
 	http.delete(`${apiUrl}${adminApiPath.DELETE_USER}/:id`, () => {
 		return HttpResponse.json({
 			status: 200,

@@ -3,13 +3,17 @@ import React, { useCallback, useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import { Box, IconButton, InputBase, Typography } from "@mui/material";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { t } from "i18next";
 
 import { CustomError, CustomPagination, Loader } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { pagination } from "~/libs/constants/pagination.ts";
 import { usePagination } from "~/libs/hooks/index.ts";
-import { useGetProductsByOptionsQuery } from "~/redux/admin/admin-api.ts";
+import {
+	useDeleteProductMutation,
+	useGetProductsByOptionsQuery,
+} from "~/redux/admin/admin-api.ts";
 import theme from "~/theme.ts";
 
 import { useIsRouteActive } from "../../hooks/use-is-route-active.ts";
@@ -33,17 +37,24 @@ const productsPerPage = 5;
 
 const ProductManagement: React.FC = () => {
 	const [searchQuery, setSearchQuery] = useState("");
+	const [serverError, setServerError] = useState("");
 	const [order, setOrder] = useState<"ASC" | "DESC">("DESC");
 	const { handlePageChange, limit, page, totalPages, updateTotalPages } =
 		usePagination(initialPage, productsPerPage);
 
+	const isRequestsPage = useIsRouteActive(
+		AppRoute.MANAGEMENT_PRODUCTS_REQUESTS,
+	);
+
 	const { data, isError, isLoading, refetch } = useGetProductsByOptionsQuery({
-		activityStatuses: ["inactive"],
+		activityStatuses: isRequestsPage ? ["inactive"] : ["active", "rejected"],
 		limit,
 		order,
 		page,
 		searchQuery,
 	});
+
+	const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
 
 	const {
 		products: fetchedProducts,
@@ -76,6 +87,21 @@ const ProductManagement: React.FC = () => {
 			? t("AdminProductManagement.newest")
 			: t("AdminProductManagement.oldest");
 	};
+
+	const handleConfirmDelete = useCallback(
+		async (productId: string) => {
+			try {
+				await deleteProduct(productId).unwrap();
+				refetch();
+			} catch (error) {
+				const loadError = (error as FetchBaseQueryError).data
+					? ((error as FetchBaseQueryError).data as Error)
+					: { message: t("Error.unknownError") };
+				setServerError(loadError.message);
+			}
+		},
+		[deleteProduct, refetch],
+	);
 
 	return (
 		<StyledContainer>
@@ -112,7 +138,7 @@ const ProductManagement: React.FC = () => {
 						}
 						to={AppRoute.MANAGEMENT_PRODUCTS_REQUESTS}
 					>
-						{t("AdminPage.requests")} {`(${totalCount})`}
+						{t("AdminPage.requests")} {isRequestsPage && `(${totalCount})`}
 					</StyledLink>
 					<StyledLink
 						className={
@@ -122,7 +148,7 @@ const ProductManagement: React.FC = () => {
 						}
 						to={AppRoute.MANAGEMENT_PRODUCTS_LIST}
 					>
-						{t("AdminPage.productList")}
+						{t("AdminPage.productList")} {!isRequestsPage && `(${totalCount})`}
 					</StyledLink>
 				</Box>
 				<StyledSearchBox>
@@ -138,12 +164,25 @@ const ProductManagement: React.FC = () => {
 						/>
 					</StyledPaper>
 				</StyledSearchBox>
-				<ProductsTable products={fetchedProducts} />
+				<ProductsTable
+					isDeleting={isDeleting}
+					isRequestsPage={isRequestsPage}
+					onDelete={handleConfirmDelete}
+					products={fetchedProducts}
+				/>
 				{isLoading && <Loader />}
 				{isError && (
 					<CustomError
 						errorMessage={t("AdminProductManagement.errorLoadingProducts")}
 					/>
+				)}
+				{serverError && (
+					<Typography
+						sx={{ color: `${theme.palette.error}`, marginBottom: "8px" }}
+						variant="body2"
+					>
+						{serverError}
+					</Typography>
 				)}
 				<CustomPagination
 					count={totalPages}

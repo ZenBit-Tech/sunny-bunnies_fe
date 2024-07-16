@@ -15,18 +15,22 @@ import {
 	VendorDialog,
 } from "./styles.ts";
 
-type VendorPreviewModeModalProperties = {
+type DeleteModalProperties = {
+	attention: string;
 	isLoading: boolean;
 	isModalOpen: boolean;
 	onClose: () => void;
 	onConfirmDelete: () => void;
+	question: string;
 };
 
-const Modal: React.FC<VendorPreviewModeModalProperties> = ({
+const DeleteModal: React.FC<DeleteModalProperties> = ({
+	attention,
 	isLoading,
 	isModalOpen,
 	onClose,
 	onConfirmDelete,
+	question,
 }) => {
 	const { t } = useTranslation();
 
@@ -53,13 +57,13 @@ const Modal: React.FC<VendorPreviewModeModalProperties> = ({
 					sx={{ fontSize: theme.fontSizes.extraLarge, textAlign: "center" }}
 					variant="playfairDisplayBold"
 				>
-					{t("AdminUserManagementPage.question")}
+					{question}
 				</Typography>
 				<Typography
 					sx={{ color: theme.palette.secondaryTextGray, textAlign: "center" }}
 					variant="dmSans"
 				>
-					{t("AdminUserManagementPage.attention")}
+					{attention}
 				</Typography>
 			</StyledDialogContent>
 			<DialogActions>
@@ -90,4 +94,4 @@ const Modal: React.FC<VendorPreviewModeModalProperties> = ({
 	);
 };
 
-export { Modal };
+export { DeleteModal };
