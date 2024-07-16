@@ -27,4 +27,14 @@ type Material = {
 	name: string;
 };
 
-export type { Brand, Category, Material, Style, Type };
+type Color = {
+	id: number;
+	name: string;
+};
+
+type Size = {
+	forSize: string;
+	id: number;
+	name: string;
+};
+export type { Brand, Category, Color, Material, Size, Style, Type };

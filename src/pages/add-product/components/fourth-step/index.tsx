@@ -11,17 +11,18 @@ import {
 	Typography,
 } from "@mui/material";
 
+import { Loader } from "~/components/index.ts";
 import { NumberInput } from "~/components/number-input/index.tsx";
 import { findItemByKey } from "~/helpers/find-item-by-key.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
-import { Color, Size } from "~/libs/types/products.ts";
+import { Size } from "~/libs/types/categories.ts";
+import { Color } from "~/libs/types/products.ts";
 import { FourthStepFormData, VariantItem } from "~/pages/add-product/types.ts";
 import { FormButtons } from "~/pages/profile-board/components/buttons.tsx";
 
 import { useProductVariants } from "../hooks/useProductVariants.ts";
 import { Variants } from "../variants-list/index.tsx";
 import { fourthStepValidation } from "./fourth-step-validation.ts";
-import { colors, sizes } from "./mock.ts";
 import {
 	StyledBox,
 	StyledButton,
@@ -38,14 +39,16 @@ type FormData = {
 };
 
 type FourthStepDefaultValues = {
-	isDefaultSizeType: boolean;
+	colors: Color[];
 	setFourthStepData: (formData: FourthStepFormData) => void;
+	sizes: Size[];
 	variants: VariantItem[];
 };
 
 const FourthStepForm: React.FC<FourthStepDefaultValues> = ({
-	isDefaultSizeType,
+	colors,
 	setFourthStepData,
+	sizes = [],
 	variants,
 }: FourthStepDefaultValues) => {
 	const { t } = useTranslation();
@@ -108,21 +111,17 @@ const FourthStepForm: React.FC<FourthStepDefaultValues> = ({
 				setSelectedColor(color);
 			}
 		},
-		[setSelectedColor],
+		[setSelectedColor, colors],
 	);
 
 	const handleSizeChange = useCallback(
 		(event: SelectChangeEvent<string>) => {
-			const size = findItemByKey(
-				sizes(!isDefaultSizeType),
-				event.target.value,
-				"name",
-			);
+			const size = findItemByKey(sizes, event.target.value, "name");
 			if (size) {
 				setSelectedSize(size);
 			}
 		},
-		[isDefaultSizeType, setSelectedSize],
+		[setSelectedSize, sizes],
 	);
 
 	const handleQuantityChange = useCallback(
@@ -149,7 +148,7 @@ const FourthStepForm: React.FC<FourthStepDefaultValues> = ({
 			const newItem: VariantItem = {
 				color: findItemByKey(colors, data.color, "name")!,
 				quantity: data.quantity,
-				size: findItemByKey(sizes(!isDefaultSizeType), data.size, "name")!,
+				size: findItemByKey(sizes, data.size, "name")!,
 			};
 
 			if (isEditing && editItem) {
@@ -162,7 +161,7 @@ const FourthStepForm: React.FC<FourthStepDefaultValues> = ({
 			setError(null);
 			reset();
 		},
-		[addItem, editItem, isDefaultSizeType, isEditing, reset, updateItem],
+		[addItem, editItem, isEditing, reset, updateItem, colors, sizes],
 	);
 
 	const handleEditClick = useCallback(
@@ -243,10 +242,10 @@ const FourthStepForm: React.FC<FourthStepDefaultValues> = ({
 				value={selectedSize?.name || ""}
 			>
 				<MenuItem value="">{t("AddVendorProduct.selectSize")}</MenuItem>
-				{sizes(!isDefaultSizeType).map(renderSizeMenuItem)}
+				{sizes.map(renderSizeMenuItem)}
 			</MuiSelect>
 		),
-		[handleSizeChange, isDefaultSizeType, renderSizeMenuItem, selectedSize, t],
+		[handleSizeChange, renderSizeMenuItem, selectedSize, t, sizes],
 	);
 
 	const renderColorSelect = useCallback(
@@ -264,8 +263,10 @@ const FourthStepForm: React.FC<FourthStepDefaultValues> = ({
 				{colors.map(renderColorMenuItem)}
 			</MuiSelect>
 		),
-		[handleColorChange, renderColorMenuItem, selectedColor, t],
+		[handleColorChange, renderColorMenuItem, selectedColor, t, colors],
 	);
+
+	if (!colors) return <Loader />;
 
 	return (
 		<StyledParent>

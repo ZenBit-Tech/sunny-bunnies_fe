@@ -8,6 +8,8 @@ import { ProfileMenu, TabsBoard } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
 import { FifthStepForm } from "~/pages/add-product/components/fifth-step/index.tsx";
 import { useGetCategoriesQuery } from "~/redux/categories/categories-api.ts";
+import { useGetColorsQuery } from "~/redux/colors/colors-api.ts";
+import { useFetchSizes } from "~/redux/sizes/sizes-api.ts";
 import theme from "~/theme.ts";
 
 import { ImageUpload } from "./components/first-step/index.tsx";
@@ -40,7 +42,11 @@ const AddProducts: React.FC = () => {
 		setThirdStepData,
 	} = useProductData();
 
-	const { data } = useGetCategoriesQuery(undefined);
+	const { category } = product;
+
+	const { data: categoriesData } = useGetCategoriesQuery(undefined);
+	const { data: colorsData } = useGetColorsQuery(undefined);
+	const { sizes } = useFetchSizes(category?.name);
 
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
@@ -54,7 +60,7 @@ const AddProducts: React.FC = () => {
 			case AppRoute.PRODUCT_CATEGORY:
 				return (
 					<SecondStepForm
-						categories={data}
+						categories={categoriesData}
 						category={product.category}
 						setSecondStepData={setSecondStepData}
 						style={product.style}
@@ -65,7 +71,7 @@ const AddProducts: React.FC = () => {
 				return (
 					<ThirdStepForm
 						brand={product.brand}
-						category={product!.category}
+						category={product.category}
 						description={product.description}
 						material={product.material}
 						name={product.name}
@@ -75,8 +81,9 @@ const AddProducts: React.FC = () => {
 			case AppRoute.PRODUCT_VARIANTS:
 				return (
 					<FourthStepForm
-						isDefaultSizeType={product.category?.name !== "Shoes"}
+						colors={colorsData ? colorsData : []}
 						setFourthStepData={setFourthStepData}
+						sizes={sizes ? sizes : []}
 						variants={product.variants}
 					/>
 				);
