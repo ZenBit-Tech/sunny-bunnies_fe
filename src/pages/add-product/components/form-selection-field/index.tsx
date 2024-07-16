@@ -19,7 +19,7 @@ import { ErrorSpan, FieldBox, SelectBox, StyledFormLabel } from "./styles.ts";
 
 type SelectionProps<TSelect, TFieldValues extends FieldValues> = {
 	control: Control<TFieldValues>;
-	description: string;
+	description?: string;
 	disabled: boolean;
 	error: string | undefined;
 	getValueId: (value: TSelect) => string;
@@ -27,7 +27,7 @@ type SelectionProps<TSelect, TFieldValues extends FieldValues> = {
 	handleChangeValue: (event: SelectChangeEvent<string>) => void;
 	name: Path<TFieldValues>;
 	selectedValue: TSelect | null;
-	title: string;
+	title?: string;
 	values: TSelect[];
 };
 
@@ -83,7 +83,9 @@ const SelectionField = <TSelect, TFieldValues extends FieldValues>({
 
 	return (
 		<FieldBox>
-			<FieldDescription description={description} title={title} />
+			{title && description && (
+				<FieldDescription description={description} title={title} />
+			)}
 			<SelectBox>
 				<FormControl component="fieldset" fullWidth>
 					<StyledFormLabel>{title}</StyledFormLabel>

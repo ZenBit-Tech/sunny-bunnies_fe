@@ -5,6 +5,7 @@ import {
 	Style,
 	Type,
 } from "~/libs/types/categories.ts";
+import { Color, Size } from "~/libs/types/products.ts";
 
 type Image = {
 	id: string;
@@ -50,11 +51,24 @@ type ThirdStepDefaultValues = {
 	setThirdStepData: (formData: ThirdStepFormData, category: Category) => void;
 };
 
+type FourthStepFormData = {
+	variants: VariantItem[];
+};
+
+type VariantItem = {
+	color: Color;
+	id?: number;
+	quantity: number;
+	size: Size;
+};
+
 export type {
 	FirstStepFormData,
+	FourthStepFormData,
 	Image,
 	SecondStepDefaultValues,
 	SecondStepFormData,
 	ThirdStepDefaultValues,
 	ThirdStepFormData,
+	VariantItem,
 };

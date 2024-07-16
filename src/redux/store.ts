@@ -4,6 +4,11 @@ import { combineReducers } from "redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import { colorsApi } from "~/redux/colors/colors-api.ts";
+import { colorReducer } from "~/redux/colors/colors-slice.ts";
+import { sizesApi } from "~/redux/sizes/sizes-api.ts";
+import { sizeReducer } from "~/redux/sizes/sizes-slice.ts";
+
 import { adminApi } from "./admin/admin-api.ts";
 import { adminReducer } from "./admin/admin-slice.ts";
 import { authApi } from "./auth/auth-api.ts";
@@ -25,10 +30,14 @@ const rootReducer = combineReducers({
 	[authApi.reducerPath]: authApi.reducer,
 	category: categoryReducer,
 	categoryApiSlice: categoriesApi.reducer,
+	color: colorReducer,
+	colorApiSlice: colorsApi.reducer,
 	filters: filtersReducer,
 	filtersApiSlice: filtersApi.reducer,
 	products: productsReducer,
 	productsApiSlice: productsApi.reducer,
+	size: sizeReducer,
+	sizeApiSlice: sizesApi.reducer,
 	user: userReducer,
 	userApiSlice: userApi.reducer,
 });

@@ -71,10 +71,12 @@ type ProductRequestDto = {
 };
 
 export {
+	type Color,
 	type Product,
 	type ProductImage,
 	type ProductRequestDto,
 	type ProductSize,
 	type ProductVariant,
 	type Products,
+	type Size,
 };

@@ -6,10 +6,14 @@ import { Tabs, Typography } from "@mui/material";
 
 import { ProfileMenu, TabsBoard } from "~/components/index.ts";
 import { AppRoute } from "~/libs/constants/app-route.ts";
+import { FifthStepForm } from "~/pages/add-product/components/fifth-step/index.tsx";
 import { useGetCategoriesQuery } from "~/redux/categories/categories-api.ts";
+import { useGetColorsQuery } from "~/redux/colors/colors-api.ts";
+import { useFetchSizes } from "~/redux/sizes/sizes-api.ts";
 import theme from "~/theme.ts";
 
 import { ImageUpload } from "./components/first-step/index.tsx";
+import { FourthStepForm } from "./components/fourth-step/index.tsx";
 import { useProductData } from "./components/hooks/useProductData.ts";
 import { SecondStepForm } from "./components/second-step/index.tsx";
 import { ThirdStepForm } from "./components/third-step/index.tsx";
@@ -29,10 +33,20 @@ const AddProducts: React.FC = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
-	const { product, setFirstStepData, setSecondStepData, setThirdStepData } =
-		useProductData();
+	const {
+		product,
+		setFifthStepData,
+		setFirstStepData,
+		setFourthStepData,
+		setSecondStepData,
+		setThirdStepData,
+	} = useProductData();
 
-	const { data } = useGetCategoriesQuery(undefined);
+	const { category } = product;
+
+	const { data: categoriesData } = useGetCategoriesQuery(undefined);
+	const { data: colorsData } = useGetColorsQuery(undefined);
+	const { sizes } = useFetchSizes(category?.name);
 
 	const getScreen = (screen: string): React.ReactNode => {
 		switch (screen) {
@@ -46,7 +60,7 @@ const AddProducts: React.FC = () => {
 			case AppRoute.PRODUCT_CATEGORY:
 				return (
 					<SecondStepForm
-						categories={data}
+						categories={categoriesData}
 						category={product.category}
 						setSecondStepData={setSecondStepData}
 						style={product.style}
@@ -57,7 +71,7 @@ const AddProducts: React.FC = () => {
 				return (
 					<ThirdStepForm
 						brand={product.brand}
-						category={product!.category}
+						category={product.category}
 						description={product.description}
 						material={product.material}
 						name={product.name}
@@ -65,9 +79,16 @@ const AddProducts: React.FC = () => {
 					/>
 				);
 			case AppRoute.PRODUCT_VARIANTS:
-				return <div />;
+				return (
+					<FourthStepForm
+						colors={colorsData ? colorsData : []}
+						setFourthStepData={setFourthStepData}
+						sizes={sizes ? sizes : []}
+						variants={product.variants}
+					/>
+				);
 			case AppRoute.PRODUCT_PUBLISH:
-				return <div />;
+				return <FifthStepForm setFifthStepData={setFifthStepData} />;
 			default:
 				return <div />;
 		}
